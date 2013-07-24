@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">TCC</string>
+    <string name="action_settings">Settings</string>
+    
+	<!--     FilterActivity -->
+    <string name="live_mode">Continuous Mode</string>
+    <string name="from_gallery">From Gallery</string>
+    <string name="from_camera">From Picture</string>
+    
+	<!--     Filtered Image Activity -->
+    <string name="save_button">Save Button</string>
+    <string name="discard_button">Discard Button</string>
+    <string name="filtered_image">Filtered Image</string>
+    <string name="try_again">Couldn't create image file. Try again.</string>    
+
+</resources>

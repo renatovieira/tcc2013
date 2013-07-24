@@ -1,0 +1,28 @@
+package br.usp.ime.tcc.utils;
+
+import static org.mockito.Mockito.mock;
+import static org.junit.Assert.*;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+
+public class UtilsTest {
+	private Context mockContext;
+	private String uriString = "uriString";
+	
+	@Before
+	public void setUp() throws Exception {
+		Uri uri = Uri.parse(uriString);
+		
+		mockContext = mock(Context.class);
+	}
+	
+	@Test
+	public void selectedPicturePathShouldBeNullIfInvalidUri() {
+		assertEquals(null, Utils.getSelectedPicturePath(null, mockContext));
+	}
+}

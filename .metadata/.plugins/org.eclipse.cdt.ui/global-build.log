@@ -1,0 +1,172 @@
+17:48:46 **** Incremental Build of configuration Default for project OpenCV Tutorial 2 - Mixed Processing ****
+/ndk-build 
+Cannot run program "/ndk-build": Unknown reason
+
+Error: Program "/ndk-build" not found in PATH
+PATH=[/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games]
+17:50:27 **** Auto Build of configuration Default for project OpenCV Tutorial 2 - Mixed Processing ****
+/home/renato/tcc/android-ndk-r8e/ndk-build 
+jni/Android.mk:5: ../../sdk/native/jni/OpenCV.mk: No such file or directory
+make: *** No rule to make target `../../sdk/native/jni/OpenCV.mk'.  Stop.
+18:09:37 **** Build of configuration Default for project OpenCV Sample - face-detection ****
+/home/renato/tcc/android-ndk-r8e/ndk-build.cmd 
+Cannot run program "/home/renato/tcc/android-ndk-r8e/ndk-build.cmd": Unknown reason
+
+Error: Program "/home/renato/tcc/android-ndk-r8e/ndk-build.cmd" not found in PATH
+PATH=[/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games]
+18:09:37 **** Build of configuration Default for project OpenCV Tutorial 2 - Mixed Processing ****
+/home/renato/tcc/android-ndk-r8e/ndk-build.cmd 
+Cannot run program "/home/renato/tcc/android-ndk-r8e/ndk-build.cmd": Unknown reason
+
+Error: Program "/home/renato/tcc/android-ndk-r8e/ndk-build.cmd" not found in PATH
+PATH=[/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games]
+18:09:40 **** Auto Build of configuration Default for project OpenCV Sample - face-detection ****
+/home/renato/tcc/android-ndk-r8e/ndk-build.cmd 
+Cannot run program "/home/renato/tcc/android-ndk-r8e/ndk-build.cmd": Unknown reason
+
+Error: Program "/home/renato/tcc/android-ndk-r8e/ndk-build.cmd" not found in PATH
+PATH=[/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games]
+18:09:41 **** Auto Build of configuration Default for project OpenCV Tutorial 2 - Mixed Processing ****
+/home/renato/tcc/android-ndk-r8e/ndk-build.cmd 
+Cannot run program "/home/renato/tcc/android-ndk-r8e/ndk-build.cmd": Unknown reason
+
+Error: Program "/home/renato/tcc/android-ndk-r8e/ndk-build.cmd" not found in PATH
+PATH=[/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games]
+18:09:49 **** Auto Build of configuration Default for project OpenCV Sample - face-detection ****
+/home/renato/tcc/android-ndk-r8e/ndk-build.cmd 
+Cannot run program "/home/renato/tcc/android-ndk-r8e/ndk-build.cmd": Unknown reason
+
+Error: Program "/home/renato/tcc/android-ndk-r8e/ndk-build.cmd" not found in PATH
+PATH=[/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games]
+18:09:50 **** Auto Build of configuration Default for project OpenCV Sample - face-detection ****
+/home/renato/tcc/android-ndk-r8e/ndk-build.cmd 
+Cannot run program "/home/renato/tcc/android-ndk-r8e/ndk-build.cmd": Unknown reason
+
+Error: Program "/home/renato/tcc/android-ndk-r8e/ndk-build.cmd" not found in PATH
+PATH=[/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games]
+18:09:52 **** Auto Build of configuration Default for project OpenCV Sample - face-detection ****
+/home/renato/tcc/android-ndk-r8e/ndk-build.cmd 
+Cannot run program "/home/renato/tcc/android-ndk-r8e/ndk-build.cmd": Unknown reason
+
+Error: Program "/home/renato/tcc/android-ndk-r8e/ndk-build.cmd" not found in PATH
+PATH=[/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games]
+18:09:53 **** Auto Build of configuration Default for project OpenCV Tutorial 2 - Mixed Processing ****
+/home/renato/tcc/android-ndk-r8e/ndk-build.cmd 
+Cannot run program "/home/renato/tcc/android-ndk-r8e/ndk-build.cmd": Unknown reason
+
+Error: Program "/home/renato/tcc/android-ndk-r8e/ndk-build.cmd" not found in PATH
+PATH=[/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games]
+18:09:57 **** Auto Build of configuration Default for project OpenCV Tutorial 2 - Mixed Processing ****
+/home/renato/tcc/android-ndk-r8e/ndk-build.cmd 
+Cannot run program "/home/renato/tcc/android-ndk-r8e/ndk-build.cmd": Unknown reason
+
+Error: Program "/home/renato/tcc/android-ndk-r8e/ndk-build.cmd" not found in PATH
+PATH=[/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games]
+18:10:06 **** Auto Build of configuration Default for project OpenCV Tutorial 2 - Mixed Processing ****
+/home/renato/tcc/android-ndk-r8e/ndk-build.cmd 
+Cannot run program "/home/renato/tcc/android-ndk-r8e/ndk-build.cmd": Unknown reason
+
+Error: Program "/home/renato/tcc/android-ndk-r8e/ndk-build.cmd" not found in PATH
+PATH=[/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games]
+18:10:11 **** Auto Build of configuration Default for project OpenCV Sample - face-detection ****
+/home/renato/tcc/android-ndk-r8e/ndk-build 
+Compile++ thumb  : detection_based_tracker <= DetectionBasedTracker_jni.cpp
+SharedLibrary  : libdetection_based_tracker.so
+/home/renato/tcc/android-ndk-r8e/toolchains/arm-linux-androideabi-4.6/prebuilt/linux-x86/bin/../lib/gcc/arm-linux-androideabi/4.6/../../../../arm-linux-androideabi/bin/ld: warning: hidden symbol '__aeabi_atexit' in /home/renato/tcc/android-ndk-r8e/sources/cxx-stl/gnu-libstdc++/4.6/libs/armeabi-v7a/libgnustl_static.a(atexit_arm.o) is referenced by DSO ../../sdk/native/jni/../libs/armeabi-v7a/libopencv_java.so
+Install        : libdetection_based_tracker.so => libs/armeabi-v7a/libdetection_based_tracker.so
+18:10:22 **** Auto Build of configuration Default for project OpenCV Tutorial 2 - Mixed Processing ****
+/home/renato/tcc/android-ndk-r8e/ndk-build 
+Compile++ thumb  : mixed_sample <= jni_part.cpp
+SharedLibrary  : libmixed_sample.so
+/home/renato/tcc/android-ndk-r8e/toolchains/arm-linux-androideabi-4.6/prebuilt/linux-x86/bin/../lib/gcc/arm-linux-androideabi/4.6/../../../../arm-linux-androideabi/bin/ld: warning: hidden symbol '__aeabi_atexit' in /home/renato/tcc/android-ndk-r8e/sources/cxx-stl/gnu-libstdc++/4.6/libs/armeabi-v7a/libgnustl_static.a(atexit_arm.o) is referenced by DSO ../../sdk/native/jni/../libs/armeabi-v7a/libopencv_java.so
+Install        : libmixed_sample.so => libs/armeabi-v7a/libmixed_sample.so
+13:16:35 **** Build of configuration Default for project OpenCV Sample - face-detection ****
+/home/renato/tcc/android-ndk-r8e/ndk-build 
+Install        : libdetection_based_tracker.so => libs/armeabi-v7a/libdetection_based_tracker.so
+13:16:42 **** Build of configuration Default for project OpenCV Tutorial 2 - Mixed Processing ****
+/home/renato/tcc/android-ndk-r8e/ndk-build 
+Install        : libmixed_sample.so => libs/armeabi-v7a/libmixed_sample.so
+13:16:47 **** Auto Build of configuration Default for project OpenCV Sample - face-detection ****
+/home/renato/tcc/android-ndk-r8e/ndk-build 
+Install        : libdetection_based_tracker.so => libs/armeabi-v7a/libdetection_based_tracker.so
+13:16:48 **** Auto Build of configuration Default for project OpenCV Tutorial 2 - Mixed Processing ****
+/home/renato/tcc/android-ndk-r8e/ndk-build 
+Install        : libmixed_sample.so => libs/armeabi-v7a/libmixed_sample.so
+13:16:56 **** Auto Build of configuration Default for project OpenCV Sample - face-detection ****
+/home/renato/tcc/android-ndk-r8e/ndk-build 
+Install        : libdetection_based_tracker.so => libs/armeabi-v7a/libdetection_based_tracker.so
+13:16:57 **** Auto Build of configuration Default for project OpenCV Sample - face-detection ****
+/home/renato/tcc/android-ndk-r8e/ndk-build 
+Install        : libdetection_based_tracker.so => libs/armeabi-v7a/libdetection_based_tracker.so
+13:16:59 **** Auto Build of configuration Default for project OpenCV Sample - face-detection ****
+/home/renato/tcc/android-ndk-r8e/ndk-build 
+Install        : libdetection_based_tracker.so => libs/armeabi-v7a/libdetection_based_tracker.so
+13:17:09 **** Auto Build of configuration Default for project OpenCV Tutorial 2 - Mixed Processing ****
+/home/renato/tcc/android-ndk-r8e/ndk-build 
+Install        : libmixed_sample.so => libs/armeabi-v7a/libmixed_sample.so
+13:17:19 **** Auto Build of configuration Default for project OpenCV Tutorial 2 - Mixed Processing ****
+/home/renato/tcc/android-ndk-r8e/ndk-build 
+Install        : libmixed_sample.so => libs/armeabi-v7a/libmixed_sample.so
+13:00:05 **** Build of configuration Default for project OpenCV Sample - face-detection ****
+/home/renato/tcc/android-ndk-r8e/ndk-build 
+Install        : libdetection_based_tracker.so => libs/armeabi-v7a/libdetection_based_tracker.so
+13:00:08 **** Auto Build of configuration Default for project OpenCV Sample - face-detection ****
+/home/renato/tcc/android-ndk-r8e/ndk-build 
+Install        : libdetection_based_tracker.so => libs/armeabi-v7a/libdetection_based_tracker.so
+13:00:29 **** Build of configuration Default for project OpenCV Tutorial 2 - Mixed Processing ****
+/home/renato/tcc/android-ndk-r8e/ndk-build 
+Install        : libmixed_sample.so => libs/armeabi-v7a/libmixed_sample.so
+13:00:33 **** Build of configuration Default for project OpenCV Sample - face-detection ****
+/home/renato/tcc/android-ndk-r8e/ndk-build 
+Install        : libdetection_based_tracker.so => libs/armeabi-v7a/libdetection_based_tracker.so
+13:00:33 **** Build of configuration Default for project OpenCV Tutorial 2 - Mixed Processing ****
+/home/renato/tcc/android-ndk-r8e/ndk-build 
+Install        : libmixed_sample.so => libs/armeabi-v7a/libmixed_sample.so
+13:00:37 **** Auto Build of configuration Default for project OpenCV Sample - face-detection ****
+/home/renato/tcc/android-ndk-r8e/ndk-build 
+Install        : libdetection_based_tracker.so => libs/armeabi-v7a/libdetection_based_tracker.so
+13:00:37 **** Auto Build of configuration Default for project OpenCV Tutorial 2 - Mixed Processing ****
+/home/renato/tcc/android-ndk-r8e/ndk-build 
+Install        : libmixed_sample.so => libs/armeabi-v7a/libmixed_sample.so
+13:00:49 **** Auto Build of configuration Default for project OpenCV Sample - face-detection ****
+/home/renato/tcc/android-ndk-r8e/ndk-build 
+Install        : libdetection_based_tracker.so => libs/armeabi-v7a/libdetection_based_tracker.so
+13:00:50 **** Auto Build of configuration Default for project OpenCV Sample - face-detection ****
+/home/renato/tcc/android-ndk-r8e/ndk-build 
+Install        : libdetection_based_tracker.so => libs/armeabi-v7a/libdetection_based_tracker.so
+13:00:51 **** Auto Build of configuration Default for project OpenCV Sample - face-detection ****
+/home/renato/tcc/android-ndk-r8e/ndk-build 
+Install        : libdetection_based_tracker.so => libs/armeabi-v7a/libdetection_based_tracker.so
+13:00:51 **** Auto Build of configuration Default for project OpenCV Tutorial 2 - Mixed Processing ****
+/home/renato/tcc/android-ndk-r8e/ndk-build 
+Install        : libmixed_sample.so => libs/armeabi-v7a/libmixed_sample.so
+13:00:53 **** Auto Build of configuration Default for project OpenCV Tutorial 2 - Mixed Processing ****
+/home/renato/tcc/android-ndk-r8e/ndk-build 
+Install        : libmixed_sample.so => libs/armeabi-v7a/libmixed_sample.so
+15:22:29 **** Build of configuration Default for project OpenCV Sample - face-detection ****
+/home/renato/tcc/android-ndk-r8e/ndk-build 
+Install        : libdetection_based_tracker.so => libs/armeabi-v7a/libdetection_based_tracker.so
+15:22:31 **** Build of configuration Default for project OpenCV Tutorial 2 - Mixed Processing ****
+/home/renato/tcc/android-ndk-r8e/ndk-build 
+Install        : libmixed_sample.so => libs/armeabi-v7a/libmixed_sample.so
+15:22:34 **** Auto Build of configuration Default for project OpenCV Sample - face-detection ****
+/home/renato/tcc/android-ndk-r8e/ndk-build 
+Install        : libdetection_based_tracker.so => libs/armeabi-v7a/libdetection_based_tracker.so
+15:22:34 **** Auto Build of configuration Default for project OpenCV Tutorial 2 - Mixed Processing ****
+/home/renato/tcc/android-ndk-r8e/ndk-build 
+Install        : libmixed_sample.so => libs/armeabi-v7a/libmixed_sample.so
+15:22:39 **** Auto Build of configuration Default for project OpenCV Sample - face-detection ****
+/home/renato/tcc/android-ndk-r8e/ndk-build 
+Install        : libdetection_based_tracker.so => libs/armeabi-v7a/libdetection_based_tracker.so
+15:22:42 **** Auto Build of configuration Default for project OpenCV Sample - face-detection ****
+/home/renato/tcc/android-ndk-r8e/ndk-build 
+Install        : libdetection_based_tracker.so => libs/armeabi-v7a/libdetection_based_tracker.so
+15:22:43 **** Auto Build of configuration Default for project OpenCV Tutorial 2 - Mixed Processing ****
+/home/renato/tcc/android-ndk-r8e/ndk-build 
+Install        : libmixed_sample.so => libs/armeabi-v7a/libmixed_sample.so
+15:22:55 **** Auto Build of configuration Default for project OpenCV Sample - face-detection ****
+/home/renato/tcc/android-ndk-r8e/ndk-build 
+Install        : libdetection_based_tracker.so => libs/armeabi-v7a/libdetection_based_tracker.so
+15:22:56 **** Auto Build of configuration Default for project OpenCV Tutorial 2 - Mixed Processing ****
+/home/renato/tcc/android-ndk-r8e/ndk-build 
+Install        : libmixed_sample.so => libs/armeabi-v7a/libmixed_sample.so

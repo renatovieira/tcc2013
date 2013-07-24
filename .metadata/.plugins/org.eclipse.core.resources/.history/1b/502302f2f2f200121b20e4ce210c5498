@@ -1,0 +1,57 @@
+package br.usp.ime.tcc.activities;
+
+import android.app.Activity;
+import android.graphics.Bitmap;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.ImageView;
+import android.widget.SeekBar;
+import br.usp.ime.tcc.activities.components.ComponentLoader;
+import br.usp.ime.tcc.utils.Constants;
+
+public class FilteredImageActivity extends Activity {
+	private ImageView filteredImage;
+	private SeekBar intensityBar;
+	private Bitmap image;
+	
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_filtered_image);
+		
+		image = (Bitmap) this.getIntent().getExtras().get("data");
+		
+		loadComponents();
+	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.filter, menu);
+		return true;
+	}
+	
+	private void loadComponents() {
+		ComponentLoader cl = new ComponentLoader(this);
+		
+		cl.loadButton(R.id.save_button, new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+			}
+		});
+		
+		cl.loadButton(R.id.discard_button, new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+			}
+		});
+		
+		intensityBar = cl.loadSeekBar(R.id.intensity_bar, Constants.MAX_INTENSITY, Constants.PROGRESS);
+		
+		filteredImage = cl.loadImageView(R.id.filtered_image, null);
+	}
+}

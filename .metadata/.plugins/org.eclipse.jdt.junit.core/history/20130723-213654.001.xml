@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testrun name="TCCTestConfiguration" project="TCCTest" tests="24" started="24" failures="0" errors="0" ignored="0">
+  <testsuite name="br.usp.ime.tcc.activities.components.ComponentsUtilsTest" time="18.774">
+    <testcase name="buttonShouldThrowExceptionIfInvalidId" classname="br.usp.ime.tcc.activities.components.ComponentsUtilsTest" time="16.257"/>
+    <testcase name="buttonShouldCallRightListener" classname="br.usp.ime.tcc.activities.components.ComponentsUtilsTest" time="0.39"/>
+    <testcase name="imageViewShouldNotBeNull" classname="br.usp.ime.tcc.activities.components.ComponentsUtilsTest" time="0.307"/>
+    <testcase name="shouldReturnNullBitmapFromDefaultImageView" classname="br.usp.ime.tcc.activities.components.ComponentsUtilsTest" time="0.262"/>
+    <testcase name="shouldReturnRightBitmapFromFilledInImageView" classname="br.usp.ime.tcc.activities.components.ComponentsUtilsTest" time="0.264"/>
+    <testcase name="seekbarShouldThrowExceptionIfInvalidId" classname="br.usp.ime.tcc.activities.components.ComponentsUtilsTest" time="0.342"/>
+    <testcase name="seekbarShouldNotBeNull" classname="br.usp.ime.tcc.activities.components.ComponentsUtilsTest" time="0.246"/>
+    <testcase name="seekbarMaximumShouldBeMaxIntensity" classname="br.usp.ime.tcc.activities.components.ComponentsUtilsTest" time="0.324"/>
+    <testcase name="seekbarProgressShouldBeMaxProgress" classname="br.usp.ime.tcc.activities.components.ComponentsUtilsTest" time="0.382"/>
+  </testsuite>
+  <testsuite name="br.usp.ime.tcc.utils.UtilsTest" time="0.578">
+    <testcase name="selectedPicturePathShouldBeNullIfInvalidUri" classname="br.usp.ime.tcc.utils.UtilsTest" time="0.386"/>
+    <testcase name="shouldReturnTheCorrectPath" classname="br.usp.ime.tcc.utils.UtilsTest" time="0.192"/>
+  </testsuite>
+  <testsuite name="br.usp.ime.tcc.utils.FileSaverTest" time="0.553">
+    <testcase name="saveToFileShouldReturnNullIfNullBitmap" classname="br.usp.ime.tcc.utils.FileSaverTest" time="0.081"/>
+    <testcase name="fileShouldNOtBeNullIfValidBitmap" classname="br.usp.ime.tcc.utils.FileSaverTest" time="0.472"/>
+  </testsuite>
+  <testsuite name="br.usp.ime.tcc.activities.FilteredImageActivityTest" time="1.81">
+    <testcase name="backButtonShouldGoBackToFilterActivity" classname="br.usp.ime.tcc.activities.FilteredImageActivityTest" time="0.448"/>
+    <testcase name="extrasShouldNotBeNull" classname="br.usp.ime.tcc.activities.FilteredImageActivityTest" time="0.421"/>
+    <testcase name="discardButtonShouldReturnToFilterActivity" classname="br.usp.ime.tcc.activities.FilteredImageActivityTest" time="0.428"/>
+    <testcase name="saveButtonShouldReturnErrorToast" classname="br.usp.ime.tcc.activities.FilteredImageActivityTest" time="0.513"/>
+  </testsuite>
+  <testsuite name="br.usp.ime.tcc.activities.FilterActivityTest" time="0.866">
+    <testcase name="pressingCameraModeButtonShouldStartCameraActivity" classname="br.usp.ime.tcc.activities.FilterActivityTest" time="0.222"/>
+    <testcase name="pressingGalleryModeButtonShouldStartGalleryActivity" classname="br.usp.ime.tcc.activities.FilterActivityTest" time="0.228"/>
+    <testcase name="shouldCallFilteredImageActivityAfterGalleryResult" classname="br.usp.ime.tcc.activities.FilterActivityTest" time="0.199"/>
+    <testcase name="shouldCallFilteredImageActivityAfterCameraResult" classname="br.usp.ime.tcc.activities.FilterActivityTest" time="0.217"/>
+  </testsuite>
+  <testsuite name="br.usp.ime.tcc.filter.FilterTest" time="0.473">
+    <testcase name="filterShouldReturnBitmapWithSameDimensions" classname="br.usp.ime.tcc.filter.FilterTest" time="0.455"/>
+    <testcase name="filterShouldReturnSameBitmapWithIntensityIsZero" classname="br.usp.ime.tcc.filter.FilterTest" time="0.008"/>
+    <testcase name="filterShouldReturnCorrectBitmap" classname="br.usp.ime.tcc.filter.FilterTest" time="0.01"/>
+  </testsuite>
+</testrun>

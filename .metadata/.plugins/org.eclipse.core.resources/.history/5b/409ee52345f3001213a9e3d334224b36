@@ -1,0 +1,53 @@
+package br.usp.ime.tcc.activities.test;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.robolectric.Robolectric;
+import org.robolectric.RobolectricTestRunner;
+
+import android.content.Intent;
+import android.provider.MediaStore;
+import br.usp.ime.tcc.activities.FilteredImageActivity;
+import br.usp.ime.tcc.activities.R;
+import br.usp.ime.tcc.activities.components.test.ButtonActionsTest;
+
+@RunWith(RobolectricTestRunner.class)
+public class FilteredImageActivityTest {
+	private FilteredImageActivity filteredImageActivity;
+	private ButtonActionsTest bat;
+
+	private FilteredImageActivity startWithImagePathOnExtras() {
+		filteredImageActivity = Robolectric
+				.buildActivity(FilteredImageActivity.class).create().get();
+
+		Intent intent = filteredImageActivity.getIntent();
+		intent.putExtra("imagePath", "dummy");
+		
+		return Robolectric.buildActivity(FilteredImageActivity.class).withIntent(intent).create().get();
+	}
+	
+	// Tests
+	@Before
+	public void setUp() throws Exception {
+		filteredImageActivity = startWithImagePathOnExtras();
+		bat = new ButtonActionsTest(filteredImageActivity);
+	}
+
+	@Test
+	public void extrasShouldNotBeNull () {
+		assertNotNull(filteredImageActivity.getIntent().getExtras());
+	}
+	
+	@Test
+	public void discardButtonShouldReturnToFilterActivity() {
+		Intent startedIntent = bat.createButtonAndGetStartedIntentAfterClick(R.id.cameraModeButton);
+        ShadowIntent shadowIntent = shadowOf(intent);
+
+		assertNotNull(startedIntent);
+		assertEquals(MediaStore.ACTION_IMAGE_CAPTURE, startedIntent.getAction());
+	}
+}

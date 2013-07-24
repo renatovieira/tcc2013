@@ -1,0 +1,13 @@
+package br.usp.ime.tcc.utils;
+
+import org.junit.Before;
+import static org.mockito.Mockito.*;
+
+import android.content.Intent;
+
+public class UtilsTest {
+	@Before
+	public void setUp() throws Exception {
+		Intent mockIntent = mock(Intent.class);
+	}
+}

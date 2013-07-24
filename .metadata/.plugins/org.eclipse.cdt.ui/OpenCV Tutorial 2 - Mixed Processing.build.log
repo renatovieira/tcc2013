@@ -1,0 +1,6 @@
+15:22:56 **** Auto Build of configuration Default for project OpenCV Tutorial 2 - Mixed Processing ****
+/home/renato/tcc/android-ndk-r8e/ndk-build 
+Install        : libmixed_sample.so => libs/armeabi-v7a/libmixed_sample.so
+
+15:22:56 Build Finished (took 124ms)
+

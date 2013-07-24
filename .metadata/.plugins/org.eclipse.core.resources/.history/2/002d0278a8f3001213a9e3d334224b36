@@ -1,0 +1,11 @@
+package br.usp.ime.tcc.utils;
+
+import android.content.Intent;
+
+public class UtilsTest {
+	@Before
+	public void setUp() throws Exception {
+		Intent data = new Intent();
+		Context ctx = shadowOf();
+	}
+}

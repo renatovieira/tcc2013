@@ -1,0 +1,23 @@
+package br.usp.ime.tcc.utils;
+
+import static org.mockito.Mockito.mock;
+
+import org.junit.Before;
+
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+
+public class UtilsTest {
+	private Intent intent;
+	private Context mockContext;
+	private String uriString = "uriString";
+	
+	@Before
+	public void setUp() throws Exception {
+		intent = new Intent();
+		Uri uri = Uri.parse(uriString);
+		
+		mockContext = mock(Context.class);
+	}
+}

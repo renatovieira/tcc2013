@@ -1,0 +1,25 @@
+package br.usp.ime.tcc.utils;
+
+import java.io.File;
+import java.io.IOException;
+
+import org.junit.Before;
+
+import android.graphics.Bitmap;
+
+public class FileSaverTest {
+	private FileSaver fileSaver;
+
+	@Before
+	public void setUp() throws Exception {
+		fileSaver = new FileSaver();
+	}
+	
+	@Test
+	public void saveToFileShouldReturnNullIfNullBitmap() {
+		assertNull(fileSaver.saveToFile(null));
+	}
+	
+	public File saveToFile(Bitmap toBeSaved) throws IOException {
+
+}

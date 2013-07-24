@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testrun name="FilterTest" project="TCCTest" tests="3" started="3" failures="0" errors="0" ignored="0">
+  <testsuite name="br.usp.ime.tcc.filter.FilterTest" time="0.546">
+    <testcase name="filterShouldReturnBitmapWithSameDimensions" classname="br.usp.ime.tcc.filter.FilterTest" time="0.502"/>
+    <testcase name="filterShouldReturnSameBitmapWithIntensityIsZero" classname="br.usp.ime.tcc.filter.FilterTest" time="0.027"/>
+    <testcase name="filterShouldReturnCorrectBitmap" classname="br.usp.ime.tcc.filter.FilterTest" time="0.017"/>
+  </testsuite>
+</testrun>

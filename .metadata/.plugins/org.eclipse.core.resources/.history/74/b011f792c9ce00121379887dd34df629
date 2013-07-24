@@ -1,0 +1,213 @@
+package org.opencv.samples.imagemanipulations;
+
+import org.opencv.android.BaseLoaderCallback;
+import org.opencv.android.CameraBridgeViewBase;
+import org.opencv.android.CameraBridgeViewBase.CvCameraViewFrame;
+import org.opencv.android.CameraBridgeViewBase.CvCameraViewListener2;
+import org.opencv.android.LoaderCallbackInterface;
+import org.opencv.android.OpenCVLoader;
+import org.opencv.core.Core;
+import org.opencv.core.CvType;
+import org.opencv.core.Mat;
+import org.opencv.core.Size;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.WindowManager;
+
+public class ImageManipulationsActivity extends Activity implements
+		CvCameraViewListener2 {
+	private static final String TAG = "OCVSample::Activity";
+
+	public static final int VIEW_MODE_RGBA = 0;
+	public static final int VIEW_MODE_FILTER = 1;
+
+	private MenuItem mItemPreviewRGBA;
+	private MenuItem mItemPreviewFilter;
+
+	private CameraBridgeViewBase mOpenCvCameraView;
+
+	private Size mSizeRgba;
+
+	private Mat mRgba;
+	private Mat mGray;
+	private Mat mIntermediateMat;
+	private Mat mRgbaInnerWindow;
+	private Mat mGrayInnerWindow;
+	private Mat mZoomWindow;
+	private Mat mZoomCorner;
+	private Mat mFilterKernel;
+
+	public static int viewMode = VIEW_MODE_RGBA;
+
+	private BaseLoaderCallback mLoaderCallback = new BaseLoaderCallback(this) {
+		@Override
+		public void onManagerConnected(int status) {
+			switch (status) {
+			case LoaderCallbackInterface.SUCCESS: {
+				Log.i(TAG, "OpenCV loaded successfully");
+				mOpenCvCameraView.enableView();
+			}
+				break;
+			default: {
+				super.onManagerConnected(status);
+			}
+				break;
+			}
+		}
+	};
+
+	public ImageManipulationsActivity() {
+		Log.i(TAG, "Instantiated new " + this.getClass());
+	}
+
+	/** Called when the activity is first created. */
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		Log.i(TAG, "called onCreate");
+		super.onCreate(savedInstanceState);
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
+		setContentView(R.layout.image_manipulations_surface_view);
+
+		mOpenCvCameraView = (CameraBridgeViewBase) findViewById(R.id.image_manipulations_activity_surface_view);
+		mOpenCvCameraView.setCvCameraViewListener(this);
+	}
+
+	@Override
+	public void onPause() {
+		super.onPause();
+		if (mOpenCvCameraView != null)
+			mOpenCvCameraView.disableView();
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_2_4_3, this,
+				mLoaderCallback);
+	}
+
+	public void onDestroy() {
+		super.onDestroy();
+		if (mOpenCvCameraView != null)
+			mOpenCvCameraView.disableView();
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		Log.i(TAG, "called onCreateOptionsMenu");
+		mItemPreviewRGBA = menu.add("Preview RGBA");
+		mItemPreviewFilter = menu.add("Filter");
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		Log.i(TAG, "called onOptionsItemSelected; selected item: " + item);
+		if (item == mItemPreviewRGBA)
+			viewMode = VIEW_MODE_RGBA;
+		else if (item == mItemPreviewFilter)
+			viewMode = VIEW_MODE_FILTER;
+		return true;
+	}
+
+	public void onCameraViewStarted(int width, int height) {
+		mGray = new Mat();
+		mRgba = new Mat();
+		mIntermediateMat = new Mat();
+ 
+		// Fill sepia kernel
+		float intensity = -1f;
+		float alpha = (intensity >= 0) ? 0f : -intensity;
+		float beta = (intensity <= 0) ? 0f : intensity;
+		float gama = 1f - (alpha + beta);
+		
+		mFilterKernel = new Mat(4, 4, CvType.CV_32F);
+		mFilterKernel.put(0, 0, /* R */1f, 0f, 0f, 0f);
+		mFilterKernel.put(1, 0, /* G */0f, 1f, 0f, 0f);
+		mFilterKernel.put(2, 0, /* B */alpha, beta, gama, 0f);
+		mFilterKernel.put(3, 0, /* A */0.000f, 0.000f, 0.000f, 1f);
+	}
+
+	private void CreateAuxiliaryMats() {
+		if (mRgba.empty())
+			return;
+
+		mSizeRgba = mRgba.size();
+
+		int rows = (int) mSizeRgba.height;
+		int cols = (int) mSizeRgba.width;
+
+		int left = cols / 8;
+		int top = rows / 8;
+
+		int width = cols * 3 / 4;
+		int height = rows * 3 / 4;
+
+		if (mRgbaInnerWindow == null)
+			mRgbaInnerWindow = mRgba.submat(top, top + height, left, left
+					+ width);
+
+		if (mGrayInnerWindow == null && !mGray.empty())
+			mGrayInnerWindow = mGray.submat(top, top + height, left, left
+					+ width);
+
+		if (mZoomCorner == null)
+			mZoomCorner = mRgba.submat(0, rows / 2 - rows / 10, 0, cols / 2
+					- cols / 10);
+
+		if (mZoomWindow == null)
+			mZoomWindow = mRgba.submat(rows / 2 - 9 * rows / 100, rows / 2 + 9
+					* rows / 100, cols / 2 - 9 * cols / 100, cols / 2 + 9
+					* cols / 100);
+	}
+
+	public void onCameraViewStopped() {
+		// Explicitly deallocate Mats
+		if (mZoomWindow != null)
+			mZoomWindow.release();
+		if (mZoomCorner != null)
+			mZoomCorner.release();
+		if (mGrayInnerWindow != null)
+			mGrayInnerWindow.release();
+		if (mRgbaInnerWindow != null)
+			mRgbaInnerWindow.release();
+		if (mRgba != null)
+			mRgba.release();
+		if (mGray != null)
+			mGray.release();
+		if (mIntermediateMat != null)
+			mIntermediateMat.release();
+
+		mRgba = null;
+		mGray = null;
+		mIntermediateMat = null;
+		mRgbaInnerWindow = null;
+		mGrayInnerWindow = null;
+		mZoomCorner = null;
+		mZoomWindow = null;
+	}
+
+	public Mat onCameraFrame(CvCameraViewFrame inputFrame) {
+		mRgba = inputFrame.rgba();
+
+		switch (ImageManipulationsActivity.viewMode) {
+		case ImageManipulationsActivity.VIEW_MODE_RGBA:
+			break;
+
+		case ImageManipulationsActivity.VIEW_MODE_FILTER:
+			if ((mRgbaInnerWindow == null) || (mRgba.cols() != mSizeRgba.width)
+					|| (mRgba.height() != mSizeRgba.height))
+				CreateAuxiliaryMats();
+			Core.transform(mRgbaInnerWindow, mRgbaInnerWindow, mFilterKernel);
+			break;
+
+		}
+
+		return mRgba;
+	}
+}

@@ -1,0 +1,74 @@
+package br.usp.ime.tcc.utils;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
+import android.content.ContentResolver;
+import android.database.Cursor;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.provider.MediaStore;
+
+public final class Utils {
+	private Utils() {
+		throw new AssertionError();
+	}
+
+	private static String queryForPicturePath(Uri selectedImageUri,
+			ContentResolver cr) {
+		String[] filePathColumn = { MediaStore.Images.Media.DATA };
+
+		Cursor cursor = cr.query(selectedImageUri, filePathColumn, null, null,
+				null);
+		cursor.moveToFirst();
+
+		int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+		String picturePath = cursor.getString(columnIndex);
+		cursor.close();
+		return picturePath;
+	}
+
+	// Public Methods
+
+	public static String getSelectedPicturePath(Uri selectedImageUri,
+			ContentResolver cr) {
+		String picturePath = null;
+
+		if (selectedImageUri != null) {
+			picturePath = queryForPicturePath(selectedImageUri, cr);
+		}
+		return picturePath;
+	}
+
+	public static String getTimeStamp() {
+		String timeStamp = new SimpleDateFormat(Constants.DATE_FORMAT,
+				Locale.getDefault()).format(new Date());
+		return timeStamp;
+	}
+
+	public static int calculateInSampleSize(BitmapFactory.Options options,
+			int reqWidth, int reqHeight) {
+		// Raw height and width of image
+		final int height = options.outHeight;
+		final int width = options.outWidth;
+		int inSampleSize = 1;
+
+		if (height > reqHeight || width > reqWidth) {
+
+			// Calculate ratios of height and width to requested height and
+			// width
+			final int heightRatio = Math.round((float) height
+					/ (float) reqHeight);
+			final int widthRatio = Math.round((float) width / (float) reqWidth);
+
+			// Choose the smallest ratio as inSampleSize value, this will
+			// guarantee
+			// a final image with both dimensions larger than or equal to the
+			// requested height and width.
+			inSampleSize = heightRatio < widthRatio ? heightRatio : widthRatio;
+		}
+
+		return inSampleSize;
+	}
+}

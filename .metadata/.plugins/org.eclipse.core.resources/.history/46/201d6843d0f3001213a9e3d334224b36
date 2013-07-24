@@ -1,0 +1,7 @@
+package br.usp.ime.tcc.utils;
+
+public class FileSaverTest {
+	@Before
+	public void setUp() throws Exception {
+	}
+}

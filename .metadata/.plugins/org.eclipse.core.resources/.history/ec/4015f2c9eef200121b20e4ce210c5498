@@ -1,0 +1,78 @@
+package br.usp.ime.tcc.activities.test;
+
+import static org.junit.Assert.assertEquals;
+import static org.robolectric.Robolectric.shadowOf;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.robolectric.Robolectric;
+import org.robolectric.RobolectricTestRunner;
+import org.robolectric.shadows.ShadowActivity;
+import org.robolectric.shadows.ShadowIntent;
+
+import android.content.Intent;
+import android.widget.Button;
+import br.usp.ime.tcc.activities.FilterActivity;
+import br.usp.ime.tcc.activities.R;
+import br.usp.ime.tcc.activities.components.test.ComponentsTester;
+
+@RunWith(RobolectricTestRunner.class)
+public class FilterActivityTest {
+	private FilterActivity filterActivity;
+
+	private Button liveModeButton;
+
+	private Button cameraModeButton;
+
+	private Button galleryModeButton;
+
+	@Before
+	public void setUp() throws Exception {
+		filterActivity = Robolectric.buildActivity(FilterActivity.class)
+				.create().get();
+
+		getButtons();
+	}
+
+	private void getButtons() {
+		liveModeButton = (Button) filterActivity
+				.findViewById(R.id.liveModeButton);
+
+		cameraModeButton = (Button) filterActivity
+				.findViewById(R.id.cameraModeButton);
+
+		galleryModeButton = (Button) filterActivity
+				.findViewById(R.id.galleryModeButton);
+	}
+
+	@Test
+	public void liveModeButtonShouldNotBeNullAndBeResponsive() {
+		assertEquals(true,
+				ComponentsTester.buttonNotNullAndResponsive(liveModeButton));
+	}
+
+	@Test
+	public void cameraModeButtonShouldNotBeNullAndBeResponsive() {
+		assertEquals(true,
+				ComponentsTester.buttonNotNullAndResponsive(cameraModeButton));
+	}
+
+	@Test
+	public void galleryModeButtonShouldNotBeNullAndBeResponsive() {
+		assertEquals(true,
+				ComponentsTester.buttonNotNullAndResponsive(galleryModeButton));
+	}
+
+	@Test
+	public void pressingCameraModeButtonShouldStartCameraActivity() throws Exception {
+		cameraModeButton.performClick();
+
+		ShadowActivity shadowActivity = shadowOf(filterActivity);
+		Intent startedIntent = shadowActivity.getNextStartedActivity();
+		ShadowIntent shadowIntent = shadowOf(startedIntent);
+		String name = shadowIntent.getComponent().getClassName();
+		assertThat(shadowIntent.getComponent().getClassName(),
+				equalTo("android.media.action.VIDEO_CAMERA"));
+	}
+}

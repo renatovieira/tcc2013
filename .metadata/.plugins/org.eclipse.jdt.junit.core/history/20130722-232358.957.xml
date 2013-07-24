@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testrun name="TCCTestConfiguration" project="TCCTest" tests="14" started="14" failures="0" errors="0" ignored="0">
+  <testsuite name="br.usp.ime.tcc.activities.test.FilteredImageActivityTest" time="18.234">
+    <testcase name="extrasShouldNotBeNull" classname="br.usp.ime.tcc.activities.test.FilteredImageActivityTest" time="16.584"/>
+    <testcase name="fromCameraShouldBeFalseIfFalseOnExtras" classname="br.usp.ime.tcc.activities.test.FilteredImageActivityTest" time="0.548"/>
+    <testcase name="fromCameraShouldBeTrueIfTrueOnExtras" classname="br.usp.ime.tcc.activities.test.FilteredImageActivityTest" time="1.102"/>
+  </testsuite>
+  <testsuite name="br.usp.ime.tcc.activities.components.test.ComponentsLoaderTest" time="1.61">
+    <testcase name="buttonShouldThrowExceptionIfInvalidId" classname="br.usp.ime.tcc.activities.components.test.ComponentsLoaderTest" time="0.245"/>
+    <testcase name="buttonShouldCallRightListener" classname="br.usp.ime.tcc.activities.components.test.ComponentsLoaderTest" time="0.229"/>
+    <testcase name="imageViewShouldNotBeNull" classname="br.usp.ime.tcc.activities.components.test.ComponentsLoaderTest" time="0.272"/>
+    <testcase name="seekbarShouldThrowExceptionIfInvalidId" classname="br.usp.ime.tcc.activities.components.test.ComponentsLoaderTest" time="0.217"/>
+    <testcase name="seekbarShouldNotBeNull" classname="br.usp.ime.tcc.activities.components.test.ComponentsLoaderTest" time="0.224"/>
+    <testcase name="seekbarMaximumShouldBeMaxIntensity" classname="br.usp.ime.tcc.activities.components.test.ComponentsLoaderTest" time="0.203"/>
+    <testcase name="seekbarProgressShouldBeMaxProgress" classname="br.usp.ime.tcc.activities.components.test.ComponentsLoaderTest" time="0.22"/>
+  </testsuite>
+  <testsuite name="br.usp.ime.tcc.activities.test.FilterActivityTest" time="0.892">
+    <testcase name="pressingCameraModeButtonShouldStartCameraActivity" classname="br.usp.ime.tcc.activities.test.FilterActivityTest" time="0.272"/>
+    <testcase name="pressingGalleryModeButtonShouldStartGalleryActivity" classname="br.usp.ime.tcc.activities.test.FilterActivityTest" time="0.209"/>
+    <testcase name="shouldCallFilteredImageActivityAfterGalleryResult" classname="br.usp.ime.tcc.activities.test.FilterActivityTest" time="0.21"/>
+    <testcase name="shouldCallFilteredImageActivityAfterCameraResult" classname="br.usp.ime.tcc.activities.test.FilterActivityTest" time="0.201"/>
+  </testsuite>
+</testrun>

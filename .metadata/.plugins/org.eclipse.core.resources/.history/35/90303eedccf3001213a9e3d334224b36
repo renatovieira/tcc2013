@@ -1,0 +1,79 @@
+package br.usp.ime.tcc.utils;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+import java.io.IOException;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.powermock.api.mockito.PowerMockito;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
+
+import android.content.ContentResolver;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.test.mock.MockResources;
+import br.usp.ime.tcc.activities.R;
+
+@RunWith(PowerMockRunner.class)
+@PrepareForTest({ContentResolver.class, Utils.class})
+public class UtilsTest {
+	private Cursor mockCursorForUse(String correctPath) {
+		Cursor c = mock(Cursor.class);
+		when(c.moveToFirst()).thenReturn(true);
+		when(c.getColumnIndex(any(String.class))).thenReturn(0);
+		when(c.getString(0)).thenReturn(correctPath);
+		return c;
+	}
+
+	private ContentResolver mockContentResolverForUse(Uri mockUri,
+			String correctPath) {
+		Cursor mockCursor = mockCursorForUse(correctPath);
+
+		ContentResolver mockContentResolver = PowerMockito.mock(ContentResolver.class);
+
+		when(
+				mockContentResolver.query(any(Uri.class), any(String[].class),
+						any(String.class), any(String[].class),
+						any(String.class))).thenReturn(mockCursor);
+		return mockContentResolver;
+	}
+
+	// Tests
+	@Test
+	public void selectedPicturePathShouldBeNullIfInvalidUri() {
+		ContentResolver mockContentResolver = mock(ContentResolver.class);
+		
+		assertNull(Utils.getSelectedPicturePath(null, mockContentResolver));
+	}
+
+	@Test
+	public void shouldReturnTheCorrectPath() {
+		Uri mockUri = mock(Uri.class);
+		String correctPath = "correctPath";
+		
+		final ContentResolver mockContentResolver = mockContentResolverForUse(mockUri, correctPath);
+		
+		assertEquals(correctPath,
+				Utils.getSelectedPicturePath(mockUri, mockContentResolver));
+	}
+	
+	@Test
+	public void shouldReturnNullFileIfNullBitmap() throws IOException {
+		assertNull(Utils.saveToFile(null));
+	}
+	
+	@Test
+	public void should() throws IOException {
+		Bitmap bm = BitmapFactory.decodeResource(new MockResources(), R.drawable.ic_launcher);
+		assertNotNull(Utils.saveToFile(toBeSaved));
+	}
+}

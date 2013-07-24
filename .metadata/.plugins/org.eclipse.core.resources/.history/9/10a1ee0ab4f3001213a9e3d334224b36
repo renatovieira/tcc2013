@@ -1,0 +1,59 @@
+package br.usp.ime.tcc.utils;
+
+import static org.junit.Assert.*;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.*;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import android.content.ContentResolver;
+import android.content.Context;
+import android.database.Cursor;
+import android.net.Uri;
+
+public class UtilsTest {
+	private Context mockContext;
+
+	private Cursor mockCursorForUse(String correctPath) {
+		Cursor c = mock(Cursor.class);
+		when(c.moveToFirst()).thenReturn(true);
+		when(c.getColumnIndex(any(String.class))).thenReturn(0);
+		when(c.getString(0)).thenReturn(correctPath);
+		return c;
+	}
+
+	private ContentResolver mockContentResolverForUse(Uri mockUri, String correctPath) {
+		Cursor mockCursor = mockCursorForUse(correctPath);
+		
+		ContentResolver mockContentResolver = mock(ContentResolver.class);
+
+		when(
+				mockContentResolver.query(any(Uri.class), any(String[].class),
+						any(String.class), any(String[].class),
+						any(String.class))).thenReturn(mockCursor);
+		return mockContentResolver;
+	}
+
+	@Before
+	public void setUp() throws Exception {
+		mockContext = mock(Context.class);
+	}
+
+	@Test
+	public void selectedPicturePathShouldBeNullIfInvalidUri() {
+		assertEquals(null, Utils.getSelectedPicturePath(null, mockContext));
+	}
+
+	@Test
+	public void shouldReturnTheCorrectPath() {
+		String correctPath = "correctPath";
+		Uri mockUri = mock(Uri.class);
+
+		ContentResolver mockContentResolver = mockContentResolverForUse(mockUri, correctPath);
+		when(mockContext.getContentResolver()).thenReturn(mockContentResolver);
+
+		assertEquals(correctPath,
+				Utils.getSelectedPicturePath(mockUri, mockContext));
+	}
+}

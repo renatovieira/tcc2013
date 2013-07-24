@@ -1,0 +1,12 @@
+package br.usp.ime.tcc.utils;
+
+public final class Constants {
+	public static final double MIN_INTENSITY = -1.0;
+	public static final double MAX_INTENSITY = 1.0;
+
+	private Constants() {
+		// this prevents even the native class from
+		// calling this ctor as well :
+		throw new AssertionError();
+	}
+}

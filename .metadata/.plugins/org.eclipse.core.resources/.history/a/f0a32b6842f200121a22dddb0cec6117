@@ -1,0 +1,18 @@
+package br.usp.ime.tcc.activities.components;
+
+import android.app.Activity;
+import android.widget.Button;
+
+public class Loader {
+	private Activity activity;
+	
+	public Loader(Activity act) {
+		activity = act;
+	}
+	
+	public void loadButton(int buttonId, android.view.View.OnClickListener onClickListener) {
+		Button liveModeButton = (Button) activity.findViewById(buttonId);
+		
+		liveModeButton.setOnClickListener(onClickListener);
+	}
+}

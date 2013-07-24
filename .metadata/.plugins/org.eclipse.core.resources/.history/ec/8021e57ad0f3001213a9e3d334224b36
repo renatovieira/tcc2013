@@ -1,0 +1,18 @@
+package br.usp.ime.tcc.utils;
+
+import org.junit.Before;
+import org.junit.Test;
+
+public class FileSaverTest {
+	private FileSaver fileSaver;
+
+	@Before
+	public void setUp() throws Exception {
+		fileSaver = new FileSaver();
+	}
+	
+	@Test
+	public void saveToFileShouldReturnNullIfNullBitmap() {
+		assertNull(fileSaver.saveToFile(null));
+	}
+}

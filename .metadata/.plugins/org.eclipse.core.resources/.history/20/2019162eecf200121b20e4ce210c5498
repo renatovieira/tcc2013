@@ -1,0 +1,13 @@
+package br.usp.ime.tcc.activities.components.test;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import android.widget.Button;
+
+public class ComponentsTester {
+	public void buttonNotNullAndResponsive(Button button) {
+		assertNotNull(button);
+
+		assertEquals(true, button.performClick());
+	}
+}

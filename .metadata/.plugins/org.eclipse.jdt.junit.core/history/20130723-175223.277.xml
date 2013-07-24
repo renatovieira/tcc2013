@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testrun name="TCCTestConfiguration" project="TCCTest" tests="19" started="19" failures="0" errors="1" ignored="0">
+  <testsuite name="br.usp.ime.tcc.utils.UtilsTest" time="1.156">
+    <testcase name="selectedPicturePathShouldBeNullIfInvalidUri" classname="br.usp.ime.tcc.utils.UtilsTest" time="0.786"/>
+    <testcase name="shouldReturnTheCorrectPath" classname="br.usp.ime.tcc.utils.UtilsTest" time="0.37"/>
+  </testsuite>
+  <testsuite name="br.usp.ime.tcc.utils.FileSaverTest" time="0.115">
+    <testcase name="saveToFileShouldReturnNullIfNullBitmap" classname="br.usp.ime.tcc.utils.FileSaverTest" time="0.115"/>
+  </testsuite>
+  <testsuite name="br.usp.ime.tcc.activities.test.FilteredImageActivityTest" time="15.889">
+    <testcase name="extrasShouldNotBeNull" classname="br.usp.ime.tcc.activities.test.FilteredImageActivityTest" time="14.919"/>
+    <testcase name="discardButtonShouldReturnToFilterActivity" classname="br.usp.ime.tcc.activities.test.FilteredImageActivityTest" time="0.675"/>
+    <testcase name="saveButtonShouldReturnToFilterActivity" classname="br.usp.ime.tcc.activities.test.FilteredImageActivityTest" time="0.295">
+      <error>java.lang.NullPointerException: can't get a shadow for null
+	at org.robolectric.bytecode.ShadowWrangler.shadowOf(ShadowWrangler.java:414)
+	at org.robolectric.Robolectric.shadowOf_(Robolectric.java:1077)
+	at org.robolectric.Robolectric.shadowOf(Robolectric.java:720)
+	at br.usp.ime.tcc.activities.test.FilteredImageActivityTest.saveButtonShouldReturnToFilterActivity(FilteredImageActivityTest.java:73)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.lang.reflect.Method.invoke(Method.java:616)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:45)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:42)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:20)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:28)
+	at org.robolectric.RobolectricTestRunner$2.evaluate(RobolectricTestRunner.java:241)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:263)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:68)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:47)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:231)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:60)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:50)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:222)
+	at org.robolectric.RobolectricTestRunner$1.evaluate(RobolectricTestRunner.java:177)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:300)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:50)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:467)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:683)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:390)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:197)
+
+</error>
+    </testcase>
+  </testsuite>
+  <testsuite name="br.usp.ime.tcc.activities.components.test.ComponentsUtilsTest" time="2.594">
+    <testcase name="buttonShouldThrowExceptionIfInvalidId" classname="br.usp.ime.tcc.activities.components.test.ComponentsUtilsTest" time="0.316"/>
+    <testcase name="buttonShouldCallRightListener" classname="br.usp.ime.tcc.activities.components.test.ComponentsUtilsTest" time="0.315"/>
+    <testcase name="imageViewShouldNotBeNull" classname="br.usp.ime.tcc.activities.components.test.ComponentsUtilsTest" time="0.413"/>
+    <testcase name="shouldReturnNullBitmapFromDefaultImageView" classname="br.usp.ime.tcc.activities.components.test.ComponentsUtilsTest" time="0.302"/>
+    <testcase name="shouldReturnRightBitmapFromFilledInImageView" classname="br.usp.ime.tcc.activities.components.test.ComponentsUtilsTest" time="0.26"/>
+    <testcase name="seekbarShouldThrowExceptionIfInvalidId" classname="br.usp.ime.tcc.activities.components.test.ComponentsUtilsTest" time="0.267"/>
+    <testcase name="seekbarShouldNotBeNull" classname="br.usp.ime.tcc.activities.components.test.ComponentsUtilsTest" time="0.268"/>
+    <testcase name="seekbarMaximumShouldBeMaxIntensity" classname="br.usp.ime.tcc.activities.components.test.ComponentsUtilsTest" time="0.22"/>
+    <testcase name="seekbarProgressShouldBeMaxProgress" classname="br.usp.ime.tcc.activities.components.test.ComponentsUtilsTest" time="0.233"/>
+  </testsuite>
+  <testsuite name="br.usp.ime.tcc.activities.test.FilterActivityTest" time="0.911">
+    <testcase name="pressingCameraModeButtonShouldStartCameraActivity" classname="br.usp.ime.tcc.activities.test.FilterActivityTest" time="0.209"/>
+    <testcase name="pressingGalleryModeButtonShouldStartGalleryActivity" classname="br.usp.ime.tcc.activities.test.FilterActivityTest" time="0.261"/>
+    <testcase name="shouldCallFilteredImageActivityAfterGalleryResult" classname="br.usp.ime.tcc.activities.test.FilterActivityTest" time="0.202"/>
+    <testcase name="shouldCallFilteredImageActivityAfterCameraResult" classname="br.usp.ime.tcc.activities.test.FilterActivityTest" time="0.239"/>
+  </testsuite>
+</testrun>

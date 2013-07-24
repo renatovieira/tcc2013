@@ -1,0 +1,10 @@
+package br.usp.ime.tcc.utils;
+
+import org.junit.Before;
+
+public class FileSaverTest {
+	@Before
+	public void setUp() throws Exception {
+		
+	}
+}

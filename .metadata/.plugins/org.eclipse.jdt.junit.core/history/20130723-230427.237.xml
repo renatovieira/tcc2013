@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testrun name="FilterTest" project="TCCTest" tests="3" started="3" failures="0" errors="3" ignored="0">
+  <testsuite name="br.usp.ime.tcc.filter.FilterTest" time="7.184">
+    <testcase name="filterShouldReturnBitmapWithSameDimensions" classname="br.usp.ime.tcc.filter.FilterTest" time="7.105">
+      <error>java.lang.RuntimeException: Stub!
+	at android.test.mock.MockResources.updateConfiguration(MockResources.java:6)
+	at android.content.res.Resources.__constructor__(Resources.java:187)
+	at android.content.res.Resources.&lt;init&gt;(Resources.java:183)
+	at android.content.res.Resources.&lt;init&gt;(Resources.java:167)
+	at android.test.mock.MockResources.&lt;init&gt;(MockResources.java:5)
+	at br.usp.ime.tcc.filter.FilterTest.setUp(FilterTest.java:42)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:45)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:42)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:27)
+	at org.robolectric.RobolectricTestRunner$2.evaluate(RobolectricTestRunner.java:241)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:263)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:68)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:47)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:231)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:60)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:50)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:222)
+	at org.robolectric.RobolectricTestRunner$1.evaluate(RobolectricTestRunner.java:177)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:300)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:50)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:467)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:683)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:390)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:197)
+
+</error>
+    </testcase>
+    <testcase name="filterShouldReturnNullIfBitmapIsNull" classname="br.usp.ime.tcc.filter.FilterTest" time="0.037">
+      <error>java.lang.RuntimeException: Stub!
+	at android.test.mock.MockResources.updateConfiguration(MockResources.java:6)
+	at android.content.res.Resources.__constructor__(Resources.java:187)
+	at android.content.res.Resources.&lt;init&gt;(Resources.java:183)
+	at android.content.res.Resources.&lt;init&gt;(Resources.java:167)
+	at android.test.mock.MockResources.&lt;init&gt;(MockResources.java:5)
+	at br.usp.ime.tcc.filter.FilterTest.setUp(FilterTest.java:42)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:45)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:42)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:27)
+	at org.robolectric.RobolectricTestRunner$2.evaluate(RobolectricTestRunner.java:241)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:263)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:68)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:47)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:231)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:60)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:50)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:222)
+	at org.robolectric.RobolectricTestRunner$1.evaluate(RobolectricTestRunner.java:177)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:300)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:50)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:467)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:683)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:390)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:197)
+
+</error>
+    </testcase>
+    <testcase name="filterShouldReturnSameBitmapWithIntensityIsZero" classname="br.usp.ime.tcc.filter.FilterTest" time="0.037">
+      <error>java.lang.RuntimeException: Stub!
+	at android.test.mock.MockResources.updateConfiguration(MockResources.java:6)
+	at android.content.res.Resources.__constructor__(Resources.java:187)
+	at android.content.res.Resources.&lt;init&gt;(Resources.java:183)
+	at android.content.res.Resources.&lt;init&gt;(Resources.java:167)
+	at android.test.mock.MockResources.&lt;init&gt;(MockResources.java:5)
+	at br.usp.ime.tcc.filter.FilterTest.setUp(FilterTest.java:42)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:45)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:15)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:42)
+	at org.junit.internal.runners.statements.RunBefores.evaluate(RunBefores.java:27)
+	at org.robolectric.RobolectricTestRunner$2.evaluate(RobolectricTestRunner.java:241)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:263)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:68)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:47)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:231)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:60)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:229)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:50)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:222)
+	at org.robolectric.RobolectricTestRunner$1.evaluate(RobolectricTestRunner.java:177)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:300)
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:50)
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:467)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:683)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:390)
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:197)
+
+</error>
+    </testcase>
+  </testsuite>
+</testrun>

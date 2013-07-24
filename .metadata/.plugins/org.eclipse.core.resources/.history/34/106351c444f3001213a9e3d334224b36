@@ -1,0 +1,36 @@
+package br.usp.ime.tcc.activities.components.test;
+
+import static org.robolectric.Robolectric.shadowOf;
+
+import org.robolectric.shadows.ShadowActivity;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.widget.Button;
+
+public class ComponentsActionsTest {
+	private Activity activity;
+	
+	public ComponentsActionsTest(Activity activity) {
+		this.activity = activity;
+	}
+	
+	private Button getButtonById(int buttonId) {
+		return (Button) activity.findViewById(buttonId);
+	}
+	
+	public Intent createButtonAndGetStartedIntentAfterClick(int buttonId) {
+		Button button = getButtonById(buttonId);
+
+		Intent startedIntent = getStartedIntentAfterClickOnButton(button);
+		return startedIntent;
+	}
+	
+	private Intent getStartedIntentAfterClickOnButton(Button button) {
+		button.performClick();
+
+		ShadowActivity shadowActivity = shadowOf(activity);
+		Intent startedIntent = shadowActivity.getNextStartedActivity();
+		return startedIntent;
+	}
+}

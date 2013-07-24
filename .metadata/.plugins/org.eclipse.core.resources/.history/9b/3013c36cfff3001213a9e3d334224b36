@@ -1,0 +1,43 @@
+package br.usp.ime.tcc.filter;
+
+import android.graphics.Bitmap;
+import android.graphics.Color;
+
+public class Filter {
+	private double alpha;
+	private double beta;
+	private double gama;
+
+	public Filter(double intensity) {
+		alpha = calculaAlpha(intensity);
+		beta = calculaBeta(intensity);
+		gama = 1 - (alpha + beta);
+	}
+
+	private double calculaAlpha(double intensity) {
+		return intensity >= 0 ? 0 : -intensity;
+	}
+
+	private double calculaBeta(double intensity) {
+		return calculaAlpha(-intensity);
+	}
+	
+	private int calculateNewBlue(int originalRed, int originalGreen,
+			int originalBlue) {
+		int newBlue = (int) ((originalBlue * gama)
+				+ (originalRed * gama) + (originalGreen * beta));
+		return newBlue;
+	}
+
+	public Bitmap applyTo(Bitmap bmp) {
+		if (bmp == null)
+			return null;
+		
+		int width = bmp.getWidth();
+		int height = bmp.getHeight();
+
+		Bitmap filtered = Bitmap.createBitmap(bmp);
+
+		return filtered;
+	}
+}

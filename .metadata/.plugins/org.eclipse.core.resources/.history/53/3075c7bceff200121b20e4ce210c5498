@@ -1,0 +1,11 @@
+package br.usp.ime.tcc.utils;
+
+public final class Constants {
+	public static final int PROGRESS = 1;
+	public static final int MAX_INTENSITY = 100;
+	public static final int TAKE_PICTURE = 1;
+	
+	private Constants() {
+		throw new AssertionError();
+	}
+}

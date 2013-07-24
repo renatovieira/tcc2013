@@ -1,0 +1,28 @@
+package br.usp.ime.tcc.filter;
+
+import org.junit.Before;
+import org.junit.runner.RunWith;
+import org.powermock.api.mockito.PowerMockito;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
+
+import android.graphics.Bitmap;
+
+@RunWith(PowerMockRunner.class)
+@PrepareForTest(Bitmap.class)
+public class FilterTest {
+	private Bitmap bmp;
+	private Filter filter;
+
+	// Tests
+	@Before
+	public void setUp() throws Exception {
+		bmp = PowerMockito.mock(Bitmap.class);
+	
+		double intensity = 0;
+		
+		filter = new Filter(intensity);
+	}
+	
+	
+}

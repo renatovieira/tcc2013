@@ -1,0 +1,36 @@
+package br.usp.ime.tcc.utils;
+
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+
+import org.apache.tools.ant.taskdefs.Length.When;
+import org.junit.Before;
+import org.junit.Test;
+
+import android.content.Context;
+import android.net.Uri;
+
+public class UtilsTest {
+	private Context mockContext;
+	private Uri mockedUri;
+	
+	@Before
+	public void setUp() throws Exception {
+		mockContext = mock(Context.class);
+		mockedUri = mock(Uri.class);
+		
+		when(mockContext.getContentResolver().query(
+				any(Uri.class), any(Pro), selection, selectionArgs, sortOrder))
+	}
+	
+	@Test
+	public void selectedPicturePathShouldBeNullIfInvalidUri() {
+		assertEquals(null, Utils.getSelectedPicturePath(null, mockContext));
+	}
+	
+	@Test
+	public void shouldReturnTheCorrectPath() {
+		
+		assertEquals(null, Utils.getSelectedPicturePath(mockedUri, mockContext));
+	}
+}

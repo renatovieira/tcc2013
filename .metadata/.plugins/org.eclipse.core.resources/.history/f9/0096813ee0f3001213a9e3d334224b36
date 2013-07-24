@@ -1,0 +1,27 @@
+package br.usp.ime.tcc.utils;
+
+import static org.junit.Assert.assertNull;
+
+import java.io.IOException;
+
+import org.junit.Before;
+import org.junit.Test;
+
+public class FileSaverTest {
+	private FileSaver fileSaver;
+
+	@Before
+	public void setUp() throws Exception {
+		fileSaver = new FileSaver();
+	}
+	
+	@Test
+	public void saveToFileShouldReturnNullIfNullBitmap() throws IOException {
+		assertNull(fileSaver.saveToFile(null));
+	}
+	
+	@Test
+	public void saveToFileShouldReturnNullIfNullBitmap() throws IOException {
+		assertNull(fileSaver.saveToFile(null));
+	}
+}

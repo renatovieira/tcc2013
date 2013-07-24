@@ -1,0 +1,53 @@
+package br.usp.ime.tcc.filter;
+
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.ColorMatrixColorFilter;
+import android.graphics.Paint;
+
+public class Filter {
+	private ColorMatrixColorFilter colorMatrixColorFilter;
+
+	public Filter(float intensity) {
+		float alpha = calculaAlpha(intensity);
+		float beta = calculaBeta(intensity);
+		float gama = 1 - (alpha + beta);
+		
+		float[] filterMatrix = {
+			    1, 0, alpha, 0, 0,
+			    0, 1, beta, 0, 0,
+			    0, 0, gama, 0, 0,
+			    0, 0, 0, 1, 0,
+		};
+		
+		colorMatrixColorFilter = new ColorMatrixColorFilter(filterMatrix);
+	}
+
+	private float calculaAlpha(float intensity) {
+		return intensity >= 0 ? 0 : -intensity;
+	}
+
+	private float calculaBeta(float intensity) {
+		return calculaAlpha(-intensity);
+	}
+	
+	public Bitmap applyTo(Bitmap bmp) {
+		if (bmp == null)
+			return null;
+		
+		Bitmap filtered = filterBitmap(bmp);
+
+		return filtered;
+	}
+
+	private Bitmap filterBitmap(Bitmap bmp) {
+		Bitmap filtered = Bitmap.createBitmap(bmp);
+		Bitmap mutableBitmap = workingBitmap.copy(Bitmap.Config.ARGB_8888, true);
+
+		Canvas c = new Canvas(filtered);
+	    Paint paint = new Paint();
+	    paint.setColorFilter(colorMatrixColorFilter);
+	    c.drawBitmap(bmp, 0, 0, paint);
+		return filtered;
+	}
+}

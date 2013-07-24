@@ -1,0 +1,42 @@
+package br.usp.ime.tcc.filter;
+
+import org.junit.Before;
+import org.junit.runner.RunWith;
+import org.powermock.api.mockito.PowerMockito;
+import org.powermock.core.classloader.annotations.PrepareForTest;
+import org.powermock.modules.junit4.PowerMockRunner;
+
+import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
+
+import android.graphics.Bitmap;
+
+@RunWith(PowerMockRunner.class)
+@PrepareForTest(Bitmap.class)
+public class FilterTest {
+	private static final int MOCK_BITMAP_WIDTH = 3;
+	private static final int MOCK_BITMAP_HEIGHT = 3;
+	private static final int MOCK_BITMAP_VALUES = {};
+	
+	private Bitmap bmp;
+	private Filter filter;
+	
+	private Bitmap createMockBitmap(int width, int height, int [] values) {
+		bmp = PowerMockito.mock(Bitmap.class);
+		when(bmp.getWidth()).thenReturn(width);
+		when(bmp.getWidth()).thenReturn(height);
+		when(bmp.getConfig()).thenReturn(null);
+		
+		return bmp;
+	}
+
+	// Tests
+	@Before
+	public void setUp() throws Exception {
+		bmp = createMockBitmap(MOCK_BITMAP_WIDTH, MOCK_BITMAP_HEIGHT);
+	}
+	
+	
+	
+	
+}

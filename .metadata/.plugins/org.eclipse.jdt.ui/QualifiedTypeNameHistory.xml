@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="android.content.DialogInterface.OnClickListener"/>
+<fullyQualifiedTypeName name="android.content.Loader"/>
+<fullyQualifiedTypeName name="br.usp.ime.tcc.activities.components.Loader"/>
+<fullyQualifiedTypeName name="org.junit.Before"/>
+<fullyQualifiedTypeName name="org.mockito.MockitoAnnotations.Mock"/>
+<fullyQualifiedTypeName name="org.mockito.MockitoAnnotations"/>
+<fullyQualifiedTypeName name="org.mockito.Mock"/>
+<fullyQualifiedTypeName name="android.content.Context"/>
+<fullyQualifiedTypeName name="android.view.View"/>
+<fullyQualifiedTypeName name="br.usp.ime.tcc.activities.components.test.ButtonTest"/>
+<fullyQualifiedTypeName name="br.usp.ime.tcc.activities.components.test.ButtonTester"/>
+<fullyQualifiedTypeName name="br.usp.ime.tcc.activities.FilterActivity"/>
+<fullyQualifiedTypeName name="br.usp.ime.tcc.activities.components.test.ComponentsTester"/>
+<fullyQualifiedTypeName name="android.provider.MediaStore"/>
+<fullyQualifiedTypeName name="android.content.Intent"/>
+<fullyQualifiedTypeName name="android.graphics.Bitmap"/>
+<fullyQualifiedTypeName name="br.usp.ime.tcc.activities.R.drawable"/>
+<fullyQualifiedTypeName name="org.robolectric.Robolectric"/>
+<fullyQualifiedTypeName name="br.usp.ime.tcc.activities.FilteredImageActivity"/>
+<fullyQualifiedTypeName name="android.graphics.drawable.BitmapDrawable"/>
+<fullyQualifiedTypeName name="android.app.Activity"/>
+<fullyQualifiedTypeName name="android.graphics.BitmapFactory"/>
+<fullyQualifiedTypeName name="android.widget.Toast"/>
+<fullyQualifiedTypeName name="br.usp.ime.tcc.activities.components.ComponentLoader"/>
+<fullyQualifiedTypeName name="android.widget.Button"/>
+<fullyQualifiedTypeName name="org.junit.Assert"/>
+<fullyQualifiedTypeName name="br.usp.ime.tcc.activities.R"/>
+<fullyQualifiedTypeName name="android.view.View.OnClickListener"/>
+<fullyQualifiedTypeName name="android.widget.SeekBar"/>
+<fullyQualifiedTypeName name="br.usp.ime.tcc.utils.Constants"/>
+<fullyQualifiedTypeName name="javax.swing.DefaultSingleSelectionModel"/>
+<fullyQualifiedTypeName name="br.usp.ime.tcc.activities.R.id"/>
+<fullyQualifiedTypeName name="android.widget.ImageView"/>
+</qualifiedTypeNameHistroy>

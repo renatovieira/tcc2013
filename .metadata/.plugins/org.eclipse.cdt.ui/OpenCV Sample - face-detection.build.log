@@ -1,0 +1,6 @@
+15:22:55 **** Auto Build of configuration Default for project OpenCV Sample - face-detection ****
+/home/renato/tcc/android-ndk-r8e/ndk-build 
+Install        : libdetection_based_tracker.so => libs/armeabi-v7a/libdetection_based_tracker.so
+
+15:22:55 Build Finished (took 113ms)
+

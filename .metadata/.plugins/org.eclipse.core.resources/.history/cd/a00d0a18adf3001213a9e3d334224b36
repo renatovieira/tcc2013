@@ -1,0 +1,39 @@
+package br.usp.ime.tcc.utils;
+
+import static org.junit.Assert.*;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.*;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import android.content.Context;
+import android.database.Cursor;
+import android.net.Uri;
+
+public class UtilsTest {
+	private Context mockContext;
+	private Uri mockUri;
+
+	@Before
+	public void setUp() throws Exception {
+		mockContext = mock(Context.class);
+	}
+
+	@Test
+	public void selectedPicturePathShouldBeNullIfInvalidUri() {
+		assertEquals(null, Utils.getSelectedPicturePath(null, mockContext));
+	}
+
+	@Test
+	public void shouldReturnTheCorrectPath() {
+		Cursor c = mock(Cursor.class);
+		when(c.moveToFirst()).thenReturn(true);
+		
+		mockUri = mock(Uri.class);
+		when(mockContext.getContentResolver().query(mockUri,
+				any(String[].class), null, null, null)).thenReturn(value);
+
+		assertEquals(null, Utils.getSelectedPicturePath(mockUri, mockContext));
+	}
+}

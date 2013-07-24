@@ -1,0 +1,11 @@
+package br.usp.ime.tcc.filter;
+
+import android.graphics.Bitmap;
+
+public class Filter {
+
+	public Filter(Bitmap bmp, double intensity) {
+		// TODO Auto-generated constructor stub
+	}
+
+}

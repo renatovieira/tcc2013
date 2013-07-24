@@ -1,0 +1,130 @@
+package br.usp.ime.tcc.activities.components.test;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.robolectric.Robolectric;
+import org.robolectric.RobolectricTestRunner;
+
+import android.app.Activity;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.SeekBar;
+import br.usp.ime.tcc.activities.FilteredImageActivity;
+import br.usp.ime.tcc.activities.R;
+import br.usp.ime.tcc.activities.components.ComponentLoader;
+import br.usp.ime.tcc.utils.Constants;
+
+@RunWith(RobolectricTestRunner.class)
+public class ComponentsLoaderTest {
+	private Activity activity;
+	private ComponentLoader componentLoader;
+	private boolean activated;
+	private int defaultButtonId;
+	private int defaultImageviewId;
+	private int defaultSeekbarId;
+	
+	private boolean buttonIsResponsive(Button button) {
+		return button.performClick();
+	}
+	
+	private OnClickListener createDefaultOnClickListener() {
+		OnClickListener listener = new OnClickListener() {
+			@Override
+			public void onClick(View arg0) {
+				activated = true;
+			}
+		};
+		
+		return listener;
+	}
+	
+	private Button loadDefaultButton(OnClickListener listener) {
+		Button b = componentLoader.loadButton(defaultButtonId, listener);
+		return b;
+	}
+	
+	private Button createButtonWithDefaultListener() {
+		OnClickListener listener = createDefaultOnClickListener();
+		
+		Button b = loadDefaultButton(listener);
+		return b;
+	}
+	
+	private SeekBar loadDefaultSeekbar() {
+		SeekBar bar = componentLoader.loadSeekBar(defaultSeekbarId, Constants.MAX_INTENSITY, Constants.PROGRESS);
+		return bar;
+	}
+	
+	
+	//Tests
+	
+	@Before
+	public void setUp() throws Exception {
+		activity = Robolectric.buildActivity(FilteredImageActivity.class)
+				.create().get();
+		
+		defaultButtonId = R.id.save_button;
+		
+		componentLoader = new ComponentLoader(activity);
+		
+		activated = false;
+	}
+	
+	@Test(expected=NullPointerException.class)
+	public void shouldThrowExceptionIfInvalidId()  {
+		componentLoader.loadButton(-1, null);
+	}
+	
+	public void buttonShouldNotBeResponsiveWithoutListener() {
+		Button b = loadDefaultButton(null);
+		
+		assertEquals(false, buttonIsResponsive(b));
+	}
+
+	@Test
+	public void buttonShouldCallRightListener()  {
+		Button b = createButtonWithDefaultListener();
+		
+		b.performClick();
+		
+		assertTrue(activated);
+	}
+	
+//	@Test
+//	public void imageViewShouldNotBeNull() {
+//		assertNotNull(filteredImage);
+//	}
+	
+	@Test(expected=NullPointerException.class)
+	public void seekbarShouldBeNullIfInvalidId() {
+		SeekBar bar = componentLoader.loadSeekBar(-1, Constants.MAX_INTENSITY, Constants.PROGRESS);
+		assertNotNull(bar);
+	}
+
+	@Test
+	public void seekbarShouldNotBeNull() {
+		SeekBar bar = loadDefaultSeekbar();
+		
+		assertNotNull(bar);
+	}
+
+	@Test
+	public void seekbarMaximumShouldBeMaxIntensity() {
+		SeekBar bar = loadDefaultSeekbar();
+		
+		assertEquals(Constants.MAX_INTENSITY, bar.getMax());
+	}
+
+	@Test
+	public void seekbarProgressShouldBeMaxProgress() {
+		SeekBar bar = loadDefaultSeekbar();
+		
+		assertEquals(Constants.PROGRESS, bar.getProgress());
+	}
+}

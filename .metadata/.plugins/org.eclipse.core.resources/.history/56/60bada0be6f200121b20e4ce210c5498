@@ -1,0 +1,35 @@
+package br.usp.ime.tcc.activities.components;
+
+import br.usp.ime.tcc.activities.R;
+import android.app.Activity;
+import android.graphics.Bitmap;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.SeekBar;
+
+public class ComponentLoader {
+	private Activity activity;
+	
+	public ComponentLoader(Activity act) {
+		activity = act;
+	}
+	
+	public void loadButton(int buttonId, android.view.View.OnClickListener onClickListener) {
+		Button button = (Button) activity.findViewById(buttonId);
+		
+		button.setOnClickListener(onClickListener);
+	}
+
+	public SeekBar loadSeekBar(int intensityBarId, int maxIntensity, int progress) {
+		SeekBar seekBar = (SeekBar) activity.findViewById(intensityBarId);
+		
+		seekBar.setMax(maxIntensity);
+		seekBar.setProgress(progress);
+		
+		return seekBar;
+	}
+
+	public ImageView loadImageView(int imageViewId, Bitmap bitmap) {
+		ImageView imageView = (ImageView) activity.findViewById(filteredImage);
+	}
+}

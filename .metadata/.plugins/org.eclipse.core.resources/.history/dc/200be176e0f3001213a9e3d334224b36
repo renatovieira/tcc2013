@@ -1,0 +1,31 @@
+package br.usp.ime.tcc.utils;
+
+import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
+
+import java.io.IOException;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.Mock;
+
+public class FileSaverTest {
+	private FileSaver fileSaver;
+
+	@Before
+	public void setUp() throws Exception {
+		fileSaver = new FileSaver();
+	}
+	
+	@Test
+	public void saveToFileShouldReturnNullIfNullBitmap() throws IOException {
+		assertNull(fileSaver.saveToFile(null));
+	}
+	
+	@Test
+	public void should() throws IOException {
+		FileSaver mockFileSaver = mock(FileSaver.class);
+		
+		assertNull(fileSaver.saveToFile(null));
+	}
+}

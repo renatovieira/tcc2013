@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">TCC</string>
+    <string name="action_settings">Settings</string>
+    
+	<!--     FilterActivity -->
+    <string name="live_mode">Continous Mode</string>
+    <string name="from_gallery">From Gallery</string>
+    <string name="from_camera">From Picture</string>
+
+</resources>
