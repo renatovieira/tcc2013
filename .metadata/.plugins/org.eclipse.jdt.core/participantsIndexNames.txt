@@ -1,5 +1,0 @@
-INDEX VERSION 1.126
-/home/renato/hackathon/workspace/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/3005838915.index
-/vraptor-blank-project/src
-/home/renato/hackathon/workspace/.metadata/.plugins/org.eclipse.jst.jsp.core/jspsearch/2828412068.index
-/world-cup-raffle/src

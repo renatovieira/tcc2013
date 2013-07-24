@@ -1,5 +1,0 @@
-1370536036953	Rename field 'VIEW_MODE_SEPIA'
-1370536067317	Rename field 'mItemPreviewSepia'
-1370537568649	Rename field 'mSepiaKernel'
-1370541043391	Rename field 'mdecreaseIntensity'
-1370541263867	Extract method 'loadFilterConfig'

@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Move &apos;faces-config.xml&apos; to &apos;WEB-INF&apos;" description="Move &apos;faces-config.xml&apos; to &apos;WEB-INF&apos;" destination="WebContent/WEB-INF" element1="/jsfTut/webapp/WEB-INF/faces-config.xml" element2="/jsfTut/webapp/WEB-INF/web.xml" flags="7" id="org.eclipse.ltk.core.refactoring.move.resources" resources="2" stamp="1368012024961" updateReferences="true"/>
-</session>

@@ -1,9 +1,0 @@
-package br.usp.ime.tcc.utils;
-
-public class Constants {
-	private static final double MAX_INTENSITY = 1.0;
-
-	public Constants() {
-		double a = MAX_INTENSITY;
-	}
-}

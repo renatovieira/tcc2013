@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testrun name="UtilsTest" project="TCCTest" tests="2" started="2" failures="0" errors="0" ignored="0">
-  <testsuite name="br.usp.ime.tcc.utils.UtilsTest" time="0.987">
-    <testcase name="selectedPicturePathShouldBeNullIfInvalidUri" classname="br.usp.ime.tcc.utils.UtilsTest" time="0.729"/>
-    <testcase name="shouldReturnTheCorrectPath" classname="br.usp.ime.tcc.utils.UtilsTest" time="0.258"/>
-  </testsuite>
-</testrun>

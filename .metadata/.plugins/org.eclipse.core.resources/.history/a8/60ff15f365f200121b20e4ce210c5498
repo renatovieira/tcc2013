@@ -1,7 +1,0 @@
-package br.usp.ime.tcc.utils;
-
-public class Constants {
-	public Constants() {
-		double a = 1.0;
-	}
-}

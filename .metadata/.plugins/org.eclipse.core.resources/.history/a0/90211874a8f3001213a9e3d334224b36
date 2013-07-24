@@ -1,7 +1,0 @@
-package br.usp.ime.tcc.utils;
-
-public class UtilsTest {
-	@Before
-	public void setUp() throws Exception {
-	}
-}
