@@ -3,6 +3,7 @@ package br.usp.ime.tcc.activities.components;
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SeekBar;
@@ -22,6 +23,11 @@ public class ComponentUtils {
 		button.setOnClickListener(onClickListener);
 
 		return button;
+	}
+	
+	public void hideSeekBar(int intensityBarId) {
+		SeekBar seekBar = (SeekBar) activity.findViewById(intensityBarId);
+		seekBar.setVisibility(View.INVISIBLE);
 	}
 
 	public SeekBar loadSeekBar(int intensityBarId, int maxIntensity,

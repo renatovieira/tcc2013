@@ -27,6 +27,7 @@ public class FilteredImageActivity extends Activity {
 	private Bitmap originalBitmap;
 	private Bitmap filteredBitmap;
 	private BitmapFilter filter;
+	private int filterType;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -54,10 +55,24 @@ public class FilteredImageActivity extends Activity {
 
 		if (extras != null) {
 			String imagePath = (String) extras.get(Constants.IMAGE_PATH);
-			int imageOrientation = (Integer) extras.get(Constants.IMAGE_ORIENTATION);
-			originalBitmap = Utils.getScaledBitmapFromImagePath(imagePath, imageOrientation);
-			filter = new VisocorBitmapFilter(Constants.PROGRESS);
+			int imageOrientation = (Integer) extras
+					.get(Constants.IMAGE_ORIENTATION);
+			filterType = 0; // TODO Get right filter type
+			originalBitmap = Utils.getScaledBitmapFromImagePath(imagePath,
+					imageOrientation);
+			loadFilter(filterType);
 			filteredBitmap = filter.applyTo(originalBitmap);
+		}
+	}
+
+	private void loadFilter(int filterType) {
+		switch (filterType) {
+		case Constants.VISOCOR_FILTER:
+			filter = new VisocorBitmapFilter(Constants.PROGRESS);
+			break;
+		default:
+			filter = null;
+			break;
 		}
 	}
 
@@ -105,24 +120,31 @@ public class FilteredImageActivity extends Activity {
 
 		componentUtils.fillIn(filteredImage, filteredBitmap);
 
-		componentUtils.loadSeekBar(R.id.intensity_bar,
-				Constants.MAX_INTENSITY, Constants.PROGRESS, new OnSeekBarChangeListener() {
-					@Override
-					public void onStopTrackingTouch(SeekBar arg0) {
-					}
-					
-					@Override
-					public void onStartTrackingTouch(SeekBar arg0) {
-					}
-					
-					@Override
-					public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-						filter.update(progress);
-						filteredBitmap = filter.applyTo(originalBitmap);
+		if (filterType == Constants.VISOCOR_FILTER) {
+			componentUtils.loadSeekBar(R.id.intensity_bar,
+					Constants.MAX_INTENSITY, Constants.PROGRESS,
+					new OnSeekBarChangeListener() {
+						@Override
+						public void onStopTrackingTouch(SeekBar arg0) {
+						}
 
-						componentUtils.fillIn(filteredImage, filteredBitmap);				
-					}
-				});
+						@Override
+						public void onStartTrackingTouch(SeekBar arg0) {
+						}
+
+						@Override
+						public void onProgressChanged(SeekBar seekBar,
+								int progress, boolean fromUser) {
+							filter.update(progress);
+							filteredBitmap = filter.applyTo(originalBitmap);
+
+							componentUtils
+									.fillIn(filteredImage, filteredBitmap);
+						}
+					});
+		} else {
+			componentUtils.hideSeekBar(R.id.intensity_bar);
+		}
 	}
 
 	private void goBackToFilterActivity() {

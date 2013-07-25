@@ -23,6 +23,7 @@ public class ContinousFilterActivity extends Activity implements
 	private SeekBar seekBar;
 	private int lastIntensity;
 	private ContinousFilter filter;
+	private int filterType;
 
 	public ContinousFilterActivity() {
 	}
@@ -35,15 +36,21 @@ public class ContinousFilterActivity extends Activity implements
 
 		setContentView(R.layout.continous_filter);
 
+		filterType = 0; //TODO Get right filter type
+
 		mOpenCvCameraView = (CameraBridgeViewBase) findViewById(R.id.continous_filter_camera);
 		mOpenCvCameraView.setCvCameraViewListener(this);
 
 		ComponentUtils cu = new ComponentUtils(this);
-		seekBar = cu.loadSeekBar(R.id.continous_filter_intensity_bar,
-				Constants.MAX_INTENSITY, Constants.PROGRESS);
-		lastIntensity = seekBar.getProgress();
+
+		if (filterType == Constants.VISOCOR_FILTER)
+			seekBar = cu.loadSeekBar(R.id.continous_filter_intensity_bar,
+					Constants.MAX_INTENSITY, Constants.PROGRESS);
+		else
+			cu.hideSeekBar(R.id.continous_filter_intensity_bar);
+		lastIntensity = Constants.PROGRESS;
 	}
-	
+
 	@Override
 	public void onPause() {
 		super.onPause();
@@ -88,7 +95,8 @@ public class ContinousFilterActivity extends Activity implements
 	}
 
 	public Mat onCameraFrame(CvCameraViewFrame inputFrame) {
-		if (lastIntensity != seekBar.getProgress()) {
+		if (filterType == Constants.VISOCOR_FILTER
+				&& lastIntensity != seekBar.getProgress()) {
 			int currentIntensity = seekBar.getProgress();
 			filter.update(seekBar.getProgress());
 			lastIntensity = currentIntensity;

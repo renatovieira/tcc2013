@@ -1,6 +1,7 @@
 package br.usp.ime.tcc.activities.components;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
@@ -66,7 +67,7 @@ public class ComponentsUtilsTest {
 
 		return bar;
 	}
-
+	
 	private ImageView loadDefaultImageView() {
 		ImageView imageView = componentUtils.loadImageView(defaultImageviewId);
 		return imageView;
@@ -148,6 +149,13 @@ public class ComponentsUtilsTest {
 		SeekBar bar = loadDefaultSeekbar();
 
 		assertNotNull(bar);
+	}
+	
+	@Test
+	public void seekBarShouldBeInvisibleAfterHidden() {
+		componentUtils.hideSeekBar(defaultSeekbarId);
+		SeekBar bar = loadDefaultSeekbar();
+		assertFalse(bar.isShown());
 	}
 
 	@Test

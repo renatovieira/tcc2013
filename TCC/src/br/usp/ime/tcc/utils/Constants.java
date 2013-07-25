@@ -17,6 +17,8 @@ public final class Constants {
 	public static final String IMAGE_PATH = "imagePath";
 	public static final String IMAGE_ORIENTATION = "imageOrientation";
 	
+	public static final int VISOCOR_FILTER = 0;
+	
 	private Constants() {
 		throw new AssertionError();
 	}
