@@ -25,16 +25,23 @@ public class ComponentUtils {
 	}
 
 	public SeekBar loadSeekBar(int intensityBarId, int maxIntensity,
-			int progress, OnSeekBarChangeListener listener) {
+			int progress) {
 		SeekBar seekBar = (SeekBar) activity.findViewById(intensityBarId);
 
 		seekBar.setMax(maxIntensity);
 		seekBar.setProgress(progress);
+
+		return seekBar;
+	}
+	
+	public SeekBar loadSeekBar(int intensityBarId, int maxIntensity,
+			int progress, OnSeekBarChangeListener listener) {
+		SeekBar seekBar = loadSeekBar(intensityBarId, maxIntensity, progress);
 		seekBar.setOnSeekBarChangeListener(listener);
 
 		return seekBar;
 	}
-
+	
 	public ImageView loadImageView(int imageViewId) {
 		ImageView imageView = (ImageView) activity.findViewById(imageViewId);
 		return imageView;

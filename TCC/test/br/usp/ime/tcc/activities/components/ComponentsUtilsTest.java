@@ -19,7 +19,6 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SeekBar;
-import android.widget.SeekBar.OnSeekBarChangeListener;
 import br.usp.ime.tcc.activities.FilteredImageActivity;
 import br.usp.ime.tcc.activities.R;
 import br.usp.ime.tcc.utils.Constants;
@@ -63,23 +62,8 @@ public class ComponentsUtilsTest {
 
 	private SeekBar loadDefaultSeekbar() {
 		SeekBar bar = componentUtils.loadSeekBar(defaultSeekbarId,
-				Constants.MAX_INTENSITY, Constants.PROGRESS, new OnSeekBarChangeListener() {
-					
-					@Override
-					public void onStopTrackingTouch(SeekBar arg0) {
-						activated = true;
-					}
-					
-					@Override
-					public void onStartTrackingTouch(SeekBar arg0) {
-						activated = true;
-					}
-					
-					@Override
-					public void onProgressChanged(SeekBar arg0, int arg1, boolean arg2) {
-						activated = true;
-					}
-				});
+				Constants.MAX_INTENSITY, Constants.PROGRESS);
+
 		return bar;
 	}
 
@@ -156,7 +140,7 @@ public class ComponentsUtilsTest {
 	@Test(expected = NullPointerException.class)
 	public void seekbarShouldThrowExceptionIfInvalidId() {
 		componentUtils.loadSeekBar(INVALID_ID, Constants.MAX_INTENSITY,
-				Constants.PROGRESS, null);
+				Constants.PROGRESS);
 	}
 
 	@Test

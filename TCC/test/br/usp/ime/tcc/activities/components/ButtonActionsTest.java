@@ -12,6 +12,23 @@ import android.widget.Button;
 public class ButtonActionsTest {
 	private Activity activity;
 	
+	private Intent getStartedIntentAfterClickOnButton() {
+		ShadowActivity shadowActivity = shadowOf(activity);
+		Intent startedIntent = shadowActivity.getNextStartedActivity();
+		return startedIntent;
+	}
+	
+	private ShadowIntent getShadowIntentAfterResult(Intent startedIntent) {
+		ShadowActivity shadowActivity = shadowOf(activity);
+		shadowActivity.receiveResult(startedIntent, Activity.RESULT_OK,
+				new Intent().setData(null));
+		startedIntent = shadowActivity.getNextStartedActivity();
+		ShadowIntent shadowIntent = shadowOf(startedIntent);
+		return shadowIntent;
+	}
+	
+	//Public
+	
 	public ButtonActionsTest(Activity activity) {
 		this.activity = activity;
 	}
@@ -30,21 +47,6 @@ public class ButtonActionsTest {
 
 		Intent startedIntent = getStartedIntentAfterClickOnButton();
 		return startedIntent;
-	}
-	
-	private Intent getStartedIntentAfterClickOnButton() {
-		ShadowActivity shadowActivity = shadowOf(activity);
-		Intent startedIntent = shadowActivity.getNextStartedActivity();
-		return startedIntent;
-	}
-	
-	private ShadowIntent getShadowIntentAfterResult(Intent startedIntent) {
-		ShadowActivity shadowActivity = shadowOf(activity);
-		shadowActivity.receiveResult(startedIntent, Activity.RESULT_OK,
-				new Intent().setData(null));
-		startedIntent = shadowActivity.getNextStartedActivity();
-		ShadowIntent shadowIntent = shadowOf(startedIntent);
-		return shadowIntent;
 	}
 	
 	public ShadowIntent createButtonClickAndGetIntentAfterResult(int buttonId) {

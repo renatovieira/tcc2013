@@ -41,7 +41,7 @@ public class FilteredImageActivityTest {
 	}
 	
 	@Test
-	public void backButtonShouldGoBackToFilterActivity() {
+	public void backButtonShouldFinishActivity() {
 		filteredImageActivity.onBackPressed();
 		
 		ShadowActivity sa = Robolectric.shadowOf(filteredImageActivity);

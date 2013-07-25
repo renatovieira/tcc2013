@@ -2,3 +2,5 @@
 */gen/
 *~
 .metadata/
+RemoteSystemsTempFiles/
+*/.settings/

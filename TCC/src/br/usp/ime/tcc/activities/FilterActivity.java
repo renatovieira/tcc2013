@@ -34,7 +34,8 @@ public class FilterActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Chamar modo continuo
+				Intent continousModeIntent = new Intent(FilterActivity.this, ContinousFilterActivity.class);
+				startActivity(continousModeIntent);
 			}
 		});
 

@@ -2,6 +2,7 @@ package br.usp.ime.tcc.activities;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.robolectric.Robolectric.shadowOf;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -12,9 +13,6 @@ import org.robolectric.shadows.ShadowIntent;
 
 import android.content.Intent;
 import android.provider.MediaStore;
-import br.usp.ime.tcc.activities.FilterActivity;
-import br.usp.ime.tcc.activities.FilteredImageActivity;
-import br.usp.ime.tcc.activities.R;
 import br.usp.ime.tcc.activities.components.ButtonActionsTest;
 
 @RunWith(RobolectricTestRunner.class)
@@ -46,6 +44,15 @@ public class FilterActivityTest {
 		
 		assertNotNull(startedIntent);
 		assertEquals(Intent.ACTION_PICK, startedIntent.getAction());
+	}
+	
+	@Test
+	public void pressingLiveModeButtonShouldStartGalleryActivity() {
+		Intent startedIntent = bat.createButtonAndGetStartedIntentAfterClick(R.id.liveModeButton);
+		
+		assertNotNull(startedIntent);
+		ShadowIntent shadowIntent = shadowOf(startedIntent);
+		assertEquals(shadowIntent.getComponent().getClassName(), ContinousFilterActivity.class.getName());
 	}
 
 	@Test
