@@ -9,26 +9,11 @@ public class BitmapFilter extends Filter {
 	private ColorMatrixColorFilter colorMatrixColorFilter;
 
 	public BitmapFilter(float intensity) {
-		generateMatrixFromIntensity(intensity);
+		super(intensity);
 	}
 
 	public BitmapFilter(int progress) {
-		float intensity = calculateIntensity(progress);
-		generateMatrixFromIntensity(intensity);
-	}
-
-	private void generateMatrixFromIntensity(float intensity) {
-		float alpha = calculateAlpha(intensity);
-		float beta = calculateBeta(intensity);
-		float gama = calculateGama(alpha, beta);
-
-		float[] filterMatrix = { 1, 0, 0, 0, 0, // Red
-				0, 1, 0, 0, 0, // Green
-				alpha, beta, gama, 0, 0, // Blue
-				0, 0, 0, 1, 0, // Alpha
-		};
-
-		colorMatrixColorFilter = new ColorMatrixColorFilter(filterMatrix);
+		super(progress);
 	}
 
 	public Bitmap applyTo(Bitmap bmp) {
@@ -48,5 +33,16 @@ public class BitmapFilter extends Filter {
 		paint.setColorFilter(colorMatrixColorFilter);
 		c.drawBitmap(filtered, 0, 0, paint);
 		return filtered;
+	}
+
+	@Override
+	protected void loadMatrix() {
+		float[] filterMatrix = { 1, 0, 0, 0, 0, // Red
+				0, 1, 0, 0, 0, // Green
+				alpha, beta, gama, 0, 0, // Blue
+				0, 0, 0, 1, 0, // Alpha
+		};
+
+		colorMatrixColorFilter = new ColorMatrixColorFilter(filterMatrix);
 	}
 }

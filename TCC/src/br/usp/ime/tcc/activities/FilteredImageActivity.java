@@ -25,6 +25,7 @@ public class FilteredImageActivity extends Activity {
 	private ImageView filteredImage;
 	private Bitmap originalBitmap;
 	private Bitmap filteredBitmap;
+	private BitmapFilter filter;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -54,7 +55,7 @@ public class FilteredImageActivity extends Activity {
 			String imagePath = (String) extras.get(Constants.IMAGE_PATH);
 			int imageOrientation = (Integer) extras.get(Constants.IMAGE_ORIENTATION);
 			originalBitmap = Utils.getScaledBitmapFromImagePath(imagePath, imageOrientation);
-			BitmapFilter filter = new BitmapFilter(Constants.PROGRESS);
+			filter = new BitmapFilter(Constants.PROGRESS);
 			filteredBitmap = filter.applyTo(originalBitmap);
 		}
 	}
@@ -115,8 +116,8 @@ public class FilteredImageActivity extends Activity {
 					
 					@Override
 					public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-						BitmapFilter filter = new BitmapFilter(progress);
-						Bitmap filteredBitmap = filter.applyTo(originalBitmap);
+						filter.reloadMatrix(progress);
+						filteredBitmap = filter.applyTo(originalBitmap);
 
 						componentUtils.fillIn(filteredImage, filteredBitmap);				
 					}
