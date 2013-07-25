@@ -17,6 +17,7 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.Toast;
 import br.usp.ime.tcc.activities.components.ComponentUtils;
 import br.usp.ime.tcc.filter.BitmapFilter;
+import br.usp.ime.tcc.filter.VisocorBitmapFilter;
 import br.usp.ime.tcc.utils.Constants;
 import br.usp.ime.tcc.utils.FileSaver;
 import br.usp.ime.tcc.utils.Utils;
@@ -55,7 +56,7 @@ public class FilteredImageActivity extends Activity {
 			String imagePath = (String) extras.get(Constants.IMAGE_PATH);
 			int imageOrientation = (Integer) extras.get(Constants.IMAGE_ORIENTATION);
 			originalBitmap = Utils.getScaledBitmapFromImagePath(imagePath, imageOrientation);
-			filter = new BitmapFilter(Constants.PROGRESS);
+			filter = new VisocorBitmapFilter(Constants.PROGRESS);
 			filteredBitmap = filter.applyTo(originalBitmap);
 		}
 	}
@@ -116,7 +117,7 @@ public class FilteredImageActivity extends Activity {
 					
 					@Override
 					public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-						filter.reloadMatrix(progress);
+						filter.update(progress);
 						filteredBitmap = filter.applyTo(originalBitmap);
 
 						componentUtils.fillIn(filteredImage, filteredBitmap);				

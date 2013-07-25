@@ -16,14 +16,14 @@ public class ContinousFilterTest {
 
 	@Test
 	public void aFiltershouldReturnNullIfNullFrame() {
-		ContinousFilter filter = new ContinousFilter(0);
+		VisocorContinousFilter filter = new VisocorContinousFilter(0);
 
 		assertNull(filter.applyFilterTo(null));
 	}
 
 	@Test
 	public void anyFiltershouldReturnNullIfNullFrame() {
-		ContinousFilter filter = new ContinousFilter(Constants.MAX_INTENSITY);
+		VisocorContinousFilter filter = new VisocorContinousFilter(Constants.MAX_INTENSITY);
 
 		assertNull(filter.applyFilterTo(null));
 	}

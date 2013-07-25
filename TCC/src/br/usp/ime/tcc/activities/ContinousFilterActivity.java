@@ -14,6 +14,7 @@ import android.view.WindowManager;
 import android.widget.SeekBar;
 import br.usp.ime.tcc.activities.components.ComponentUtils;
 import br.usp.ime.tcc.filter.ContinousFilter;
+import br.usp.ime.tcc.filter.VisocorContinousFilter;
 import br.usp.ime.tcc.utils.Constants;
 
 public class ContinousFilterActivity extends Activity implements
@@ -80,7 +81,7 @@ public class ContinousFilterActivity extends Activity implements
 	};
 
 	public void onCameraViewStarted(int width, int height) {
-		filter = new ContinousFilter(lastIntensity);
+		filter = new VisocorContinousFilter(lastIntensity);
 	}
 
 	public void onCameraViewStopped() {
@@ -89,7 +90,7 @@ public class ContinousFilterActivity extends Activity implements
 	public Mat onCameraFrame(CvCameraViewFrame inputFrame) {
 		if (lastIntensity != seekBar.getProgress()) {
 			int currentIntensity = seekBar.getProgress();
-			filter.reloadMatrix(seekBar.getProgress());
+			filter.update(seekBar.getProgress());
 			lastIntensity = currentIntensity;
 		}
 		return filter.applyFilterTo(inputFrame);

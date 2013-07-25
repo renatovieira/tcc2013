@@ -5,26 +5,9 @@ import android.graphics.Canvas;
 import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Paint;
 
-public class BitmapFilter extends Filter {
+public class BitmapFilter {
 	private ColorMatrixColorFilter colorMatrixColorFilter;
-
-	public BitmapFilter(float intensity) {
-		super(intensity);
-	}
-
-	public BitmapFilter(int progress) {
-		super(progress);
-	}
-
-	public Bitmap applyTo(Bitmap bmp) {
-		if (bmp == null)
-			return null;
-
-		Bitmap filtered = filterBitmap(bmp);
-
-		return filtered;
-	}
-
+	
 	private Bitmap filterBitmap(Bitmap bmp) {
 		Bitmap filtered = bmp.copy(Bitmap.Config.ARGB_8888, true);
 
@@ -34,15 +17,20 @@ public class BitmapFilter extends Filter {
 		c.drawBitmap(filtered, 0, 0, paint);
 		return filtered;
 	}
+	
+	public Bitmap applyTo(Bitmap bmp) {
+		if (bmp == null)
+			return null;
 
-	@Override
-	protected void loadMatrix() {
-		float[] filterMatrix = { 1, 0, 0, 0, 0, // Red
-				0, 1, 0, 0, 0, // Green
-				alpha, beta, gama, 0, 0, // Blue
-				0, 0, 0, 1, 0, // Alpha
-		};
+		Bitmap filtered = filterBitmap(bmp);
 
-		colorMatrixColorFilter = new ColorMatrixColorFilter(filterMatrix);
+		return filtered;
+	}
+	
+	protected void loadMatrixFromVector(float [] filterVector) {
+		colorMatrixColorFilter = new ColorMatrixColorFilter(filterVector);
+	}
+	
+	public void update(int value) {
 	}
 }

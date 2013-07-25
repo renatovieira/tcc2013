@@ -10,7 +10,7 @@ import org.robolectric.RobolectricTestRunner;
 import br.usp.ime.tcc.utils.Constants;
 
 @RunWith(RobolectricTestRunner.class)
-public class BitmapFilterTest {
+public class VisocorBitmapFilterTest {
 	// Tests
 	@Before
 	public void setUp() throws Exception {
@@ -18,14 +18,14 @@ public class BitmapFilterTest {
 	
 	@Test
 	public void aFilterShouldReturnNullIfBitmapIsNull() {
-		BitmapFilter filter = new BitmapFilter(Constants.MAX_INTENSITY);
+		VisocorBitmapFilter filter = new VisocorBitmapFilter(Constants.MAX_INTENSITY);
 
 		assertNull(filter.applyTo(null));
 	}
 	
 	@Test
 	public void anyFilterShouldReturnNullIfBitmapIsNull() {
-		BitmapFilter filter = new BitmapFilter(0);
+		VisocorBitmapFilter filter = new VisocorBitmapFilter(0f);
 
 		assertNull(filter.applyTo(null));
 	}
