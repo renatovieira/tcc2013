@@ -5,11 +5,13 @@ public class VisocorContinousFilter extends ContinousFilter {
 	private VisocorParametersCalculator calc;
 	
 	public VisocorContinousFilter(float intensity) {
+		super();
 		calc = new VisocorParametersCalculator(intensity);
 		updateFilterMatrix();
 	}
 	
 	public VisocorContinousFilter(int progress) {
+		super();
 		update(progress);
 	}
 	
