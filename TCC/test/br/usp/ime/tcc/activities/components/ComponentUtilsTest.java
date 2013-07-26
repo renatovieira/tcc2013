@@ -5,11 +5,12 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+import static org.mockito.Mockito.spy;
+import static org.mockito.Mockito.when;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 
 import android.app.Activity;
@@ -20,12 +21,13 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SeekBar;
-import br.usp.ime.tcc.activities.BitmapFilterActivity;
+import android.widget.Spinner;
+import android.widget.TextView;
 import br.usp.ime.tcc.activities.R;
 import br.usp.ime.tcc.utils.Constants;
 
 @RunWith(RobolectricTestRunner.class)
-public class ComponentsUtilsTest {
+public class ComponentUtilsTest {
 	private static final int INVALID_ID = -1;
 	private Activity activity;
 	private ComponentUtils componentUtils;
@@ -33,7 +35,9 @@ public class ComponentsUtilsTest {
 	private static int defaultButtonId = R.id.save_button;
 	private static int defaultImageviewId = R.id.filtered_image;
 	private static int defaultSeekbarId = R.id.intensity_bar;
-
+	private static int defaultTextViewId = R.id.filter_title;
+	private static int defaultSpinnerId = R.id.filter_type_spinner;
+	
 	private boolean buttonIsResponsive(Button button) {
 		return button.performClick();
 	}
@@ -49,7 +53,7 @@ public class ComponentsUtilsTest {
 		return listener;
 	}
 
-	private Button loadDefaultButton(OnClickListener listener) {
+	private Button getDefaultButton(OnClickListener listener) {
 		Button b = componentUtils.loadButton(defaultButtonId, listener);
 		return b;
 	}
@@ -57,27 +61,76 @@ public class ComponentsUtilsTest {
 	private Button createButtonWithDefaultListener() {
 		OnClickListener listener = createDefaultOnClickListener();
 
-		Button b = loadDefaultButton(listener);
+		Button b = getDefaultButton(listener);
 		return b;
 	}
 
-	private SeekBar loadDefaultSeekbar() {
+	private SeekBar getDefaultSeekbar() {
 		SeekBar bar = componentUtils.loadSeekBar(defaultSeekbarId,
 				Constants.MAX_INTENSITY, Constants.PROGRESS);
 
 		return bar;
 	}
 	
-	private ImageView loadDefaultImageView() {
+	private ImageView getDefaultImageView() {
 		ImageView imageView = componentUtils.loadImageView(defaultImageviewId);
 		return imageView;
 	}
+	
+	private TextView getDefaultTextView() {
+		TextView tv = componentUtils.loadTextView(defaultTextViewId);
+		return tv;
+	}
+	
+	private Spinner getDefaultSpinner() {
+		Spinner sp = componentUtils.loadSpinner(defaultSpinnerId);
+		sp.setSelection(0);
+		return sp;
+	}
+	
+	private void loadDefaultSpinner(Activity activity) {
+		Spinner defaultSpinner = new Spinner(activity);
+		defaultSpinner.setVisibility(View.INVISIBLE);
+		when(activity.findViewById(defaultSpinnerId)).thenReturn(defaultSpinner);
+	}
 
+	private void loadDefaultTextView(Activity activity) {
+		TextView defaultTextView = new TextView(activity);
+		when(activity.findViewById(defaultTextViewId)).thenReturn(defaultTextView);
+	}
+
+	private void loadDefaultSeekBar(Activity activity) {
+		SeekBar defaultSeekBar = new SeekBar(activity);
+		when(activity.findViewById(defaultSeekbarId)).thenReturn(defaultSeekBar);
+	}
+
+	private void loadDefaultImageView(Activity activity) {
+		ImageView defaultImageView = new ImageView(activity);
+		defaultImageView.setImageBitmap(null);
+		when(activity.findViewById(defaultImageviewId)).thenReturn(defaultImageView);
+	}
+
+	private void loadDefaultButton(Activity activity) {
+		Button defaultButton = new Button(activity);
+		when(activity.findViewById(defaultButtonId)).thenReturn(defaultButton);
+	}
+	
+	private Activity buildActivityWithMockObjects() {
+		Activity activity = spy(new Activity());
+		
+		loadDefaultButton(activity);
+		loadDefaultImageView(activity);
+		loadDefaultSeekBar(activity);
+		loadDefaultTextView(activity);
+		loadDefaultSpinner(activity);
+		
+		return activity;
+	}
+	
 	// Tests
 	@Before
 	public void setUp() throws Exception {
-		activity = Robolectric.buildActivity(BitmapFilterActivity.class)
-				.create().get();
+		activity = buildActivityWithMockObjects();
 
 		componentUtils = new ComponentUtils(activity);
 
@@ -90,7 +143,7 @@ public class ComponentsUtilsTest {
 	}
 
 	public void buttonShouldNotBeResponsiveWithoutListener() {
-		Button b = loadDefaultButton(null);
+		Button b = getDefaultButton(null);
 
 		assertEquals(false, buttonIsResponsive(b));
 	}
@@ -111,14 +164,14 @@ public class ComponentsUtilsTest {
 
 	@Test
 	public void imageViewShouldNotBeNull() {
-		ImageView imageView = loadDefaultImageView();
+		ImageView imageView = getDefaultImageView();
 
 		assertNotNull(imageView);
 	}
 
 	@Test
 	public void shouldReturnNullBitmapFromDefaultImageView() {
-		ImageView imageView = loadDefaultImageView();
+		ImageView imageView = getDefaultImageView();
 
 		Bitmap bitmap = componentUtils.getBitmapFromImageView(imageView);
 		assertNull(bitmap);
@@ -126,7 +179,7 @@ public class ComponentsUtilsTest {
 
 	@Test
 	public void shouldReturnRightBitmapFromFilledInImageView() {
-		ImageView imageView = loadDefaultImageView();
+		ImageView imageView = getDefaultImageView();
 		Bitmap bitmapTest = BitmapFactory.decodeResource(
 				activity.getResources(), R.drawable.ic_launcher);
 
@@ -146,7 +199,7 @@ public class ComponentsUtilsTest {
 
 	@Test
 	public void seekbarShouldNotBeNull() {
-		SeekBar bar = loadDefaultSeekbar();
+		SeekBar bar = getDefaultSeekbar();
 
 		assertNotNull(bar);
 	}
@@ -154,21 +207,77 @@ public class ComponentsUtilsTest {
 	@Test
 	public void seekBarShouldBeInvisibleAfterHidden() {
 		componentUtils.hideSeekBar(defaultSeekbarId);
-		SeekBar bar = loadDefaultSeekbar();
+		SeekBar bar = getDefaultSeekbar();
 		assertFalse(bar.isShown());
 	}
 
 	@Test
 	public void seekbarMaximumShouldBeMaxIntensity() {
-		SeekBar bar = loadDefaultSeekbar();
+		SeekBar bar = getDefaultSeekbar();
 
 		assertEquals(Constants.MAX_INTENSITY, bar.getMax());
 	}
 
 	@Test
 	public void seekbarProgressShouldBeMaxProgress() {
-		SeekBar bar = loadDefaultSeekbar();
+		SeekBar bar = getDefaultSeekbar();
 
 		assertEquals(Constants.PROGRESS, bar.getProgress());
+	}
+	
+	@Test
+	public void defaultTextViewTextShouldBeEmpty() {
+		TextView tv = getDefaultTextView();
+		assertNotNull(tv);
+		assertEquals("", tv.getText());
+	}
+
+	@Test
+	public void textViewTextShouldLoad() {
+		String dummy = "dummy";
+		TextView tv = componentUtils.loadTextViewWithText(defaultTextViewId,
+				dummy);
+
+		assertNotNull(tv);
+		assertEquals(dummy, tv.getText());
+	}
+	
+	@Test
+	public void defaultSpinnerPositionShouldBeZero() {
+		Spinner sp = getDefaultSpinner();
+		
+		assertNotNull(sp);
+		assertEquals(0, sp.getSelectedItemPosition());
+	}
+	
+	@Test
+	public void defaultSpinnerShouldBeHidden() {
+		Spinner sp = getDefaultSpinner();
+		
+		assertNotNull(sp);
+		assertEquals(View.INVISIBLE, sp.getVisibility());
+	}
+	
+	@Test
+	public void spinnerShouldBeMadeVisible() {
+		Spinner sp = getDefaultSpinner();
+		
+		assertNotNull(sp);
+		assertEquals(View.INVISIBLE, sp.getVisibility());
+		
+		componentUtils.showSpinner(defaultSpinnerId);
+		assertEquals(View.VISIBLE, sp.getVisibility());
+
+	}
+	
+	@Test
+	public void getSelectedItemPositionShouldReturnRightPosition() {
+		int rightPosition = 1;
+		
+		Spinner sp = getDefaultSpinner();
+		
+		assertNotNull(sp);
+		sp.setSelection(rightPosition);
+		assertEquals(rightPosition, componentUtils.getSpinnerPosition(defaultSpinnerId));
 	}
 }
