@@ -66,7 +66,7 @@ public class BitmapFilterActivityTest {
 	@Test
 	public void discardButtonShouldReturnToFilterActivity() {
 		ButtonActionsTest bat = new ButtonActionsTest(filteredImageActivity);
-		bat.createButtonAndClickOnIt(R.id.discard_button);
+		bat.getButtonAndClickOnIt(R.id.discard_button);
 		
 		ShadowActivity sa = Robolectric.shadowOf(filteredImageActivity);
 	    assertTrue(sa.isFinishing());
@@ -75,7 +75,7 @@ public class BitmapFilterActivityTest {
 	@Test
 	public void saveButtonShouldReturnErrorToast() {
 		ButtonActionsTest bat = new ButtonActionsTest(filteredImageActivity);
-		bat.createButtonAndClickOnIt(R.id.save_button);
+		bat.getButtonAndClickOnIt(R.id.save_button);
 		
 		ShadowHandler.idleMainLooper(); 
 		assertEquals(filteredImageActivity.getString(R.string.try_again), ShadowToast.getTextOfLatestToast()); 

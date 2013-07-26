@@ -3,18 +3,24 @@
 
     <string name="app_name">TCC</string>
     <string name="action_settings">Settings</string>
-    
-	<!--     FilterActivity -->
+
+    <!-- Filter Activity -->
     <string name="live_mode">Continuous Mode</string>
     <string name="from_gallery">From Gallery</string>
     <string name="from_camera">From Picture</string>
-    
-	<!--     Filtered Image Activity -->
-    <string name="apply">Apply</string>    
+    <string name="simulation_filter">Simulation Filter</string>
+    <string name="visocor_filter">Visocor Filter</string>
+
+    <!-- Bitmap Filter Activity -->
+    <string name="apply">Apply</string>
     <string name="save">Save</string>
     <string name="discard">Discard</string>
     <string name="filtered_image">Filtered Image</string>
-    <string name="try_again">Could not create image file. Try again.</string>  
+    <string name="try_again">Could not create image file. Try again.</string>
     <string name="file_saved">Image file saved.</string>
+
+    <!-- Main Activity -->
+    <string name="visocor">Visocor</string>
+    <string name="simulation">Simulation</string>
 
 </resources>

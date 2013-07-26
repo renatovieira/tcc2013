@@ -27,30 +27,30 @@ public class ButtonActionsTest {
 		return shadowIntent;
 	}
 	
+	private Button getButtonById(int buttonId) {
+		return (Button) activity.findViewById(buttonId);
+	}
+	
 	//Public
 	
 	public ButtonActionsTest(Activity activity) {
 		this.activity = activity;
 	}
 	
-	private Button getButtonById(int buttonId) {
-		return (Button) activity.findViewById(buttonId);
-	}
-	
-	public void createButtonAndClickOnIt(int buttonId) {
+	public boolean getButtonAndClickOnIt(int buttonId) {
 		Button button = getButtonById(buttonId);
-		button.performClick();
+		return button.performClick();
 	}
 	
-	public Intent createButtonAndGetStartedIntentAfterClick(int buttonId) {
-		createButtonAndClickOnIt(buttonId);
+	public Intent getButtonAndGetStartedIntentAfterClick(int buttonId) {
+		getButtonAndClickOnIt(buttonId);
 
 		Intent startedIntent = getStartedIntentAfterClickOnButton();
 		return startedIntent;
 	}
 	
-	public ShadowIntent createButtonClickAndGetIntentAfterResult(int buttonId) {
-		Intent startedIntent = createButtonAndGetStartedIntentAfterClick(buttonId);
+	public ShadowIntent getButtonClickAndGetIntentAfterResult(int buttonId) {
+		Intent startedIntent = getButtonAndGetStartedIntentAfterClick(buttonId);
 		
 		ShadowIntent shadowIntent = getShadowIntentAfterResult(startedIntent);
 		return shadowIntent;

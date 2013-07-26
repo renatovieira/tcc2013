@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import br.usp.ime.tcc.activities.components.ComponentUtils;
@@ -12,21 +11,24 @@ import br.usp.ime.tcc.utils.Constants;
 import br.usp.ime.tcc.utils.Utils;
 
 public class FilterActivity extends Activity {
+	private int filterType;
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_filter);
-
+		setContentView(R.layout.filter_activity);
+		getExtras();
 		loadComponents();
 	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.filter, menu);
-		return true;
-	}
 	
+	private void getExtras() {
+		Bundle extras = getIntent().getExtras();
+		
+		if (extras != null) {
+			filterType = (Integer) extras.get(Constants.FILTER_TYPE);
+		}
+	}
+
 	private void loadComponents() {
 		ComponentUtils componentUtils = new ComponentUtils(this);
 
@@ -67,6 +69,13 @@ public class FilterActivity extends Activity {
 						Constants.TAKE_PICTURE);
 			}
 		});
+		
+		if (filterType == Constants.VISOCOR_FILTER) {
+			componentUtils.loadTextViewWithText(R.id.filter_title, getString(R.string.visocor_filter));
+		}
+		else {
+			componentUtils.loadTextViewWithText(R.id.filter_title, getString(R.string.simulation_filter));
+		}
 	}
 
 	@Override

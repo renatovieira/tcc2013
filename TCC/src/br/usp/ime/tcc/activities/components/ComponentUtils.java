@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
+import android.widget.TextView;
 
 public class ComponentUtils {
 	private Activity activity;
@@ -60,5 +61,15 @@ public class ComponentUtils {
 
 	public void fillIn(ImageView imageView, Bitmap bitmap) {
 		imageView.setImageBitmap(bitmap);
+	}
+	
+	public TextView loadTextView (int textViewId) {
+		return (TextView) activity.findViewById(textViewId);
+	}
+	
+	public TextView loadTextViewWithText(int textViewId, String text) {
+		TextView tv =loadTextView(textViewId);
+		tv.setText(text);
+		return tv;
 	}
 }

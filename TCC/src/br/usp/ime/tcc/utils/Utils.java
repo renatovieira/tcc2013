@@ -14,10 +14,6 @@ import android.net.Uri;
 import android.provider.MediaStore;
 
 public final class Utils {
-	private Utils() {
-		throw new AssertionError();
-	}
-	
 	private static boolean photoIsBiggerThanRequired(int reqWidth,
 			int reqHeight, final int height, final int width) {
 		return height > reqHeight || width > reqWidth;
@@ -100,7 +96,7 @@ public final class Utils {
 		BitmapFactory.decodeFile(imagePath, options);
 
 		options.inSampleSize = calculateInSampleSize(options,
-				Constants.REQWIDTH, Constants.REQHEIGHT);
+				Constants.REQDIMENSION, Constants.REQDIMENSION);
 		options.inJustDecodeBounds = false;
 
 		Bitmap bmp = BitmapFactory.decodeFile(imagePath, options);
