@@ -7,22 +7,23 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".FilterActivity" >
-    
+
     <TextView
         android:id="@+id/filter_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="75dp"
         android:textAppearance="?android:attr/textAppearanceLarge" />
-    
+
     <Spinner
         android:id="@+id/filter_type_spinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/filter_title"
         android:layout_centerHorizontal="true"
+        android:entries="@array/filter_options"
         android:visibility="invisible" />
 
     <Button
@@ -37,8 +38,8 @@
         android:id="@+id/galleryModeButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_below="@+id/cameraModeButton"
+        android:layout_centerHorizontal="true"
         android:text="@string/from_gallery" />
 
     <Button

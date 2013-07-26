@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 public class ComponentUtils {
@@ -71,5 +72,20 @@ public class ComponentUtils {
 		TextView tv =loadTextView(textViewId);
 		tv.setText(text);
 		return tv;
+	}
+	
+	public Spinner loadSpinner(int spinnerId) {
+		Spinner sp = (Spinner) activity.findViewById(spinnerId);
+		return sp;
+	}
+	
+	public int getSpinnerPosition(int spinnerId) {
+		Spinner sp = loadSpinner(spinnerId);
+		return sp.getSelectedItemPosition();
+	}
+	
+	public void showSpinner(int spinnerId) {
+		Spinner sp = loadSpinner(spinnerId);
+		sp.setVisibility(View.VISIBLE);
 	}
 }

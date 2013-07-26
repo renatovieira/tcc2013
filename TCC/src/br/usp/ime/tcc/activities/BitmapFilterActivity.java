@@ -50,7 +50,7 @@ public class BitmapFilterActivity extends Activity {
 			String imagePath = (String) extras.get(Constants.IMAGE_PATH);
 			int imageOrientation = (Integer) extras
 					.get(Constants.IMAGE_ORIENTATION);
-			filterType = 0; // TODO Get right filter type
+			filterType = (Integer) extras.get(Constants.FILTER_TYPE);
 			originalBitmap = Utils.getScaledBitmapFromImagePath(imagePath,
 					imageOrientation);
 			loadFilter(filterType);

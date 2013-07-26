@@ -23,7 +23,7 @@ import br.usp.ime.tcc.utils.Constants;
 
 @RunWith(RobolectricTestRunner.class)
 public class BitmapFilterActivityTest {
-	private BitmapFilterActivity filteredImageActivity;
+	private BitmapFilterActivity bitmapFilterActivity;
 
 	private Bitmap getBitmapFromImageView(ImageView image) {
 		return ((BitmapDrawable)image.getDrawable()).getBitmap();
@@ -33,59 +33,61 @@ public class BitmapFilterActivityTest {
 		bar.setProgress(0);
 	}
 	
-	private BitmapFilterActivity startWithImagePathOnExtras() {
-		filteredImageActivity = Robolectric
-				.buildActivity(BitmapFilterActivity.class).create().get();
-
-		Intent intent = filteredImageActivity.getIntent();
+	private BitmapFilterActivity startWithExtras() {
+		bitmapFilterActivity = new BitmapFilterActivity();
+		Intent intent = new Intent();
+		intent.putExtra(Constants.FILTER_TYPE, Constants.VISOCOR_FILTER);
 		intent.putExtra(Constants.IMAGE_PATH, "dummy");
 		intent.putExtra(Constants.IMAGE_ORIENTATION, 0);
 		
-		return Robolectric.buildActivity(BitmapFilterActivity.class).withIntent(intent).create().get();
+		bitmapFilterActivity.setIntent(intent);
+		bitmapFilterActivity.onCreate(null);
+
+		return bitmapFilterActivity;
 	}
 	
 	// Tests
 	@Before
 	public void setUp() throws Exception {
-		filteredImageActivity = startWithImagePathOnExtras();
+		bitmapFilterActivity = startWithExtras();
 	}
 	
 	@Test
 	public void backButtonShouldFinishActivity() {
-		filteredImageActivity.onBackPressed();
+		bitmapFilterActivity.onBackPressed();
 		
-		ShadowActivity sa = Robolectric.shadowOf(filteredImageActivity);
+		ShadowActivity sa = Robolectric.shadowOf(bitmapFilterActivity);
 	    assertTrue(sa.isFinishing());
 	}
 
 	@Test
 	public void extrasShouldNotBeNull () {
-		assertNotNull(filteredImageActivity.getIntent().getExtras());
+		assertNotNull(bitmapFilterActivity.getIntent().getExtras());
 	}
 	
 	@Test
 	public void discardButtonShouldReturnToFilterActivity() {
-		ButtonActionsTest bat = new ButtonActionsTest(filteredImageActivity);
+		ButtonActionsTest bat = new ButtonActionsTest(bitmapFilterActivity);
 		bat.getButtonAndClickOnIt(R.id.discard_button);
 		
-		ShadowActivity sa = Robolectric.shadowOf(filteredImageActivity);
+		ShadowActivity sa = Robolectric.shadowOf(bitmapFilterActivity);
 	    assertTrue(sa.isFinishing());
 	}
 	
 	@Test
 	public void saveButtonShouldReturnErrorToast() {
-		ButtonActionsTest bat = new ButtonActionsTest(filteredImageActivity);
+		ButtonActionsTest bat = new ButtonActionsTest(bitmapFilterActivity);
 		bat.getButtonAndClickOnIt(R.id.save_button);
 		
 		ShadowHandler.idleMainLooper(); 
-		assertEquals(filteredImageActivity.getString(R.string.try_again), ShadowToast.getTextOfLatestToast()); 
+		assertEquals(bitmapFilterActivity.getString(R.string.try_again), ShadowToast.getTextOfLatestToast()); 
 	}
 	
 	@Test
 	public void shouldCallSeekBarListenerWhenProgressChanged() {
-		ImageView image = (ImageView) filteredImageActivity.findViewById(R.id.filtered_image);
+		ImageView image = (ImageView) bitmapFilterActivity.findViewById(R.id.filtered_image);
 
-		SeekBar bar = (SeekBar) filteredImageActivity.findViewById(R.id.intensity_bar);
+		SeekBar bar = (SeekBar) bitmapFilterActivity.findViewById(R.id.intensity_bar);
 		assertNotNull(bar);
 		
 		Bitmap bmp =  getBitmapFromImageView(image);

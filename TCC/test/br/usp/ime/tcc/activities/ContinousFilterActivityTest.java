@@ -11,6 +11,7 @@ import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.shadows.ShadowActivity;
 
+import android.content.Intent;
 import android.widget.SeekBar;
 import br.usp.ime.tcc.utils.Constants;
 
@@ -18,11 +19,21 @@ import br.usp.ime.tcc.utils.Constants;
 public class ContinousFilterActivityTest {
 	private ContinousFilterActivity activity;
 
+	private ContinousFilterActivity startWithExtras() {
+		activity = new ContinousFilterActivity();
+		Intent intent = new Intent();
+		intent.putExtra(Constants.FILTER_TYPE, Constants.VISOCOR_FILTER);
+		
+		activity.setIntent(intent);
+		activity.onCreate(null);
+
+		return activity;
+	}
+
 	// Tests
 	@Before
 	public void setUp() throws Exception {
-		activity = Robolectric.buildActivity(ContinousFilterActivity.class)
-				.create().get();
+		activity = startWithExtras();
 	}
 
 	@Test

@@ -37,7 +37,7 @@ public class ContinousFilterActivity extends Activity implements
 
 		setContentView(R.layout.continous_filter);
 
-		filterType = 0; //TODO Get right filter type
+		setFilterType();
 
 		mOpenCvCameraView = (CameraBridgeViewBase) findViewById(R.id.continous_filter_camera);
 		mOpenCvCameraView.setCvCameraViewListener(this);
@@ -50,6 +50,14 @@ public class ContinousFilterActivity extends Activity implements
 		else
 			cu.hideSeekBar(R.id.continous_filter_intensity_bar);
 		lastIntensity = Constants.PROGRESS;
+	}
+
+	private void setFilterType() {
+		Bundle extras = getIntent().getExtras();
+
+		if (extras != null) {
+			filterType = (Integer) extras.get(Constants.FILTER_TYPE);
+		}
 	}
 
 	@Override

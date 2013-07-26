@@ -37,6 +37,7 @@ public class FilterActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				Intent continousModeIntent = new Intent(FilterActivity.this, ContinousFilterActivity.class);
+				putFilterTypeExtra(continousModeIntent);
 				startActivity(continousModeIntent);
 			}
 		});
@@ -75,6 +76,7 @@ public class FilterActivity extends Activity {
 		}
 		else {
 			componentUtils.loadTextViewWithText(R.id.filter_title, getString(R.string.simulation_filter));
+			componentUtils.showSpinner(R.id.filter_type_spinner);
 		}
 	}
 
@@ -85,17 +87,31 @@ public class FilterActivity extends Activity {
 		if (resultCode == Activity.RESULT_OK) {
 			Intent showImageIntent = new Intent(this,
 					BitmapFilterActivity.class);
-			putPicturePathAndOrientationOnNextActivityExtras(data, showImageIntent);
+			putContentOnNextActivityExtras(data, showImageIntent);
 			startActivity(showImageIntent);
 		}
 
 	}
 
-	private void putPicturePathAndOrientationOnNextActivityExtras(Intent data,
+	private void putContentOnNextActivityExtras(Intent data,
 			Intent showImageIntent) {
 		String imagePath = Utils.getSelectedPicturePath(data.getData(), this.getContentResolver());
 		int imageOrientation = Utils.getOrientation(data.getData(), this.getContentResolver());
 		showImageIntent.putExtra(Constants.IMAGE_PATH, imagePath);
 		showImageIntent.putExtra(Constants.IMAGE_ORIENTATION, imageOrientation);
+		putFilterTypeExtra(showImageIntent);
+	}
+
+	private void putFilterTypeExtra(Intent showImageIntent) {
+		int filterType;
+		
+		if (this.filterType == Constants.VISOCOR_FILTER) {
+			filterType = this.filterType;
+		}
+		else {
+			ComponentUtils cu = new ComponentUtils(this);
+			filterType = cu.getSpinnerPosition(R.id.filter_type_spinner) + 1;
+		}
+		showImageIntent.putExtra(Constants.FILTER_TYPE, filterType);
 	}
 }

@@ -10,6 +10,8 @@ import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 
 import android.app.Activity;
+import android.view.View;
+import android.widget.Spinner;
 import android.widget.TextView;
 import br.usp.ime.tcc.activities.FilterActivity;
 import br.usp.ime.tcc.activities.R;
@@ -25,6 +27,11 @@ public class ComponentsUtilsTest2 {
 		TextView tv = componentUtils.loadTextView(defaultTextViewId);
 		return tv;
 	}
+	
+	private Spinner loadDefaultSpinner() {
+		Spinner sp = componentUtils.loadSpinner(defaultSpinnerId);
+		return sp;
+	}
 
 	// Tests
 	@Before
@@ -35,10 +42,11 @@ public class ComponentsUtilsTest2 {
 		componentUtils = new ComponentUtils(activity);
 	}
 
-	public void defaultTextViewTextShouldBeEmpty() {
+	@Test
+	public void defaultTextViewTextShouldBeVisocor() {
 		TextView tv = loadDefaultTextView();
 		assertNotNull(tv);
-		assertEquals("", tv.getText());
+		assertEquals(activity.getString(R.string.visocor_filter), tv.getText());
 	}
 
 	@Test
@@ -49,5 +57,52 @@ public class ComponentsUtilsTest2 {
 
 		assertNotNull(tv);
 		assertEquals(dummy, tv.getText());
+	}
+	
+	@Test
+	public void defaultSpinnerPositionShouldBeZero() {
+		Spinner sp = loadDefaultSpinner();
+		
+		assertNotNull(sp);
+		assertEquals(0, sp.getSelectedItemPosition());
+	}
+	
+	@Test
+	public void shouldReturnRightDefaultSpinnerText() {
+		Spinner sp = loadDefaultSpinner();
+		
+		assertNotNull(sp);
+		assertEquals(activity.getString(R.string.deuteranopia), (String) sp.getSelectedItem());
+	}
+	
+	@Test
+	public void defaultSpinnerShouldBeHidden() {
+		Spinner sp = loadDefaultSpinner();
+		
+		assertNotNull(sp);
+		assertEquals(View.INVISIBLE, sp.getVisibility());
+	}
+	
+	@Test
+	public void spinnerShouldBeMadeVisible() {
+		Spinner sp = loadDefaultSpinner();
+		
+		assertNotNull(sp);
+		assertEquals(View.INVISIBLE, sp.getVisibility());
+		
+		componentUtils.showSpinner(defaultSpinnerId);
+		assertEquals(View.VISIBLE, sp.getVisibility());
+
+	}
+	
+	@Test
+	public void getSelectedItemPositionShouldReturnRightPosition() {
+		int rightPosition = 1;
+		
+		Spinner sp = loadDefaultSpinner();
+		
+		assertNotNull(sp);
+		sp.setSelection(rightPosition);
+		assertEquals(rightPosition, componentUtils.getSpinnerPosition(defaultSpinnerId));
 	}
 }

@@ -10,6 +10,13 @@
     <string name="from_camera">From Picture</string>
     <string name="simulation_filter">Simulation Filter</string>
     <string name="visocor_filter">Visocor Filter</string>
+    <string name="deuteranopia">Deuteranopia</string>
+    <string name="protanopia">Protanopia</string>
+
+    <string-array name="filter_options">
+        <item>Deuteranopia</item>
+        <item>Protanopia</item>
+    </string-array>
 
     <!-- Bitmap Filter Activity -->
     <string name="apply">Apply</string>

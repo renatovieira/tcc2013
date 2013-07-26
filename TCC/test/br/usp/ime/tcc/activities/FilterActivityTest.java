@@ -8,12 +8,13 @@ import static org.robolectric.Robolectric.shadowOf;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.shadows.ShadowIntent;
 
 import android.content.Intent;
 import android.provider.MediaStore;
+import android.view.View;
+import android.widget.Spinner;
 import android.widget.TextView;
 import br.usp.ime.tcc.activities.components.ButtonActionsTest;
 import br.usp.ime.tcc.utils.Constants;
@@ -24,19 +25,24 @@ public class FilterActivityTest {
 	private ButtonActionsTest bat;
 
 	private FilterActivity startWithFilterTypeOnExtras(int filterType) {
-		filterActivity = Robolectric.buildActivity(FilterActivity.class)
-				.create().get();
-
-		Intent intent = filterActivity.getIntent();
+		filterActivity = new FilterActivity();
+		Intent intent = new Intent();
 		intent.putExtra(Constants.FILTER_TYPE, filterType);
+		
+		filterActivity.setIntent(intent);
+		filterActivity.onCreate(null);
 
-		return Robolectric.buildActivity(FilterActivity.class)
-				.withIntent(intent).create().get();
+		return filterActivity;
 	}
 	
 	private String getFilterTitleFromTextView() {
 		TextView tv = (TextView) filterActivity.findViewById(R.id.filter_title);
 		return tv.getText().toString();
+	}
+	
+	private int getVisibiltyFromSpinner() {
+		Spinner sp = (Spinner) filterActivity.findViewById(R.id.filter_type_spinner);
+		return sp.getVisibility();
 	}
 
 	// Tests
@@ -84,6 +90,11 @@ public class FilterActivityTest {
 
 		assertEquals(filterActivity.getString(R.string.visocor_filter), filterTitle);
 	}
+	
+	@Test
+	public void spinnerShoudBeHiddenInVisocor() {
+		assertEquals(View.INVISIBLE, getVisibiltyFromSpinner());
+	}
 
 	@Test
 	public void simulationFilterTitleShouldBeSimulation() {
@@ -93,7 +104,14 @@ public class FilterActivityTest {
 
 		assertEquals(filterActivity.getString(R.string.simulation_filter), filterTitle);
 	}
-
+	
+	@Test
+	public void spinnerShoudBeVisibleInSimulation() {
+		filterActivity = startWithFilterTypeOnExtras(Constants.SIMULATION_FILTER);
+		
+		assertEquals(View.VISIBLE, getVisibiltyFromSpinner());
+	}
+	
 	@Test
 	public void pressingCameraModeButtonShouldStartCameraActivity() {
 		Intent startedIntent = bat
@@ -133,6 +151,9 @@ public class FilterActivityTest {
 
 	@Test
 	public void shouldCallFilteredImageActivityAfterCameraResult() {
+		filterActivity = startWithFilterTypeOnExtras(Constants.SIMULATION_FILTER);
+		bat = new ButtonActionsTest(filterActivity);
+		
 		ShadowIntent shadowIntent = bat
 				.getButtonClickAndGetIntentAfterResult(R.id.cameraModeButton);
 		assertEquals(shadowIntent.getComponent().getClassName(),
