@@ -1,4 +1,4 @@
-package br.usp.ime.tcc.filter;
+package br.usp.ime.tcc.filter.visocor;
 
 import static org.junit.Assert.assertNull;
 

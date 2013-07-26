@@ -22,8 +22,8 @@ import br.usp.ime.tcc.activities.components.ButtonActionsTest;
 import br.usp.ime.tcc.utils.Constants;
 
 @RunWith(RobolectricTestRunner.class)
-public class FilteredImageActivityTest {
-	private FilteredImageActivity filteredImageActivity;
+public class BitmapFilterActivityTest {
+	private BitmapFilterActivity filteredImageActivity;
 
 	private Bitmap getBitmapFromImageView(ImageView image) {
 		return ((BitmapDrawable)image.getDrawable()).getBitmap();
@@ -33,15 +33,15 @@ public class FilteredImageActivityTest {
 		bar.setProgress(0);
 	}
 	
-	private FilteredImageActivity startWithImagePathOnExtras() {
+	private BitmapFilterActivity startWithImagePathOnExtras() {
 		filteredImageActivity = Robolectric
-				.buildActivity(FilteredImageActivity.class).create().get();
+				.buildActivity(BitmapFilterActivity.class).create().get();
 
 		Intent intent = filteredImageActivity.getIntent();
 		intent.putExtra(Constants.IMAGE_PATH, "dummy");
 		intent.putExtra(Constants.IMAGE_ORIENTATION, 0);
 		
-		return Robolectric.buildActivity(FilteredImageActivity.class).withIntent(intent).create().get();
+		return Robolectric.buildActivity(BitmapFilterActivity.class).withIntent(intent).create().get();
 	}
 	
 	// Tests

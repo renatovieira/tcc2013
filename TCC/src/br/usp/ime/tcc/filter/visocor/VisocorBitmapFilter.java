@@ -1,4 +1,6 @@
-package br.usp.ime.tcc.filter;
+package br.usp.ime.tcc.filter.visocor;
+
+import br.usp.ime.tcc.filter.BitmapFilter;
 
 public class VisocorBitmapFilter extends BitmapFilter {
 	private float[] filterVector;

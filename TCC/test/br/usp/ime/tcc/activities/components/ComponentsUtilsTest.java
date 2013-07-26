@@ -20,7 +20,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SeekBar;
-import br.usp.ime.tcc.activities.FilteredImageActivity;
+import br.usp.ime.tcc.activities.BitmapFilterActivity;
 import br.usp.ime.tcc.activities.R;
 import br.usp.ime.tcc.utils.Constants;
 
@@ -76,7 +76,7 @@ public class ComponentsUtilsTest {
 	// Tests
 	@Before
 	public void setUp() throws Exception {
-		activity = Robolectric.buildActivity(FilteredImageActivity.class)
+		activity = Robolectric.buildActivity(BitmapFilterActivity.class)
 				.create().get();
 
 		componentUtils = new ComponentUtils(activity);

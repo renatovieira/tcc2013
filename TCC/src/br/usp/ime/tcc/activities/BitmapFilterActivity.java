@@ -17,12 +17,13 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.Toast;
 import br.usp.ime.tcc.activities.components.ComponentUtils;
 import br.usp.ime.tcc.filter.BitmapFilter;
-import br.usp.ime.tcc.filter.VisocorBitmapFilter;
+import br.usp.ime.tcc.filter.simulation.SimulationBitmapFilter;
+import br.usp.ime.tcc.filter.visocor.VisocorBitmapFilter;
 import br.usp.ime.tcc.utils.Constants;
 import br.usp.ime.tcc.utils.FileSaver;
 import br.usp.ime.tcc.utils.Utils;
 
-public class FilteredImageActivity extends Activity {
+public class BitmapFilterActivity extends Activity {
 	private ImageView filteredImage;
 	private Bitmap originalBitmap;
 	private Bitmap filteredBitmap;
@@ -71,7 +72,7 @@ public class FilteredImageActivity extends Activity {
 			filter = new VisocorBitmapFilter(Constants.PROGRESS);
 			break;
 		default:
-			filter = null;
+			filter = new SimulationBitmapFilter(filterType);
 			break;
 		}
 	}
@@ -90,12 +91,12 @@ public class FilteredImageActivity extends Activity {
 				try {
 					File file = fileSaver.saveToFile(filteredBitmap);
 					addToGallery(file);
-					Toast.makeText(FilteredImageActivity.this,
+					Toast.makeText(BitmapFilterActivity.this,
 							getString(R.string.file_saved), Toast.LENGTH_SHORT)
 							.show();
 					goBackToFilterActivity();
 				} catch (IOException e) {
-					Toast.makeText(FilteredImageActivity.this,
+					Toast.makeText(BitmapFilterActivity.this,
 							getString(R.string.try_again), Toast.LENGTH_LONG)
 							.show();
 				}
@@ -107,7 +108,7 @@ public class FilteredImageActivity extends Activity {
 						Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
 				Uri contentUri = Uri.fromFile(file);
 				mediaScanIntent.setData(contentUri);
-				FilteredImageActivity.this.sendBroadcast(mediaScanIntent);
+				BitmapFilterActivity.this.sendBroadcast(mediaScanIntent);
 			}
 		});
 

@@ -59,13 +59,13 @@ public class FilterActivityTest {
 	public void shouldCallFilteredImageActivityAfterGalleryResult() {
 		ShadowIntent shadowIntent = bat.createButtonClickAndGetIntentAfterResult(R.id.galleryModeButton);
 		assertEquals(shadowIntent.getComponent().getClassName(),
-				FilteredImageActivity.class.getName());
+				BitmapFilterActivity.class.getName());
 	}
 
 	@Test
 	public void shouldCallFilteredImageActivityAfterCameraResult() {
 		ShadowIntent shadowIntent = bat.createButtonClickAndGetIntentAfterResult(R.id.cameraModeButton);
 		assertEquals(shadowIntent.getComponent().getClassName(),
-				FilteredImageActivity.class.getName());
+				BitmapFilterActivity.class.getName());
 	}
 }

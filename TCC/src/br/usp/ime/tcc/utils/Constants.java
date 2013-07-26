@@ -18,6 +18,8 @@ public final class Constants {
 	public static final String IMAGE_ORIENTATION = "imageOrientation";
 	
 	public static final int VISOCOR_FILTER = 0;
+	public static final int DEUTERANOPIA_SIMULATION_FILTER = 1;
+	public static final int PROTANOPIA_SIMULATION_FILTER = 2;
 	
 	private Constants() {
 		throw new AssertionError();

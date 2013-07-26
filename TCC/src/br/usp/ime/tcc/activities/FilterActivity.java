@@ -75,7 +75,7 @@ public class FilterActivity extends Activity {
 
 		if (resultCode == Activity.RESULT_OK) {
 			Intent showImageIntent = new Intent(this,
-					FilteredImageActivity.class);
+					BitmapFilterActivity.class);
 			putPicturePathAndOrientationOnNextActivityExtras(data, showImageIntent);
 			startActivity(showImageIntent);
 		}

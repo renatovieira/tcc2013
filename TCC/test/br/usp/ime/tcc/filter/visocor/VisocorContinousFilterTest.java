@@ -1,4 +1,4 @@
-package br.usp.ime.tcc.filter;
+package br.usp.ime.tcc.filter.visocor;
 
 import static org.junit.Assert.assertNull;
 
@@ -6,10 +6,11 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import br.usp.ime.tcc.filter.visocor.VisocorContinousFilter;
 import br.usp.ime.tcc.utils.Constants;
 
 @Ignore
-public class ContinousFilterTest {
+public class VisocorContinousFilterTest {
 	@Before
 	public void setUp() throws Exception {
 	}

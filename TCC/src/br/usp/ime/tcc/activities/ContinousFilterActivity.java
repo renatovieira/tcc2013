@@ -14,7 +14,8 @@ import android.view.WindowManager;
 import android.widget.SeekBar;
 import br.usp.ime.tcc.activities.components.ComponentUtils;
 import br.usp.ime.tcc.filter.ContinousFilter;
-import br.usp.ime.tcc.filter.VisocorContinousFilter;
+import br.usp.ime.tcc.filter.simulation.SimulationContinousFilter;
+import br.usp.ime.tcc.filter.visocor.VisocorContinousFilter;
 import br.usp.ime.tcc.utils.Constants;
 
 public class ContinousFilterActivity extends Activity implements
@@ -88,7 +89,10 @@ public class ContinousFilterActivity extends Activity implements
 	};
 
 	public void onCameraViewStarted(int width, int height) {
-		filter = new VisocorContinousFilter(lastIntensity);
+		if (filterType == Constants.VISOCOR_FILTER)
+			filter = new VisocorContinousFilter(lastIntensity);
+		else
+			filter = new SimulationContinousFilter(filterType);
 	}
 
 	public void onCameraViewStopped() {
