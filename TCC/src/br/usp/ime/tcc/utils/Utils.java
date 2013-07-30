@@ -9,7 +9,6 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.BitmapFactory.Options;
-import android.graphics.Matrix;
 import android.net.Uri;
 import android.provider.MediaStore;
 
@@ -54,24 +53,6 @@ public final class Utils {
 		return picturePath;
 	}
 	
-	private static int queryForImageOrientation(Uri photoUri, ContentResolver cr) {
-		String[] fileOrientationColumn = { MediaStore.Images.ImageColumns.ORIENTATION };
-
-		Cursor cursor = queryFor(photoUri, cr, fileOrientationColumn);
-
-		int orientation = cursor.getInt(0);
-		cursor.close();
-		return orientation;
-	}
-	
-	private static Bitmap rotateBitmap(Bitmap bmp, float degrees) {
-		Matrix matrix = new Matrix();
-		matrix.postRotate(degrees);
-		return Bitmap.createBitmap(bmp, 0, 0,
-				bmp.getWidth(), bmp.getHeight(),
-				matrix, true);
-	}
-
 	// Public Methods
 
 	public static String getSelectedPicturePath(Uri selectedImageUri,
@@ -101,16 +82,6 @@ public final class Utils {
 
 		Bitmap bmp = BitmapFactory.decodeFile(imagePath, options);
 
-		if (imageOrientation == 90)
-				return rotateBitmap(bmp, 90);
 		return bmp;
-	}
-
-	public static int getOrientation(Uri photoUri, ContentResolver cr) {
-		int orientation = 0;
-		
-		if (photoUri != null)
-			orientation = queryForImageOrientation(photoUri, cr);
-		return orientation;
 	}
 }

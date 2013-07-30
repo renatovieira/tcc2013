@@ -62,15 +62,4 @@ public class UtilsTest {
 		assertEquals(CORRECT_PATH,
 				Utils.getSelectedPicturePath(mockUri, mockContentResolver));
 	}
-	
-	@Test
-	public void shouldReturnTheCorrectOrientation() {
-		Uri mockUri = mock(Uri.class);
-
-		ContentResolver mockContentResolver = mockContentResolverForUse(
-				mockUri);
-
-		assertEquals(CORRECT_ORIENTATION,
-				Utils.getOrientation(mockUri, mockContentResolver));
-	}
 }
