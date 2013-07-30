@@ -21,4 +21,5 @@ public final class Constants {
 	
 	public static final int DEUTERANOPIA_SIMULATION_FILTER = 1;
 	public static final int PROTANOPIA_SIMULATION_FILTER = 2;
+	public static final int TRITANOPIA_SIMULATION_FILTER = 3;
 }
