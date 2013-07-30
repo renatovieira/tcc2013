@@ -16,6 +16,7 @@ import org.robolectric.shadows.ShadowToast;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import br.usp.ime.tcc.activities.components.ButtonActionsTest;
@@ -33,10 +34,10 @@ public class BitmapFilterActivityTest {
 		bar.setProgress(0);
 	}
 	
-	private BitmapFilterActivity startWithExtras() {
+	private BitmapFilterActivity startWithExtras(int filterType) {
 		bitmapFilterActivity = new BitmapFilterActivity();
 		Intent intent = new Intent();
-		intent.putExtra(Constants.FILTER_TYPE, Constants.VISOCOR_FILTER);
+		intent.putExtra(Constants.FILTER_TYPE, filterType);
 		intent.putExtra(Constants.IMAGE_PATH, "dummy");
 		intent.putExtra(Constants.IMAGE_ORIENTATION, 0);
 		
@@ -49,7 +50,7 @@ public class BitmapFilterActivityTest {
 	// Tests
 	@Before
 	public void setUp() throws Exception {
-		bitmapFilterActivity = startWithExtras();
+		bitmapFilterActivity = startWithExtras(Constants.VISOCOR_FILTER);
 	}
 	
 	@Test
@@ -97,5 +98,22 @@ public class BitmapFilterActivityTest {
 		Bitmap newBmp = getBitmapFromImageView(image);
 		
 		assertEquals(false, bmp.equals(newBmp));
+	}
+	
+	public void seekBarShouldBeVisibleOnVisocor() {
+		SeekBar bar = (SeekBar) bitmapFilterActivity.findViewById(R.id.intensity_bar);
+		assertNotNull(bar);
+		
+		assertEquals(View.VISIBLE, bar.getVisibility());
+	}
+	
+	@Test
+	public void seekBarShouldBeHiddenOnSimulation() {
+		bitmapFilterActivity = startWithExtras(Constants.SIMULATION_FILTER);
+		
+		SeekBar bar = (SeekBar) bitmapFilterActivity.findViewById(R.id.intensity_bar);
+		assertNotNull(bar);
+		
+		assertEquals(View.INVISIBLE, bar.getVisibility());
 	}
 }

@@ -1,5 +1,6 @@
 package br.usp.ime.tcc.activities;
 
+import static org.junit.Assert.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
@@ -12,6 +13,7 @@ import org.robolectric.RobolectricTestRunner;
 import org.robolectric.shadows.ShadowActivity;
 
 import android.content.Intent;
+import android.view.View;
 import android.widget.SeekBar;
 import br.usp.ime.tcc.utils.Constants;
 
@@ -19,10 +21,10 @@ import br.usp.ime.tcc.utils.Constants;
 public class ContinousFilterActivityTest {
 	private ContinousFilterActivity activity;
 
-	private ContinousFilterActivity startWithExtras() {
+	private ContinousFilterActivity startWithExtras(int filterType) {
 		activity = new ContinousFilterActivity();
 		Intent intent = new Intent();
-		intent.putExtra(Constants.FILTER_TYPE, Constants.VISOCOR_FILTER);
+		intent.putExtra(Constants.FILTER_TYPE, filterType);
 		
 		activity.setIntent(intent);
 		activity.onCreate(null);
@@ -33,7 +35,7 @@ public class ContinousFilterActivityTest {
 	// Tests
 	@Before
 	public void setUp() throws Exception {
-		activity = startWithExtras();
+		activity = startWithExtras(Constants.VISOCOR_FILTER);
 	}
 
 	@Test
@@ -60,5 +62,25 @@ public class ContinousFilterActivityTest {
 		activity.onDestroy();
 		ShadowActivity sa = Robolectric.shadowOf(activity);
 		assertTrue(sa.isDestroyed());
+	}
+	
+	@Test
+	public void seekBarShouldBeVisibleOnVisocor() {
+		SeekBar bar = (SeekBar) activity
+				.findViewById(R.id.continous_filter_intensity_bar);
+
+		assertNotNull(bar);
+		assertEquals(View.VISIBLE, bar.getVisibility());
+	}
+	
+	@Test
+	public void seekBarShouldBeHiddenOnSimulation() {
+		activity = startWithExtras(Constants.SIMULATION_FILTER);
+		
+		SeekBar bar = (SeekBar) activity
+				.findViewById(R.id.continous_filter_intensity_bar);
+
+		assertNotNull(bar);
+		assertEquals(View.INVISIBLE, bar.getVisibility());
 	}
 }
