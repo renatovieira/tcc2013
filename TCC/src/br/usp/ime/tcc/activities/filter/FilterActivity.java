@@ -13,8 +13,6 @@ import br.usp.ime.tcc.utils.Constants;
 import br.usp.ime.tcc.utils.Utils;
 
 public abstract class FilterActivity extends Activity {
-	protected int filterType;
-	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -81,19 +79,6 @@ public abstract class FilterActivity extends Activity {
 		putFilterTypeExtra(showImageIntent);
 	}
 
-	private void putFilterTypeExtra(Intent showImageIntent) {
-		int filterType;
-		
-		if (this.filterType == Constants.VISOCOR_FILTER) {
-			filterType = this.filterType;
-		}
-		else if (this.filterType == Constants.COLOR_HIGHLIGHT_FILTER) {
-			filterType = Constants.COLOR_HIGHLIGHT_FILTER;
-		}
-		else {
-			ComponentUtils cu = new ComponentUtils(this);
-			filterType = cu.getSpinnerPosition(R.id.filter_type_spinner) + 2;
-		}
-		showImageIntent.putExtra(Constants.FILTER_TYPE, filterType);
-	}
+	
+	protected abstract void putFilterTypeExtra(Intent intent);
 }

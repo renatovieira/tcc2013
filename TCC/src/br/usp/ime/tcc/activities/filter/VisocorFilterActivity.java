@@ -13,7 +13,6 @@ public class VisocorFilterActivity extends FilterActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		filterType = Constants.VISOCOR_FILTER;
 	}
 	
 	@Override
@@ -34,5 +33,10 @@ public class VisocorFilterActivity extends FilterActivity {
 
 		componentUtils.loadTextViewWithText(R.id.filter_title,
 				getString(R.string.visocor_filter));
+	}
+	
+	@Override
+	protected void putFilterTypeExtra(Intent intent) {
+		intent.putExtra(Constants.FILTER_TYPE, Constants.VISOCOR_FILTER);
 	}
 }

@@ -13,7 +13,6 @@ public class SimulationFilterActivity extends FilterActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		filterType = Constants.SIMULATION_FILTER;
 	}
 	
 	@Override
@@ -34,5 +33,14 @@ public class SimulationFilterActivity extends FilterActivity {
 
 		componentUtils.loadTextViewWithText(R.id.filter_title, getString(R.string.simulation_filter));
 		componentUtils.showSpinner(R.id.filter_type_spinner);
+	}
+	
+	@Override
+	protected void putFilterTypeExtra(Intent intent) {
+		int filterType;
+		
+		ComponentUtils cu = new ComponentUtils(this);
+		filterType = cu.getSpinnerPosition(R.id.filter_type_spinner) + 2;
+		intent.putExtra(Constants.FILTER_TYPE, filterType);		
 	}
 }
