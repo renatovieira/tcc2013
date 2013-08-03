@@ -10,6 +10,7 @@
     <string name="from_camera">From Picture</string>
     <string name="simulation_filter">Simulation Filter</string>
     <string name="visocor_filter">Visocor Filter</string>
+    <string name="color_highlight_filter">Color Highlight Filter</string>
 
     <string-array name="filter_options">
         <item>Deuteranopia</item>
@@ -28,5 +29,6 @@
     <!-- Main Activity -->
     <string name="visocor">Visocor</string>
     <string name="simulation">Simulation</string>
+    <string name="color_highlight">Color Highlight</string>
 
 </resources>

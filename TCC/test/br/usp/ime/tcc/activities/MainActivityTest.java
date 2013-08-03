@@ -14,46 +14,69 @@ import org.robolectric.shadows.ShadowIntent;
 
 import android.content.Intent;
 import br.usp.ime.tcc.activities.components.ButtonActionsTest;
+import br.usp.ime.tcc.activities.filter.ColorHighlightFilterActivity;
+import br.usp.ime.tcc.activities.filter.SimulationFilterActivity;
+import br.usp.ime.tcc.activities.filter.VisocorFilterActivity;
 
 @RunWith(RobolectricTestRunner.class)
 public class MainActivityTest {
 	private MainActivity activity;
 	private ButtonActionsTest bat;
+
 	// Tests
 
 	@Before
 	public void setUp() throws Exception {
-		activity = Robolectric.buildActivity(MainActivity.class)
-				.create().get();
-		
+		activity = Robolectric.buildActivity(MainActivity.class).create().get();
+
 		bat = new ButtonActionsTest(activity);
 	}
-	
+
 	@Test
 	public void visocorButtonShouldBeLoadedAndWorking() {
 		assertTrue(bat.getButtonAndClickOnIt(R.id.visocor_button));
 	}
-	
+
 	@Test
 	public void simulationButtonShouldBeLoadedAndWorking() {
 		assertTrue(bat.getButtonAndClickOnIt(R.id.simulation_button));
 	}
-	
-	
+
 	@Test
-	public void pressingVisocorButtonShouldStartFilterActivity() {
-		Intent startedIntent = bat.getButtonAndGetStartedIntentAfterClick(R.id.visocor_button);
-		
-		assertNotNull(startedIntent);
-		ShadowIntent shadowIntent = shadowOf(startedIntent);
-		assertEquals(shadowIntent.getComponent().getClassName(), FilterActivity.class.getName());
+	public void highlightButtonShouldBeLoadedAndWorking() {
+		assertTrue(bat.getButtonAndClickOnIt(R.id.highlight_button));
 	}
 
 	@Test
-	public void pressingSimulationButtonShouldStartFilterActivity() {
-		Intent startedIntent = bat.getButtonAndGetStartedIntentAfterClick(R.id.visocor_button);
-		
+	public void pressingVisocorButtonShouldStartVisocorFilterActivity() {
+		Intent startedIntent = bat
+				.getButtonAndGetStartedIntentAfterClick(R.id.visocor_button);
+
 		assertNotNull(startedIntent);
 		ShadowIntent shadowIntent = shadowOf(startedIntent);
-		assertEquals(shadowIntent.getComponent().getClassName(), FilterActivity.class.getName());
-	}}
+		assertEquals(VisocorFilterActivity.class.getName(), shadowIntent
+				.getComponent().getClassName());
+	}
+
+	@Test
+	public void pressingSimulationButtonShouldSimulationStartFilterActivity() {
+		Intent startedIntent = bat
+				.getButtonAndGetStartedIntentAfterClick(R.id.simulation_button);
+
+		assertNotNull(startedIntent);
+		ShadowIntent shadowIntent = shadowOf(startedIntent);
+		assertEquals(SimulationFilterActivity.class.getName(), shadowIntent
+				.getComponent().getClassName());
+	}
+
+	@Test
+	public void pressingHighlightButtonShouldStartFilterActivity() {
+		Intent startedIntent = bat
+				.getButtonAndGetStartedIntentAfterClick(R.id.highlight_button);
+
+		assertNotNull(startedIntent);
+		ShadowIntent shadowIntent = shadowOf(startedIntent);
+		assertEquals(ColorHighlightFilterActivity.class.getName(), shadowIntent
+				.getComponent().getClassName());
+	}
+}

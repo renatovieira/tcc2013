@@ -27,6 +27,12 @@ public class ComponentUtils {
 		return button;
 	}
 	
+	public void hideButton(int buttonId) {
+		Button button = (Button) activity.findViewById(buttonId);
+
+		button.setVisibility(View.INVISIBLE);
+	}
+	
 	public void hideSeekBar(int intensityBarId) {
 		SeekBar seekBar = (SeekBar) activity.findViewById(intensityBarId);
 		seekBar.setVisibility(View.INVISIBLE);

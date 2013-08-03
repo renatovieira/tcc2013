@@ -57,6 +57,12 @@ public class ComponentUtilsTest {
 		Button b = componentUtils.loadButton(defaultButtonId, listener);
 		return b;
 	}
+	
+	private Button getInvisibleDefaultButton(OnClickListener listener) {
+		Button b = componentUtils.loadButton(defaultButtonId, listener);
+		componentUtils.hideButton(defaultButtonId);
+		return b;
+	}
 
 	private Button createButtonWithDefaultListener() {
 		OnClickListener listener = createDefaultOnClickListener();
@@ -142,10 +148,11 @@ public class ComponentUtilsTest {
 		componentUtils.loadButton(INVALID_ID, null);
 	}
 
-	public void buttonShouldNotBeResponsiveWithoutListener() {
-		Button b = getDefaultButton(null);
+	@Test
+	public void buttonShouldBeInvisible() {
+		Button b = getInvisibleDefaultButton(null);
 
-		assertEquals(false, buttonIsResponsive(b));
+		assertEquals(View.INVISIBLE, b.getVisibility());
 	}
 
 	@Test
@@ -155,6 +162,12 @@ public class ComponentUtilsTest {
 		b.performClick();
 
 		assertTrue(activated);
+	}
+	
+	public void buttonShouldNotBeResponsiveWithoutListener() {
+		Button b = getDefaultButton(null);
+
+		assertEquals(false, buttonIsResponsive(b));
 	}
 
 	public void imageViewShouldBeNullIfInvalidId() {

@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import br.usp.ime.tcc.activities.components.ComponentUtils;
-import br.usp.ime.tcc.utils.Constants;
+import br.usp.ime.tcc.activities.filter.ColorHighlightFilterActivity;
+import br.usp.ime.tcc.activities.filter.SimulationFilterActivity;
+import br.usp.ime.tcc.activities.filter.VisocorFilterActivity;
 
 public class MainActivity extends Activity {
 	@Override
@@ -23,21 +25,27 @@ public class MainActivity extends Activity {
 		componentUtils.loadButton(R.id.visocor_button, new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				callFilterActivity(Constants.VISOCOR_FILTER);
+				callFilterActivity(VisocorFilterActivity.class);
 			}
 		});
 		
 		componentUtils.loadButton(R.id.simulation_button, new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				callFilterActivity(Constants.SIMULATION_FILTER);
+				callFilterActivity(SimulationFilterActivity.class);
+			}
+		});
+		
+		componentUtils.loadButton(R.id.highlight_button, new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				callFilterActivity(ColorHighlightFilterActivity.class);
 			}
 		});
 	}
 	
-	private void callFilterActivity(int filterType) {
-		Intent filterActivityIntent = new Intent(this, FilterActivity.class);
-		filterActivityIntent.putExtra(Constants.FILTER_TYPE, filterType);
+	private void callFilterActivity(Class<?> filterClass) {
+		Intent filterActivityIntent = new Intent(this, filterClass);
 		startActivity(filterActivityIntent);
 	}
 }

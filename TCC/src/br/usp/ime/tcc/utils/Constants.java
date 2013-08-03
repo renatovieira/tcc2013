@@ -17,9 +17,10 @@ public final class Constants {
 	public static final int REQDIMENSION = 1024;
 	
 	public static final int VISOCOR_FILTER = 0;
-	public static final int SIMULATION_FILTER = 1;
+	public static final int COLOR_HIGHLIGHT_FILTER = 1;
+	public static final int SIMULATION_FILTER = 2;
 	
-	public static final int DEUTERANOPIA_SIMULATION_FILTER = 1;
-	public static final int PROTANOPIA_SIMULATION_FILTER = 2;
-	public static final int TRITANOPIA_SIMULATION_FILTER = 3;
+	public static final int DEUTERANOPIA_SIMULATION_FILTER = 2;
+	public static final int PROTANOPIA_SIMULATION_FILTER = 3;
+	public static final int TRITANOPIA_SIMULATION_FILTER = 4;
 }
