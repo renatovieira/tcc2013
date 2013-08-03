@@ -96,7 +96,7 @@ public class ComponentUtilsTest {
 	
 	private void loadDefaultSpinner(Activity activity) {
 		Spinner defaultSpinner = new Spinner(activity);
-		defaultSpinner.setVisibility(View.INVISIBLE);
+		defaultSpinner.setVisibility(View.GONE);
 		when(activity.findViewById(defaultSpinnerId)).thenReturn(defaultSpinner);
 	}
 
@@ -152,7 +152,7 @@ public class ComponentUtilsTest {
 	public void buttonShouldBeInvisible() {
 		Button b = getInvisibleDefaultButton(null);
 
-		assertEquals(View.INVISIBLE, b.getVisibility());
+		assertEquals(View.GONE, b.getVisibility());
 	}
 
 	@Test
@@ -268,7 +268,7 @@ public class ComponentUtilsTest {
 		Spinner sp = getDefaultSpinner();
 		
 		assertNotNull(sp);
-		assertEquals(View.INVISIBLE, sp.getVisibility());
+		assertEquals(View.GONE, sp.getVisibility());
 	}
 	
 	@Test
@@ -276,7 +276,7 @@ public class ComponentUtilsTest {
 		Spinner sp = getDefaultSpinner();
 		
 		assertNotNull(sp);
-		assertEquals(View.INVISIBLE, sp.getVisibility());
+		assertEquals(View.GONE, sp.getVisibility());
 		
 		componentUtils.showSpinner(defaultSpinnerId);
 		assertEquals(View.VISIBLE, sp.getVisibility());

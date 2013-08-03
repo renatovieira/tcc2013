@@ -85,7 +85,7 @@ public class VisocorFilterActivityTest {
 	
 	@Test
 	public void spinnerShouldBeHidden() {
-		assertEquals(View.INVISIBLE, getVisibiltyFromSpinner());
+		assertEquals(View.GONE, getVisibiltyFromSpinner());
 	}
 
 	@Test

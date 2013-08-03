@@ -114,6 +114,6 @@ public class BitmapFilterActivityTest {
 		SeekBar bar = (SeekBar) bitmapFilterActivity.findViewById(R.id.intensity_bar);
 		assertNotNull(bar);
 		
-		assertEquals(View.INVISIBLE, bar.getVisibility());
+		assertEquals(View.GONE, bar.getVisibility());
 	}
 }

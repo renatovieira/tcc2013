@@ -79,12 +79,12 @@ public class ColorHighlightFilterActivityTest {
 	
 	@Test
 	public void spinnerShouldBeInvisible() {
-		assertEquals(View.INVISIBLE, getVisibiltyFromSpinner());
+		assertEquals(View.GONE, getVisibiltyFromSpinner());
 	}
 	
 	@Test
 	public void liveModeButtonShouldBeInvisible() {
-		assertEquals(View.INVISIBLE, getVisibilyFromButton(R.id.liveModeButton));
+		assertEquals(View.GONE, getVisibilyFromButton(R.id.liveModeButton));
 	}
 
 	@Test

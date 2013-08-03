@@ -80,6 +80,6 @@ public class ContinousFilterActivityTest {
 				.findViewById(R.id.continous_filter_intensity_bar);
 
 		assertNotNull(bar);
-		assertEquals(View.INVISIBLE, bar.getVisibility());
+		assertEquals(View.GONE, bar.getVisibility());
 	}
 }

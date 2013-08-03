@@ -24,7 +24,7 @@
         android:layout_below="@+id/filter_title"
         android:layout_centerHorizontal="true"
         android:entries="@array/filter_options"
-        android:visibility="invisible" />
+        android:visibility="gone" />
 
     <Button
         android:id="@+id/liveModeButton"
