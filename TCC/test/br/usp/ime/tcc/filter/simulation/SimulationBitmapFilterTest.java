@@ -1,14 +1,13 @@
 package br.usp.ime.tcc.filter.simulation;
 
-import static org.junit.Assert.*;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
 
-import br.usp.ime.tcc.filter.visocor.VisocorBitmapFilter;
 import br.usp.ime.tcc.utils.Constants;
 
 @RunWith(RobolectricTestRunner.class)

@@ -65,7 +65,9 @@ public class BitmapFilterActivity extends Activity {
 			filter = new VisocorBitmapFilter(Constants.PROGRESS);
 			break;
 		case Constants.COLOR_HIGHLIGHT_FILTER:
-			filter = new ColorHighlightBitmapFilter(255, 0, 0, 13, 13, 13);
+			filter = new ColorHighlightBitmapFilter(255, 0, 0,
+					Constants.DEFAULT_TOLERANCE, Constants.DEFAULT_TOLERANCE,
+					Constants.DEFAULT_TOLERANCE);
 			break;
 		default:
 			filter = new SimulationBitmapFilter(filterType);
