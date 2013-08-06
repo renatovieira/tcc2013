@@ -45,7 +45,7 @@ public class SimulationFilterActivityTest extends FilterActivityTest {
 	public void spinnerShouldBeVisible() {
 		assertEquals(View.VISIBLE, getVisibiltyFromSpinner());
 	}
-
+	
 	@Test
 	public void pressingLiveModeButtonShouldStartGalleryActivity() {
 		Intent startedIntent = bat

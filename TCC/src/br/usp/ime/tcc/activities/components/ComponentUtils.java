@@ -21,6 +21,8 @@ public class ComponentUtils {
 	public Button loadButton(int buttonId,
 			android.view.View.OnClickListener onClickListener) {
 		Button button = (Button) activity.findViewById(buttonId);
+		
+		button.setVisibility(View.VISIBLE);
 
 		button.setOnClickListener(onClickListener);
 
@@ -33,17 +35,13 @@ public class ComponentUtils {
 		button.setVisibility(View.GONE);
 	}
 	
-	public void hideSeekBar(int intensityBarId) {
-		SeekBar seekBar = (SeekBar) activity.findViewById(intensityBarId);
-		seekBar.setVisibility(View.GONE);
-	}
-
 	public SeekBar loadSeekBar(int intensityBarId, int maxIntensity,
 			int progress) {
 		SeekBar seekBar = (SeekBar) activity.findViewById(intensityBarId);
 
 		seekBar.setMax(maxIntensity);
 		seekBar.setProgress(progress);
+		seekBar.setVisibility(View.VISIBLE);
 
 		return seekBar;
 	}

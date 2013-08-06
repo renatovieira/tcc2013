@@ -61,7 +61,7 @@ public class FileSaverTest {
 	}
 
 	@Test
-	public void fileShouldNOtBeNullIfValidBitmap() throws IOException {
+	public void fileShouldNotBeNullIfValidBitmap() throws IOException {
 		Bitmap bmp = PowerMockito.mock(Bitmap.class);
 		
 		mockEnvironmentgetExternalStorage();

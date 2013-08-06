@@ -45,7 +45,7 @@ public class VisocorFilterActivityTest extends FilterActivityTest {
 	public void spinnerShouldBeHidden() {
 		assertEquals(View.GONE, getVisibiltyFromSpinner());
 	}
-
+	
 	@Test
 	public void pressingLiveModeButtonShouldStartGalleryActivity() {
 		Intent startedIntent = bat

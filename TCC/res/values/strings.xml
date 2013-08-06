@@ -25,6 +25,7 @@
     <string name="filtered_image">Filtered Image</string>
     <string name="try_again">Could not create image file. Try again.</string>
     <string name="file_saved">Image file saved.</string>
+    <string name="pick_color">Pick a color</string>
 
     <!-- Main Activity -->
     <string name="visocor">Visocor</string>

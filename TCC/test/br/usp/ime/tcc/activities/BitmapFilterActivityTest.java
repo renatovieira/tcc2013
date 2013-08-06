@@ -17,6 +17,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import br.usp.ime.tcc.activities.components.ButtonActionsTest;
@@ -32,6 +33,11 @@ public class BitmapFilterActivityTest {
 
 	private void callTheSeekBarListener(SeekBar bar) {
 		bar.setProgress(0);
+	}
+	
+	private int getVisibilyFromButton(int liveModeButton) {
+		Button button = (Button) bitmapFilterActivity.findViewById(liveModeButton);
+		return button.getVisibility();
 	}
 	
 	private BitmapFilterActivity startWithExtras(int filterType) {
@@ -50,11 +56,12 @@ public class BitmapFilterActivityTest {
 	// Tests
 	@Before
 	public void setUp() throws Exception {
-		bitmapFilterActivity = startWithExtras(Constants.VISOCOR_FILTER);
 	}
 	
 	@Test
 	public void backButtonShouldFinishActivity() {
+		bitmapFilterActivity = startWithExtras(Constants.VISOCOR_FILTER);
+		
 		bitmapFilterActivity.onBackPressed();
 		
 		ShadowActivity sa = Robolectric.shadowOf(bitmapFilterActivity);
@@ -63,11 +70,15 @@ public class BitmapFilterActivityTest {
 
 	@Test
 	public void extrasShouldNotBeNull () {
+		bitmapFilterActivity = startWithExtras(Constants.VISOCOR_FILTER);
+		
 		assertNotNull(bitmapFilterActivity.getIntent().getExtras());
 	}
 	
 	@Test
 	public void discardButtonShouldReturnToFilterActivity() {
+		bitmapFilterActivity = startWithExtras(Constants.VISOCOR_FILTER);
+		
 		ButtonActionsTest bat = new ButtonActionsTest(bitmapFilterActivity);
 		bat.getButtonAndClickOnIt(R.id.discard_button);
 		
@@ -77,6 +88,8 @@ public class BitmapFilterActivityTest {
 	
 	@Test
 	public void saveButtonShouldReturnErrorToast() {
+		bitmapFilterActivity = startWithExtras(Constants.VISOCOR_FILTER);
+		
 		ButtonActionsTest bat = new ButtonActionsTest(bitmapFilterActivity);
 		bat.getButtonAndClickOnIt(R.id.save_button);
 		
@@ -86,6 +99,8 @@ public class BitmapFilterActivityTest {
 	
 	@Test
 	public void shouldCallSeekBarListenerWhenProgressChanged() {
+		bitmapFilterActivity = startWithExtras(Constants.VISOCOR_FILTER);
+		
 		ImageView image = (ImageView) bitmapFilterActivity.findViewById(R.id.filtered_image);
 
 		SeekBar bar = (SeekBar) bitmapFilterActivity.findViewById(R.id.intensity_bar);
@@ -101,6 +116,8 @@ public class BitmapFilterActivityTest {
 	}
 	
 	public void seekBarShouldBeVisibleOnVisocor() {
+		bitmapFilterActivity = startWithExtras(Constants.VISOCOR_FILTER);
+		
 		SeekBar bar = (SeekBar) bitmapFilterActivity.findViewById(R.id.intensity_bar);
 		assertNotNull(bar);
 		
@@ -108,12 +125,43 @@ public class BitmapFilterActivityTest {
 	}
 	
 	@Test
-	public void seekBarShouldBeHiddenOnSimulation() {
+	public void seekBarShouldBeGoneOnSimulation() {
 		bitmapFilterActivity = startWithExtras(Constants.SIMULATION_FILTER);
 		
 		SeekBar bar = (SeekBar) bitmapFilterActivity.findViewById(R.id.intensity_bar);
 		assertNotNull(bar);
 		
 		assertEquals(View.GONE, bar.getVisibility());
+	}
+	
+	@Test
+	public void seekBarShouldBeHiddenOnColorHighlight() {
+		bitmapFilterActivity = startWithExtras(Constants.COLOR_HIGHLIGHT_FILTER);
+		
+		SeekBar bar = (SeekBar) bitmapFilterActivity.findViewById(R.id.intensity_bar);
+		assertNotNull(bar);
+		
+		assertEquals(View.GONE, bar.getVisibility());
+	}
+	
+	@Test
+	public void colorPickerButtonShouldBeGoneOnVisocor() {
+		bitmapFilterActivity = startWithExtras(Constants.VISOCOR_FILTER);
+		
+		assertEquals(View.GONE, getVisibilyFromButton(R.id.color_picker_button));
+	}
+	
+	@Test
+	public void colorPickerButtonShouldBeGoneOnSimulation() {
+		bitmapFilterActivity = startWithExtras(Constants.SIMULATION_FILTER);
+		
+		assertEquals(View.GONE, getVisibilyFromButton(R.id.color_picker_button));
+	}
+	
+	@Test
+	public void colorPickerButtonShouldBeVisibleOnColorHighlight() {
+		bitmapFilterActivity = startWithExtras(Constants.COLOR_HIGHLIGHT_FILTER);
+		
+		assertEquals(View.VISIBLE, getVisibilyFromButton(R.id.color_picker_button));
 	}
 }

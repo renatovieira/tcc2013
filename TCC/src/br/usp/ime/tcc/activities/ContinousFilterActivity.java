@@ -47,8 +47,6 @@ public class ContinousFilterActivity extends Activity implements
 		if (filterType == Constants.VISOCOR_FILTER)
 			seekBar = cu.loadSeekBar(R.id.continous_filter_intensity_bar,
 					Constants.MAX_INTENSITY, Constants.PROGRESS);
-		else
-			cu.hideSeekBar(R.id.continous_filter_intensity_bar);
 		lastIntensity = Constants.PROGRESS;
 	}
 

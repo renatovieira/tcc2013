@@ -6,22 +6,31 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin" >
-    
+
     <ImageView
         android:id="@+id/filtered_image"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/intensity_bar"
         android:layout_centerHorizontal="true"
-        android:contentDescription="@string/filtered_image"/>
-    
+        android:contentDescription="@string/filtered_image" />
+
     <SeekBar
         android:id="@+id/intensity_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/linearLayout1"
-        android:layout_centerHorizontal="true" />
-    
+        android:layout_centerHorizontal="true"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/color_picker_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/linearLayout1"
+        android:text="@string/pick_color"
+        android:visibility="gone" />
+
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="wrap_content"
@@ -41,4 +50,5 @@
             android:layout_height="wrap_content"
             android:text="@string/discard" />
     </LinearLayout>
+
 </RelativeLayout>

@@ -33,7 +33,7 @@ public class BitmapFilterActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.bimap_filter);
+		setContentView(R.layout.bitmap_filter);
 
 		getExtras();
 		loadComponents();
@@ -141,8 +141,16 @@ public class BitmapFilterActivity extends Activity {
 									.fillIn(filteredImage, filteredBitmap);
 						}
 					});
-		} else {
-			componentUtils.hideSeekBar(R.id.intensity_bar);
+		}
+		
+		else if (filterType == Constants.COLOR_HIGHLIGHT_FILTER) {
+			componentUtils.loadButton(R.id.color_picker_button, new OnClickListener() {
+				@Override
+				public void onClick(View arg0) {
+					// TODO Auto-generated method stub
+					
+				}
+			});
 		}
 	}
 

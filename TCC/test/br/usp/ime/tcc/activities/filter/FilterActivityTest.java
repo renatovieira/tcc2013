@@ -34,7 +34,7 @@ public class FilterActivityTest {
 		Spinner sp = (Spinner) filterActivity.findViewById(R.id.filter_type_spinner);
 		return sp.getVisibility();
 	}
-
+	
 	// Tests
 
 	@Test

@@ -19,10 +19,10 @@ public class ColorHighlightBitmapFilter extends BitmapFilter {
 
 	@Override
 	protected Bitmap filterBitmap(Bitmap bmp) {
-		int width = bmp.getWidth();
-		int height = bmp.getHeight();
-
 		Bitmap filtered = bmp.copy(Bitmap.Config.ARGB_8888, true);
+		
+		int width = filtered.getWidth();
+		int height = filtered.getHeight();
 
 		for (int w = 0; w < width; w++) {
 			for (int h = 0; h < height; h++) {
