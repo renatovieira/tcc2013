@@ -5,6 +5,10 @@ import android.graphics.Color;
 import br.usp.ime.tcc.filter.BitmapFilter;
 
 public class ColorHighlightBitmapFilter extends BitmapFilter {
+	private static final double LUMA_RED_COEFFICENT = 0.2126;
+	private static final double LUMA_GREEN_COEFFICENT = 0.7152;
+	private static final double LUMA_BLUE_COEFFICENT = 0.0722;
+
 	private ColorHighlightParametersCalculator colorHighlightParametersCalculator;
 
 	public ColorHighlightBitmapFilter(int red, int green, int blue,
@@ -29,7 +33,7 @@ public class ColorHighlightBitmapFilter extends BitmapFilter {
 
 				if (!colorHighlightParametersCalculator
 						.pixelShouldBeHighlighted(pixelR, pixelG, pixelB)) {
-					int grayValue = (pixelR + pixelG + pixelB) / 3;
+					int grayValue = calculateGrayValue(pixelR, pixelG, pixelB);
 					filtered.setPixel(w, h,
 							Color.rgb(grayValue, grayValue, grayValue));
 				}
@@ -37,6 +41,13 @@ public class ColorHighlightBitmapFilter extends BitmapFilter {
 		}
 
 		return filtered;
+	}
+
+	private int calculateGrayValue(int red, int green, int blue) {
+		// Calculating using the Luma formula
+		return (int) (LUMA_RED_COEFFICENT * red + 
+					  LUMA_GREEN_COEFFICENT * green +
+				  	  LUMA_BLUE_COEFFICENT * blue);
 	}
 
 	protected int getBlueValueFromPixel(int pixel) {
