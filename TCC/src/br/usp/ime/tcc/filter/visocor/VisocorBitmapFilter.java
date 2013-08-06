@@ -3,7 +3,6 @@ package br.usp.ime.tcc.filter.visocor;
 import br.usp.ime.tcc.filter.BitmapFilter;
 
 public class VisocorBitmapFilter extends BitmapFilter {
-	private float[] filterVector;
 	private VisocorParametersCalculator calc;
 
 	public VisocorBitmapFilter(float intensity) {
@@ -35,6 +34,6 @@ public class VisocorBitmapFilter extends BitmapFilter {
 		filterVector[10] = alpha;
 		filterVector[11] = beta;
 		filterVector[12] = gama;
-		loadMatrixFromVector(filterVector);
+		loadMatrixFromVector();
 	}
 }

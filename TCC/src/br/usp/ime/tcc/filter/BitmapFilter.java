@@ -5,10 +5,11 @@ import android.graphics.Canvas;
 import android.graphics.ColorMatrixColorFilter;
 import android.graphics.Paint;
 
-public class BitmapFilter {
+public abstract class BitmapFilter {
+	protected float[] filterVector;
 	private ColorMatrixColorFilter colorMatrixColorFilter;
 	
-	private Bitmap filterBitmap(Bitmap bmp) {
+	protected Bitmap filterBitmap(Bitmap bmp) {
 		Bitmap filtered = bmp.copy(Bitmap.Config.ARGB_8888, true);
 
 		Canvas c = new Canvas(filtered);
@@ -27,7 +28,7 @@ public class BitmapFilter {
 		return filtered;
 	}
 	
-	protected void loadMatrixFromVector(float [] filterVector) {
+	protected void loadMatrixFromVector() {
 		colorMatrixColorFilter = new ColorMatrixColorFilter(filterVector);
 	}
 	

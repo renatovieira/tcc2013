@@ -4,11 +4,10 @@ import br.usp.ime.tcc.filter.BitmapFilter;
 import br.usp.ime.tcc.utils.Constants;
 
 public class SimulationBitmapFilter extends BitmapFilter {
-	private float[] filterVector;
-
+	
 	public SimulationBitmapFilter(int simulationType) {
 		initFilterVector(simulationType);
-		loadMatrixFromVector(filterVector);
+		loadMatrixFromVector();
 	}
 
 	private void initFilterVector(int simulationType) {

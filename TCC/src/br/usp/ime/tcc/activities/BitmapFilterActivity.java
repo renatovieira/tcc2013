@@ -16,6 +16,7 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.Toast;
 import br.usp.ime.tcc.activities.components.ComponentUtils;
 import br.usp.ime.tcc.filter.BitmapFilter;
+import br.usp.ime.tcc.filter.colorhighlight.ColorHighlightBitmapFilter;
 import br.usp.ime.tcc.filter.simulation.SimulationBitmapFilter;
 import br.usp.ime.tcc.filter.visocor.VisocorBitmapFilter;
 import br.usp.ime.tcc.utils.Constants;
@@ -62,6 +63,9 @@ public class BitmapFilterActivity extends Activity {
 		switch (filterType) {
 		case Constants.VISOCOR_FILTER:
 			filter = new VisocorBitmapFilter(Constants.PROGRESS);
+			break;
+		case Constants.COLOR_HIGHLIGHT_FILTER:
+			filter = new ColorHighlightBitmapFilter(255, 0, 0, 13, 13, 13);
 			break;
 		default:
 			filter = new SimulationBitmapFilter(filterType);
