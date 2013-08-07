@@ -13,9 +13,8 @@ public final class Constants {
 	public static final String DEFAULT_FOLDER = "/DCIM/Camera/";
 	public static final String FILTER_TYPE = "filterType";
 	public static final String IMAGE_PATH = "imagePath";
-	public static final String IMAGE_ORIENTATION = "imageOrientation";
 
-	public static final int REQDIMENSION = 1024;
+	public static final int REQUIRED_DIMENSION = 1024;
 	
 	public static final int VISOCOR_FILTER = 0;
 	public static final int COLOR_HIGHLIGHT_FILTER = 1;

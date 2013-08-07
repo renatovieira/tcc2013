@@ -19,9 +19,9 @@ import br.usp.ime.tcc.filter.BitmapFilter;
 import br.usp.ime.tcc.filter.colorhighlight.ColorHighlightBitmapFilter;
 import br.usp.ime.tcc.filter.simulation.SimulationBitmapFilter;
 import br.usp.ime.tcc.filter.visocor.VisocorBitmapFilter;
+import br.usp.ime.tcc.utils.BitmapLoader;
 import br.usp.ime.tcc.utils.Constants;
 import br.usp.ime.tcc.utils.FileSaver;
-import br.usp.ime.tcc.utils.Utils;
 
 public class BitmapFilterActivity extends Activity {
 	private ImageView filteredImage;
@@ -49,11 +49,10 @@ public class BitmapFilterActivity extends Activity {
 
 		if (extras != null) {
 			String imagePath = (String) extras.get(Constants.IMAGE_PATH);
-			int imageOrientation = (Integer) extras
-					.get(Constants.IMAGE_ORIENTATION);
+			BitmapLoader bitmapLoader = new BitmapLoader(imagePath);
+			originalBitmap = bitmapLoader.getBitmap();
+
 			filterType = (Integer) extras.get(Constants.FILTER_TYPE);
-			originalBitmap = Utils.getScaledBitmapFromImagePath(imagePath,
-					imageOrientation);
 			loadFilter(filterType);
 			filteredBitmap = filter.applyTo(originalBitmap);
 		}

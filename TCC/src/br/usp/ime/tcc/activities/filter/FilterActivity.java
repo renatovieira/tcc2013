@@ -73,9 +73,7 @@ public abstract class FilterActivity extends Activity {
 	private void putContentOnNextActivityExtras(Intent data,
 			Intent showImageIntent) {
 		String imagePath = Utils.getSelectedPicturePath(data.getData(), this.getContentResolver());
-		int imageOrientation = 0; //TODO Get image orientation
 		showImageIntent.putExtra(Constants.IMAGE_PATH, imagePath);
-		showImageIntent.putExtra(Constants.IMAGE_ORIENTATION, imageOrientation);
 		putFilterTypeExtra(showImageIntent);
 	}
 

@@ -19,7 +19,6 @@ import android.net.Uri;
 @RunWith(PowerMockRunner.class)
 @PrepareForTest(ContentResolver.class)
 public class UtilsTest {
-	private static final int CORRECT_ORIENTATION = 90;
 	private static final String CORRECT_PATH = "correctPath";
 
 	private Cursor mockCursorForUse() {
@@ -27,7 +26,6 @@ public class UtilsTest {
 		when(c.moveToFirst()).thenReturn(true);
 		when(c.getColumnIndex(any(String.class))).thenReturn(0);
 		when(c.getString(0)).thenReturn(CORRECT_PATH);
-		when(c.getInt(0)).thenReturn(CORRECT_ORIENTATION);
 		return c;
 	}
 

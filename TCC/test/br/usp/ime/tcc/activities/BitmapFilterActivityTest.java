@@ -45,7 +45,6 @@ public class BitmapFilterActivityTest {
 		Intent intent = new Intent();
 		intent.putExtra(Constants.FILTER_TYPE, filterType);
 		intent.putExtra(Constants.IMAGE_PATH, "dummy");
-		intent.putExtra(Constants.IMAGE_ORIENTATION, 0);
 		
 		bitmapFilterActivity.setIntent(intent);
 		bitmapFilterActivity.onCreate(null);
