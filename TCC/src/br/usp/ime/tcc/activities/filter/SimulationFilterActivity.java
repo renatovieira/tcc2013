@@ -26,7 +26,7 @@ public class SimulationFilterActivity extends FilterActivity {
 				Intent continousModeIntent = new Intent(
 						SimulationFilterActivity.this,
 						ContinousFilterActivity.class);
-				continousModeIntent.putExtra(Constants.FILTER_TYPE, Constants.VISOCOR_FILTER);
+				continousModeIntent.putExtra(Constants.FILTER_TYPE, Constants.SIMULATION_FILTER);
 				startActivity(continousModeIntent);
 			}
 		});
