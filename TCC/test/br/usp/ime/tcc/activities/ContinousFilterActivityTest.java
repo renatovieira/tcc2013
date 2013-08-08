@@ -82,4 +82,12 @@ public class ContinousFilterActivityTest {
 		assertNotNull(bar);
 		assertEquals(View.GONE, bar.getVisibility());
 	}
+	
+	public void seekBarShouldBeLoadedCorrectly() {
+		SeekBar bar = (SeekBar) activity
+				.findViewById(R.id.continous_filter_intensity_bar);
+		assertNotNull(bar);
+		
+		assertEquals(Constants.MAX_INTENSITY, bar.getMax());
+	}
 }

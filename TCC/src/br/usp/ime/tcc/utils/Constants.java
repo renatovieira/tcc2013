@@ -28,4 +28,6 @@ public final class Constants {
 	public static final String RED = "red";
 	public static final String GREEN = "green";
 	public static final String BLUE = "blue";
+	public static final int MIN_COLOR_VALUE = 0;
+	public static final int MAX_COLOR_VALUE = 255;
 }

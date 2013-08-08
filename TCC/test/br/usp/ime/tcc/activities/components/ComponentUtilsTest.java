@@ -18,6 +18,7 @@ import android.graphics.BitmapFactory;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.Spinner;
@@ -36,7 +37,8 @@ public class ComponentUtilsTest {
 	private static int defaultSeekbarId = R.id.intensity_bar;
 	private static int defaultTextViewId = R.id.filter_title;
 	private static int defaultSpinnerId = R.id.filter_type_spinner;
-	
+	private static int defaultEditTextId = R.id.blue_value;
+
 	private boolean buttonIsResponsive(Button button) {
 		return button.performClick();
 	}
@@ -56,7 +58,7 @@ public class ComponentUtilsTest {
 		Button b = componentUtils.loadButton(defaultButtonId, listener);
 		return b;
 	}
-	
+
 	private Button getInvisibleDefaultButton(OnClickListener listener) {
 		Button b = componentUtils.loadButton(defaultButtonId, listener);
 		componentUtils.hideButton(defaultButtonId);
@@ -76,62 +78,72 @@ public class ComponentUtilsTest {
 
 		return bar;
 	}
-	
+
 	private ImageView getDefaultImageView() {
 		ImageView imageView = componentUtils.loadImageView(defaultImageviewId);
 		return imageView;
 	}
-	
+
 	private TextView getDefaultTextView() {
 		TextView tv = componentUtils.loadTextView(defaultTextViewId);
 		return tv;
 	}
-	
+
 	private Spinner getDefaultSpinner() {
 		Spinner sp = componentUtils.loadSpinner(defaultSpinnerId);
 		sp.setSelection(0);
 		return sp;
 	}
-	
+
 	private void loadDefaultSpinner(Activity activity) {
 		Spinner defaultSpinner = new Spinner(activity);
 		defaultSpinner.setVisibility(View.GONE);
-		when(activity.findViewById(defaultSpinnerId)).thenReturn(defaultSpinner);
+		when(activity.findViewById(defaultSpinnerId))
+				.thenReturn(defaultSpinner);
 	}
 
 	private void loadDefaultTextView(Activity activity) {
 		TextView defaultTextView = new TextView(activity);
-		when(activity.findViewById(defaultTextViewId)).thenReturn(defaultTextView);
+		when(activity.findViewById(defaultTextViewId)).thenReturn(
+				defaultTextView);
 	}
 
 	private void loadDefaultSeekBar(Activity activity) {
 		SeekBar defaultSeekBar = new SeekBar(activity);
-		when(activity.findViewById(defaultSeekbarId)).thenReturn(defaultSeekBar);
+		when(activity.findViewById(defaultSeekbarId))
+				.thenReturn(defaultSeekBar);
 	}
 
 	private void loadDefaultImageView(Activity activity) {
 		ImageView defaultImageView = new ImageView(activity);
 		defaultImageView.setImageBitmap(null);
-		when(activity.findViewById(defaultImageviewId)).thenReturn(defaultImageView);
+		when(activity.findViewById(defaultImageviewId)).thenReturn(
+				defaultImageView);
 	}
 
 	private void loadDefaultButton(Activity activity) {
 		Button defaultButton = new Button(activity);
 		when(activity.findViewById(defaultButtonId)).thenReturn(defaultButton);
 	}
-	
+
+	private void loadDefaultEditText(Activity activity) {
+		EditText et = new EditText(activity);
+		when(activity.findViewById(defaultEditTextId)).thenReturn(et);
+	}
+
 	private Activity buildActivityWithMockObjects() {
 		Activity activity = spy(new Activity());
-		
+
 		loadDefaultButton(activity);
 		loadDefaultImageView(activity);
 		loadDefaultSeekBar(activity);
 		loadDefaultTextView(activity);
 		loadDefaultSpinner(activity);
-		
+		loadDefaultEditText(activity);
+
 		return activity;
 	}
-	
+
 	// Tests
 	@Before
 	public void setUp() throws Exception {
@@ -162,7 +174,7 @@ public class ComponentUtilsTest {
 
 		assertTrue(activated);
 	}
-	
+
 	public void buttonShouldNotBeResponsiveWithoutListener() {
 		Button b = getDefaultButton(null);
 
@@ -215,7 +227,7 @@ public class ComponentUtilsTest {
 
 		assertNotNull(bar);
 	}
-	
+
 	@Test
 	public void seekBarShouldBeVisibleAfterLoaded() {
 		SeekBar bar = getDefaultSeekbar();
@@ -235,7 +247,7 @@ public class ComponentUtilsTest {
 
 		assertEquals(Constants.PROGRESS, bar.getProgress());
 	}
-	
+
 	@Test
 	public void defaultTextViewTextShouldBeEmpty() {
 		TextView tv = getDefaultTextView();
@@ -252,43 +264,59 @@ public class ComponentUtilsTest {
 		assertNotNull(tv);
 		assertEquals(dummy, tv.getText());
 	}
-	
+
 	@Test
 	public void defaultSpinnerPositionShouldBeZero() {
 		Spinner sp = getDefaultSpinner();
-		
+
 		assertNotNull(sp);
 		assertEquals(0, sp.getSelectedItemPosition());
 	}
-	
+
 	@Test
 	public void defaultSpinnerShouldBeHidden() {
 		Spinner sp = getDefaultSpinner();
-		
+
 		assertNotNull(sp);
 		assertEquals(View.GONE, sp.getVisibility());
 	}
-	
+
 	@Test
 	public void spinnerShouldBeMadeVisible() {
 		Spinner sp = getDefaultSpinner();
-		
+
 		assertNotNull(sp);
 		assertEquals(View.GONE, sp.getVisibility());
-		
+
 		componentUtils.showSpinner(defaultSpinnerId);
 		assertEquals(View.VISIBLE, sp.getVisibility());
 
 	}
-	
+
 	@Test
 	public void getSelectedItemPositionShouldReturnRightPosition() {
 		int rightPosition = 1;
-		
+
 		Spinner sp = getDefaultSpinner();
-		
+
 		assertNotNull(sp);
 		sp.setSelection(rightPosition);
-		assertEquals(rightPosition, componentUtils.getSpinnerPosition(defaultSpinnerId));
+		assertEquals(rightPosition,
+				componentUtils.getSpinnerPosition(defaultSpinnerId));
+	}
+
+	@Test
+	public void editTextShouldHaveRightText() {
+		EditText et = componentUtils.loadEditText(defaultEditTextId);
+		
+		assertEquals("", et.getText().toString());
+	}
+	
+	@Test
+	public void anotherEditTextShouldHaveRightText() {
+		String someText = "someText";
+		EditText et = componentUtils.loadEditText(defaultEditTextId, someText);
+		
+		assertEquals(someText, et.getText().toString());
 	}
 }

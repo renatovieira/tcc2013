@@ -37,5 +37,6 @@
     <string name="blue">Blue</string>
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
+    <string name="invalid_color">One or more of the colors are invalid. Value should be between 0 and 255, included.</string>
 
 </resources>

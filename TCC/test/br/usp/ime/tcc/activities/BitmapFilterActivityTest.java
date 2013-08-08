@@ -130,6 +130,16 @@ public class BitmapFilterActivityTest {
 
 		assertEquals(View.VISIBLE, bar.getVisibility());
 	}
+	
+	public void seekBarShouldBeLoadedCorrectly() {
+		bitmapFilterActivity = startWithExtras(Constants.VISOCOR_FILTER);
+
+		SeekBar bar = (SeekBar) bitmapFilterActivity
+				.findViewById(R.id.intensity_bar);
+		assertNotNull(bar);
+		
+		assertEquals(Constants.MAX_INTENSITY, bar.getMax());
+	}
 
 	@Test
 	public void seekBarShouldBeGoneOnSimulation() {
