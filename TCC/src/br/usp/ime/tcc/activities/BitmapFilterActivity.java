@@ -37,6 +37,8 @@ public class BitmapFilterActivity extends Activity {
 
 		getExtras();
 		loadComponents();
+		loadFilter(filterType);
+		applyFilter();
 	}
 
 	@Override
@@ -53,9 +55,12 @@ public class BitmapFilterActivity extends Activity {
 			originalBitmap = bitmapLoader.getBitmap();
 
 			filterType = (Integer) extras.get(Constants.FILTER_TYPE);
-			loadFilter(filterType);
-			filteredBitmap = filter.applyTo(originalBitmap);
 		}
+	}
+
+	private void applyFilter() {
+		filteredBitmap = filter.applyTo(originalBitmap);
+		new ComponentUtils(this).fillIn(filteredImage, filteredBitmap);
 	}
 
 	private void loadFilter(int filterType) {
@@ -64,7 +69,7 @@ public class BitmapFilterActivity extends Activity {
 			filter = new VisocorBitmapFilter(Constants.PROGRESS);
 			break;
 		case Constants.COLOR_HIGHLIGHT_FILTER:
-			filter = new ColorHighlightBitmapFilter(255, 0, 0,
+			filter = new ColorHighlightBitmapFilter(0, 0, 0,
 					Constants.DEFAULT_TOLERANCE, Constants.DEFAULT_TOLERANCE,
 					Constants.DEFAULT_TOLERANCE);
 			break;
@@ -116,8 +121,6 @@ public class BitmapFilterActivity extends Activity {
 			}
 		});
 
-		componentUtils.fillIn(filteredImage, filteredBitmap);
-
 		if (filterType == Constants.VISOCOR_FILTER) {
 			componentUtils.loadSeekBar(R.id.intensity_bar,
 					Constants.MAX_INTENSITY, Constants.PROGRESS,
@@ -141,19 +144,38 @@ public class BitmapFilterActivity extends Activity {
 						}
 					});
 		}
-		
+
 		else if (filterType == Constants.COLOR_HIGHLIGHT_FILTER) {
-			componentUtils.loadButton(R.id.color_picker_button, new OnClickListener() {
-				@Override
-				public void onClick(View arg0) {
-					// TODO Auto-generated method stub
-					
-				}
-			});
+			componentUtils.loadButton(R.id.color_picker_button,
+					new OnClickListener() {
+						@Override
+						public void onClick(View arg0) {
+							Intent i = new Intent(getBaseContext(),
+									ColorPickerActivity.class);
+							startActivityForResult(i,
+									Constants.COLOR_PICKER_REQUEST_CODE);
+						}
+					});
 		}
 	}
 
 	private void goBackToFilterActivity() {
 		finish();
+	}
+
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (resultCode == RESULT_OK) {
+			if (requestCode == Constants.COLOR_PICKER_REQUEST_CODE) {
+				int red = data.getIntExtra(Constants.RED, 0);
+				int green = data.getIntExtra(Constants.GREEN, 0);
+				int blue = data.getIntExtra(Constants.BLUE, 0);
+
+				filter = new ColorHighlightBitmapFilter(red, green, blue,
+						Constants.DEFAULT_TOLERANCE,
+						Constants.DEFAULT_TOLERANCE,
+						Constants.DEFAULT_TOLERANCE);
+				applyFilter();
+			}
+		}
 	}
 }

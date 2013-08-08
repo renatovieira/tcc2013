@@ -19,7 +19,6 @@
     </string-array>
 
     <!-- Bitmap Filter Activity -->
-    <string name="apply">Apply</string>
     <string name="save">Save</string>
     <string name="discard">Discard</string>
     <string name="filtered_image">Filtered Image</string>
@@ -31,5 +30,12 @@
     <string name="visocor">Visocor</string>
     <string name="simulation">Simulation</string>
     <string name="color_highlight">Color Highlight</string>
+
+    <!-- Color Picker Activity -->
+    <string name="red">Red</string>
+    <string name="green">Green</string>
+    <string name="blue">Blue</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
 
 </resources>
