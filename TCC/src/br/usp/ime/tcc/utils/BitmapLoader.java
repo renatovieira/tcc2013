@@ -4,8 +4,8 @@ import java.io.IOException;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Matrix;
 import android.graphics.BitmapFactory.Options;
+import android.graphics.Matrix;
 import android.media.ExifInterface;
 
 public class BitmapLoader {

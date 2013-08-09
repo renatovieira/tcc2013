@@ -38,14 +38,6 @@
             android:layout_weight="1"
             android:text="@string/blue"
             android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <EditText
-            android:id="@+id/blue_value"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="number" />
     </LinearLayout>
 
     <LinearLayout
@@ -61,14 +53,6 @@
             android:layout_weight="1"
             android:text="@string/green"
             android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <EditText
-            android:id="@+id/green_value"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="number" />
     </LinearLayout>
 
     <LinearLayout
@@ -83,14 +67,6 @@
             android:layout_weight="1"
             android:text="@string/red"
             android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <EditText
-            android:id="@+id/red_value"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:ems="10"
-            android:inputType="number" />
     </LinearLayout>
 
     <TextView
@@ -108,7 +84,9 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/linearLayout2"
         android:layout_alignParentLeft="true"
-        android:layout_marginBottom="30dp" />
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp" />
 
     <SeekBar
         android:id="@+id/red_seekbar"
@@ -116,7 +94,18 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/linearLayout3"
         android:layout_alignParentLeft="true"
-        android:layout_marginBottom="30dp" />
+        android:layout_marginBottom="30dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp" />
+
+    <ImageView
+        android:id="@+id/selected_color"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_below="@+id/textView1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:contentDescription="@string/selected_image_sample" />
 
     <SeekBar
         android:id="@+id/blue_seekbar"
@@ -124,6 +113,8 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/linearLayout1"
         android:layout_alignParentLeft="true"
-        android:layout_marginBottom="60dp" />
+        android:layout_marginBottom="100dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp" />
 
 </RelativeLayout>

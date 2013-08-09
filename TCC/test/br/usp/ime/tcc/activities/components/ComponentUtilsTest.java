@@ -18,7 +18,6 @@ import android.graphics.BitmapFactory;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.Spinner;
@@ -37,7 +36,6 @@ public class ComponentUtilsTest {
 	private static int defaultSeekbarId = R.id.intensity_bar;
 	private static int defaultTextViewId = R.id.filter_title;
 	private static int defaultSpinnerId = R.id.filter_type_spinner;
-	private static int defaultEditTextId = R.id.blue_value;
 
 	private boolean buttonIsResponsive(Button button) {
 		return button.performClick();
@@ -126,11 +124,6 @@ public class ComponentUtilsTest {
 		when(activity.findViewById(defaultButtonId)).thenReturn(defaultButton);
 	}
 
-	private void loadDefaultEditText(Activity activity) {
-		EditText et = new EditText(activity);
-		when(activity.findViewById(defaultEditTextId)).thenReturn(et);
-	}
-
 	private Activity buildActivityWithMockObjects() {
 		Activity activity = spy(new Activity());
 
@@ -139,7 +132,6 @@ public class ComponentUtilsTest {
 		loadDefaultSeekBar(activity);
 		loadDefaultTextView(activity);
 		loadDefaultSpinner(activity);
-		loadDefaultEditText(activity);
 
 		return activity;
 	}
@@ -303,20 +295,5 @@ public class ComponentUtilsTest {
 		sp.setSelection(rightPosition);
 		assertEquals(rightPosition,
 				componentUtils.getSpinnerPosition(defaultSpinnerId));
-	}
-
-	@Test
-	public void editTextShouldHaveRightText() {
-		EditText et = componentUtils.loadEditText(defaultEditTextId);
-		
-		assertEquals("", et.getText().toString());
-	}
-	
-	@Test
-	public void anotherEditTextShouldHaveRightText() {
-		String someText = "someText";
-		EditText et = componentUtils.loadEditText(defaultEditTextId, someText);
-		
-		assertEquals(someText, et.getText().toString());
 	}
 }

@@ -34,10 +34,15 @@ public class BitmapFilterActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.bitmap_filter);
-
+		
 		getExtras();
 		loadComponents();
-		loadFilter(filterType);
+		
+		//TODO Fix this when separating activities, only uses for Color Highlight
+		if (getLastNonConfigurationInstance() != null)
+			filter = (BitmapFilter) getLastNonConfigurationInstance();
+		else
+			loadFilter(filterType);
 		applyFilter();
 	}
 
@@ -177,5 +182,10 @@ public class BitmapFilterActivity extends Activity {
 				applyFilter();
 			}
 		}
+	}
+	
+	@Override
+	public Object onRetainNonConfigurationInstance() {
+		return filter;
 	}
 }

@@ -1,7 +1,6 @@
 package br.usp.ime.tcc.filter;
 
 import org.opencv.android.CameraBridgeViewBase.CvCameraViewFrame;
-
 import org.opencv.core.Core;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;

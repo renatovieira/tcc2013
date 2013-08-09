@@ -1,6 +1,7 @@
 package br.usp.ime.tcc.activities;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
@@ -9,19 +10,16 @@ import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.shadows.ShadowActivity;
-import org.robolectric.shadows.ShadowHandler;
-import org.robolectric.shadows.ShadowToast;
 
 import android.app.Activity;
-import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.SeekBar;
 import br.usp.ime.tcc.activities.components.ButtonActionsTest;
 import br.usp.ime.tcc.utils.Constants;
 
 @RunWith(RobolectricTestRunner.class)
 public class ColorPickerActivityTest {
-	private static final String INVALID_COLOR_VALUE = "256";
-	
+
 	private ColorPickerActivity activity;
 	private ButtonActionsTest bat;
 
@@ -31,16 +29,28 @@ public class ColorPickerActivityTest {
 		return (bar != null && Constants.MAX_COLOR_VALUE == bar.getMax());
 	}
 
-	private boolean changeToColorSeekBarProgressAffectRelatedEditText(
-			int seekbarId, int editTextId) {
-		SeekBar seekbar = (SeekBar) activity.findViewById(seekbarId);
-		EditText et = (EditText) activity.findViewById(editTextId);
+	private void setColor(int seekbarId, int colorValue) {
+		SeekBar bar = (SeekBar) activity.findViewById(seekbarId);
+		bar.setProgress(colorValue);
+	}
 
-		int value = 120;
+	private void setSeekBarsToDesiredValues(int rgb[]) {
+		setColor(R.id.red_seekbar, rgb[0]);
+		setColor(R.id.green_seekbar, rgb[1]);
+		setColor(R.id.blue_seekbar, rgb[2]);
+	}
 
-		seekbar.setProgress(value);
+	private int[] generateRandomColor() {
+		int red = (int) (Math.random() * 256);
+		int green = (int) (Math.random() * 256);
+		int blue = (int) (Math.random() * 256);
 
-		return et.getText().toString().equals(120 + "");
+		return new int[] { red, green, blue };
+	}
+
+	private boolean sameRgb(int[] oneColor, int[] otherColor) {
+		return oneColor[0] == otherColor[0] && oneColor[1] == otherColor[1]
+				&& oneColor[2] == otherColor[2];
 	}
 
 	// Tests
@@ -79,18 +89,6 @@ public class ColorPickerActivityTest {
 		assertTrue(sa.isFinishing());
 		assertEquals(Activity.RESULT_OK, sa.getResultCode());
 	}
-	
-	@Test
-	public void okButtonShouldMakeAToastIfInvalidColor() {
-		EditText et = (EditText) activity.findViewById(R.id.red_value);
-		et.setText(INVALID_COLOR_VALUE);
-		
-		bat.getButtonAndClickOnIt(R.id.ok_button);
-		
-		ShadowHandler.idleMainLooper();
-		assertEquals(activity.getString(R.string.invalid_color),
-				ShadowToast.getTextOfLatestToast());
-	}
 
 	@Test
 	public void redSeekbarShouldBeCorrectlyLoaded() {
@@ -108,26 +106,15 @@ public class ColorPickerActivityTest {
 	}
 
 	@Test
-	public void redSeekbarProgressChangeShouldAffectRedEditText() {
-		assertEquals(
-				true,
-				changeToColorSeekBarProgressAffectRelatedEditText(
-						R.id.red_seekbar, R.id.red_value));
-	}
+	public void colorSampleShouldChangeAfterSeekbarChanges() {
+		ImageView colorSample = (ImageView) activity
+				.findViewById(R.id.selected_color);
+		assertNotNull(colorSample);
 
-	@Test
-	public void greenSeekbarProgressChangeShouldAffectRedEditText() {
-		assertEquals(
-				true,
-				changeToColorSeekBarProgressAffectRelatedEditText(
-						R.id.green_seekbar, R.id.green_value));
-	}
+		int[] randomColor = generateRandomColor();
 
-	@Test
-	public void blueSeekbarProgressChangeShouldAffectRedEditText() {
-		assertEquals(
-				true,
-				changeToColorSeekBarProgressAffectRelatedEditText(
-						R.id.blue_seekbar, R.id.blue_value));
+		assertEquals(false, sameRgb(activity.rgb, randomColor));
+		setSeekBarsToDesiredValues(randomColor);
+		assertEquals(true, sameRgb(activity.rgb, randomColor));
 	}
 }
