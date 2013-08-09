@@ -11,19 +11,22 @@ public class ColorHighlightParametersCalculator {
 	}
 
 	public boolean pixelShouldBeHighlighted(int pixelR, int pixelG, int pixelB) {
-		return squaredDistanceIsLessThanSquaredTolerance(pixelR, red,
+		return squaredDistanceIsLessDividedBySquaredTolerance(pixelR, red,
 				redTolerance)
-				&& squaredDistanceIsLessThanSquaredTolerance(pixelG, green,
+				+ squaredDistanceIsLessDividedBySquaredTolerance(pixelG, green,
 						greenTolerance)
-				&& squaredDistanceIsLessThanSquaredTolerance(pixelB, blue,
-						blueTolerance);
+				+ squaredDistanceIsLessDividedBySquaredTolerance(pixelB, blue,
+						blueTolerance) <= 1;
 	}
 
-	private boolean squaredDistanceIsLessThanSquaredTolerance(int pixelColor,
-			int color, int colorTolerance) {
+	private double squaredDistanceIsLessDividedBySquaredTolerance(
+			int pixelColor, int color, int colorTolerance) {
 		int sqrDist = squaredDistance(pixelColor, color);
 
-		return (sqrDist <= colorTolerance * colorTolerance);
+		if (colorTolerance == 0)
+			return (sqrDist == 0 ? 0.0 : 1.0);
+
+		return (1.0 * sqrDist / (colorTolerance * colorTolerance));
 	}
 
 	private int squaredDistance(int oneValue, int otherValue) {

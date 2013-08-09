@@ -46,15 +46,13 @@ public class ColorHighlightParametersCalculatorTest {
 	public void shouldHighlightBorderlineColorPixel() {
 		assertEquals(true,
 				colorHighlightParametersCalculator.pixelShouldBeHighlighted(
-						FILTER_RED + DEFAULT_TOLERANCE, FILTER_GREEN
-								+ DEFAULT_TOLERANCE, FILTER_BLUE
-								+ DEFAULT_TOLERANCE));
+						FILTER_RED + DEFAULT_TOLERANCE, FILTER_GREEN,
+						FILTER_BLUE));
 
 		assertEquals(true,
 				colorHighlightParametersCalculator.pixelShouldBeHighlighted(
-						FILTER_RED - DEFAULT_TOLERANCE, FILTER_GREEN
-								- DEFAULT_TOLERANCE, FILTER_BLUE
-								- DEFAULT_TOLERANCE));
+						FILTER_RED, FILTER_GREEN - DEFAULT_TOLERANCE,
+						FILTER_BLUE));
 
 	}
 
@@ -84,5 +82,25 @@ public class ColorHighlightParametersCalculatorTest {
 				colorHighlightParametersCalculator
 						.pixelShouldBeHighlighted(FILTER_RED - 127,
 								FILTER_GREEN - 127, FILTER_BLUE - 127));
+	}
+
+	@Test
+	public void zeroToleranceFilterShouldHighlightSamePixel() {
+		colorHighlightParametersCalculator = new ColorHighlightParametersCalculator(
+				FILTER_RED, FILTER_GREEN, FILTER_BLUE, 0, 0, 0);
+
+		assertEquals(true,
+				colorHighlightParametersCalculator.pixelShouldBeHighlighted(
+						FILTER_RED, FILTER_GREEN, FILTER_BLUE));
+	}
+	
+	@Test
+	public void zeroToleranceFilterShouldNotHighlightOneDifferencePixel() {
+		colorHighlightParametersCalculator = new ColorHighlightParametersCalculator(
+				FILTER_RED, FILTER_GREEN, FILTER_BLUE, 0, 0, 0);
+
+		assertEquals(true,
+				colorHighlightParametersCalculator.pixelShouldBeHighlighted(
+						FILTER_RED, FILTER_GREEN, FILTER_BLUE + 1));
 	}
 }

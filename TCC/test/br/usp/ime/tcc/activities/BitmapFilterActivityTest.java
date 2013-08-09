@@ -131,6 +131,7 @@ public class BitmapFilterActivityTest {
 		assertEquals(View.VISIBLE, bar.getVisibility());
 	}
 	
+	@Test
 	public void seekBarShouldBeLoadedCorrectly() {
 		bitmapFilterActivity = startWithExtras(Constants.VISOCOR_FILTER);
 
