@@ -35,7 +35,7 @@ public class BitmapFilterActivityTest {
 	}
 
 	private void callTheSeekBarListener(SeekBar bar) {
-		bar.setProgress(0);
+		bar.setProgress((bar.getProgress() + 1) % bar.getMax());
 	}
 
 	private int getVisibilyFromButton(int liveModeButton) {

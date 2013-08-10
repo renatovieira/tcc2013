@@ -1,9 +1,17 @@
 package br.usp.ime.tcc.filter.visocor;
 
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.ColorMatrixColorFilter;
+import android.graphics.Paint;
 import br.usp.ime.tcc.filter.BitmapFilter;
 
 public class VisocorBitmapFilter extends BitmapFilter {
 	private VisocorParametersCalculator calc;
+	
+	private ColorMatrixColorFilter colorMatrixColorFilter;
+
+	private float[] filterVector;
 
 	public VisocorBitmapFilter(float intensity) {
 		initFilterVector();
@@ -35,6 +43,16 @@ public class VisocorBitmapFilter extends BitmapFilter {
 		filterVector[10] = alpha;
 		filterVector[11] = beta;
 		filterVector[12] = gama;
-		loadMatrixFromVector();
+	}
+	
+	@Override
+	protected Bitmap filterBitmap(Bitmap bmp) {
+		Bitmap filtered = bmp.copy(Bitmap.Config.ARGB_8888, true);
+
+		Canvas c = new Canvas(filtered);
+		Paint paint = new Paint();
+		paint.setColorFilter(colorMatrixColorFilter);
+		c.drawBitmap(filtered, 0, 0, paint);
+		return filtered;
 	}
 }

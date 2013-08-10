@@ -13,8 +13,6 @@ import android.os.Bundle;
 import android.view.WindowManager;
 import android.widget.SeekBar;
 import br.usp.ime.tcc.activities.components.ComponentUtils;
-import br.usp.ime.tcc.filter.ContinousFilter;
-import br.usp.ime.tcc.filter.simulation.SimulationContinousFilter;
 import br.usp.ime.tcc.filter.visocor.VisocorContinousFilter;
 import br.usp.ime.tcc.utils.Constants;
 
@@ -23,8 +21,7 @@ public class ContinousFilterActivity extends Activity implements
 	private CameraBridgeViewBase mOpenCvCameraView;
 	private SeekBar seekBar;
 	private int lastIntensity;
-	private ContinousFilter filter;
-	private int filterType;
+	private VisocorContinousFilter filter;
 
 	public ContinousFilterActivity() {
 	}
@@ -37,25 +34,14 @@ public class ContinousFilterActivity extends Activity implements
 
 		setContentView(R.layout.continous_filter);
 
-		setFilterType();
-
 		mOpenCvCameraView = (CameraBridgeViewBase) findViewById(R.id.continous_filter_camera);
 		mOpenCvCameraView.setCvCameraViewListener(this);
 
 		ComponentUtils cu = new ComponentUtils(this);
 
-		if (filterType == Constants.VISOCOR_FILTER)
-			seekBar = cu.loadSeekBar(R.id.continous_filter_intensity_bar,
-					Constants.MAX_INTENSITY, Constants.PROGRESS);
+		seekBar = cu.loadSeekBar(R.id.continous_filter_intensity_bar,
+				Constants.MAX_INTENSITY, Constants.PROGRESS);
 		lastIntensity = Constants.PROGRESS;
-	}
-
-	private void setFilterType() {
-		Bundle extras = getIntent().getExtras();
-
-		if (extras != null) {
-			filterType = (Integer) extras.get(Constants.FILTER_TYPE);
-		}
 	}
 
 	@Override
@@ -95,18 +81,14 @@ public class ContinousFilterActivity extends Activity implements
 	};
 
 	public void onCameraViewStarted(int width, int height) {
-		if (filterType == Constants.VISOCOR_FILTER)
-			filter = new VisocorContinousFilter(lastIntensity);
-		else
-			filter = new SimulationContinousFilter(filterType);
+		filter = new VisocorContinousFilter(lastIntensity);
 	}
 
 	public void onCameraViewStopped() {
 	}
 
 	public Mat onCameraFrame(CvCameraViewFrame inputFrame) {
-		if (filterType == Constants.VISOCOR_FILTER
-				&& lastIntensity != seekBar.getProgress()) {
+		if (lastIntensity != seekBar.getProgress()) {
 			int currentIntensity = seekBar.getProgress();
 			filter.update(seekBar.getProgress());
 			lastIntensity = currentIntensity;

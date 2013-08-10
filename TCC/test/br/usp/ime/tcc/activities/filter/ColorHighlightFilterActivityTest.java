@@ -15,8 +15,8 @@ import br.usp.ime.tcc.activities.components.ButtonActionsTest;
 
 @RunWith(RobolectricTestRunner.class)
 public class ColorHighlightFilterActivityTest extends FilterActivityTest {
-	private int getVisibilyFromButton(int liveModeButton) {
-		Button button = (Button) filterActivity.findViewById(liveModeButton);
+	private int getVisibilyFromButton(int buttonId) {
+		Button button = (Button) filterActivity.findViewById(buttonId);
 		return button.getVisibility();
 	}
 

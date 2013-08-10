@@ -26,21 +26,30 @@ public class ColorHighlightBitmapFilter extends BitmapFilter {
 
 		for (int w = 0; w < width; w++) {
 			for (int h = 0; h < height; h++) {
-				int pixel = filtered.getPixel(w, h);
-				int pixelR = getRedValueFromPixel(pixel);
-				int pixelG = getGreenValueFromPixel(pixel);
-				int pixelB = getBlueValueFromPixel(pixel);
-
-				if (!colorHighlightParametersCalculator
-						.pixelShouldBeHighlighted(pixelR, pixelG, pixelB)) {
-					int grayValue = calculateGrayValue(pixelR, pixelG, pixelB);
-					filtered.setPixel(w, h,
-							Color.rgb(grayValue, grayValue, grayValue));
-				}
+				filterPixel(filtered, w, h);
 			}
 		}
 
 		return filtered;
+	}
+
+	private void filterPixel(Bitmap filtered, int w, int h) {
+		int pixel = filtered.getPixel(w, h);
+		int pixelR = Color.red(pixel);
+		int pixelG = Color.green(pixel);
+		int pixelB = Color.blue(pixel);
+
+		if (!colorHighlightParametersCalculator
+				.pixelShouldBeHighlighted(pixelR, pixelG, pixelB)) {
+			changePixelToGreyScale(filtered, w, h, pixelR, pixelG, pixelB);
+		}
+	}
+
+	private void changePixelToGreyScale(Bitmap filtered, int w, int h,
+			int pixelR, int pixelG, int pixelB) {
+		int grayValue = calculateGrayValue(pixelR, pixelG, pixelB);
+		filtered.setPixel(w, h,
+				Color.rgb(grayValue, grayValue, grayValue));
 	}
 
 	private int calculateGrayValue(int red, int green, int blue) {
@@ -48,17 +57,5 @@ public class ColorHighlightBitmapFilter extends BitmapFilter {
 		return (int) (LUMA_RED_COEFFICENT * red + 
 					  LUMA_GREEN_COEFFICENT * green +
 				  	  LUMA_BLUE_COEFFICENT * blue);
-	}
-
-	protected int getBlueValueFromPixel(int pixel) {
-		return Color.blue(pixel);
-	}
-
-	protected int getGreenValueFromPixel(int pixel) {
-		return Color.green(pixel);
-	}
-
-	protected int getRedValueFromPixel(int pixel) {
-		return Color.red(pixel);
 	}
 }

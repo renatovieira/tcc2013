@@ -11,7 +11,6 @@ import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.shadows.ShadowActivity;
 
-import android.content.Intent;
 import android.view.View;
 import android.widget.SeekBar;
 import br.usp.ime.tcc.utils.Constants;
@@ -20,21 +19,10 @@ import br.usp.ime.tcc.utils.Constants;
 public class ContinousFilterActivityTest {
 	private ContinousFilterActivity activity;
 
-	private ContinousFilterActivity startWithExtras(int filterType) {
-		activity = new ContinousFilterActivity();
-		Intent intent = new Intent();
-		intent.putExtra(Constants.FILTER_TYPE, filterType);
-		
-		activity.setIntent(intent);
-		activity.onCreate(null);
-
-		return activity;
-	}
-
 	// Tests
 	@Before
 	public void setUp() throws Exception {
-		activity = startWithExtras(Constants.VISOCOR_FILTER);
+		activity = Robolectric.buildActivity(ContinousFilterActivity.class).create().get();
 	}
 
 	@Test
@@ -64,23 +52,12 @@ public class ContinousFilterActivityTest {
 	}
 	
 	@Test
-	public void seekBarShouldBeVisibleOnVisocor() {
+	public void seekBarShouldBeVisible() {
 		SeekBar bar = (SeekBar) activity
 				.findViewById(R.id.continous_filter_intensity_bar);
 
 		assertNotNull(bar);
 		assertEquals(View.VISIBLE, bar.getVisibility());
-	}
-	
-	@Test
-	public void seekBarShouldBeHiddenOnSimulation() {
-		activity = startWithExtras(Constants.SIMULATION_FILTER);
-		
-		SeekBar bar = (SeekBar) activity
-				.findViewById(R.id.continous_filter_intensity_bar);
-
-		assertNotNull(bar);
-		assertEquals(View.GONE, bar.getVisibility());
 	}
 	
 	public void seekBarShouldBeLoadedCorrectly() {

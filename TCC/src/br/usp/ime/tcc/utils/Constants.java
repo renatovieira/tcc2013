@@ -29,4 +29,7 @@ public final class Constants {
 	public static final String BLUE = "blue";
 	public static final int MIN_COLOR_VALUE = 0;
 	public static final int MAX_COLOR_VALUE = 255;
+	
+	public static final double REL_POWER = 2.2;
+	public static final double REL_POWER_INV = 0.454545;
 }
