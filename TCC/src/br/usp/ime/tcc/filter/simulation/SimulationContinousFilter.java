@@ -23,16 +23,17 @@ public class SimulationContinousFilter extends ContinousFilter {
 	}
 
 	private void loadFilterDeut() {
-		mFilterKernel.put(0, 0, 0.29275, 0.70725, 0f, 0f);
-		mFilterKernel.put(1, 0, 0.29275, 0.70725, 0f, 0f);
-		mFilterKernel.put(2, 0, -0.02234, 0.02234, 1f, 0f);
-		mFilterKernel.put(3, 0, 0f, 0f, 0f, 1f);		
+		mFilterKernel.put(0, 0, 0.29275, 0.70725, 0.0, 0.0);
+		mFilterKernel.put(1, 0, 0.29275, 0.70725, 0.0, 0.0);
+		mFilterKernel.put(2, 0, -0.02234, 0.02234, 1.0, 0.0);
+		mFilterKernel.put(3, 0, 0.0, 0.0, 0.0, 1.0);		
 	}
 	
+	
 	private void loadFilterProt() {
-		mFilterKernel.put(0, 0, 0.11238, 0.88761, 0f, 0f);
-		mFilterKernel.put(1, 0, 0.11238, 0.88761, 0f, 0f);
-		mFilterKernel.put(2, 0, 0.004, -0.004, 1f, 0f);
-		mFilterKernel.put(3, 0, 0f, 0f, 0f, 1f);	
+		mFilterKernel.put(0, 0, 0.11238, 0.88761, 0.0, 0.0);
+		mFilterKernel.put(1, 0, 0.11238, 0.88761, 0.0, 0.0);
+		mFilterKernel.put(2, 0, 0.004, -0.004, 1.0, 0.0);
+		mFilterKernel.put(3, 0, 0.0, 0.0, 0.0, 1.0);	
 	}
 }

@@ -18,8 +18,6 @@ public class SimulationBitmapFilter extends BitmapFilter {
 		case Constants.PROTANOPIA_SIMULATION_FILTER:
 			loadFilterProt();
 			break;
-		case Constants.TRITANOPIA_SIMULATION_FILTER:
-			loadFilterTrit();
 		default:
 			break;
 		}
@@ -38,16 +36,7 @@ public class SimulationBitmapFilter extends BitmapFilter {
 		filterVector = new float[] { 
 				0.11238f, 0.88761f, 0f, 0f, 0f, // Red
 				0.11238f, 0.88761f, 0f, 0f, 0f, // Green
-				0.004f, -0.004f, 1f, 0, 0, // Blue
-				0f, 0f, 0f, 1f, 0f, // Alpha
-		};
-	}
-	
-	private void loadFilterTrit() {
-		filterVector = new float[] { 
-				0.49326f, 0.50675f, 0f, 0f, 0f, // Red
-				0.49326f, 0.50675f, 0f, 0f, 0f, // Green
-				-3.0109f, -3.0109f, 1f, 0, 0, // Blue
+				0.00401f, -0.00401f, 1f, 0, 0, // Blue
 				0f, 0f, 0f, 1f, 0f, // Alpha
 		};
 	}

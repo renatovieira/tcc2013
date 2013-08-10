@@ -26,7 +26,7 @@ public class VisocorFilterActivity extends FilterActivity {
 				Intent continousModeIntent = new Intent(
 						VisocorFilterActivity.this,
 						ContinousFilterActivity.class);
-				continousModeIntent.putExtra(Constants.FILTER_TYPE, Constants.VISOCOR_FILTER);
+				putFilterTypeExtra(continousModeIntent);
 				startActivity(continousModeIntent);
 			}
 		});

@@ -60,8 +60,6 @@ public abstract class FilterActivity extends Activity {
 	
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		super.onActivityResult(requestCode, resultCode, data);
-
 		if (resultCode == Activity.RESULT_OK) {
 			Intent showImageIntent = new Intent(this,
 					BitmapFilterActivity.class);

@@ -23,9 +23,10 @@ public class VisocorBitmapFilter extends BitmapFilter {
 	}
 	
 	private void initFilterVector() {
-		filterVector = new float[] { 1f, 0f, 0f, 0f, 0f, // Red
+		filterVector = new float[] { 
+			1f, 0f, 0f, 0f, 0f, // Red
 			0f, 1f, 0f, 0f, 0f, // Green
-			0f, 1f, 0f, 0, 0, // Blue
+			0f, 0f, 1f, 0f, 0f, // Blue
 			0f, 0f, 0f, 1f, 0f, // Alpha
 		};
 	}

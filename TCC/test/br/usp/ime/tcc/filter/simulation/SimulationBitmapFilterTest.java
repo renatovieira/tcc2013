@@ -34,17 +34,9 @@ public class SimulationBitmapFilterTest {
 	}
 
 	@Test
-	public void tritFilterShouldReturnNullIfBitmapIsNull() {
-		SimulationBitmapFilter filter = new SimulationBitmapFilter(
-				Constants.TRITANOPIA_SIMULATION_FILTER);
-
-		assertNull(filter.applyTo(null));
-	}
-
-	@Test
 	public void filterUpdateOnSimulationFilterShouldDoNothing() {
 		SimulationBitmapFilter filter = new SimulationBitmapFilter(
-				Constants.TRITANOPIA_SIMULATION_FILTER);
+				Constants.DEUTERANOPIA_SIMULATION_FILTER);
 		
 		filter.update(0);
 

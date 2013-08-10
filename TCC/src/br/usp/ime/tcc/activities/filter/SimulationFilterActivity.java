@@ -26,7 +26,7 @@ public class SimulationFilterActivity extends FilterActivity {
 				Intent continousModeIntent = new Intent(
 						SimulationFilterActivity.this,
 						ContinousFilterActivity.class);
-				continousModeIntent.putExtra(Constants.FILTER_TYPE, Constants.SIMULATION_FILTER);
+				putFilterTypeExtra(continousModeIntent);
 				startActivity(continousModeIntent);
 			}
 		});
@@ -38,7 +38,6 @@ public class SimulationFilterActivity extends FilterActivity {
 	@Override
 	protected void putFilterTypeExtra(Intent intent) {
 		int filterType;
-		
 		ComponentUtils cu = new ComponentUtils(this);
 		filterType = cu.getSpinnerPosition(R.id.filter_type_spinner) + 2;
 		intent.putExtra(Constants.FILTER_TYPE, filterType);		

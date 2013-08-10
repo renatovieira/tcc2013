@@ -15,7 +15,6 @@
     <string-array name="filter_options">
         <item>Deuteranopia</item>
         <item>Protanopia</item>
-        <item>Tritanopia</item>
     </string-array>
 
     <!-- Bitmap Filter Activity -->

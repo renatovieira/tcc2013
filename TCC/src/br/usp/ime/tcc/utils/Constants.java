@@ -3,7 +3,7 @@ package br.usp.ime.tcc.utils;
 public final class Constants {
 	public static final int MAX_INTENSITY = 100;
 	public static final int PROGRESS = MAX_INTENSITY / 2;
-	public static final int DEFAULT_TOLERANCE = 25;
+	public static final int DEFAULT_TOLERANCE = 50;
 
 	public static final int TAKE_PICTURE = 1;
 	public static final int SELECT_PICTURE = 2;
@@ -21,7 +21,6 @@ public final class Constants {
 
 	public static final int DEUTERANOPIA_SIMULATION_FILTER = 2;
 	public static final int PROTANOPIA_SIMULATION_FILTER = 3;
-	public static final int TRITANOPIA_SIMULATION_FILTER = 4;
 
 	public static final int COLOR_PICKER_REQUEST_CODE = 1;
 
