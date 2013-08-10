@@ -43,6 +43,7 @@ public class VisocorBitmapFilter extends BitmapFilter {
 		filterVector[10] = alpha;
 		filterVector[11] = beta;
 		filterVector[12] = gama;
+		colorMatrixColorFilter = new ColorMatrixColorFilter(filterVector);
 	}
 	
 	@Override
