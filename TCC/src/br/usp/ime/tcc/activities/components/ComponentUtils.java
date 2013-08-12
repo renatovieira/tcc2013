@@ -5,7 +5,6 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
@@ -92,15 +91,5 @@ public class ComponentUtils {
 	public void showSpinner(int spinnerId) {
 		Spinner sp = loadSpinner(spinnerId);
 		sp.setVisibility(View.VISIBLE);
-	}
-	
-	public EditText loadEditText (int editTextId) {
-		return loadEditText(editTextId, "");
-	}
-	
-	public EditText loadEditText(int editTextId, String text) {
-		EditText et = (EditText) activity.findViewById(editTextId);
-		et.setText(text);
-		return et;
 	}
 }
