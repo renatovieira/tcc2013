@@ -9,14 +9,6 @@
     tools:context=".FilterActivity" >
 
     <Button
-        android:id="@+id/visocor_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="@string/visocor" />
-
-    <Button
         android:id="@+id/simulation_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -39,5 +31,14 @@
         android:layout_below="@+id/highlight_button"
         android:layout_centerHorizontal="true"
         android:text="@string/settings" />
+
+    <Button
+        android:id="@+id/visocor_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/settings_button"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="50dp"
+        android:text="@string/visocor" />
 
 </RelativeLayout>
