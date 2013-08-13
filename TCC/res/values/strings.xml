@@ -37,7 +37,7 @@
     <string name="blue">Blue</string>
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
-    <string name="invalid_color">Invalid value. Value should be between 0 and 255, included.</string>
+    <string name="invalid_value">One of the values are invalid. Values should be between 0 and 255, included.</string>
     <string name="selected_image_sample">Selected Image Sample</string>
 
     <!-- Settings -->
@@ -45,5 +45,6 @@
     <string name="default_simulation_filter">Default simulation filter</string>
     <string name="default_tolerance_values">Default tolerance values (0 to 255)</string>
     <string name="pick_default_color">Pick default color</string>
+    <string name="saved">Settings saved.</string>
 
 </resources>

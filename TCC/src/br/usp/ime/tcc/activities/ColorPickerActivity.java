@@ -14,7 +14,6 @@ import br.usp.ime.tcc.activities.components.ComponentUtils;
 import br.usp.ime.tcc.utils.Constants;
 
 public class ColorPickerActivity extends Activity {
-	private static final int initialColorValue = Constants.MAX_COLOR_VALUE;
 	private static final int RED = 0;
 	private static final int GREEN = 1;
 	private static final int BLUE = 2;
@@ -28,11 +27,19 @@ public class ColorPickerActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.color_picker);
-
-		rgb = new int[]{initialColorValue, initialColorValue, initialColorValue};
+		
+		loadInitialValues();
 		
 		loadComponents();
 		updateImageViewWithColor();
+	}
+
+	private void loadInitialValues() {
+		int redValue = Constants.MAX_COLOR_VALUE;
+		int greenValue = Constants.MAX_COLOR_VALUE;
+		int blueValue = Constants.MAX_COLOR_VALUE;
+		
+		rgb = new int[]{redValue, greenValue, blueValue};
 	}
 
 	private void loadComponents() {

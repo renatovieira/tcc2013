@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
@@ -21,20 +22,20 @@ public class ComponentUtils {
 	public Button loadButton(int buttonId,
 			android.view.View.OnClickListener onClickListener) {
 		Button button = (Button) activity.findViewById(buttonId);
-		
+
 		button.setVisibility(View.VISIBLE);
 
 		button.setOnClickListener(onClickListener);
 
 		return button;
 	}
-	
+
 	public void hideButton(int buttonId) {
 		Button button = (Button) activity.findViewById(buttonId);
 
 		button.setVisibility(View.GONE);
 	}
-	
+
 	public SeekBar loadSeekBar(int intensityBarId, int maxIntensity,
 			int progress) {
 		SeekBar seekBar = (SeekBar) activity.findViewById(intensityBarId);
@@ -45,7 +46,7 @@ public class ComponentUtils {
 
 		return seekBar;
 	}
-	
+
 	public SeekBar loadSeekBar(int intensityBarId, int maxIntensity,
 			int progress, OnSeekBarChangeListener listener) {
 		SeekBar seekBar = loadSeekBar(intensityBarId, maxIntensity, progress);
@@ -53,7 +54,7 @@ public class ComponentUtils {
 
 		return seekBar;
 	}
-	
+
 	public ImageView loadImageView(int imageViewId) {
 		ImageView imageView = (ImageView) activity.findViewById(imageViewId);
 		return imageView;
@@ -67,29 +68,44 @@ public class ComponentUtils {
 	public void fillIn(ImageView imageView, Bitmap bitmap) {
 		imageView.setImageBitmap(bitmap);
 	}
-	
-	public TextView loadTextView (int textViewId) {
+
+	public TextView loadTextView(int textViewId) {
 		return (TextView) activity.findViewById(textViewId);
 	}
-	
+
 	public TextView loadTextViewWithText(int textViewId, String text) {
-		TextView tv =loadTextView(textViewId);
+		TextView tv = loadTextView(textViewId);
 		tv.setText(text);
 		return tv;
 	}
-	
+
 	public Spinner loadSpinner(int spinnerId) {
 		Spinner sp = (Spinner) activity.findViewById(spinnerId);
 		return sp;
 	}
-	
+
 	public int getSpinnerPosition(int spinnerId) {
 		Spinner sp = loadSpinner(spinnerId);
 		return sp.getSelectedItemPosition();
 	}
-	
+
 	public void showSpinner(int spinnerId) {
 		Spinner sp = loadSpinner(spinnerId);
 		sp.setVisibility(View.VISIBLE);
+	}
+
+	public void setSpinnerPosition(int spinnerId, int position) {
+		Spinner sp = loadSpinner(spinnerId);
+		sp.setSelection(position);
+	}
+
+	public EditText loadEditText(int editTextId) {
+		return loadEditText(editTextId, "");
+	}
+
+	public EditText loadEditText(int editTextId, String text) {
+		EditText et = (EditText) activity.findViewById(editTextId);
+		et.setText(text);
+		return et;
 	}
 }
