@@ -46,6 +46,11 @@ public class MainActivityTest {
 	public void highlightButtonShouldBeLoadedAndWorking() {
 		assertTrue(bat.getButtonAndClickOnIt(R.id.highlight_button));
 	}
+	
+	@Test
+	public void settingsButtonShouldBeLoadedAndWorking() {
+		assertTrue(bat.getButtonAndClickOnIt(R.id.settings_button));
+	}
 
 	@Test
 	public void pressingVisocorButtonShouldStartVisocorFilterActivity() {
@@ -77,6 +82,17 @@ public class MainActivityTest {
 		assertNotNull(startedIntent);
 		ShadowIntent shadowIntent = shadowOf(startedIntent);
 		assertEquals(ColorHighlightFilterActivity.class.getName(), shadowIntent
+				.getComponent().getClassName());
+	}
+	
+	@Test
+	public void pressingSettingsButtonShouldStartFilterActivity() {
+		Intent startedIntent = bat
+				.getButtonAndGetStartedIntentAfterClick(R.id.settings_button);
+
+		assertNotNull(startedIntent);
+		ShadowIntent shadowIntent = shadowOf(startedIntent);
+		assertEquals(SettingsActivity.class.getName(), shadowIntent
 				.getComponent().getClassName());
 	}
 }

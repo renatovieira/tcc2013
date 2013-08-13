@@ -50,6 +50,10 @@
             android:label="@string/app_name" >
         </activity>
         <activity
+            android:name="br.usp.ime.tcc.activities.SettingsActivity"
+            android:label="@string/app_name" >
+        </activity>
+        <activity
             android:name="br.usp.ime.tcc.activities.ContinousFilterActivity"
             android:configChanges="keyboardHidden|orientation"
             android:label="@string/app_name"

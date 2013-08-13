@@ -25,27 +25,34 @@ public class MainActivity extends Activity {
 		componentUtils.loadButton(R.id.visocor_button, new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				callFilterActivity(VisocorFilterActivity.class);
+				callActivity(VisocorFilterActivity.class);
 			}
 		});
 		
 		componentUtils.loadButton(R.id.simulation_button, new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				callFilterActivity(SimulationFilterActivity.class);
+				callActivity(SimulationFilterActivity.class);
 			}
 		});
 		
 		componentUtils.loadButton(R.id.highlight_button, new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				callFilterActivity(ColorHighlightFilterActivity.class);
+				callActivity(ColorHighlightFilterActivity.class);
+			}
+		});
+		
+		componentUtils.loadButton(R.id.settings_button, new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				callActivity(SettingsActivity.class);
 			}
 		});
 	}
 	
-	private void callFilterActivity(Class<?> filterClass) {
-		Intent filterActivityIntent = new Intent(this, filterClass);
-		startActivity(filterActivityIntent);
+	private void callActivity(Class<?> activityClass) {
+		Intent activityIntent = new Intent(this, activityClass);
+		startActivity(activityIntent);
 	}
 }
