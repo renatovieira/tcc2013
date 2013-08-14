@@ -3,7 +3,6 @@ package br.usp.ime.tcc.activities.settings;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import br.usp.ime.tcc.utils.Constants;
 
 public class SettingsManager {
@@ -23,10 +22,12 @@ public class SettingsManager {
 				Context.MODE_PRIVATE);
 	}
 
-	private void save(String key, int value) {
-		Editor editor = preferences.edit();
-		editor.putInt(key, value);
-		editor.commit();
+	private boolean save(String key, int value) {
+		return preferences.edit().putInt(key, value).commit();
+	}
+	
+	public boolean settingsClear() {
+		return preferences.edit().clear().commit();
 	}
 
 	public int loadDefaultIntensity() {
@@ -64,35 +65,35 @@ public class SettingsManager {
 		return preferences.getInt(DEFAULT_BLUE, Constants.MAX_COLOR_VALUE);
 	}
 
-	public void saveDefaultIntensity(int value) {
-		save(DEFAULT_INTENSITY, value);
+	public boolean saveDefaultIntensity(int value) {
+		return save(DEFAULT_INTENSITY, value);
 	}
 
-	public void saveDefaultColorSimulationId(int value) {
-		save(DEFAULT_COLOR_SIMULATION_ID, value);
+	public boolean saveDefaultColorSimulationId(int value) {
+		return save(DEFAULT_COLOR_SIMULATION_ID, value);
 	}
 
-	public void saveDefaultRedTolerance(int value) {
-		save(DEFAULT_RED_TOLERANCE, value);
+	public boolean saveDefaultRedTolerance(int value) {
+		return save(DEFAULT_RED_TOLERANCE, value);
 	}
 
-	public void saveDefaultGreenTolerance(int value) {
-		save(DEFAULT_GREEN_TOLERANCE, value);
+	public boolean saveDefaultGreenTolerance(int value) {
+		return save(DEFAULT_GREEN_TOLERANCE, value);
 	}
 
-	public void saveDefaultBlueTolerance(int value) {
-		save(DEFAULT_BLUE_TOLERANCE, value);
+	public boolean saveDefaultBlueTolerance(int value) {
+		return save(DEFAULT_BLUE_TOLERANCE, value);
 	}
 
-	public void saveDefaultRed(int value) {
-		save(DEFAULT_RED, value);
+	public boolean saveDefaultRed(int value) {
+		return save(DEFAULT_RED, value);
 	}
 
-	public void saveDefaultGreen(int value) {
-		save(DEFAULT_GREEN, value);
+	public boolean saveDefaultGreen(int value) {
+		return save(DEFAULT_GREEN, value);
 	}
 
-	public void saveDefaultBlue(int value) {
-		save(DEFAULT_BLUE, value);
+	public boolean saveDefaultBlue(int value) {
+		return save(DEFAULT_BLUE, value);
 	}
 }

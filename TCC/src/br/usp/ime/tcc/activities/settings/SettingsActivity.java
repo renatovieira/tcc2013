@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
+import android.widget.SeekBar;
+import android.widget.Spinner;
 import android.widget.Toast;
 import br.usp.ime.tcc.activities.ColorPickerActivity;
 import br.usp.ime.tcc.activities.R;
@@ -21,10 +23,14 @@ public class SettingsActivity extends Activity {
 	private int defaultRed;
 	private int defaultGreen;
 	private int defaultBlue;
+	
+	private SettingsManager settingsManager;
+	
 	private EditText redToleranceET;
 	private EditText greenToleranceET;
 	private EditText blueToleranceET;
-	private SettingsManager settingsManager;
+	private SeekBar intensityBar;
+	private Spinner simulationTypeSpinner;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -62,8 +68,10 @@ public class SettingsActivity extends Activity {
 			}
 		});
 
-		cu.loadSeekBar(R.id.default_intensity, Constants.MAX_INTENSITY,
+		intensityBar = cu.loadSeekBar(R.id.default_intensity, Constants.MAX_INTENSITY,
 				defaultIntensity);
+		
+		simulationTypeSpinner = cu.loadSpinner(R.id.default_simulation_filter_spinner);
 
 		cu.setSpinnerPosition(R.id.default_simulation_filter_spinner,
 				defaultColorSimulation);
@@ -93,6 +101,8 @@ public class SettingsActivity extends Activity {
 
 	private void tryToSaveValues() {
 		if (validTolerances()) {
+			defaultIntensity = intensityBar.getProgress();
+			defaultColorSimulation = simulationTypeSpinner.getSelectedItemPosition();
 			saveValues();
 			Toast.makeText(this, this.getString(R.string.saved),
 					Toast.LENGTH_SHORT).show();

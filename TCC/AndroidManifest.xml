@@ -50,7 +50,7 @@
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="br.usp.ime.tcc.activities.SettingsActivity"
+            android:name="br.usp.ime.tcc.activities.settings.SettingsActivity"
             android:label="@string/app_name" >
         </activity>
         <activity

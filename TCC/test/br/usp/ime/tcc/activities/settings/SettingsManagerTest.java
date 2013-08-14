@@ -1,9 +1,10 @@
 package br.usp.ime.tcc.activities.settings;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
+import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
@@ -20,117 +21,88 @@ public class SettingsManagerTest {
 	public void setUp() throws Exception {
 		settingsManager = new SettingsManager(new Activity());
 	}
+	
+	@After
+	public void tearDown() {
+		settingsManager.settingsClear();
+	}
 
 	@Test
-	public void shouldLoadDefaultIntensityCorrectly() {
+	public void shouldLoadAndSaveDefaultIntensityCorrectly() {
 		assertEquals(Constants.INTENSITY,
 				settingsManager.loadDefaultIntensity());
-	}
-
-	@Test
-	public void shouldLoadDefaultColorSimulationIdCorrectly() {
-		assertEquals(0, settingsManager.loadDefaultColorSimulationId());
-	}
-
-	@Test
-	public void shouldLoadDefaultRedToleranceCorrectly() {
-		assertEquals(Constants.DEFAULT_TOLERANCE,
-				settingsManager.loadDefaultRedTolerance());
-	}
-
-	@Test
-	public void shouldLoadDefaultGreenToleranceCorrectly() {
-		assertEquals(Constants.DEFAULT_TOLERANCE,
-				settingsManager.loadDefaultGreenTolerance());
-	}
-
-	@Test
-	public void shouldLoadDefaultBlueToleranceCorrectly() {
-		assertEquals(Constants.DEFAULT_TOLERANCE,
-				settingsManager.loadDefaultBlueTolerance());
-	}
-
-	@Test
-	public void shouldLoadDefaultRedCorrectly() {
-		assertEquals(Constants.MAX_COLOR_VALUE,
-				settingsManager.loadDefaultRed());
-	}
-
-	@Test
-	public void shouldLoadDefaultGreenCorrectly() {
-		assertEquals(Constants.MAX_COLOR_VALUE,
-				settingsManager.loadDefaultGreen());
-	}
-
-	@Test
-	public void shouldLoadDefaultBlueCorrectly() {
-		assertEquals(Constants.MAX_COLOR_VALUE,
-				settingsManager.loadDefaultBlue());
-	}
-
-	// Can't test because Android can't save the values
-
-	@Ignore
-	@Test
-	public void shouldSaveDefaultIntensityCorrectly() {
-		settingsManager.saveDefaultIntensity(DEFAULT_VALUE);
+		
+		assertTrue(settingsManager.saveDefaultIntensity(DEFAULT_VALUE));
 
 		assertEquals(DEFAULT_VALUE, settingsManager.loadDefaultIntensity());
 	}
 
-	@Ignore
 	@Test
-	public void shouldSaveDefaultColorSimulationIdCorrectly() {
-		settingsManager.saveDefaultIntensity(DEFAULT_VALUE);
+	public void shouldLoadAndSaveDefaultColorSimulationIdCorrectly() {
+		assertEquals(0, settingsManager.loadDefaultColorSimulationId());
+		
+		assertTrue(settingsManager.saveDefaultColorSimulationId(DEFAULT_VALUE));
 
 		assertEquals(DEFAULT_VALUE,
 				settingsManager.loadDefaultColorSimulationId());
 	}
 
-	@Ignore
 	@Test
-	public void shouldSaveDefaultRedToleranceCorrectly() {
-		settingsManager.saveDefaultIntensity(DEFAULT_VALUE);
+	public void shouldLoadAndSaveDefaultRedToleranceCorrectly() {
+		assertEquals(Constants.DEFAULT_TOLERANCE,
+				settingsManager.loadDefaultRedTolerance());
+		
+		assertTrue(settingsManager.saveDefaultRedTolerance(DEFAULT_VALUE));
 
 		assertEquals(DEFAULT_VALUE, settingsManager.loadDefaultRedTolerance());
 	}
 
-	@Ignore
 	@Test
-	public void shouldSaveDefaultGreenToleranceCorrectly() {
-		settingsManager.saveDefaultIntensity(DEFAULT_VALUE);
+	public void shouldLoadAndSaveDefaultGreenToleranceCorrectly() {
+		assertEquals(Constants.DEFAULT_TOLERANCE,
+				settingsManager.loadDefaultGreenTolerance());
+		
+		assertTrue(settingsManager.saveDefaultGreenTolerance(DEFAULT_VALUE));
 
 		assertEquals(DEFAULT_VALUE, settingsManager.loadDefaultGreenTolerance());
 	}
 
-	@Ignore
 	@Test
-	public void shouldSaveDefaultBlueToleranceCorrectly() {
-		settingsManager.saveDefaultIntensity(DEFAULT_VALUE);
+	public void shouldLoadAndSaveDefaultBlueToleranceCorrectly() {
+		assertEquals(Constants.DEFAULT_TOLERANCE,
+				settingsManager.loadDefaultBlueTolerance());
+		
+		assertTrue(settingsManager.saveDefaultBlueTolerance(DEFAULT_VALUE));
 
 		assertEquals(DEFAULT_VALUE, settingsManager.loadDefaultBlueTolerance());
 	}
 
-	@Ignore
 	@Test
-	public void shouldSaveDefaultRedCorrectly() {
-		settingsManager.saveDefaultIntensity(DEFAULT_VALUE);
+	public void shouldLoadAndSaveDefaultRedCorrectly() {
+		assertEquals(Constants.MAX_COLOR_VALUE,
+				settingsManager.loadDefaultRed());
+		
+		assertTrue(settingsManager.saveDefaultRed(DEFAULT_VALUE));
 
 		assertEquals(DEFAULT_VALUE, settingsManager.loadDefaultRed());
 	}
 
-	@Ignore
 	@Test
-	public void shouldSaveDefaultGreenCorrectly() {
-		settingsManager.saveDefaultIntensity(DEFAULT_VALUE);
+	public void shouldLoadAndSaveDefaultGreenCorrectly() {
+		assertEquals(Constants.MAX_COLOR_VALUE,
+				settingsManager.loadDefaultGreen());
+		
+		assertTrue(settingsManager.saveDefaultGreen(DEFAULT_VALUE));
 
 		assertEquals(DEFAULT_VALUE, settingsManager.loadDefaultGreen());
 	}
 
-	@Ignore
 	@Test
-	public void shouldSaveDefaultBlueCorrectly() {
-		settingsManager.saveDefaultIntensity(DEFAULT_VALUE);
+	public void shouldLoadAndSaveDefaultBlueCorrectly() {
+		assertEquals(Constants.MAX_COLOR_VALUE,
+				settingsManager.loadDefaultBlue());
+		
+		assertTrue(settingsManager.saveDefaultBlue(DEFAULT_VALUE));
 
 		assertEquals(DEFAULT_VALUE, settingsManager.loadDefaultBlue());
 	}

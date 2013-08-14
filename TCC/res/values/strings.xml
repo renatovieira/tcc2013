@@ -37,7 +37,7 @@
     <string name="blue">Blue</string>
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
-    <string name="invalid_value">One of the values are invalid. Values should be between 0 and 255, included.</string>
+    <string name="invalid_value">One or more of the values is invalid. Values should be between 0 and 255, included.</string>
     <string name="selected_image_sample">Selected Image Sample</string>
 
     <!-- Settings -->
