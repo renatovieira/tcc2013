@@ -74,7 +74,7 @@ public class ComponentUtilsTest {
 
 	private SeekBar getDefaultSeekbar() {
 		SeekBar bar = componentUtils.loadSeekBar(defaultSeekbarId,
-				Constants.MAX_INTENSITY, Constants.PROGRESS);
+				Constants.MAX_INTENSITY, Constants.INTENSITY);
 
 		return bar;
 	}
@@ -218,7 +218,7 @@ public class ComponentUtilsTest {
 	@Test(expected = NullPointerException.class)
 	public void seekbarShouldThrowExceptionIfInvalidId() {
 		componentUtils.loadSeekBar(INVALID_ID, Constants.MAX_INTENSITY,
-				Constants.PROGRESS);
+				Constants.INTENSITY);
 	}
 
 	@Test
@@ -245,7 +245,7 @@ public class ComponentUtilsTest {
 	public void seekbarProgressShouldBeMaxProgress() {
 		SeekBar bar = getDefaultSeekbar();
 
-		assertEquals(Constants.PROGRESS, bar.getProgress());
+		assertEquals(Constants.INTENSITY, bar.getProgress());
 	}
 
 	@Test

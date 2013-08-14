@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.view.WindowManager;
 import android.widget.SeekBar;
 import br.usp.ime.tcc.activities.components.ComponentUtils;
+import br.usp.ime.tcc.activities.settings.SettingsManager;
 import br.usp.ime.tcc.filter.visocor.VisocorContinousFilter;
 import br.usp.ime.tcc.utils.Constants;
 
@@ -37,11 +38,17 @@ public class ContinousFilterActivity extends Activity implements
 		mOpenCvCameraView = (CameraBridgeViewBase) findViewById(R.id.continous_filter_camera);
 		mOpenCvCameraView.setCvCameraViewListener(this);
 
+		loadComponents();
+	}
+
+	private void loadComponents() {
+		SettingsManager settingsManager = new SettingsManager(this);
+		
 		ComponentUtils cu = new ComponentUtils(this);
 
 		seekBar = cu.loadSeekBar(R.id.continous_filter_intensity_bar,
-				Constants.MAX_INTENSITY, Constants.PROGRESS);
-		lastIntensity = Constants.PROGRESS;
+				Constants.MAX_INTENSITY, settingsManager.loadDefaultIntensity());
+		lastIntensity = settingsManager.loadDefaultIntensity();
 	}
 
 	@Override

@@ -2,7 +2,7 @@ package br.usp.ime.tcc.utils;
 
 public final class Constants {
 	public static final int MAX_INTENSITY = 100;
-	public static final int PROGRESS = MAX_INTENSITY / 2;
+	public static final int INTENSITY = MAX_INTENSITY / 2;
 	public static final int DEFAULT_TOLERANCE = 50;
 
 	public static final int TAKE_PICTURE = 1;

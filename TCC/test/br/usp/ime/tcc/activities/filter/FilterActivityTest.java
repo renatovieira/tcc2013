@@ -16,13 +16,13 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import br.usp.ime.tcc.activities.BitmapFilterActivity;
 import br.usp.ime.tcc.activities.R;
-import br.usp.ime.tcc.activities.components.ButtonActionsTest;
+import br.usp.ime.tcc.activities.components.ButtonActionsTestHelper;
 
 @Ignore
 @RunWith(RobolectricTestRunner.class)
 public class FilterActivityTest {
 	protected FilterActivity filterActivity;
-	protected ButtonActionsTest bat;
+	protected ButtonActionsTestHelper bat;
 	protected String title;
 
 	protected String getFilterTitleFromTextView() {

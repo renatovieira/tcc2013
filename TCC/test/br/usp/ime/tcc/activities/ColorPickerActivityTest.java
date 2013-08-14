@@ -14,14 +14,14 @@ import org.robolectric.shadows.ShadowActivity;
 import android.app.Activity;
 import android.widget.ImageView;
 import android.widget.SeekBar;
-import br.usp.ime.tcc.activities.components.ButtonActionsTest;
+import br.usp.ime.tcc.activities.components.ButtonActionsTestHelper;
 import br.usp.ime.tcc.utils.Constants;
 
 @RunWith(RobolectricTestRunner.class)
 public class ColorPickerActivityTest {
 
 	private ColorPickerActivity activity;
-	private ButtonActionsTest bat;
+	private ButtonActionsTestHelper bat;
 
 	private boolean colorSeekbarIsCorrectlyLoaded(int seekbarId) {
 		SeekBar bar = (SeekBar) activity.findViewById(seekbarId);
@@ -59,7 +59,7 @@ public class ColorPickerActivityTest {
 	public void setUp() throws Exception {
 		activity = Robolectric.buildActivity(ColorPickerActivity.class)
 				.create().get();
-		bat = new ButtonActionsTest(activity);
+		bat = new ButtonActionsTestHelper(activity);
 	}
 
 	@Test

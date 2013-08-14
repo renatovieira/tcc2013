@@ -15,6 +15,7 @@ import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.Toast;
 import br.usp.ime.tcc.activities.components.ComponentUtils;
+import br.usp.ime.tcc.activities.settings.SettingsManager;
 import br.usp.ime.tcc.filter.BitmapFilter;
 import br.usp.ime.tcc.filter.colorhighlight.ColorHighlightBitmapFilter;
 import br.usp.ime.tcc.filter.simulation.SimulationBitmapFilter;
@@ -29,16 +30,21 @@ public class BitmapFilterActivity extends Activity {
 	private Bitmap filteredBitmap;
 	private BitmapFilter filter;
 	private int filterType;
+	private SettingsManager settingsManager;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.bitmap_filter);
-		
+
 		getExtras();
-		loadComponents();
 		
-		//TODO Fix this when separating activities, only uses for Color Highlight
+		settingsManager = new SettingsManager(this);
+		
+		loadComponents();
+
+		// TODO Fix this when separating activities, only uses for Color
+		// Highlight
 		if (getLastNonConfigurationInstance() != null)
 			filter = (BitmapFilter) getLastNonConfigurationInstance();
 		else
@@ -71,12 +77,17 @@ public class BitmapFilterActivity extends Activity {
 	private void loadFilter(int filterType) {
 		switch (filterType) {
 		case Constants.VISOCOR_FILTER:
-			filter = new VisocorBitmapFilter(Constants.PROGRESS);
+			filter = new VisocorBitmapFilter(
+					settingsManager.loadDefaultIntensity());
 			break;
 		case Constants.COLOR_HIGHLIGHT_FILTER:
-			filter = new ColorHighlightBitmapFilter(0, 0, 0,
-					Constants.DEFAULT_TOLERANCE, Constants.DEFAULT_TOLERANCE,
-					Constants.DEFAULT_TOLERANCE);
+			filter = new ColorHighlightBitmapFilter(
+					settingsManager.loadDefaultRed(),
+					settingsManager.loadDefaultGreen(),
+					settingsManager.loadDefaultBlue(),
+					settingsManager.loadDefaultRedTolerance(),
+					settingsManager.loadDefaultGreenTolerance(),
+					settingsManager.loadDefaultBlueTolerance());
 			break;
 		default:
 			filter = new SimulationBitmapFilter(filterType);
@@ -128,7 +139,7 @@ public class BitmapFilterActivity extends Activity {
 
 		if (filterType == Constants.VISOCOR_FILTER) {
 			componentUtils.loadSeekBar(R.id.intensity_bar,
-					Constants.MAX_INTENSITY, Constants.PROGRESS,
+					Constants.MAX_INTENSITY, Constants.INTENSITY,
 					new OnSeekBarChangeListener() {
 						@Override
 						public void onStopTrackingTouch(SeekBar arg0) {
@@ -176,14 +187,14 @@ public class BitmapFilterActivity extends Activity {
 				int blue = data.getIntExtra(Constants.BLUE, 0);
 
 				filter = new ColorHighlightBitmapFilter(red, green, blue,
-						Constants.DEFAULT_TOLERANCE,
-						Constants.DEFAULT_TOLERANCE,
-						Constants.DEFAULT_TOLERANCE);
+						settingsManager.loadDefaultRedTolerance(),
+						settingsManager.loadDefaultGreenTolerance(),
+						settingsManager.loadDefaultBlueTolerance());
 				applyFilter();
 			}
 		}
 	}
-	
+
 	@Override
 	public Object onRetainNonConfigurationInstance() {
 		return filter;

@@ -23,7 +23,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.SeekBar;
-import br.usp.ime.tcc.activities.components.ButtonActionsTest;
+import br.usp.ime.tcc.activities.components.ButtonActionsTestHelper;
 import br.usp.ime.tcc.utils.Constants;
 
 @RunWith(RobolectricTestRunner.class)
@@ -82,7 +82,7 @@ public class BitmapFilterActivityTest {
 	public void discardButtonShouldReturnToFilterActivity() {
 		bitmapFilterActivity = startWithExtras(Constants.VISOCOR_FILTER);
 
-		ButtonActionsTest bat = new ButtonActionsTest(bitmapFilterActivity);
+		ButtonActionsTestHelper bat = new ButtonActionsTestHelper(bitmapFilterActivity);
 		bat.getButtonAndClickOnIt(R.id.discard_button);
 
 		ShadowActivity sa = Robolectric.shadowOf(bitmapFilterActivity);
@@ -93,7 +93,7 @@ public class BitmapFilterActivityTest {
 	public void saveButtonShouldReturnErrorToast() {
 		bitmapFilterActivity = startWithExtras(Constants.VISOCOR_FILTER);
 
-		ButtonActionsTest bat = new ButtonActionsTest(bitmapFilterActivity);
+		ButtonActionsTestHelper bat = new ButtonActionsTestHelper(bitmapFilterActivity);
 		bat.getButtonAndClickOnIt(R.id.save_button);
 
 		ShadowHandler.idleMainLooper();
@@ -189,7 +189,7 @@ public class BitmapFilterActivityTest {
 	@Test
 	public void colorPickerButtonStartColorPickerActivity() {
 		bitmapFilterActivity = startWithExtras(Constants.COLOR_HIGHLIGHT_FILTER);
-		ButtonActionsTest bat = new ButtonActionsTest(bitmapFilterActivity);
+		ButtonActionsTestHelper bat = new ButtonActionsTestHelper(bitmapFilterActivity);
 
 		Intent startedIntent = bat
 				.getButtonAndGetStartedIntentAfterClick(R.id.color_picker_button);
@@ -203,7 +203,7 @@ public class BitmapFilterActivityTest {
 	@Test
 	public void shouldCallOnActivityResultAfterColorPickerResult() {
 		bitmapFilterActivity = startWithExtras(Constants.COLOR_HIGHLIGHT_FILTER);
-		ButtonActionsTest bat = new ButtonActionsTest(bitmapFilterActivity);
+		ButtonActionsTestHelper bat = new ButtonActionsTestHelper(bitmapFilterActivity);
 
 		Intent startedIntent = bat
 				.getButtonAndGetStartedIntentAfterClick(R.id.color_picker_button);

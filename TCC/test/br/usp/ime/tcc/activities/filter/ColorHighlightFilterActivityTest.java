@@ -11,7 +11,7 @@ import org.robolectric.RobolectricTestRunner;
 import android.view.View;
 import android.widget.Button;
 import br.usp.ime.tcc.activities.R;
-import br.usp.ime.tcc.activities.components.ButtonActionsTest;
+import br.usp.ime.tcc.activities.components.ButtonActionsTestHelper;
 
 @RunWith(RobolectricTestRunner.class)
 public class ColorHighlightFilterActivityTest extends FilterActivityTest {
@@ -26,7 +26,7 @@ public class ColorHighlightFilterActivityTest extends FilterActivityTest {
 	public void setUp() throws Exception {
 		filterActivity = Robolectric.buildActivity(ColorHighlightFilterActivity.class).create().get();
 
-		bat = new ButtonActionsTest(filterActivity);
+		bat = new ButtonActionsTestHelper(filterActivity);
 		
 		title = filterActivity.getString(R.string.color_highlight_filter);
 	}

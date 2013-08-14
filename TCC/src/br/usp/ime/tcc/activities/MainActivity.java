@@ -9,6 +9,7 @@ import br.usp.ime.tcc.activities.components.ComponentUtils;
 import br.usp.ime.tcc.activities.filter.ColorHighlightFilterActivity;
 import br.usp.ime.tcc.activities.filter.SimulationFilterActivity;
 import br.usp.ime.tcc.activities.filter.VisocorFilterActivity;
+import br.usp.ime.tcc.activities.settings.SettingsActivity;
 
 public class MainActivity extends Activity {
 	@Override

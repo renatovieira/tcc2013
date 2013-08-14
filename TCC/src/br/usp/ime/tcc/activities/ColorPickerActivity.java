@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import br.usp.ime.tcc.activities.components.ComponentUtils;
+import br.usp.ime.tcc.activities.settings.SettingsManager;
 import br.usp.ime.tcc.utils.Constants;
 
 public class ColorPickerActivity extends Activity {
@@ -35,9 +36,11 @@ public class ColorPickerActivity extends Activity {
 	}
 
 	private void loadInitialValues() {
-		int redValue = Constants.MAX_COLOR_VALUE;
-		int greenValue = Constants.MAX_COLOR_VALUE;
-		int blueValue = Constants.MAX_COLOR_VALUE;
+		SettingsManager settingsManager = new SettingsManager(this);
+		
+		int redValue = settingsManager.loadDefaultRed();
+		int greenValue = settingsManager.loadDefaultGreen();
+		int blueValue = settingsManager.loadDefaultBlue();
 		
 		rgb = new int[]{redValue, greenValue, blueValue};
 	}

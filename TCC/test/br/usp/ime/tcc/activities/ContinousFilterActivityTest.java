@@ -39,7 +39,7 @@ public class ContinousFilterActivityTest {
 				.findViewById(R.id.continous_filter_intensity_bar);
 
 		assertNotNull(bar);
-		assertEquals(Constants.PROGRESS, bar.getProgress());
+		assertEquals(Constants.INTENSITY, bar.getProgress());
 	}
 
 	@Test

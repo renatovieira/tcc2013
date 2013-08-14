@@ -16,7 +16,7 @@ import android.content.Intent;
 import android.view.View;
 import br.usp.ime.tcc.activities.ContinousFilterActivity;
 import br.usp.ime.tcc.activities.R;
-import br.usp.ime.tcc.activities.components.ButtonActionsTest;
+import br.usp.ime.tcc.activities.components.ButtonActionsTestHelper;
 
 @RunWith(RobolectricTestRunner.class)
 public class VisocorFilterActivityTest extends FilterActivityTest {
@@ -26,7 +26,7 @@ public class VisocorFilterActivityTest extends FilterActivityTest {
 	public void setUp() throws Exception {
 		filterActivity = Robolectric.buildActivity(VisocorFilterActivity.class).create().get();
 
-		bat = new ButtonActionsTest(filterActivity);
+		bat = new ButtonActionsTestHelper(filterActivity);
 		
 		title = filterActivity.getString(R.string.visocor_filter);
 	}

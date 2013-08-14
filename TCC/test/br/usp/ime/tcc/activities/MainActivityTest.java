@@ -13,15 +13,16 @@ import org.robolectric.RobolectricTestRunner;
 import org.robolectric.shadows.ShadowIntent;
 
 import android.content.Intent;
-import br.usp.ime.tcc.activities.components.ButtonActionsTest;
+import br.usp.ime.tcc.activities.components.ButtonActionsTestHelper;
 import br.usp.ime.tcc.activities.filter.ColorHighlightFilterActivity;
 import br.usp.ime.tcc.activities.filter.SimulationFilterActivity;
 import br.usp.ime.tcc.activities.filter.VisocorFilterActivity;
+import br.usp.ime.tcc.activities.settings.SettingsActivity;
 
 @RunWith(RobolectricTestRunner.class)
 public class MainActivityTest {
 	private MainActivity activity;
-	private ButtonActionsTest bat;
+	private ButtonActionsTestHelper bat;
 
 	// Tests
 
@@ -29,7 +30,7 @@ public class MainActivityTest {
 	public void setUp() throws Exception {
 		activity = Robolectric.buildActivity(MainActivity.class).create().get();
 
-		bat = new ButtonActionsTest(activity);
+		bat = new ButtonActionsTestHelper(activity);
 	}
 
 	@Test
