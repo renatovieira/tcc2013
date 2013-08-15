@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.Spinner;
@@ -38,12 +39,15 @@ public class ComponentUtilsTest {
 	private static int defaultTextViewId = R.id.filter_title;
 	private static int defaultSpinnerId = R.id.filter_type_spinner;
 	private static int defaultEditTextId = R.id.blue_tolerance;
+	private static int defaultImageButtonId = R.id.default_color_picker_button;
 
 	private boolean buttonIsResponsive(Button button) {
 		return button.performClick();
 	}
 
 	private OnClickListener createDefaultOnClickListener() {
+		activated = false;
+
 		OnClickListener listener = new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
@@ -95,6 +99,24 @@ public class ComponentUtilsTest {
 		return sp;
 	}
 
+	private ImageButton getDefaultImageButton(OnClickListener listener) {
+		ImageButton ib = componentUtils.loadSquareImageButton(defaultImageButtonId,
+				listener);
+		return ib;
+	}
+
+	private ImageButton createImageButtonWithDefaultListener() {
+		OnClickListener listener = createDefaultOnClickListener();
+
+		ImageButton ib = getDefaultImageButton(listener);
+		return ib;
+	}
+
+	private boolean imageButtonIsResponsive(ImageButton ib) {
+		return ib.performClick();
+
+	}
+
 	private void loadDefaultSpinner(Activity activity) {
 		Spinner defaultSpinner = new Spinner(activity);
 		defaultSpinner.setVisibility(View.GONE);
@@ -131,6 +153,11 @@ public class ComponentUtilsTest {
 		when(activity.findViewById(defaultEditTextId)).thenReturn(et);
 	}
 
+	private void loadDefaultImageButton(Activity activity) {
+		ImageButton ib = new ImageButton(activity);
+		when(activity.findViewById(defaultImageButtonId)).thenReturn(ib);
+	}
+
 	private Activity buildActivityWithMockObjects() {
 		Activity activity = spy(new Activity());
 
@@ -140,6 +167,7 @@ public class ComponentUtilsTest {
 		loadDefaultTextView(activity);
 		loadDefaultSpinner(activity);
 		loadDefaultEditText(activity);
+		loadDefaultImageButton(activity);
 
 		return activity;
 	}
@@ -197,7 +225,7 @@ public class ComponentUtilsTest {
 	public void shouldReturnNullBitmapFromDefaultImageView() {
 		ImageView imageView = getDefaultImageView();
 
-		Bitmap bitmap = componentUtils.getBitmapFromImageView(imageView);
+		Bitmap bitmap = componentUtils.getBitmap(imageView);
 		assertNull(bitmap);
 	}
 
@@ -210,7 +238,7 @@ public class ComponentUtilsTest {
 		componentUtils.fillIn(imageView, bitmapTest);
 
 		Bitmap returnedBitmap = componentUtils
-				.getBitmapFromImageView(imageView);
+				.getBitmap(imageView);
 
 		assertEquals(bitmapTest, returnedBitmap);
 	}
@@ -329,5 +357,37 @@ public class ComponentUtilsTest {
 		EditText et = componentUtils.loadEditText(defaultEditTextId, someText);
 
 		assertEquals(someText, et.getText().toString());
+	}
+
+	@Test(expected = NullPointerException.class)
+	public void imageButtonShouldThrowExceptionIfInvalidId() {
+		componentUtils.loadSquareImageButton(INVALID_ID, null);
+	}
+
+	@Test
+	public void imageButtonShouldCallRightListener() {
+		ImageButton ib = createImageButtonWithDefaultListener();
+
+		ib.performClick();
+
+		assertTrue(activated);
+	}
+
+	@Test
+	public void imageButtonShouldNotBeResponsiveWithoutListener() {
+		ImageButton ib = getDefaultImageButton(null);
+
+		assertEquals(false, imageButtonIsResponsive(ib));
+	}
+
+	@Test
+	public void shouldReturnRightColorFromImageButton() {
+		Bitmap bitmapTest = BitmapFactory.decodeResource(
+				activity.getResources(), R.drawable.ic_launcher);
+		ImageButton ib = componentUtils.loadSquareImageButtonWithBitmap(defaultImageButtonId, bitmapTest, null);
+
+		Bitmap returnedBitmap = componentUtils.getBitmap(ib);
+
+		assertEquals(bitmapTest, returnedBitmap);
 	}
 }

@@ -56,7 +56,7 @@ public class MainActivityTest {
 	@Test
 	public void pressingVisocorButtonShouldStartVisocorFilterActivity() {
 		Intent startedIntent = bat
-				.getButtonAndGetStartedIntentAfterClick(R.id.visocor_button);
+				.getStartedIntentAfterClickOnButton(R.id.visocor_button);
 
 		assertNotNull(startedIntent);
 		ShadowIntent shadowIntent = shadowOf(startedIntent);
@@ -67,7 +67,7 @@ public class MainActivityTest {
 	@Test
 	public void pressingSimulationButtonShouldSimulationStartFilterActivity() {
 		Intent startedIntent = bat
-				.getButtonAndGetStartedIntentAfterClick(R.id.simulation_button);
+				.getStartedIntentAfterClickOnButton(R.id.simulation_button);
 
 		assertNotNull(startedIntent);
 		ShadowIntent shadowIntent = shadowOf(startedIntent);
@@ -78,7 +78,7 @@ public class MainActivityTest {
 	@Test
 	public void pressingHighlightButtonShouldStartFilterActivity() {
 		Intent startedIntent = bat
-				.getButtonAndGetStartedIntentAfterClick(R.id.highlight_button);
+				.getStartedIntentAfterClickOnButton(R.id.highlight_button);
 
 		assertNotNull(startedIntent);
 		ShadowIntent shadowIntent = shadowOf(startedIntent);
@@ -89,7 +89,7 @@ public class MainActivityTest {
 	@Test
 	public void pressingSettingsButtonShouldStartFilterActivity() {
 		Intent startedIntent = bat
-				.getButtonAndGetStartedIntentAfterClick(R.id.settings_button);
+				.getStartedIntentAfterClickOnButton(R.id.settings_button);
 
 		assertNotNull(startedIntent);
 		ShadowIntent shadowIntent = shadowOf(startedIntent);

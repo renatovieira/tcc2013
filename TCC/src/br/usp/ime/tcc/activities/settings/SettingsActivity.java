@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -31,6 +32,8 @@ public class SettingsActivity extends Activity {
 	private EditText blueToleranceET;
 	private SeekBar intensityBar;
 	private Spinner simulationTypeSpinner;
+	private ComponentUtils cu;
+	private ImageButton colorSampleButton;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -56,17 +59,22 @@ public class SettingsActivity extends Activity {
 	}
 
 	private void loadComponents() {
-		ComponentUtils cu = new ComponentUtils(this);
-
-		cu.loadButton(R.id.default_color_picker_button, new OnClickListener() {
+		cu = new ComponentUtils(this);
+		
+		colorSampleButton = cu.loadSquareImageButton(R.id.default_color_picker_button, new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
 				Intent colorPickerIntent = new Intent(getBaseContext(),
 						ColorPickerActivity.class);
+				colorPickerIntent.putExtra(Constants.RED, defaultRed);
+				colorPickerIntent.putExtra(Constants.GREEN, defaultGreen);
+				colorPickerIntent.putExtra(Constants.BLUE, defaultBlue);
 				startActivityForResult(colorPickerIntent,
 						Constants.COLOR_PICKER_REQUEST_CODE);
 			}
 		});
+		
+		cu.updateWithColor(colorSampleButton, defaultRed, defaultGreen, defaultBlue);
 
 		intensityBar = cu.loadSeekBar(R.id.default_intensity, Constants.MAX_INTENSITY,
 				defaultIntensity);
@@ -90,6 +98,7 @@ public class SettingsActivity extends Activity {
 				defaultRed = data.getIntExtra(Constants.RED, defaultRed);
 				defaultGreen = data.getIntExtra(Constants.GREEN, defaultGreen);
 				defaultBlue = data.getIntExtra(Constants.BLUE, defaultBlue);
+				cu.updateWithColor(colorSampleButton, defaultRed, defaultGreen, defaultBlue);
 			}
 		}
 	}

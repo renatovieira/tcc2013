@@ -67,7 +67,7 @@ public class FilterActivityTest {
 	@Test
 	public void pressingCameraModeButtonShouldStartCameraActivity() {
 		Intent startedIntent = bat
-				.getButtonAndGetStartedIntentAfterClick(R.id.cameraModeButton);
+				.getStartedIntentAfterClickOnButton(R.id.cameraModeButton);
 
 		assertNotNull(startedIntent);
 		assertEquals(MediaStore.ACTION_IMAGE_CAPTURE, startedIntent.getAction());
@@ -76,7 +76,7 @@ public class FilterActivityTest {
 	@Test
 	public void pressingGalleryModeButtonShouldStartGalleryActivity() {
 		Intent startedIntent = bat
-				.getButtonAndGetStartedIntentAfterClick(R.id.galleryModeButton);
+				.getStartedIntentAfterClickOnButton(R.id.galleryModeButton);
 
 		assertNotNull(startedIntent);
 		assertEquals(Intent.ACTION_PICK, startedIntent.getAction());
@@ -85,7 +85,7 @@ public class FilterActivityTest {
 	@Test
 	public void shouldCallBitmapFilterActivityAfterGalleryResult() {
 		ShadowIntent shadowIntent = bat
-				.getButtonClickAndGetIntentAfterResult(R.id.galleryModeButton);
+				.getIntentAfterResultOfButtonClick(R.id.galleryModeButton);
 		assertEquals(shadowIntent.getComponent().getClassName(),
 				BitmapFilterActivity.class.getName());
 	}
@@ -93,7 +93,7 @@ public class FilterActivityTest {
 	@Test
 	public void shouldCallBitmapFilterActivityAfterCameraResult() {
 		ShadowIntent shadowIntent = bat
-				.getButtonClickAndGetIntentAfterResult(R.id.cameraModeButton);
+				.getIntentAfterResultOfButtonClick(R.id.cameraModeButton);
 		assertEquals(shadowIntent.getComponent().getClassName(),
 				BitmapFilterActivity.class.getName());
 	}

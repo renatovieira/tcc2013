@@ -38,13 +38,13 @@
     <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
     <string name="invalid_value">One or more of the values is invalid. Values should be between 0 and 255, included.</string>
-    <string name="selected_image_sample">Selected Image Sample</string>
+    <string name="selected_color_sample">Selected Color Sample</string>
 
     <!-- Settings -->
     <string name="default_visocor_intensity">Default Visocor intensity</string>
     <string name="default_simulation_filter">Default simulation filter</string>
     <string name="default_tolerance_values">Default tolerance values (0 to 255)</string>
-    <string name="pick_default_color">Pick default color</string>
+    <string name="default_color">Default color: </string>
     <string name="saved">Settings saved.</string>
 
 </resources>

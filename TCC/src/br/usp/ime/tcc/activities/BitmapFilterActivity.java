@@ -31,6 +31,7 @@ public class BitmapFilterActivity extends Activity {
 	private BitmapFilter filter;
 	private int filterType;
 	private SettingsManager settingsManager;
+	private int red, green, blue, redTolerance, greenTolerance, blueTolerance;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -38,9 +39,9 @@ public class BitmapFilterActivity extends Activity {
 		setContentView(R.layout.bitmap_filter);
 
 		getExtras();
-		
-		settingsManager = new SettingsManager(this);
-		
+
+		loadSettings();
+
 		loadComponents();
 
 		// TODO Fix this when separating activities, only uses for Color
@@ -50,6 +51,16 @@ public class BitmapFilterActivity extends Activity {
 		else
 			loadFilter(filterType);
 		applyFilter();
+	}
+
+	private void loadSettings() {
+		settingsManager = new SettingsManager(this);
+		red = settingsManager.loadDefaultRed();
+		green = settingsManager.loadDefaultGreen();
+		blue = settingsManager.loadDefaultBlue();
+		redTolerance = settingsManager.loadDefaultRedTolerance();
+		greenTolerance = settingsManager.loadDefaultGreenTolerance();
+		blueTolerance = settingsManager.loadDefaultBlueTolerance();
 	}
 
 	@Override
@@ -81,13 +92,8 @@ public class BitmapFilterActivity extends Activity {
 					settingsManager.loadDefaultIntensity());
 			break;
 		case Constants.COLOR_HIGHLIGHT_FILTER:
-			filter = new ColorHighlightBitmapFilter(
-					settingsManager.loadDefaultRed(),
-					settingsManager.loadDefaultGreen(),
-					settingsManager.loadDefaultBlue(),
-					settingsManager.loadDefaultRedTolerance(),
-					settingsManager.loadDefaultGreenTolerance(),
-					settingsManager.loadDefaultBlueTolerance());
+			filter = new ColorHighlightBitmapFilter(red, green, blue,
+					redTolerance, greenTolerance, blueTolerance);
 			break;
 		default:
 			filter = new SimulationBitmapFilter(filterType);
@@ -168,6 +174,9 @@ public class BitmapFilterActivity extends Activity {
 						public void onClick(View arg0) {
 							Intent i = new Intent(getBaseContext(),
 									ColorPickerActivity.class);
+							i.putExtra(Constants.RED, red);
+							i.putExtra(Constants.GREEN, green);
+							i.putExtra(Constants.BLUE, blue);
 							startActivityForResult(i,
 									Constants.COLOR_PICKER_REQUEST_CODE);
 						}
@@ -182,14 +191,12 @@ public class BitmapFilterActivity extends Activity {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (resultCode == RESULT_OK) {
 			if (requestCode == Constants.COLOR_PICKER_REQUEST_CODE) {
-				int red = data.getIntExtra(Constants.RED, 0);
-				int green = data.getIntExtra(Constants.GREEN, 0);
-				int blue = data.getIntExtra(Constants.BLUE, 0);
+				red = data.getIntExtra(Constants.RED, red);
+				green = data.getIntExtra(Constants.GREEN, green);
+				blue = data.getIntExtra(Constants.BLUE, blue);
 
 				filter = new ColorHighlightBitmapFilter(red, green, blue,
-						settingsManager.loadDefaultRedTolerance(),
-						settingsManager.loadDefaultGreenTolerance(),
-						settingsManager.loadDefaultBlueTolerance());
+						redTolerance, greenTolerance, blueTolerance);
 				applyFilter();
 			}
 		}

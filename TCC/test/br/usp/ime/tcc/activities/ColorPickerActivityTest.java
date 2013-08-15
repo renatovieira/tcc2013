@@ -12,6 +12,7 @@ import org.robolectric.RobolectricTestRunner;
 import org.robolectric.shadows.ShadowActivity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import br.usp.ime.tcc.activities.components.ButtonActionsTestHelper;
@@ -53,12 +54,27 @@ public class ColorPickerActivityTest {
 				&& oneColor[2] == otherColor[2];
 	}
 
+	private ColorPickerActivity startWithExtras() {
+		activity = new ColorPickerActivity();
+		Intent intent = new Intent();
+		
+		int [] randomColor = generateRandomColor();
+		
+		intent.putExtra(Constants.RED, randomColor[0]);
+		intent.putExtra(Constants.GREEN, randomColor[1]);
+		intent.putExtra(Constants.BLUE, randomColor[2]);
+
+		activity.setIntent(intent);
+		activity.onCreate(null);
+
+		return activity;
+	}
+
 	// Tests
 
 	@Before
 	public void setUp() throws Exception {
-		activity = Robolectric.buildActivity(ColorPickerActivity.class)
-				.create().get();
+		activity = startWithExtras();
 		bat = new ButtonActionsTestHelper(activity);
 	}
 

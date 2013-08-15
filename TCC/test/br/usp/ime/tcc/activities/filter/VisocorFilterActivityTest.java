@@ -49,7 +49,7 @@ public class VisocorFilterActivityTest extends FilterActivityTest {
 	@Test
 	public void pressingLiveModeButtonShouldStartGalleryActivity() {
 		Intent startedIntent = bat
-				.getButtonAndGetStartedIntentAfterClick(R.id.liveModeButton);
+				.getStartedIntentAfterClickOnButton(R.id.liveModeButton);
 
 		assertNotNull(startedIntent);
 		ShadowIntent shadowIntent = shadowOf(startedIntent);

@@ -8,11 +8,12 @@ import org.robolectric.shadows.ShadowIntent;
 import android.app.Activity;
 import android.content.Intent;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 public class ButtonActionsTestHelper {
 	private Activity activity;
 	
-	private Intent getStartedIntentAfterClickOnButton() {
+	private Intent getStartedIntentAfterClick() {
 		ShadowActivity shadowActivity = shadowOf(activity);
 		Intent startedIntent = shadowActivity.getNextStartedActivity();
 		return startedIntent;
@@ -31,6 +32,10 @@ public class ButtonActionsTestHelper {
 		return (Button) activity.findViewById(buttonId);
 	}
 	
+	private ImageButton getImageButtonById(int imageButtonId) {
+		return (ImageButton) activity.findViewById(imageButtonId);
+	}
+
 	//Public
 	
 	public ButtonActionsTestHelper(Activity activity) {
@@ -42,15 +47,34 @@ public class ButtonActionsTestHelper {
 		return button.performClick();
 	}
 	
-	public Intent getButtonAndGetStartedIntentAfterClick(int buttonId) {
+	public Intent getStartedIntentAfterClickOnButton(int buttonId) {
 		getButtonAndClickOnIt(buttonId);
 
-		Intent startedIntent = getStartedIntentAfterClickOnButton();
+		Intent startedIntent = getStartedIntentAfterClick();
 		return startedIntent;
 	}
 	
-	public ShadowIntent getButtonClickAndGetIntentAfterResult(int buttonId) {
-		Intent startedIntent = getButtonAndGetStartedIntentAfterClick(buttonId);
+	public ShadowIntent getIntentAfterResultOfButtonClick(int buttonId) {
+		Intent startedIntent = getStartedIntentAfterClickOnButton(buttonId);
+		
+		ShadowIntent shadowIntent = getShadowIntentAfterResult(startedIntent);
+		return shadowIntent;
+	}
+	
+	public boolean getImageButtonAndClickOnIt(int imageButtonId) {
+		ImageButton ib = getImageButtonById(imageButtonId);
+		return ib.performClick();
+	}
+	
+	public Intent getStartedIntentAfterClickOnImageButton(int imageButtonId) {
+		getImageButtonAndClickOnIt(imageButtonId);
+
+		Intent startedIntent = getStartedIntentAfterClick();
+		return startedIntent;
+	}
+	
+	public ShadowIntent getIntentAfterResultOfImageButtonClick(int imageButtonId) {
+		Intent startedIntent = getStartedIntentAfterClickOnImageButton(imageButtonId);
 		
 		ShadowIntent shadowIntent = getShadowIntentAfterResult(startedIntent);
 		return shadowIntent;

@@ -2,10 +2,13 @@ package br.usp.ime.tcc.activities.components;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.graphics.drawable.BitmapDrawable;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
@@ -60,12 +63,21 @@ public class ComponentUtils {
 		return imageView;
 	}
 
-	public Bitmap getBitmapFromImageView(ImageView imageView) {
+	public Bitmap getBitmap(ImageView imageView) {
 		BitmapDrawable drawable = (BitmapDrawable) imageView.getDrawable();
 		return drawable.getBitmap();
 	}
 
 	public void fillIn(ImageView imageView, Bitmap bitmap) {
+		imageView.setImageBitmap(bitmap);
+	}
+
+	public void updateWithColor(ImageView imageView, int red, int green,
+			int blue) {
+		Bitmap bitmap = Bitmap.createBitmap(500, 500, Bitmap.Config.ARGB_8888);
+
+		Canvas c = new Canvas(bitmap);
+		c.drawRGB(red, green, blue);
 		imageView.setImageBitmap(bitmap);
 	}
 
@@ -107,5 +119,21 @@ public class ComponentUtils {
 		EditText et = (EditText) activity.findViewById(editTextId);
 		et.setText(text);
 		return et;
+	}
+
+	public ImageButton loadSquareImageButton(int imageButtonId,
+			OnClickListener listener) {
+		ImageButton imageButton = (ImageButton) activity
+				.findViewById(imageButtonId);
+		imageButton.setOnClickListener(listener);
+		return imageButton;
+	}
+
+	public ImageButton loadSquareImageButtonWithBitmap(int imageButtonId, Bitmap bmp,
+			OnClickListener listener) {
+		ImageButton imageButton = loadSquareImageButton(imageButtonId, listener);
+		fillIn(imageButton, bmp);
+
+		return imageButton;
 	}
 }

@@ -47,13 +47,14 @@ public class SettingsActivityTest {
 
 	@Test
 	public void colorPickerButtonShouldBeLoadedAndWorking() {
-		assertTrue(bat.getButtonAndClickOnIt(R.id.default_color_picker_button));
+		assertTrue(bat
+				.getImageButtonAndClickOnIt(R.id.default_color_picker_button));
 	}
 
 	@Test
 	public void pressingColorPickerButtonShouldStartColorPickerActivity() {
 		Intent startedIntent = bat
-				.getButtonAndGetStartedIntentAfterClick(R.id.default_color_picker_button);
+				.getStartedIntentAfterClickOnImageButton(R.id.default_color_picker_button);
 
 		assertNotNull(startedIntent);
 		ShadowIntent shadowIntent = shadowOf(startedIntent);
@@ -108,8 +109,7 @@ public class SettingsActivityTest {
 
 	@Test
 	public void shouldCallOnActivityResultAfterColorPickerResult() {
-		Intent startedIntent = bat
-				.getButtonAndGetStartedIntentAfterClick(R.id.default_color_picker_button);
+		Intent startedIntent = bat.getStartedIntentAfterClickOnImageButton(R.id.default_color_picker_button);
 		ShadowActivity shadowActivity = shadowOf(activity);
 		shadowActivity.receiveResult(startedIntent, Activity.RESULT_OK,
 				new Intent().setData(null));
@@ -133,24 +133,26 @@ public class SettingsActivityTest {
 		assertEquals(activity.getString(R.string.saved),
 				ShadowToast.getTextOfLatestToast());
 	}
-	
+
 	@Test
 	public void backButtonWithEmptyValuesShouldDisplayErrorToast() {
-		EditText blueTolerance = (EditText) activity.findViewById(R.id.blue_tolerance);
+		EditText blueTolerance = (EditText) activity
+				.findViewById(R.id.blue_tolerance);
 		blueTolerance.setText("");
-		
+
 		activity.onBackPressed();
 
 		ShadowHandler.idleMainLooper();
 		assertEquals(activity.getString(R.string.invalid_value),
 				ShadowToast.getTextOfLatestToast());
 	}
-	
+
 	@Test
 	public void backButtonWithInvalidValuesShouldDisplayErrorToast() {
-		EditText blueTolerance = (EditText) activity.findViewById(R.id.blue_tolerance);
+		EditText blueTolerance = (EditText) activity
+				.findViewById(R.id.blue_tolerance);
 		blueTolerance.setText("49831");
-		
+
 		activity.onBackPressed();
 
 		ShadowHandler.idleMainLooper();

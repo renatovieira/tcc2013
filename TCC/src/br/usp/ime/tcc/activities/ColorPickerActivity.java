@@ -2,8 +2,6 @@ package br.usp.ime.tcc.activities;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -32,7 +30,7 @@ public class ColorPickerActivity extends Activity {
 		loadInitialValues();
 		
 		loadComponents();
-		updateImageViewWithColor();
+		cu.updateWithColor(colorSample, rgb[RED], rgb[GREEN], rgb[BLUE]);
 	}
 
 	private void loadInitialValues() {
@@ -41,6 +39,14 @@ public class ColorPickerActivity extends Activity {
 		int redValue = settingsManager.loadDefaultRed();
 		int greenValue = settingsManager.loadDefaultGreen();
 		int blueValue = settingsManager.loadDefaultBlue();
+		
+		Bundle extras = getIntent().getExtras();
+
+		if (extras != null) {
+			redValue = (Integer) extras.get(Constants.RED);
+			greenValue = (Integer) extras.get(Constants.GREEN);
+			blueValue = (Integer) extras.get(Constants.BLUE);
+		}
 		
 		rgb = new int[]{redValue, greenValue, blueValue};
 	}
@@ -94,16 +100,8 @@ public class ColorPickerActivity extends Activity {
 			public void onProgressChanged(SeekBar seekBar, int progress,
 					boolean fromUser) {
 				rgb[color] = seekBar.getProgress();
-				updateImageViewWithColor();
+				cu.updateWithColor(colorSample, rgb[RED], rgb[GREEN], rgb[BLUE]);
 			}
 		};
-	}
-
-	private void updateImageViewWithColor() {
-		Bitmap bitmap = Bitmap.createBitmap(500, 500, Bitmap.Config.ARGB_8888);
-
-		Canvas c = new Canvas(bitmap);
-		c.drawRGB(rgb[RED], rgb[GREEN], rgb[BLUE]);
-		colorSample.setImageBitmap(bitmap);
 	}
 }

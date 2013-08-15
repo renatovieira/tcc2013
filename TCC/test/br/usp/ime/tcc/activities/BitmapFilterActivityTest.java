@@ -192,7 +192,7 @@ public class BitmapFilterActivityTest {
 		ButtonActionsTestHelper bat = new ButtonActionsTestHelper(bitmapFilterActivity);
 
 		Intent startedIntent = bat
-				.getButtonAndGetStartedIntentAfterClick(R.id.color_picker_button);
+				.getStartedIntentAfterClickOnButton(R.id.color_picker_button);
 
 		assertNotNull(startedIntent);
 		ShadowIntent shadowIntent = shadowOf(startedIntent);
@@ -206,7 +206,7 @@ public class BitmapFilterActivityTest {
 		ButtonActionsTestHelper bat = new ButtonActionsTestHelper(bitmapFilterActivity);
 
 		Intent startedIntent = bat
-				.getButtonAndGetStartedIntentAfterClick(R.id.color_picker_button);
+				.getStartedIntentAfterClickOnButton(R.id.color_picker_button);
 		ShadowActivity shadowActivity = shadowOf(bitmapFilterActivity);
 		shadowActivity.receiveResult(startedIntent, Activity.RESULT_OK,
 				new Intent().setData(null));

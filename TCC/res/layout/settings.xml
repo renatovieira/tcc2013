@@ -2,8 +2,17 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="5dp"
-    android:layout_marginTop="5dp" >
+    android:layout_marginBottom="10dp"
+    android:layout_marginTop="10dp" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_alignParentTop="true"
+        android:text="@string/default_visocor_intensity"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <SeekBar
         android:id="@+id/default_intensity"
@@ -20,7 +29,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/default_intensity"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:text="@string/default_simulation_filter"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -38,7 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/default_simulation_filter_spinner"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="15dp"
         android:text="@string/default_tolerance_values"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -96,21 +105,27 @@
             android:inputType="number" />
     </LinearLayout>
 
-    <Button
-        android:id="@+id/default_color_picker_button"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/linearLayout1"
         android:layout_centerHorizontal="true"
-        android:text="@string/pick_default_color" />
+        android:layout_marginTop="15dp" >
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView2"
-        android:layout_alignParentTop="true"
-        android:text="@string/default_visocor_intensity"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/default_color"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <ImageButton
+            android:id="@+id/default_color_picker_button"
+            android:layout_marginLeft="10dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/selected_color_sample" />
+    </LinearLayout>
 
 </RelativeLayout>

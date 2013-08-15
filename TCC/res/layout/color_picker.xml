@@ -21,7 +21,7 @@
         android:layout_below="@+id/textView1"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="5dp"
-        android:contentDescription="@string/selected_image_sample" />
+        android:contentDescription="@string/selected_color_sample" />
 
     <TextView
         android:id="@+id/textView2"
