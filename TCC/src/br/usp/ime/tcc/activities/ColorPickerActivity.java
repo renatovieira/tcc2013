@@ -1,10 +1,7 @@
 package br.usp.ime.tcc.activities;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
@@ -12,10 +9,17 @@ import br.usp.ime.tcc.activities.components.ComponentUtils;
 import br.usp.ime.tcc.activities.settings.SettingsManager;
 import br.usp.ime.tcc.utils.Constants;
 
-public class ColorPickerActivity extends Activity {
-	private static final int RED = 0;
-	private static final int GREEN = 1;
-	private static final int BLUE = 2;
+import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
+
+public class ColorPickerActivity extends SherlockActivity {
+	protected static final int RED = 0;
+	protected static final int GREEN = 1;
+	protected static final int BLUE = 2;
+	
+	protected static final int SAVE = 0;
+	protected static final int DISCARD = 1;
 
 	private ComponentUtils cu;
 	
@@ -24,6 +28,7 @@ public class ColorPickerActivity extends Activity {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
+		setTheme(R.style.Theme_Sherlock);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.color_picker);
 		
@@ -56,28 +61,6 @@ public class ColorPickerActivity extends Activity {
 		
 		colorSample = cu.loadImageView(R.id.selected_color);
 
-		cu.loadButton(R.id.ok_button, new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				Intent returnIntent = new Intent();
-				returnIntent.putExtra(Constants.RED, rgb[RED]);
-				returnIntent.putExtra(Constants.GREEN, rgb[GREEN]);
-				returnIntent.putExtra(Constants.BLUE, rgb[BLUE]);
-				setResult(RESULT_OK, returnIntent);
-				finish();
-			}
-		});
-
-		cu.loadButton(R.id.cancel_button, new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Intent returnIntent = new Intent();
-				setResult(RESULT_CANCELED, returnIntent);
-				finish();
-			}
-		});
-
 		cu.loadSeekBar(R.id.red_seekbar, Constants.MAX_COLOR_VALUE, rgb[RED],
 				createSeekbarListener(RED));
 		cu.loadSeekBar(R.id.green_seekbar, Constants.MAX_COLOR_VALUE,
@@ -103,5 +86,41 @@ public class ColorPickerActivity extends Activity {
 				cu.updateWithColor(colorSample, rgb[RED], rgb[GREEN], rgb[BLUE]);
 			}
 		};
+	}
+	
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        menu.add(getString(R.string.save))
+            .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+
+        menu.add(getString(R.string.discard))
+            .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+
+        return true;
+    }
+    
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+    	Intent returnIntent = new Intent();
+
+    	switch(item.getItemId()) {
+    	case SAVE:
+			putExtras(returnIntent);
+			setResult(RESULT_OK, returnIntent);
+			finish();
+    		return true;
+    	case DISCARD:
+			setResult(RESULT_CANCELED, returnIntent);
+			finish();
+    		return true;
+		default:
+			return super.onOptionsItemSelected(item);
+    	}
+    }
+
+	private void putExtras(Intent returnIntent) {
+		returnIntent.putExtra(Constants.RED, rgb[RED]);
+		returnIntent.putExtra(Constants.GREEN, rgb[GREEN]);
+		returnIntent.putExtra(Constants.BLUE, rgb[BLUE]);
 	}
 }

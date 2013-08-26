@@ -1,6 +1,7 @@
 package br.usp.ime.tcc.activities;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -10,19 +11,20 @@ import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.shadows.ShadowActivity;
+import org.robolectric.tester.android.view.TestMenu;
+import org.robolectric.tester.android.view.TestMenuItem;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.SeekBar;
-import br.usp.ime.tcc.activities.components.ButtonActionsTestHelper;
 import br.usp.ime.tcc.utils.Constants;
 
 @RunWith(RobolectricTestRunner.class)
 public class ColorPickerActivityTest {
 
 	private ColorPickerActivity activity;
-	private ButtonActionsTestHelper bat;
 
 	private boolean colorSeekbarIsCorrectlyLoaded(int seekbarId) {
 		SeekBar bar = (SeekBar) activity.findViewById(seekbarId);
@@ -36,9 +38,9 @@ public class ColorPickerActivityTest {
 	}
 
 	private void setSeekBarsToDesiredValues(int rgb[]) {
-		setColor(R.id.red_seekbar, rgb[0]);
-		setColor(R.id.green_seekbar, rgb[1]);
-		setColor(R.id.blue_seekbar, rgb[2]);
+		setColor(R.id.red_seekbar, rgb[ColorPickerActivity.RED]);
+		setColor(R.id.green_seekbar, rgb[ColorPickerActivity.GREEN]);
+		setColor(R.id.blue_seekbar, rgb[ColorPickerActivity.BLUE]);
 	}
 
 	private int[] generateRandomColor() {
@@ -50,8 +52,9 @@ public class ColorPickerActivityTest {
 	}
 
 	private boolean sameRgb(int[] oneColor, int[] otherColor) {
-		return oneColor[0] == otherColor[0] && oneColor[1] == otherColor[1]
-				&& oneColor[2] == otherColor[2];
+		return oneColor[ColorPickerActivity.RED] == otherColor[ColorPickerActivity.RED] &&
+			   oneColor[ColorPickerActivity.GREEN] == otherColor[ColorPickerActivity.GREEN] &&
+			   oneColor[ColorPickerActivity.BLUE] == otherColor[ColorPickerActivity.BLUE];
 	}
 
 	private ColorPickerActivity startWithExtras() {
@@ -60,9 +63,9 @@ public class ColorPickerActivityTest {
 		
 		int [] randomColor = generateRandomColor();
 		
-		intent.putExtra(Constants.RED, randomColor[0]);
-		intent.putExtra(Constants.GREEN, randomColor[1]);
-		intent.putExtra(Constants.BLUE, randomColor[2]);
+		intent.putExtra(Constants.RED, randomColor[ColorPickerActivity.RED]);
+		intent.putExtra(Constants.GREEN, randomColor[ColorPickerActivity.GREEN]);
+		intent.putExtra(Constants.BLUE, randomColor[ColorPickerActivity.BLUE]);
 
 		activity.setIntent(intent);
 		activity.onCreate(null);
@@ -75,22 +78,34 @@ public class ColorPickerActivityTest {
 	@Before
 	public void setUp() throws Exception {
 		activity = startWithExtras();
-		bat = new ButtonActionsTestHelper(activity);
+		activity.onCreateOptionsMenu(new TestMenu());
 	}
 
 	@Test
-	public void okButtonShouldBeLoadedAndWorking() {
-		assertTrue(bat.getButtonAndClickOnIt(R.id.ok_button));
+	public void saveOptionShouldBeLoadedAndWorking() {
+		MenuItem item = new TestMenuItem(ColorPickerActivity.SAVE);
+		
+		assertTrue(activity.onOptionsItemSelected(item));
 	}
 
 	@Test
-	public void cancelButtonShouldBeLoadedAndWorking() {
-		assertTrue(bat.getButtonAndClickOnIt(R.id.cancel_button));
+	public void discardOptionShouldBeLoadedAndWorking() {
+		MenuItem item = new TestMenuItem(ColorPickerActivity.DISCARD);
+		
+		assertTrue(activity.onOptionsItemSelected(item));	
+	}
+	
+	@Test
+	public void invalidOptionShouldReturnFalse() {
+		MenuItem item = new TestMenuItem(7);
+		
+		assertFalse(activity.onOptionsItemSelected(item));	
 	}
 
 	@Test
-	public void cancelButtonShouldReturnBitmapFilterActivity() {
-		bat.getButtonAndClickOnIt(R.id.cancel_button);
+	public void discardOptionShouldReturnBitmapFilterActivity() {
+		MenuItem item = new TestMenuItem(ColorPickerActivity.DISCARD);
+		activity.onOptionsItemSelected(item);
 
 		ShadowActivity sa = Robolectric.shadowOf(activity);
 		assertTrue(sa.isFinishing());
@@ -98,8 +113,9 @@ public class ColorPickerActivityTest {
 	}
 
 	@Test
-	public void okButtonShouldReturnBitmapFilterActivityWithOkResultIfValidColor() {
-		bat.getButtonAndClickOnIt(R.id.ok_button);
+	public void saveOptionShouldReturnBitmapFilterActivityWithOkResult() {
+		MenuItem item = new TestMenuItem(ColorPickerActivity.SAVE);
+		activity.onOptionsItemSelected(item);
 
 		ShadowActivity sa = Robolectric.shadowOf(activity);
 		assertTrue(sa.isFinishing());
