@@ -18,9 +18,6 @@ public class ColorPickerActivity extends SherlockActivity {
 	protected static final int GREEN = 1;
 	protected static final int BLUE = 2;
 	
-	protected static final int SAVE = 0;
-	protected static final int DISCARD = 1;
-
 	private ComponentUtils cu;
 	
 	protected int[] rgb;
@@ -90,10 +87,10 @@ public class ColorPickerActivity extends SherlockActivity {
 	
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        menu.add(getString(R.string.save))
+    	menu.add(Menu.NONE, Constants.SAVE, Menu.NONE, getString(R.string.save))
             .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
 
-        menu.add(getString(R.string.discard))
+    	menu.add(Menu.NONE, Constants.DISCARD, Menu.NONE, getString(R.string.discard))
             .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
 
         return true;
@@ -104,12 +101,12 @@ public class ColorPickerActivity extends SherlockActivity {
     	Intent returnIntent = new Intent();
 
     	switch(item.getItemId()) {
-    	case SAVE:
+    	case Constants.SAVE:
 			putExtras(returnIntent);
 			setResult(RESULT_OK, returnIntent);
 			finish();
     		return true;
-    	case DISCARD:
+    	case Constants.DISCARD:
 			setResult(RESULT_CANCELED, returnIntent);
 			finish();
     		return true;

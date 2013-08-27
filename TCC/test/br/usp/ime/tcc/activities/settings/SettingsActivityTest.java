@@ -1,6 +1,7 @@
 package br.usp.ime.tcc.activities.settings;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.robolectric.Robolectric.shadowOf;
@@ -14,9 +15,12 @@ import org.robolectric.shadows.ShadowActivity;
 import org.robolectric.shadows.ShadowHandler;
 import org.robolectric.shadows.ShadowIntent;
 import org.robolectric.shadows.ShadowToast;
+import org.robolectric.tester.android.view.TestMenu;
+import org.robolectric.tester.android.view.TestMenuItem;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.Spinner;
@@ -43,6 +47,8 @@ public class SettingsActivityTest {
 				.get();
 
 		bat = new ButtonActionsTestHelper(activity);
+		
+		activity.onCreateOptionsMenu(new TestMenu());
 	}
 
 	@Test
@@ -118,29 +124,45 @@ public class SettingsActivityTest {
 	}
 
 	@Test
-	public void backButtonWithValidValuesShouldFinishActivity() {
-		activity.onBackPressed();
+	public void saveOptionWithValidValuesShouldFinishActivity() {
+		MenuItem item = new TestMenuItem(Constants.SAVE);
+		
+		activity.onOptionsItemSelected(item);
+
+		ShadowActivity sa = Robolectric.shadowOf(activity);
+		assertTrue(sa.isFinishing());
+	}
+	
+	@Test
+	public void discardOptionShouldFinishActivity() {
+		MenuItem item = new TestMenuItem(Constants.DISCARD);
+		
+		activity.onOptionsItemSelected(item);
 
 		ShadowActivity sa = Robolectric.shadowOf(activity);
 		assertTrue(sa.isFinishing());
 	}
 
 	@Test
-	public void backButtonWithValidValuesShouldDisplayOkToast() {
-		activity.onBackPressed();
-
+	public void saveOptionWithValidValuesShouldDisplayOkToast() {
+		MenuItem item = new TestMenuItem(Constants.SAVE);
+		
+		activity.onOptionsItemSelected(item);
+		
 		ShadowHandler.idleMainLooper();
 		assertEquals(activity.getString(R.string.saved),
 				ShadowToast.getTextOfLatestToast());
 	}
 
 	@Test
-	public void backButtonWithEmptyValuesShouldDisplayErrorToast() {
+	public void saveOptionWithEmptyValuesShouldDisplayErrorToast() {
 		EditText blueTolerance = (EditText) activity
 				.findViewById(R.id.blue_tolerance);
 		blueTolerance.setText("");
 
-		activity.onBackPressed();
+		MenuItem item = new TestMenuItem(Constants.SAVE);
+		
+		activity.onOptionsItemSelected(item);
 
 		ShadowHandler.idleMainLooper();
 		assertEquals(activity.getString(R.string.invalid_value),
@@ -148,15 +170,38 @@ public class SettingsActivityTest {
 	}
 
 	@Test
-	public void backButtonWithInvalidValuesShouldDisplayErrorToast() {
+	public void saveOptionWithInvalidValuesShouldDisplayErrorToast() {
 		EditText blueTolerance = (EditText) activity
 				.findViewById(R.id.blue_tolerance);
 		blueTolerance.setText("49831");
 
-		activity.onBackPressed();
+		MenuItem item = new TestMenuItem(Constants.SAVE);
+		
+		activity.onOptionsItemSelected(item);
 
 		ShadowHandler.idleMainLooper();
 		assertEquals(activity.getString(R.string.invalid_value),
 				ShadowToast.getTextOfLatestToast());
+	}
+	
+	@Test
+	public void invalidOptionShouldReturnFalse() {
+		MenuItem item = new TestMenuItem(42);
+		
+		assertFalse(activity.onOptionsItemSelected(item));
+	}
+	
+	@Test
+	public void saveOptionShouldBeLoadedAndWorking() {
+		MenuItem item = new TestMenuItem(Constants.SAVE);
+		
+		assertTrue(activity.onOptionsItemSelected(item));
+	}
+	
+	@Test
+	public void discardOptionShouldBeLoadedAndWorking() {
+		MenuItem item = new TestMenuItem(Constants.DISCARD);
+		
+		assertTrue(activity.onOptionsItemSelected(item));
 	}
 }

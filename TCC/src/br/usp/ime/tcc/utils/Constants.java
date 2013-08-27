@@ -32,4 +32,7 @@ public final class Constants {
 	
 	public static final double REL_POWER = 2.2;
 	public static final double REL_POWER_INV = 0.454545;
+	
+	public static final int SAVE = 0;
+	public static final int DISCARD = 1;
 }

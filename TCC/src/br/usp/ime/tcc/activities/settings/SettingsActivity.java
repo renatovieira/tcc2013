@@ -1,6 +1,5 @@
 package br.usp.ime.tcc.activities.settings;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -15,7 +14,11 @@ import br.usp.ime.tcc.activities.R;
 import br.usp.ime.tcc.activities.components.ComponentUtils;
 import br.usp.ime.tcc.utils.Constants;
 
-public class SettingsActivity extends Activity {
+import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
+
+public class SettingsActivity extends SherlockActivity {
 	private int defaultIntensity;
 	private int defaultColorSimulation;
 	private int defaultRedTolerance;
@@ -37,7 +40,7 @@ public class SettingsActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
+		setTheme(R.style.Theme_Sherlock);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.settings);
 		settingsManager = new SettingsManager(this);
@@ -46,6 +49,17 @@ public class SettingsActivity extends Activity {
 
 		loadComponents();
 	}
+	
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        menu.add(Menu.NONE, Constants.SAVE, Menu.NONE, getString(R.string.save))
+            .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+
+        menu.add(Menu.NONE, Constants.DISCARD, Menu.NONE, getString(R.string.discard))
+            .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+
+        return super.onCreateOptionsMenu(menu);
+    }
 
 	private void loadDefaultValues() {
 		defaultIntensity = settingsManager.loadDefaultIntensity();
@@ -104,8 +118,19 @@ public class SettingsActivity extends Activity {
 	}
 
 	@Override
-	public void onBackPressed() {
-		tryToSaveValues();
+	public boolean onOptionsItemSelected(MenuItem item) {
+		int option = item.getItemId();
+		
+		if (option == Constants.SAVE) {
+			tryToSaveValues();
+			return true;
+		}
+		else if (option == Constants.DISCARD) {
+			finish();
+			return true;
+		}
+		
+		return super.onOptionsItemSelected(item);
 	}
 
 	private void tryToSaveValues() {

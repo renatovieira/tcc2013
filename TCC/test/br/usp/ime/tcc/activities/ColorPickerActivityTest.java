@@ -83,14 +83,14 @@ public class ColorPickerActivityTest {
 
 	@Test
 	public void saveOptionShouldBeLoadedAndWorking() {
-		MenuItem item = new TestMenuItem(ColorPickerActivity.SAVE);
+		MenuItem item = new TestMenuItem(Constants.SAVE);
 		
 		assertTrue(activity.onOptionsItemSelected(item));
 	}
 
 	@Test
 	public void discardOptionShouldBeLoadedAndWorking() {
-		MenuItem item = new TestMenuItem(ColorPickerActivity.DISCARD);
+		MenuItem item = new TestMenuItem(Constants.DISCARD);
 		
 		assertTrue(activity.onOptionsItemSelected(item));	
 	}
@@ -104,7 +104,7 @@ public class ColorPickerActivityTest {
 
 	@Test
 	public void discardOptionShouldReturnBitmapFilterActivity() {
-		MenuItem item = new TestMenuItem(ColorPickerActivity.DISCARD);
+		MenuItem item = new TestMenuItem(Constants.DISCARD);
 		activity.onOptionsItemSelected(item);
 
 		ShadowActivity sa = Robolectric.shadowOf(activity);
@@ -114,7 +114,7 @@ public class ColorPickerActivityTest {
 
 	@Test
 	public void saveOptionShouldReturnBitmapFilterActivityWithOkResult() {
-		MenuItem item = new TestMenuItem(ColorPickerActivity.SAVE);
+		MenuItem item = new TestMenuItem(Constants.SAVE);
 		activity.onOptionsItemSelected(item);
 
 		ShadowActivity sa = Robolectric.shadowOf(activity);
