@@ -12,9 +12,12 @@ import br.usp.ime.tcc.activities.components.ComponentUtils;
 import br.usp.ime.tcc.utils.Constants;
 import br.usp.ime.tcc.utils.Utils;
 
-public abstract class FilterActivity extends Activity {
+import com.actionbarsherlock.app.SherlockActivity;
+
+public abstract class FilterActivity extends SherlockActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
+		setTheme(R.style.Theme_Sherlock);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.filter_activity);
 		loadComponents();

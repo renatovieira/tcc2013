@@ -37,6 +37,7 @@
     <string name="blue">Blue</string>
     <string name="invalid_value">One or more of the values is invalid. Values should be between 0 and 255, included.</string>
     <string name="selected_color_sample">Selected Color Sample</string>
+    <string name="color_picker">Color Picker</string>
 
     <!-- Settings -->
     <string name="default_visocor_intensity">Default Visocor intensity</string>

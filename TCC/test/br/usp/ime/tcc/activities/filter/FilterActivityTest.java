@@ -13,7 +13,6 @@ import org.robolectric.shadows.ShadowIntent;
 import android.content.Intent;
 import android.provider.MediaStore;
 import android.widget.Spinner;
-import android.widget.TextView;
 import br.usp.ime.tcc.activities.BitmapFilterActivity;
 import br.usp.ime.tcc.activities.R;
 import br.usp.ime.tcc.activities.components.ButtonActionsTestHelper;
@@ -25,11 +24,6 @@ public class FilterActivityTest {
 	protected ButtonActionsTestHelper bat;
 	protected String title;
 
-	protected String getFilterTitleFromTextView() {
-		TextView tv = (TextView) filterActivity.findViewById(R.id.filter_title);
-		return tv.getText().toString();
-	}
-	
 	protected int getVisibiltyFromSpinner() {
 		Spinner sp = (Spinner) filterActivity.findViewById(R.id.filter_type_spinner);
 		return sp.getVisibility();
@@ -57,13 +51,6 @@ public class FilterActivityTest {
 		assertTrue(bat.getButtonAndClickOnIt(R.id.galleryModeButton));
 	}
 
-	@Test
-	public void shouldHaveRightTitle() {
-		String filterTitle = getFilterTitleFromTextView();
-
-		assertEquals(title, filterTitle);
-	}
-	
 	@Test
 	public void pressingCameraModeButtonShouldStartCameraActivity() {
 		Intent startedIntent = bat

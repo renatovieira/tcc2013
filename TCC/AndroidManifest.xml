@@ -31,15 +31,15 @@
         </activity>
         <activity
             android:name="br.usp.ime.tcc.activities.filter.ColorHighlightFilterActivity"
-            android:label="@string/app_name" >
+            android:label="@string/color_highlight" >
         </activity>
         <activity
             android:name="br.usp.ime.tcc.activities.filter.SimulationFilterActivity"
-            android:label="@string/app_name" >
+            android:label="@string/simulation_filter" >
         </activity>
         <activity
             android:name="br.usp.ime.tcc.activities.filter.VisocorFilterActivity"
-            android:label="@string/app_name" >
+            android:label="@string/visocor_filter" >
         </activity>
         <activity
             android:name="br.usp.ime.tcc.activities.BitmapFilterActivity"
@@ -47,11 +47,11 @@
         </activity>
         <activity
             android:name="br.usp.ime.tcc.activities.ColorPickerActivity"
-            android:label="@string/app_name" >
+            android:label="@string/color_picker" >
         </activity>
         <activity
             android:name="br.usp.ime.tcc.activities.settings.SettingsActivity"
-            android:label="@string/app_name" >
+            android:label="@string/settings" >
         </activity>
         <activity
             android:name="br.usp.ime.tcc.activities.ContinousFilterActivity"

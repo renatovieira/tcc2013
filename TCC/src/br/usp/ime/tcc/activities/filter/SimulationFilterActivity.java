@@ -19,8 +19,6 @@ public class SimulationFilterActivity extends FilterActivity {
 
 		ComponentUtils componentUtils = new ComponentUtils(this);
 		componentUtils.hideButton(R.id.liveModeButton);
-		componentUtils.loadTextViewWithText(R.id.filter_title,
-				getString(R.string.simulation_filter));
 		componentUtils.showSpinner(R.id.filter_type_spinner);
 
 		componentUtils.setSpinnerPosition(R.id.filter_type_spinner,

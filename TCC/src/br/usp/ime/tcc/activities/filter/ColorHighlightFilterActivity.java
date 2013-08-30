@@ -17,9 +17,6 @@ public class ColorHighlightFilterActivity extends FilterActivity {
 		ComponentUtils componentUtils = new ComponentUtils(this);
 
 		componentUtils.hideButton(R.id.liveModeButton);
-		
-		componentUtils.loadTextViewWithText(R.id.filter_title,
-				getString(R.string.color_highlight_filter));
 	}
 	
 	@Override

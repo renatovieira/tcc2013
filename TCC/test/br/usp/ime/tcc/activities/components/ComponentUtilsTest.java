@@ -36,7 +36,7 @@ public class ComponentUtilsTest {
 	private static int defaultButtonId = R.id.save_button;
 	private static int defaultImageviewId = R.id.filtered_image;
 	private static int defaultSeekbarId = R.id.intensity_bar;
-	private static int defaultTextViewId = R.id.filter_title;
+	private static int defaultTextViewId = R.id.textView1;
 	private static int defaultSpinnerId = R.id.filter_type_spinner;
 	private static int defaultEditTextId = R.id.blue_tolerance;
 	private static int defaultImageButtonId = R.id.default_color_picker_button;

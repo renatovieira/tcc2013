@@ -30,8 +30,6 @@ public class VisocorFilterActivity extends FilterActivity {
 			}
 		});
 
-		componentUtils.loadTextViewWithText(R.id.filter_title,
-				getString(R.string.visocor_filter));
 	}
 	
 	@Override
