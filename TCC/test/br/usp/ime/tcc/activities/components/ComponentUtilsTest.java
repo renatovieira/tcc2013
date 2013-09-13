@@ -33,7 +33,7 @@ public class ComponentUtilsTest {
 	private Activity activity;
 	private ComponentUtils componentUtils;
 	private boolean activated;
-	private static int defaultButtonId = R.id.save_button;
+	private static int defaultButtonId = R.id.settings_button;
 	private static int defaultImageviewId = R.id.filtered_image;
 	private static int defaultSeekbarId = R.id.intensity_bar;
 	private static int defaultTextViewId = R.id.textView1;

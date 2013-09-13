@@ -3,7 +3,6 @@ package br.usp.ime.tcc.activities;
 import java.io.File;
 import java.io.IOException;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -24,7 +23,11 @@ import br.usp.ime.tcc.utils.BitmapLoader;
 import br.usp.ime.tcc.utils.Constants;
 import br.usp.ime.tcc.utils.FileSaver;
 
-public class BitmapFilterActivity extends Activity {
+import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
+
+public class BitmapFilterActivity extends SherlockActivity {
 	private ImageView filteredImage;
 	private Bitmap originalBitmap;
 	private Bitmap filteredBitmap;
@@ -35,6 +38,7 @@ public class BitmapFilterActivity extends Activity {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
+		setTheme(R.style.Theme_Sherlock);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.bitmap_filter);
 
@@ -65,7 +69,7 @@ public class BitmapFilterActivity extends Activity {
 
 	@Override
 	public void onBackPressed() {
-		goBackToFilterActivity();
+		finish();
 	}
 
 	private void getExtras() {
@@ -105,43 +109,6 @@ public class BitmapFilterActivity extends Activity {
 		final ComponentUtils componentUtils = new ComponentUtils(this);
 
 		filteredImage = componentUtils.loadImageView(R.id.filtered_image);
-
-		componentUtils.loadButton(R.id.save_button, new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				FileSaver fileSaver = new FileSaver();
-
-				try {
-					File file = fileSaver.saveToFile(filteredBitmap);
-					addToGallery(file);
-					Toast.makeText(BitmapFilterActivity.this,
-							getString(R.string.file_saved), Toast.LENGTH_SHORT)
-							.show();
-					goBackToFilterActivity();
-				} catch (IOException e) {
-					Toast.makeText(BitmapFilterActivity.this,
-							getString(R.string.try_again), Toast.LENGTH_LONG)
-							.show();
-				}
-
-			}
-
-			private void addToGallery(File file) {
-				Intent mediaScanIntent = new Intent(
-						Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-				Uri contentUri = Uri.fromFile(file);
-				mediaScanIntent.setData(contentUri);
-				BitmapFilterActivity.this.sendBroadcast(mediaScanIntent);
-			}
-		});
-
-		componentUtils.loadButton(R.id.discard_button, new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				goBackToFilterActivity();
-			}
-		});
 
 		if (filterType == Constants.VISOCOR_FILTER) {
 			componentUtils.loadSeekBar(R.id.intensity_bar,
@@ -184,10 +151,6 @@ public class BitmapFilterActivity extends Activity {
 		}
 	}
 
-	private void goBackToFilterActivity() {
-		finish();
-	}
-
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (resultCode == RESULT_OK) {
 			if (requestCode == Constants.COLOR_PICKER_REQUEST_CODE) {
@@ -205,5 +168,59 @@ public class BitmapFilterActivity extends Activity {
 	@Override
 	public Object onRetainNonConfigurationInstance() {
 		return filter;
+	}
+	
+
+	private void addToGallery(File file) {
+		Intent mediaScanIntent = new Intent(
+				Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+		Uri contentUri = Uri.fromFile(file);
+		mediaScanIntent.setData(contentUri);
+		this.sendBroadcast(mediaScanIntent);
+	}
+	
+
+	private void saveFilteredImage() {
+		FileSaver fileSaver = new FileSaver();
+
+		try {
+			File file = fileSaver.saveToFile(filteredBitmap);
+			addToGallery(file);
+			Toast.makeText(BitmapFilterActivity.this,
+					getString(R.string.file_saved), Toast.LENGTH_SHORT)
+					.show();
+			finish();
+		} catch (IOException e) {
+			Toast.makeText(BitmapFilterActivity.this,
+					getString(R.string.try_again), Toast.LENGTH_LONG)
+					.show();
+		}
+	}
+	
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        menu.add(Menu.NONE, Constants.SAVE, Menu.NONE, getString(R.string.save))
+            .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+
+        menu.add(Menu.NONE, Constants.DISCARD, Menu.NONE, getString(R.string.discard))
+            .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+
+        return super.onCreateOptionsMenu(menu);
+    }
+    
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		int option = item.getItemId();
+		
+		if (option == Constants.SAVE) {
+			saveFilteredImage();
+			return true;
+		}
+		else if (option == Constants.DISCARD) {
+			finish();
+			return true;
+		}
+		
+		return super.onOptionsItemSelected(item);
 	}
 }

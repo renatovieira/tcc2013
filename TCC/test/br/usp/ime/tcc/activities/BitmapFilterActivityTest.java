@@ -14,11 +14,14 @@ import org.robolectric.shadows.ShadowActivity;
 import org.robolectric.shadows.ShadowHandler;
 import org.robolectric.shadows.ShadowIntent;
 import org.robolectric.shadows.ShadowToast;
+import org.robolectric.tester.android.view.TestMenu;
+import org.robolectric.tester.android.view.TestMenuItem;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -52,6 +55,8 @@ public class BitmapFilterActivityTest {
 
 		bitmapFilterActivity.setIntent(intent);
 		bitmapFilterActivity.onCreate(null);
+		
+		bitmapFilterActivity.onCreateOptionsMenu(new TestMenu());
 
 		return bitmapFilterActivity;
 	}
@@ -82,8 +87,8 @@ public class BitmapFilterActivityTest {
 	public void discardButtonShouldReturnToFilterActivity() {
 		bitmapFilterActivity = startWithExtras(Constants.VISOCOR_FILTER);
 
-		ButtonActionsTestHelper bat = new ButtonActionsTestHelper(bitmapFilterActivity);
-		bat.getButtonAndClickOnIt(R.id.discard_button);
+		MenuItem item = new TestMenuItem(Constants.DISCARD);
+		bitmapFilterActivity.onOptionsItemSelected(item);
 
 		ShadowActivity sa = Robolectric.shadowOf(bitmapFilterActivity);
 		assertTrue(sa.isFinishing());
@@ -93,8 +98,8 @@ public class BitmapFilterActivityTest {
 	public void saveButtonShouldReturnErrorToast() {
 		bitmapFilterActivity = startWithExtras(Constants.VISOCOR_FILTER);
 
-		ButtonActionsTestHelper bat = new ButtonActionsTestHelper(bitmapFilterActivity);
-		bat.getButtonAndClickOnIt(R.id.save_button);
+		MenuItem item = new TestMenuItem(Constants.SAVE);
+		bitmapFilterActivity.onOptionsItemSelected(item);
 
 		ShadowHandler.idleMainLooper();
 		assertEquals(bitmapFilterActivity.getString(R.string.try_again),
