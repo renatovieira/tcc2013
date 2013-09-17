@@ -44,6 +44,8 @@ public class BitmapFilterActivity extends SherlockActivity {
 
 		getExtras();
 
+		loadActivityLabel();
+		
 		loadSettings();
 
 		loadComponents();
@@ -55,6 +57,21 @@ public class BitmapFilterActivity extends SherlockActivity {
 		else
 			loadFilter(filterType);
 		applyFilter();
+	}
+
+	private void loadActivityLabel() {
+		switch (filterType) {
+		case Constants.VISOCOR_FILTER:
+			setTitle(R.string.visocor_filter);
+			break;
+		case Constants.COLOR_HIGHLIGHT_FILTER:
+			setTitle(R.string.color_highlight_filter);
+			break;
+		default:
+			setTitle(R.string.simulation_filter);
+			break;
+		}
+		
 	}
 
 	private void loadSettings() {

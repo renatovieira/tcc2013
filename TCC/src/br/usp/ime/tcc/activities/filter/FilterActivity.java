@@ -25,6 +25,8 @@ public abstract class FilterActivity extends SherlockActivity {
 	
 	private void loadComponents() {
 		ComponentUtils componentUtils = new ComponentUtils(this);
+	
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		
 		componentUtils.loadButton(R.id.galleryModeButton,
 				new OnClickListener() {
@@ -77,7 +79,6 @@ public abstract class FilterActivity extends SherlockActivity {
 		showImageIntent.putExtra(Constants.IMAGE_PATH, imagePath);
 		putFilterTypeExtra(showImageIntent);
 	}
-
 	
 	protected abstract void putFilterTypeExtra(Intent intent);
 }
