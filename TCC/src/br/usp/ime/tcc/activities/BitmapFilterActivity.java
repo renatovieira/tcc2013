@@ -1,5 +1,8 @@
 package br.usp.ime.tcc.activities;
 
+import it.sephiroth.android.library.imagezoom.ImageViewTouch;
+import it.sephiroth.android.library.imagezoom.ImageViewTouchBase.DisplayType;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -28,13 +31,14 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 
 public class BitmapFilterActivity extends SherlockActivity {
-	private ImageView filteredImage;
+	private ImageViewTouch filteredImage;
 	private Bitmap originalBitmap;
 	private Bitmap filteredBitmap;
 	private BitmapFilter filter;
 	private int filterType;
 	private SettingsManager settingsManager;
 	private int red, green, blue, redTolerance, greenTolerance, blueTolerance;
+	private ComponentUtils componentUtils;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -103,7 +107,7 @@ public class BitmapFilterActivity extends SherlockActivity {
 
 	private void applyFilter() {
 		filteredBitmap = filter.applyTo(originalBitmap);
-		new ComponentUtils(this).fillIn(filteredImage, filteredBitmap);
+		componentUtils.fillIn(filteredImage, filteredBitmap);
 	}
 
 	private void loadFilter(int filterType) {
@@ -123,10 +127,10 @@ public class BitmapFilterActivity extends SherlockActivity {
 	}
 
 	private void loadComponents() {
-		final ComponentUtils componentUtils = new ComponentUtils(this);
+		componentUtils = new ComponentUtils(this);
 
-		filteredImage = componentUtils.loadImageView(R.id.filtered_image);
-
+		filteredImage = (ImageViewTouch) findViewById(R.id.filtered_image);
+		
 		if (filterType == Constants.VISOCOR_FILTER) {
 			componentUtils.loadSeekBar(R.id.intensity_bar,
 					Constants.MAX_INTENSITY, Constants.INTENSITY,
