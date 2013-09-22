@@ -34,7 +34,7 @@ public class FileSaverTest {
 		when(mockRoot.getAbsolutePath()).thenReturn("");
 
 		PowerMockito.mockStatic(Environment.class);
-		when(Environment.getExternalStorageDirectory()).thenReturn(mockRoot);
+		when(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)).thenReturn(mockRoot);
 	}
 	
 	private FileSaver mockCreateNewOutputStreamFromFileSaver()
