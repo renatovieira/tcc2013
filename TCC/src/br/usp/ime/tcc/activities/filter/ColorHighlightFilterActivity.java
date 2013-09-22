@@ -1,10 +1,11 @@
 package br.usp.ime.tcc.activities.filter;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import br.usp.ime.tcc.activities.R;
 import br.usp.ime.tcc.activities.components.ComponentUtils;
-import br.usp.ime.tcc.utils.Constants;
+import br.usp.ime.tcc.activities.filter.bitmap.ColorHighlightBitmapFilterActivity;
 
 public class ColorHighlightFilterActivity extends FilterActivity {
 	@Override
@@ -20,7 +21,12 @@ public class ColorHighlightFilterActivity extends FilterActivity {
 	}
 	
 	@Override
-	protected void putFilterTypeExtra(Intent intent) {
-		intent.putExtra(Constants.FILTER_TYPE, Constants.COLOR_HIGHLIGHT_FILTER);
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		if (resultCode == Activity.RESULT_OK) {
+			Intent showImageIntent = new Intent(this,
+					ColorHighlightBitmapFilterActivity.class);
+			putContentOnNextActivityExtras(data, showImageIntent);
+			startActivity(showImageIntent);
+		}
 	}
 }

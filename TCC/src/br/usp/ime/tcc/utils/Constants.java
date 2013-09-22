@@ -14,12 +14,8 @@ public final class Constants {
 
 	public static final int REQUIRED_DIMENSION = 512;
 
-	public static final int VISOCOR_FILTER = 0;
-	public static final int COLOR_HIGHLIGHT_FILTER = 1;
-	public static final int SIMULATION_FILTER = 2;
-
-	public static final int DEUTERANOPIA_SIMULATION_FILTER = 2;
-	public static final int PROTANOPIA_SIMULATION_FILTER = 3;
+	public static final int DEUTERANOPIA_SIMULATION_FILTER = 0;
+	public static final int PROTANOPIA_SIMULATION_FILTER = 1;
 
 	public static final int COLOR_PICKER_REQUEST_CODE = 1;
 

@@ -8,12 +8,10 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.RobolectricTestRunner;
-import org.robolectric.shadows.ShadowIntent;
 
 import android.content.Intent;
 import android.provider.MediaStore;
 import android.widget.Spinner;
-import br.usp.ime.tcc.activities.BitmapFilterActivity;
 import br.usp.ime.tcc.activities.R;
 import br.usp.ime.tcc.activities.components.ButtonActionsTestHelper;
 
@@ -67,21 +65,5 @@ public class FilterActivityTest {
 
 		assertNotNull(startedIntent);
 		assertEquals(Intent.ACTION_PICK, startedIntent.getAction());
-	}
-
-	@Test
-	public void shouldCallBitmapFilterActivityAfterGalleryResult() {
-		ShadowIntent shadowIntent = bat
-				.getIntentAfterResultOfButtonClick(R.id.galleryModeButton);
-		assertEquals(shadowIntent.getComponent().getClassName(),
-				BitmapFilterActivity.class.getName());
-	}
-
-	@Test
-	public void shouldCallBitmapFilterActivityAfterCameraResult() {
-		ShadowIntent shadowIntent = bat
-				.getIntentAfterResultOfButtonClick(R.id.cameraModeButton);
-		assertEquals(shadowIntent.getComponent().getClassName(),
-				BitmapFilterActivity.class.getName());
 	}
 }

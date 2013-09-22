@@ -17,6 +17,7 @@ import android.view.View;
 import br.usp.ime.tcc.activities.ContinousFilterActivity;
 import br.usp.ime.tcc.activities.R;
 import br.usp.ime.tcc.activities.components.ButtonActionsTestHelper;
+import br.usp.ime.tcc.activities.filter.bitmap.VisocorBitmapFilterActivity;
 
 @RunWith(RobolectricTestRunner.class)
 public class VisocorFilterActivityTest extends FilterActivityTest {
@@ -55,5 +56,21 @@ public class VisocorFilterActivityTest extends FilterActivityTest {
 		ShadowIntent shadowIntent = shadowOf(startedIntent);
 		assertEquals(shadowIntent.getComponent().getClassName(),
 				ContinousFilterActivity.class.getName());
+	}
+	
+	@Test
+	public void shouldCallBitmapFilterActivityAfterGalleryResult() {
+		ShadowIntent shadowIntent = bat
+				.getIntentAfterResultOfButtonClick(R.id.galleryModeButton);
+		assertEquals(shadowIntent.getComponent().getClassName(),
+				VisocorBitmapFilterActivity.class.getName());
+	}
+
+	@Test
+	public void shouldCallBitmapFilterActivityAfterCameraResult() {
+		ShadowIntent shadowIntent = bat
+				.getIntentAfterResultOfButtonClick(R.id.cameraModeButton);
+		assertEquals(shadowIntent.getComponent().getClassName(),
+				VisocorBitmapFilterActivity.class.getName());
 	}
 }

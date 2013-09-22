@@ -1,12 +1,10 @@
 package br.usp.ime.tcc.activities.filter;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.view.View.OnClickListener;
-import br.usp.ime.tcc.activities.BitmapFilterActivity;
 import br.usp.ime.tcc.activities.R;
 import br.usp.ime.tcc.activities.components.ComponentUtils;
 import br.usp.ime.tcc.utils.Constants;
@@ -64,22 +62,9 @@ public abstract class FilterActivity extends SherlockActivity {
 	
 	protected abstract void loadSpecificComponents();
 	
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		if (resultCode == Activity.RESULT_OK) {
-			Intent showImageIntent = new Intent(this,
-					BitmapFilterActivity.class);
-			putContentOnNextActivityExtras(data, showImageIntent);
-			startActivity(showImageIntent);
-		}
-	}
-
-	private void putContentOnNextActivityExtras(Intent data,
+	public void putContentOnNextActivityExtras(Intent data,
 			Intent showImageIntent) {
 		String imagePath = Utils.getSelectedPicturePath(data.getData(), this.getContentResolver());
 		showImageIntent.putExtra(Constants.IMAGE_PATH, imagePath);
-		putFilterTypeExtra(showImageIntent);
 	}
-	
-	protected abstract void putFilterTypeExtra(Intent intent);
 }
