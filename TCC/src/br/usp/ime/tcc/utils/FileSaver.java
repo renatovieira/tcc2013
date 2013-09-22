@@ -1,5 +1,6 @@
 package br.usp.ime.tcc.utils;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -17,13 +18,18 @@ public class FileSaver {
 	private void compressAndSaveToFile(Bitmap bitmapToBeSaved, File file)
 			throws FileNotFoundException, IOException {
 		OutputStream fOut = createNewOutPutStream(file);
-		bitmapToBeSaved.compress(Bitmap.CompressFormat.JPEG, 85, fOut);
-		fOut.flush();
+		
+		ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+		bitmapToBeSaved.compress(Bitmap.CompressFormat.JPEG, 85, bytes);
+		
+		fOut.write(bytes.toByteArray());		
 		fOut.close();
 	}
 
 	protected OutputStream createNewOutPutStream(File file)
-			throws FileNotFoundException {
+			throws IOException {
+		file.createNewFile();
+		
 		OutputStream fOut = new FileOutputStream(file);
 		return fOut;
 	}
@@ -31,9 +37,9 @@ public class FileSaver {
 	private File getFileToBeSaved() {
 		String timeStamp = Utils.getTimeStamp();
 
-		File root = Environment.getExternalStorageDirectory();
-		File file = new File(root.getAbsolutePath() + Constants.DEFAULT_FOLDER
-				+ timeStamp + ".jpg");
+		File root = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+		File file = new File(root.getAbsolutePath(), timeStamp + ".jpg");
+		
 		return file;
 	}
 	
