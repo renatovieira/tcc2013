@@ -1,7 +1,6 @@
-package br.usp.ime.tcc.activities;
+package br.usp.ime.tcc.activities.colorpicker;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -19,13 +18,11 @@ import android.content.Intent;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.SeekBar;
+import br.usp.ime.tcc.activities.R;
 import br.usp.ime.tcc.utils.Constants;
 
 @RunWith(RobolectricTestRunner.class)
-public class ColorPickerActivityTest {
-
-	private ColorPickerActivity activity;
-
+public class SettingsColorPickerActivityTest extends ColorPickerActivityTest {
 	private boolean colorSeekbarIsCorrectlyLoaded(int seekbarId) {
 		SeekBar bar = (SeekBar) activity.findViewById(seekbarId);
 
@@ -38,34 +35,26 @@ public class ColorPickerActivityTest {
 	}
 
 	private void setSeekBarsToDesiredValues(int rgb[]) {
-		setColor(R.id.red_seekbar, rgb[ColorPickerActivity.RED]);
-		setColor(R.id.green_seekbar, rgb[ColorPickerActivity.GREEN]);
-		setColor(R.id.blue_seekbar, rgb[ColorPickerActivity.BLUE]);
-	}
-
-	private int[] generateRandomColor() {
-		int red = (int) (Math.random() * 256);
-		int green = (int) (Math.random() * 256);
-		int blue = (int) (Math.random() * 256);
-
-		return new int[] { red, green, blue };
+		setColor(R.id.red_seekbar, rgb[SettingsColorPickerActivity.RED]);
+		setColor(R.id.green_seekbar, rgb[SettingsColorPickerActivity.GREEN]);
+		setColor(R.id.blue_seekbar, rgb[SettingsColorPickerActivity.BLUE]);
 	}
 
 	private boolean sameRgb(int[] oneColor, int[] otherColor) {
-		return oneColor[ColorPickerActivity.RED] == otherColor[ColorPickerActivity.RED] &&
-			   oneColor[ColorPickerActivity.GREEN] == otherColor[ColorPickerActivity.GREEN] &&
-			   oneColor[ColorPickerActivity.BLUE] == otherColor[ColorPickerActivity.BLUE];
+		return oneColor[SettingsColorPickerActivity.RED] == otherColor[SettingsColorPickerActivity.RED] &&
+			   oneColor[SettingsColorPickerActivity.GREEN] == otherColor[SettingsColorPickerActivity.GREEN] &&
+			   oneColor[SettingsColorPickerActivity.BLUE] == otherColor[SettingsColorPickerActivity.BLUE];
 	}
 
 	private ColorPickerActivity startWithExtras() {
-		activity = new ColorPickerActivity();
+		activity = new SettingsColorPickerActivity();
 		Intent intent = new Intent();
 		
 		int [] randomColor = generateRandomColor();
 		
-		intent.putExtra(Constants.RED, randomColor[ColorPickerActivity.RED]);
-		intent.putExtra(Constants.GREEN, randomColor[ColorPickerActivity.GREEN]);
-		intent.putExtra(Constants.BLUE, randomColor[ColorPickerActivity.BLUE]);
+		intent.putExtra(Constants.RED, randomColor[SettingsColorPickerActivity.RED]);
+		intent.putExtra(Constants.GREEN, randomColor[SettingsColorPickerActivity.GREEN]);
+		intent.putExtra(Constants.BLUE, randomColor[SettingsColorPickerActivity.BLUE]);
 
 		activity.setIntent(intent);
 		activity.onCreate(null);
@@ -82,28 +71,7 @@ public class ColorPickerActivityTest {
 	}
 
 	@Test
-	public void saveOptionShouldBeLoadedAndWorking() {
-		MenuItem item = new TestMenuItem(Constants.SAVE);
-		
-		assertTrue(activity.onOptionsItemSelected(item));
-	}
-
-	@Test
-	public void discardOptionShouldBeLoadedAndWorking() {
-		MenuItem item = new TestMenuItem(Constants.DISCARD);
-		
-		assertTrue(activity.onOptionsItemSelected(item));	
-	}
-	
-	@Test
-	public void invalidOptionShouldReturnFalse() {
-		MenuItem item = new TestMenuItem(7);
-		
-		assertFalse(activity.onOptionsItemSelected(item));	
-	}
-
-	@Test
-	public void discardOptionShouldReturnBitmapFilterActivity() {
+	public void discardOptionShouldReturnToSettingsActivity() {
 		MenuItem item = new TestMenuItem(Constants.DISCARD);
 		activity.onOptionsItemSelected(item);
 
@@ -113,7 +81,7 @@ public class ColorPickerActivityTest {
 	}
 
 	@Test
-	public void saveOptionShouldReturnBitmapFilterActivityWithOkResult() {
+	public void saveOptionShouldReturnToSettingsActivityWithOkResult() {
 		MenuItem item = new TestMenuItem(Constants.SAVE);
 		activity.onOptionsItemSelected(item);
 

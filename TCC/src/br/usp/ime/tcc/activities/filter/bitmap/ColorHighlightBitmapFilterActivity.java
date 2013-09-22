@@ -4,8 +4,8 @@ import it.sephiroth.android.library.imagezoom.ImageViewTouch;
 import android.content.Intent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import br.usp.ime.tcc.activities.ColorPickerActivity;
 import br.usp.ime.tcc.activities.R;
+import br.usp.ime.tcc.activities.colorpicker.ImageColorPickerActivity;
 import br.usp.ime.tcc.activities.components.ComponentUtils;
 import br.usp.ime.tcc.activities.settings.SettingsManager;
 import br.usp.ime.tcc.filter.BitmapFilter;
@@ -53,10 +53,11 @@ public class ColorHighlightBitmapFilterActivity extends BitmapFilterActivity {
 					@Override
 					public void onClick(View arg0) {
 						Intent i = new Intent(getBaseContext(),
-								ColorPickerActivity.class);
+								ImageColorPickerActivity.class);
 						i.putExtra(Constants.RED, red);
 						i.putExtra(Constants.GREEN, green);
 						i.putExtra(Constants.BLUE, blue);
+						i.putExtra(Constants.IMAGE_PATH, imagePath);
 						startActivityForResult(i,
 								Constants.COLOR_PICKER_REQUEST_CODE);
 					}

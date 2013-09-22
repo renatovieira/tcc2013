@@ -9,8 +9,8 @@ import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.Toast;
-import br.usp.ime.tcc.activities.ColorPickerActivity;
 import br.usp.ime.tcc.activities.R;
+import br.usp.ime.tcc.activities.colorpicker.SettingsColorPickerActivity;
 import br.usp.ime.tcc.activities.components.ComponentUtils;
 import br.usp.ime.tcc.utils.Constants;
 
@@ -79,7 +79,7 @@ public class SettingsActivity extends SherlockActivity {
 			@Override
 			public void onClick(View arg0) {
 				Intent colorPickerIntent = new Intent(getBaseContext(),
-						ColorPickerActivity.class);
+						SettingsColorPickerActivity.class);
 				colorPickerIntent.putExtra(Constants.RED, defaultRed);
 				colorPickerIntent.putExtra(Constants.GREEN, defaultGreen);
 				colorPickerIntent.putExtra(Constants.BLUE, defaultBlue);

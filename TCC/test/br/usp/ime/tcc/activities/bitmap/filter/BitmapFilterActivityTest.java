@@ -1,6 +1,7 @@
 package br.usp.ime.tcc.activities.bitmap.filter;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -47,7 +48,7 @@ public class BitmapFilterActivityTest {
 	@Test
 	public void discardButtonShouldReturnToFilterActivity() {
 		MenuItem item = new TestMenuItem(Constants.DISCARD);
-		bitmapFilterActivity.onOptionsItemSelected(item);
+		assertTrue(bitmapFilterActivity.onOptionsItemSelected(item));
 
 		ShadowActivity sa = Robolectric.shadowOf(bitmapFilterActivity);
 		assertTrue(sa.isFinishing());
@@ -56,10 +57,16 @@ public class BitmapFilterActivityTest {
 	@Test
 	public void saveButtonShouldReturnErrorToast() {
 		MenuItem item = new TestMenuItem(Constants.SAVE);
-		bitmapFilterActivity.onOptionsItemSelected(item);
+		assertTrue(bitmapFilterActivity.onOptionsItemSelected(item));
 
 		ShadowHandler.idleMainLooper();
 		assertEquals(bitmapFilterActivity.getString(R.string.file_saved),
 				ShadowToast.getTextOfLatestToast());
+	}
+	
+	@Test
+	public void invalidButtonShouldReturnFalse() {
+		MenuItem item = new TestMenuItem(7);
+		assertFalse(bitmapFilterActivity.onOptionsItemSelected(item));
 	}
 }

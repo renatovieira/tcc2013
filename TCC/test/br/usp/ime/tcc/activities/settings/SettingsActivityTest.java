@@ -24,8 +24,8 @@ import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.Spinner;
-import br.usp.ime.tcc.activities.ColorPickerActivity;
 import br.usp.ime.tcc.activities.R;
+import br.usp.ime.tcc.activities.colorpicker.SettingsColorPickerActivity;
 import br.usp.ime.tcc.activities.components.ButtonActionsTestHelper;
 import br.usp.ime.tcc.utils.Constants;
 
@@ -64,7 +64,7 @@ public class SettingsActivityTest {
 
 		assertNotNull(startedIntent);
 		ShadowIntent shadowIntent = shadowOf(startedIntent);
-		assertEquals(ColorPickerActivity.class.getName(), shadowIntent
+		assertEquals(SettingsColorPickerActivity.class.getName(), shadowIntent
 				.getComponent().getClassName());
 	}
 

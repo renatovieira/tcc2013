@@ -17,8 +17,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.view.View;
 import android.widget.SeekBar;
-import br.usp.ime.tcc.activities.ColorPickerActivity;
 import br.usp.ime.tcc.activities.R;
+import br.usp.ime.tcc.activities.colorpicker.ImageColorPickerActivity;
 import br.usp.ime.tcc.activities.components.ButtonActionsTestHelper;
 import br.usp.ime.tcc.activities.filter.bitmap.BitmapFilterActivity;
 import br.usp.ime.tcc.activities.filter.bitmap.ColorHighlightBitmapFilterActivity;
@@ -68,7 +68,7 @@ public class ColorHighlightBitmapFilterActivityTest extends BitmapFilterActivity
 
 		assertNotNull(startedIntent);
 		ShadowIntent shadowIntent = shadowOf(startedIntent);
-		assertEquals(ColorPickerActivity.class.getName(), shadowIntent
+		assertEquals(ImageColorPickerActivity.class.getName(), shadowIntent
 				.getComponent().getClassName());
 	}
 

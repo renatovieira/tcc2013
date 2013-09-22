@@ -27,6 +27,7 @@ public abstract class BitmapFilterActivity extends SherlockActivity {
 	protected Bitmap filteredBitmap;
 	protected BitmapFilter filter;
 	protected ComponentUtils componentUtils;
+	protected String imagePath;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -60,7 +61,7 @@ public abstract class BitmapFilterActivity extends SherlockActivity {
 		Bundle extras = getIntent().getExtras();
 
 		if (extras != null) {
-			String imagePath = (String) extras.get(Constants.IMAGE_PATH);
+			imagePath = (String) extras.get(Constants.IMAGE_PATH);
 			BitmapLoader bitmapLoader = new BitmapLoader(imagePath);
 			originalBitmap = bitmapLoader.getBitmap();
 		}
