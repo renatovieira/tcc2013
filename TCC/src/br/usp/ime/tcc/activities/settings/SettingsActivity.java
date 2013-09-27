@@ -53,9 +53,11 @@ public class SettingsActivity extends SherlockActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         menu.add(Menu.NONE, Constants.SAVE, Menu.NONE, getString(R.string.save))
+        	.setIcon(R.drawable.ic_action_save)
             .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
 
         menu.add(Menu.NONE, Constants.DISCARD, Menu.NONE, getString(R.string.discard))
+        	.setIcon(R.drawable.ic_action_discard)
             .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
 
         return super.onCreateOptionsMenu(menu);

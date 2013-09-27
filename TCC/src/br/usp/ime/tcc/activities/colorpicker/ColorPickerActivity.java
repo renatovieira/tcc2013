@@ -30,7 +30,7 @@ public abstract class ColorPickerActivity extends SherlockActivity {
 		loadComponents();
 		cu.updateWithColor(colorSample, rgb[RED], rgb[GREEN], rgb[BLUE]);
 	}
-	
+
 	private void loadInitialValues() {
 		Bundle extras = getIntent().getExtras();
 
@@ -46,14 +46,17 @@ public abstract class ColorPickerActivity extends SherlockActivity {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		menu.add(Menu.NONE, Constants.SAVE, Menu.NONE, getString(R.string.save))
+				.setIcon(R.drawable.ic_action_accept)
 				.setShowAsAction(
 						MenuItem.SHOW_AS_ACTION_IF_ROOM
 								| MenuItem.SHOW_AS_ACTION_WITH_TEXT);
 
 		menu.add(Menu.NONE, Constants.DISCARD, Menu.NONE,
-				getString(R.string.discard)).setShowAsAction(
-				MenuItem.SHOW_AS_ACTION_IF_ROOM
-						| MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+				getString(R.string.discard))
+				.setIcon(R.drawable.ic_action_cancel)
+				.setShowAsAction(
+						MenuItem.SHOW_AS_ACTION_IF_ROOM
+								| MenuItem.SHOW_AS_ACTION_WITH_TEXT);
 
 		return true;
 	}
