@@ -23,10 +23,14 @@
         android:layout_marginTop="5dp"
         android:contentDescription="@string/selected_color_sample" />
 
-    <it.sephiroth.android.library.imagezoom.ImageViewTouch
+    <it.sephiroth.android.library.imagezoom.ImageColorPicker
         android:id="@+id/image_for_selection"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+   	    android:layout_marginBottom="5dp"
+        android:layout_marginTop="100dp"
         android:contentDescription="@string/image" />
     
 </RelativeLayout>

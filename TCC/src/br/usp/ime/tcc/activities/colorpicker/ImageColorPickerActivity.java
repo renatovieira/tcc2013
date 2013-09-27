@@ -1,14 +1,16 @@
 package br.usp.ime.tcc.activities.colorpicker;
 
-import it.sephiroth.android.library.imagezoom.ImageViewTouch;
+import it.sephiroth.android.library.imagezoom.ImageColorPicker;
 import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnLongClickListener;
 import br.usp.ime.tcc.activities.R;
 import br.usp.ime.tcc.activities.components.ComponentUtils;
 import br.usp.ime.tcc.utils.BitmapLoader;
 import br.usp.ime.tcc.utils.Constants;
 
 public class ImageColorPickerActivity extends ColorPickerActivity {
-	private ImageViewTouch imageViewTouch;
+	private ImageColorPicker imageColorPicker;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -23,11 +25,22 @@ public class ImageColorPickerActivity extends ColorPickerActivity {
 
 		colorSample = cu.loadImageView(R.id.image_selected_color);
 		
-		imageViewTouch = (ImageViewTouch) findViewById(R.id.image_for_selection);
+		imageColorPicker = (ImageColorPicker) findViewById(R.id.image_for_selection);
+		
+		imageColorPicker.setOnLongClickListener(new OnLongClickListener() {
+			@Override
+			public boolean onLongClick(View v) {
+				rgb = imageColorPicker.getTouchedPixel();
+				
+				cu.updateWithColor(colorSample, rgb[RED], rgb[GREEN], rgb[BLUE]);
+				
+				return true;
+			}
+		});
 		
 		String imagePath = getIntent().getExtras().getString(Constants.IMAGE_PATH);
 		
 		BitmapLoader bitmapLoader = new BitmapLoader(imagePath);
-		cu.fillIn(imageViewTouch, bitmapLoader.getBitmap());
+		cu.fillIn(imageColorPicker, bitmapLoader.getBitmap());
 	}
 }
