@@ -1,6 +1,7 @@
 package br.usp.ime.tcc.activities;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 import static org.robolectric.Robolectric.shadowOf;
@@ -11,13 +12,17 @@ import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.shadows.ShadowIntent;
+import org.robolectric.tester.android.view.TestMenu;
+import org.robolectric.tester.android.view.TestMenuItem;
 
 import android.content.Intent;
+import android.view.MenuItem;
 import br.usp.ime.tcc.activities.components.ButtonActionsTestHelper;
 import br.usp.ime.tcc.activities.filter.ColorHighlightFilterActivity;
 import br.usp.ime.tcc.activities.filter.SimulationFilterActivity;
 import br.usp.ime.tcc.activities.filter.VisocorFilterActivity;
 import br.usp.ime.tcc.activities.settings.SettingsActivity;
+import br.usp.ime.tcc.utils.Constants;
 
 @RunWith(RobolectricTestRunner.class)
 public class MainActivityTest {
@@ -29,6 +34,8 @@ public class MainActivityTest {
 	@Before
 	public void setUp() throws Exception {
 		activity = Robolectric.buildActivity(MainActivity.class).create().get();
+		
+		activity.onCreateOptionsMenu(new TestMenu());
 
 		bat = new ButtonActionsTestHelper(activity);
 	}
@@ -50,7 +57,16 @@ public class MainActivityTest {
 	
 	@Test
 	public void settingsButtonShouldBeLoadedAndWorking() {
-		assertTrue(bat.getButtonAndClickOnIt(R.id.settings_button));
+		MenuItem item = new TestMenuItem(Constants.SETTINGS);
+		
+		assertTrue(activity.onOptionsItemSelected(item));	
+	}
+	
+	@Test
+	public void invalidButtonShouldReturnFalse() {
+		MenuItem item = new TestMenuItem(7);
+		
+		assertFalse(activity.onOptionsItemSelected(item));	
 	}
 
 	@Test
@@ -76,7 +92,7 @@ public class MainActivityTest {
 	}
 
 	@Test
-	public void pressingHighlightButtonShouldStartFilterActivity() {
+	public void pressingHighlightButtonShouldStartColorHighlightFilterActivity() {
 		Intent startedIntent = bat
 				.getStartedIntentAfterClickOnButton(R.id.highlight_button);
 
@@ -87,9 +103,12 @@ public class MainActivityTest {
 	}
 	
 	@Test
-	public void pressingSettingsButtonShouldStartFilterActivity() {
-		Intent startedIntent = bat
-				.getStartedIntentAfterClickOnButton(R.id.settings_button);
+	public void pressingSettingsButtonShouldStartSettingsActivity() {
+		MenuItem item = new TestMenuItem(Constants.SETTINGS);
+		
+		activity.onOptionsItemSelected(item);	
+		
+		Intent startedIntent = shadowOf(activity).getNextStartedActivity();
 
 		assertNotNull(startedIntent);
 		ShadowIntent shadowIntent = shadowOf(startedIntent);

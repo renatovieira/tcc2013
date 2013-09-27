@@ -30,4 +30,5 @@ public final class Constants {
 	
 	public static final int SAVE = 0;
 	public static final int DISCARD = 1;
+	public static final int SETTINGS = 2;
 }
