@@ -7,6 +7,7 @@
         android:id="@+id/filtered_image"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
+        android:layout_marginBottom="50dp"
         android:contentDescription="@string/filtered_image" />
         
     <LinearLayout
