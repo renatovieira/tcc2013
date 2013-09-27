@@ -16,6 +16,7 @@ import br.usp.ime.tcc.filter.BitmapFilter;
 import br.usp.ime.tcc.utils.BitmapLoader;
 import br.usp.ime.tcc.utils.Constants;
 import br.usp.ime.tcc.utils.FileSaver;
+import br.usp.ime.tcc.utils.Utils;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
@@ -31,8 +32,11 @@ public abstract class BitmapFilterActivity extends SherlockActivity {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		setTheme(R.style.Theme_Sherlock);
 		super.onCreate(savedInstanceState);
+
+		setTheme(R.style.Theme_Sherlock);
+		Utils.loadStripedActionBar(this);
+		
 		setContentView(R.layout.bitmap_filter);
 
 		getExtras();

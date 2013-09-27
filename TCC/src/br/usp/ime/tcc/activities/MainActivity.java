@@ -11,6 +11,7 @@ import br.usp.ime.tcc.activities.filter.SimulationFilterActivity;
 import br.usp.ime.tcc.activities.filter.VisocorFilterActivity;
 import br.usp.ime.tcc.activities.settings.SettingsActivity;
 import br.usp.ime.tcc.utils.Constants;
+import br.usp.ime.tcc.utils.Utils;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
@@ -19,9 +20,10 @@ import com.actionbarsherlock.view.MenuItem;
 public class MainActivity extends SherlockActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		setTheme(R.style.Theme_Sherlock);
-		
 		super.onCreate(savedInstanceState);
+
+		setTheme(R.style.Theme_Sherlock);
+		Utils.loadStripedActionBar(this);
 		
 		Display display = getWindowManager().getDefaultDisplay();
 		

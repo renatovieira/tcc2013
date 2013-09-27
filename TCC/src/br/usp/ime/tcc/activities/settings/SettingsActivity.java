@@ -13,6 +13,7 @@ import br.usp.ime.tcc.activities.R;
 import br.usp.ime.tcc.activities.colorpicker.SettingsColorPickerActivity;
 import br.usp.ime.tcc.activities.components.ComponentUtils;
 import br.usp.ime.tcc.utils.Constants;
+import br.usp.ime.tcc.utils.Utils;
 
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
@@ -40,8 +41,11 @@ public class SettingsActivity extends SherlockActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		setTheme(R.style.Theme_Sherlock);
 		super.onCreate(savedInstanceState);
+	
+		setTheme(R.style.Theme_Sherlock);
+		Utils.loadStripedActionBar(this);
+		
 		setContentView(R.layout.settings);
 		settingsManager = new SettingsManager(this);
 

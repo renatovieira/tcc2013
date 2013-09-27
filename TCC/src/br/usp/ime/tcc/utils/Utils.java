@@ -6,8 +6,14 @@ import java.util.Locale;
 
 import android.content.ContentResolver;
 import android.database.Cursor;
+import android.graphics.Shader.TileMode;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.provider.MediaStore;
+import br.usp.ime.tcc.activities.R;
+
+import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.app.SherlockActivity;
 
 public final class Utils {
 	private static Cursor queryFor(Uri photoUri, ContentResolver cr,
@@ -43,5 +49,15 @@ public final class Utils {
 		String timeStamp = new SimpleDateFormat(Constants.DATE_FORMAT,
 				Locale.getDefault()).format(new Date());
 		return timeStamp;
+	}
+	
+	public static void loadStripedActionBar(SherlockActivity act) {
+		ActionBar supportActionBar = act.getSupportActionBar();
+		
+		if (supportActionBar != null) {
+			BitmapDrawable bg = (BitmapDrawable)act.getResources().getDrawable(R.drawable.bg_striped);
+			bg.setTileModeXY(TileMode.REPEAT, TileMode.REPEAT);
+			supportActionBar.setBackgroundDrawable(bg);
+		}
 	}
 }

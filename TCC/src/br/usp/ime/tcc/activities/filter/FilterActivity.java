@@ -16,6 +16,9 @@ public abstract class FilterActivity extends SherlockActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		setTheme(R.style.Theme_Sherlock);
+		
+		Utils.loadStripedActionBar(this);
+		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.filter_activity);
 		loadComponents();
