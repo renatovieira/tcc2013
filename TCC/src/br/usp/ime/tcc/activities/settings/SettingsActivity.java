@@ -20,14 +20,16 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 
 public class SettingsActivity extends SherlockActivity {
+	private static final int RED = 0;
+	private static final int GREEN = 1;
+	private static final int BLUE = 2;
+	
 	private int defaultIntensity;
 	private int defaultColorSimulation;
 	private int defaultRedTolerance;
 	private int defaultGreenTolerance;
 	private int defaultBlueTolerance;
-	private int defaultRed;
-	private int defaultGreen;
-	private int defaultBlue;
+	private int[] defaultColor;
 	
 	private SettingsManager settingsManager;
 	
@@ -73,9 +75,11 @@ public class SettingsActivity extends SherlockActivity {
 		defaultRedTolerance = settingsManager.loadDefaultRedTolerance();
 		defaultGreenTolerance = settingsManager.loadDefaultGreenTolerance();
 		defaultBlueTolerance = settingsManager.loadDefaultBlueTolerance();
-		defaultRed = settingsManager.loadDefaultRed();
-		defaultGreen = settingsManager.loadDefaultGreen();
-		defaultBlue = settingsManager.loadDefaultBlue();
+		
+		defaultColor = (int[]) getLastNonConfigurationInstance();
+		
+		if (defaultColor == null)
+			defaultColor = new int[] {settingsManager.loadDefaultRed(), settingsManager.loadDefaultGreen(), settingsManager.loadDefaultBlue()};
 	}
 
 	private void loadComponents() {
@@ -86,15 +90,15 @@ public class SettingsActivity extends SherlockActivity {
 			public void onClick(View arg0) {
 				Intent colorPickerIntent = new Intent(getBaseContext(),
 						SettingsColorPickerActivity.class);
-				colorPickerIntent.putExtra(Constants.RED, defaultRed);
-				colorPickerIntent.putExtra(Constants.GREEN, defaultGreen);
-				colorPickerIntent.putExtra(Constants.BLUE, defaultBlue);
+				colorPickerIntent.putExtra(Constants.RED, defaultColor[RED]);
+				colorPickerIntent.putExtra(Constants.GREEN, defaultColor[GREEN]);
+				colorPickerIntent.putExtra(Constants.BLUE, defaultColor[BLUE]);
 				startActivityForResult(colorPickerIntent,
 						Constants.COLOR_PICKER_REQUEST_CODE);
 			}
 		});
 		
-		cu.updateWithColor(colorSampleButton, defaultRed, defaultGreen, defaultBlue);
+		cu.updateWithColor(colorSampleButton, defaultColor[RED], defaultColor[GREEN], defaultColor[BLUE]);
 
 		intensityBar = cu.loadSeekBar(R.id.default_intensity, Constants.MAX_INTENSITY,
 				defaultIntensity);
@@ -115,10 +119,10 @@ public class SettingsActivity extends SherlockActivity {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (resultCode == RESULT_OK) {
 			if (requestCode == Constants.COLOR_PICKER_REQUEST_CODE) {
-				defaultRed = data.getIntExtra(Constants.RED, defaultRed);
-				defaultGreen = data.getIntExtra(Constants.GREEN, defaultGreen);
-				defaultBlue = data.getIntExtra(Constants.BLUE, defaultBlue);
-				cu.updateWithColor(colorSampleButton, defaultRed, defaultGreen, defaultBlue);
+				defaultColor[RED]= data.getIntExtra(Constants.RED, defaultColor[RED]);
+				defaultColor[GREEN] = data.getIntExtra(Constants.GREEN, defaultColor[GREEN]);
+				defaultColor[BLUE] = data.getIntExtra(Constants.BLUE, defaultColor[BLUE]);
+				cu.updateWithColor(colorSampleButton, defaultColor[RED], defaultColor[GREEN], defaultColor[BLUE]);
 			}
 		}
 	}
@@ -182,8 +186,14 @@ public class SettingsActivity extends SherlockActivity {
 		settingsManager.saveDefaultRedTolerance(defaultRedTolerance);
 		settingsManager.saveDefaultGreenTolerance(defaultGreenTolerance);
 		settingsManager.saveDefaultBlueTolerance(defaultBlueTolerance);
-		settingsManager.saveDefaultRed(defaultRed);
-		settingsManager.saveDefaultGreen(defaultGreen);
-		settingsManager.saveDefaultBlue(defaultBlue);
+		settingsManager.saveDefaultRed(defaultColor[RED]);
+		settingsManager.saveDefaultGreen(defaultColor[GREEN]);
+		settingsManager.saveDefaultBlue(defaultColor[BLUE]);
+	}
+	
+	@Override
+	@Deprecated
+	public Object onRetainNonConfigurationInstance() {
+		return defaultColor;
 	}
 }
