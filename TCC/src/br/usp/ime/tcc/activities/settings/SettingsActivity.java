@@ -81,7 +81,7 @@ public class SettingsActivity extends SherlockActivity {
 	private void loadComponents() {
 		cu = new ComponentUtils(this);
 		
-		colorSampleButton = cu.loadSquareImageButton(R.id.default_color_picker_button, new OnClickListener() {
+		colorSampleButton = cu.loadImageButton(R.id.default_color_picker_button, new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
 				Intent colorPickerIntent = new Intent(getBaseContext(),

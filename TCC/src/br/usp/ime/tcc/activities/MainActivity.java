@@ -28,7 +28,7 @@ public class MainActivity extends SherlockActivity {
 		Display display = getWindowManager().getDefaultDisplay();
 		
 		if (display.getWidth() > display.getHeight())
-			setContentView(R.layout.main);
+			setContentView(R.layout.main_landscape);
 		else
 			setContentView(R.layout.main_portrait);
 
@@ -38,21 +38,21 @@ public class MainActivity extends SherlockActivity {
 	private void loadComponents() {
 		ComponentUtils componentUtils = new ComponentUtils(this);
 
-		componentUtils.loadButton(R.id.visocor_button, new OnClickListener() {
+		componentUtils.loadImageButton(R.id.visocor_button, new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				callActivity(VisocorFilterActivity.class);
 			}
 		});
 		
-		componentUtils.loadButton(R.id.simulation_button, new OnClickListener() {
+		componentUtils.loadImageButton(R.id.simulation_button, new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				callActivity(SimulationFilterActivity.class);
 			}
 		});
 		
-		componentUtils.loadButton(R.id.highlight_button, new OnClickListener() {
+		componentUtils.loadImageButton(R.id.highlight_button, new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				callActivity(ColorHighlightFilterActivity.class);

@@ -100,7 +100,7 @@ public class ComponentUtilsTest {
 	}
 
 	private ImageButton getDefaultImageButton(OnClickListener listener) {
-		ImageButton ib = componentUtils.loadSquareImageButton(defaultImageButtonId,
+		ImageButton ib = componentUtils.loadImageButton(defaultImageButtonId,
 				listener);
 		return ib;
 	}
@@ -361,7 +361,7 @@ public class ComponentUtilsTest {
 
 	@Test(expected = NullPointerException.class)
 	public void imageButtonShouldThrowExceptionIfInvalidId() {
-		componentUtils.loadSquareImageButton(INVALID_ID, null);
+		componentUtils.loadImageButton(INVALID_ID, null);
 	}
 
 	@Test
@@ -384,7 +384,7 @@ public class ComponentUtilsTest {
 	public void shouldReturnRightColorFromImageButton() {
 		Bitmap bitmapTest = BitmapFactory.decodeResource(
 				activity.getResources(), R.drawable.ic_launcher);
-		ImageButton ib = componentUtils.loadSquareImageButtonWithBitmap(defaultImageButtonId, bitmapTest, null);
+		ImageButton ib = componentUtils.loadImageButtonWithBitmap(defaultImageButtonId, bitmapTest, null);
 
 		Bitmap returnedBitmap = componentUtils.getBitmap(ib);
 

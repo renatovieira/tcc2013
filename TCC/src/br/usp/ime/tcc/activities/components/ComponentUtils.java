@@ -22,8 +22,7 @@ public class ComponentUtils {
 		activity = act;
 	}
 
-	public Button loadButton(int buttonId,
-			android.view.View.OnClickListener onClickListener) {
+	public Button loadButton(int buttonId, OnClickListener onClickListener) {
 		Button button = (Button) activity.findViewById(buttonId);
 
 		button.setVisibility(View.VISIBLE);
@@ -121,7 +120,7 @@ public class ComponentUtils {
 		return et;
 	}
 
-	public ImageButton loadSquareImageButton(int imageButtonId,
+	public ImageButton loadImageButton(int imageButtonId,
 			OnClickListener listener) {
 		ImageButton imageButton = (ImageButton) activity
 				.findViewById(imageButtonId);
@@ -129,9 +128,9 @@ public class ComponentUtils {
 		return imageButton;
 	}
 
-	public ImageButton loadSquareImageButtonWithBitmap(int imageButtonId, Bitmap bmp,
+	public ImageButton loadImageButtonWithBitmap(int imageButtonId, Bitmap bmp,
 			OnClickListener listener) {
-		ImageButton imageButton = loadSquareImageButton(imageButtonId, listener);
+		ImageButton imageButton = loadImageButton(imageButtonId, listener);
 		fillIn(imageButton, bmp);
 
 		return imageButton;

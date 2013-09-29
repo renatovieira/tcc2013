@@ -8,7 +8,6 @@ import org.opencv.android.LoaderCallbackInterface;
 import org.opencv.android.OpenCVLoader;
 import org.opencv.core.Mat;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.WindowManager;
 import android.widget.SeekBar;
@@ -17,7 +16,9 @@ import br.usp.ime.tcc.activities.settings.SettingsManager;
 import br.usp.ime.tcc.filter.visocor.VisocorContinousFilter;
 import br.usp.ime.tcc.utils.Constants;
 
-public class ContinousFilterActivity extends Activity implements
+import com.actionbarsherlock.app.SherlockActivity;
+
+public class ContinousFilterActivity extends SherlockActivity implements
 		CvCameraViewListener2 {
 	private CameraBridgeViewBase mOpenCvCameraView;
 	private SeekBar seekBar;
@@ -30,6 +31,7 @@ public class ContinousFilterActivity extends Activity implements
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
+		setTheme(R.style.Theme_Sherlock_NoActionBar);
 		super.onCreate(savedInstanceState);
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 

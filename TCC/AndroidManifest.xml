@@ -19,7 +19,7 @@
         
         <activity
             android:name="br.usp.ime.tcc.activities.MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/color_blindness_accessibility_toolkit" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

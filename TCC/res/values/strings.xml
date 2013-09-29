@@ -47,4 +47,8 @@
     <string name="default_color">Default color: </string>
     <string name="saved">Settings saved.</string>
 
+    <!-- Main -->
+    <string name="accessibility">Acessibility</string>
+    <string name="color_blindness_accessibility_toolkit">CAT</string>
+
 </resources>

@@ -8,14 +8,8 @@
     <LinearLayout
         android:layout_width="0dip"
         android:layout_height="fill_parent"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:orientation="vertical" >
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="0dip"
-        android:layout_height="fill_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:layout_weight="1"
         android:gravity="center"
         android:orientation="vertical" >
@@ -33,9 +27,17 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
             android:text="@string/accessibility"
             android:textAppearance="?android:attr/textAppearanceMedium" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dip"
+        android:layout_height="fill_parent"
+        android:layout_marginRight="20dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical" >
 
         <ImageButton
             android:id="@+id/simulation_button"
@@ -50,9 +52,17 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
             android:text="@string/simulation"
             android:textAppearance="?android:attr/textAppearanceMedium" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dip"
+        android:layout_height="fill_parent"
+        android:layout_marginRight="20dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical" >
 
         <ImageButton
             android:id="@+id/highlight_button"
@@ -67,17 +77,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:text="@string/color_highlight"
             android:textAppearance="?android:attr/textAppearanceMedium" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="0dip"
-        android:layout_height="fill_parent"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:orientation="vertical" >
     </LinearLayout>
 
 </LinearLayout>
