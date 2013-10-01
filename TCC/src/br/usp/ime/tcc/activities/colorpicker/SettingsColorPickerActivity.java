@@ -24,12 +24,12 @@ public class SettingsColorPickerActivity extends ColorPickerActivity {
 
 		colorSample = cu.loadImageView(R.id.selected_color);
 
-		cu.loadSeekBar(R.id.red_seekbar, Constants.MAX_COLOR_VALUE, rgb[RED],
-				createSeekbarListener(RED));
+		cu.loadSeekBar(R.id.red_seekbar, Constants.MAX_COLOR_VALUE, rgb[Constants.RED],
+				createSeekbarListener(Constants.RED));
 		cu.loadSeekBar(R.id.green_seekbar, Constants.MAX_COLOR_VALUE,
-				rgb[GREEN], createSeekbarListener(GREEN));
-		cu.loadSeekBar(R.id.blue_seekbar, Constants.MAX_COLOR_VALUE, rgb[BLUE],
-				createSeekbarListener(BLUE));
+				rgb[Constants.GREEN], createSeekbarListener(Constants.GREEN));
+		cu.loadSeekBar(R.id.blue_seekbar, Constants.MAX_COLOR_VALUE, rgb[Constants.BLUE],
+				createSeekbarListener(Constants.BLUE));
 	}
 
 	private OnSeekBarChangeListener createSeekbarListener(final int color) {
@@ -46,7 +46,7 @@ public class SettingsColorPickerActivity extends ColorPickerActivity {
 			public void onProgressChanged(SeekBar seekBar, int progress,
 					boolean fromUser) {
 				rgb[color] = seekBar.getProgress();
-				cu.updateWithColor(colorSample, rgb[RED], rgb[GREEN], rgb[BLUE]);
+				cu.updateWithColor(colorSample, rgb[Constants.RED], rgb[Constants.GREEN], rgb[Constants.BLUE]);
 			}
 		};
 	}

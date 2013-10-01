@@ -19,9 +19,9 @@ public final class Constants {
 
 	public static final int COLOR_PICKER_REQUEST_CODE = 1;
 
-	public static final String RED = "red";
-	public static final String GREEN = "green";
-	public static final String BLUE = "blue";
+	public static final String RED_STR = "red";
+	public static final String GREEN_STR = "green";
+	public static final String BLUE_STR = "blue";
 	public static final int MIN_COLOR_VALUE = 0;
 	public static final int MAX_COLOR_VALUE = 255;
 	
@@ -31,4 +31,8 @@ public final class Constants {
 	public static final int SAVE = 0;
 	public static final int DISCARD = 1;
 	public static final int SETTINGS = 2;
+	
+	public static final int RED = 0;
+	public static final int GREEN = 1;
+	public static final int BLUE = 2;
 }

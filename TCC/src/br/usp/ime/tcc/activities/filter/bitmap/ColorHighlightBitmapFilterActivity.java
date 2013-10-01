@@ -8,23 +8,20 @@ import br.usp.ime.tcc.activities.R;
 import br.usp.ime.tcc.activities.colorpicker.ImageColorPickerActivity;
 import br.usp.ime.tcc.activities.components.ComponentUtils;
 import br.usp.ime.tcc.activities.settings.SettingsManager;
-import br.usp.ime.tcc.filter.BitmapFilter;
 import br.usp.ime.tcc.filter.colorhighlight.ColorHighlightBitmapFilter;
 import br.usp.ime.tcc.utils.Constants;
 
 public class ColorHighlightBitmapFilterActivity extends BitmapFilterActivity {
-	private int red, green, blue, redTolerance, greenTolerance, blueTolerance;
+	private int redTolerance, greenTolerance, blueTolerance;
+	private int rgb[];
 
 	@Override
 	protected void loadFilter() {
-		filter = (BitmapFilter) getLastNonConfigurationInstance();
+		loadSettings();
 
-		if (filter == null) {
-			loadSettings();
-
-			filter = new ColorHighlightBitmapFilter(red, green, blue,
-					redTolerance, greenTolerance, blueTolerance);
-		}
+		filter = new ColorHighlightBitmapFilter(rgb[Constants.RED],
+				rgb[Constants.GREEN], rgb[Constants.BLUE], redTolerance,
+				greenTolerance, blueTolerance);
 	}
 
 	@Override
@@ -34,9 +31,14 @@ public class ColorHighlightBitmapFilterActivity extends BitmapFilterActivity {
 
 	private void loadSettings() {
 		SettingsManager settingsManager = new SettingsManager(this);
-		red = settingsManager.loadDefaultRed();
-		green = settingsManager.loadDefaultGreen();
-		blue = settingsManager.loadDefaultBlue();
+
+		rgb = (int[]) getLastNonConfigurationInstance();
+
+		if (rgb == null)
+			rgb = new int[] { settingsManager.loadDefaultRed(),
+					settingsManager.loadDefaultGreen(),
+					settingsManager.loadDefaultBlue() };
+
 		redTolerance = settingsManager.loadDefaultRedTolerance();
 		greenTolerance = settingsManager.loadDefaultGreenTolerance();
 		blueTolerance = settingsManager.loadDefaultBlueTolerance();
@@ -54,9 +56,9 @@ public class ColorHighlightBitmapFilterActivity extends BitmapFilterActivity {
 					public void onClick(View arg0) {
 						Intent i = new Intent(getBaseContext(),
 								ImageColorPickerActivity.class);
-						i.putExtra(Constants.RED, red);
-						i.putExtra(Constants.GREEN, green);
-						i.putExtra(Constants.BLUE, blue);
+						i.putExtra(Constants.RED_STR, rgb[Constants.RED]);
+						i.putExtra(Constants.GREEN_STR, rgb[Constants.GREEN]);
+						i.putExtra(Constants.BLUE_STR, rgb[Constants.BLUE]);
 						i.putExtra(Constants.IMAGE_PATH, imagePath);
 						startActivityForResult(i,
 								Constants.COLOR_PICKER_REQUEST_CODE);
@@ -67,11 +69,15 @@ public class ColorHighlightBitmapFilterActivity extends BitmapFilterActivity {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (resultCode == RESULT_OK) {
 			if (requestCode == Constants.COLOR_PICKER_REQUEST_CODE) {
-				red = data.getIntExtra(Constants.RED, red);
-				green = data.getIntExtra(Constants.GREEN, green);
-				blue = data.getIntExtra(Constants.BLUE, blue);
+				rgb[Constants.RED] = data.getIntExtra(Constants.RED_STR,
+						rgb[Constants.RED]);
+				rgb[Constants.GREEN] = data.getIntExtra(Constants.GREEN_STR,
+						rgb[Constants.GREEN]);
+				rgb[Constants.BLUE] = data.getIntExtra(Constants.BLUE_STR,
+						rgb[Constants.BLUE]);
 
-				filter = new ColorHighlightBitmapFilter(red, green, blue,
+				filter = new ColorHighlightBitmapFilter(rgb[Constants.RED],
+						rgb[Constants.GREEN], rgb[Constants.BLUE],
 						redTolerance, greenTolerance, blueTolerance);
 				applyFilter();
 			}
@@ -80,6 +86,6 @@ public class ColorHighlightBitmapFilterActivity extends BitmapFilterActivity {
 
 	@Override
 	public Object onRetainNonConfigurationInstance() {
-		return filter;
+		return rgb;
 	}
 }

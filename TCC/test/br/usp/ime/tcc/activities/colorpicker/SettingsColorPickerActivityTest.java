@@ -52,9 +52,9 @@ public class SettingsColorPickerActivityTest extends ColorPickerActivityTest {
 		
 		int [] randomColor = generateRandomColor();
 		
-		intent.putExtra(Constants.RED, randomColor[SettingsColorPickerActivity.RED]);
-		intent.putExtra(Constants.GREEN, randomColor[SettingsColorPickerActivity.GREEN]);
-		intent.putExtra(Constants.BLUE, randomColor[SettingsColorPickerActivity.BLUE]);
+		intent.putExtra(Constants.RED_STR, randomColor[SettingsColorPickerActivity.RED]);
+		intent.putExtra(Constants.GREEN_STR, randomColor[SettingsColorPickerActivity.GREEN]);
+		intent.putExtra(Constants.BLUE_STR, randomColor[SettingsColorPickerActivity.BLUE]);
 
 		activity.setIntent(intent);
 		activity.onCreate(null);

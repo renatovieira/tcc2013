@@ -34,7 +34,7 @@ public class ImageColorPickerActivity extends ColorPickerActivity {
 			public boolean onLongClick(View v) {
 				rgb = imageColorPicker.getTouchedPixel();
 				
-				cu.updateWithColor(colorSample, rgb[RED], rgb[GREEN], rgb[BLUE]);
+				cu.updateWithColor(colorSample, rgb[Constants.RED], rgb[Constants.GREEN], rgb[Constants.BLUE]);
 				
 				return true;
 			}

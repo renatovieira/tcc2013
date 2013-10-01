@@ -20,10 +20,6 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 
 public class SettingsActivity extends SherlockActivity {
-	private static final int RED = 0;
-	private static final int GREEN = 1;
-	private static final int BLUE = 2;
-	
 	private int defaultIntensity;
 	private int defaultColorSimulation;
 	private int defaultRedTolerance;
@@ -90,15 +86,15 @@ public class SettingsActivity extends SherlockActivity {
 			public void onClick(View arg0) {
 				Intent colorPickerIntent = new Intent(getBaseContext(),
 						SettingsColorPickerActivity.class);
-				colorPickerIntent.putExtra(Constants.RED, defaultColor[RED]);
-				colorPickerIntent.putExtra(Constants.GREEN, defaultColor[GREEN]);
-				colorPickerIntent.putExtra(Constants.BLUE, defaultColor[BLUE]);
+				colorPickerIntent.putExtra(Constants.RED_STR, defaultColor[Constants.RED]);
+				colorPickerIntent.putExtra(Constants.GREEN_STR, defaultColor[Constants.GREEN]);
+				colorPickerIntent.putExtra(Constants.BLUE_STR, defaultColor[Constants.BLUE]);
 				startActivityForResult(colorPickerIntent,
 						Constants.COLOR_PICKER_REQUEST_CODE);
 			}
 		});
 		
-		cu.updateWithColor(colorSampleButton, defaultColor[RED], defaultColor[GREEN], defaultColor[BLUE]);
+		cu.updateWithColor(colorSampleButton, defaultColor[Constants.RED], defaultColor[Constants.GREEN], defaultColor[Constants.BLUE]);
 
 		intensityBar = cu.loadSeekBar(R.id.default_intensity, Constants.MAX_INTENSITY,
 				defaultIntensity);
@@ -119,10 +115,10 @@ public class SettingsActivity extends SherlockActivity {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (resultCode == RESULT_OK) {
 			if (requestCode == Constants.COLOR_PICKER_REQUEST_CODE) {
-				defaultColor[RED]= data.getIntExtra(Constants.RED, defaultColor[RED]);
-				defaultColor[GREEN] = data.getIntExtra(Constants.GREEN, defaultColor[GREEN]);
-				defaultColor[BLUE] = data.getIntExtra(Constants.BLUE, defaultColor[BLUE]);
-				cu.updateWithColor(colorSampleButton, defaultColor[RED], defaultColor[GREEN], defaultColor[BLUE]);
+				defaultColor[Constants.RED]= data.getIntExtra(Constants.RED_STR, defaultColor[Constants.RED]);
+				defaultColor[Constants.GREEN] = data.getIntExtra(Constants.GREEN_STR, defaultColor[Constants.GREEN]);
+				defaultColor[Constants.BLUE] = data.getIntExtra(Constants.BLUE_STR, defaultColor[Constants.BLUE]);
+				cu.updateWithColor(colorSampleButton, defaultColor[Constants.RED], defaultColor[Constants.GREEN], defaultColor[Constants.BLUE]);
 			}
 		}
 	}
@@ -186,9 +182,9 @@ public class SettingsActivity extends SherlockActivity {
 		settingsManager.saveDefaultRedTolerance(defaultRedTolerance);
 		settingsManager.saveDefaultGreenTolerance(defaultGreenTolerance);
 		settingsManager.saveDefaultBlueTolerance(defaultBlueTolerance);
-		settingsManager.saveDefaultRed(defaultColor[RED]);
-		settingsManager.saveDefaultGreen(defaultColor[GREEN]);
-		settingsManager.saveDefaultBlue(defaultColor[BLUE]);
+		settingsManager.saveDefaultRed(defaultColor[Constants.RED]);
+		settingsManager.saveDefaultGreen(defaultColor[Constants.GREEN]);
+		settingsManager.saveDefaultBlue(defaultColor[Constants.BLUE]);
 	}
 	
 	@Override

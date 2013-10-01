@@ -53,7 +53,7 @@ public class ColorHighlightBitmapFilter extends BitmapFilter {
 	}
 
 	private int calculateGrayValue(int red, int green, int blue) {
-		// Calculating using the Luma formula
+		// Calculate using the Luma formula
 		return (int) (LUMA_RED_COEFFICENT * red + 
 					  LUMA_GREEN_COEFFICENT * green +
 				  	  LUMA_BLUE_COEFFICENT * blue);

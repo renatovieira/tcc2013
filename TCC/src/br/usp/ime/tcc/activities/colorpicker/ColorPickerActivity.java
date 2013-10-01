@@ -12,10 +12,6 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
 
 public abstract class ColorPickerActivity extends SherlockActivity {
-	protected static final int RED = 0;
-	protected static final int GREEN = 1;
-	protected static final int BLUE = 2;
-
 	protected ComponentUtils cu;
 
 	protected int[] rgb;
@@ -28,15 +24,15 @@ public abstract class ColorPickerActivity extends SherlockActivity {
 		loadInitialValues();
 
 		loadComponents();
-		cu.updateWithColor(colorSample, rgb[RED], rgb[GREEN], rgb[BLUE]);
+		cu.updateWithColor(colorSample, rgb[Constants.RED], rgb[Constants.GREEN], rgb[Constants.BLUE]);
 	}
 
 	private void loadInitialValues() {
 		Bundle extras = getIntent().getExtras();
 
-		int redValue = (Integer) extras.get(Constants.RED);
-		int greenValue = (Integer) extras.get(Constants.GREEN);
-		int blueValue = (Integer) extras.get(Constants.BLUE);
+		int redValue = (Integer) extras.get(Constants.RED_STR);
+		int greenValue = (Integer) extras.get(Constants.GREEN_STR);
+		int blueValue = (Integer) extras.get(Constants.BLUE_STR);
 
 		rgb = new int[] { redValue, greenValue, blueValue };
 	}
@@ -81,8 +77,8 @@ public abstract class ColorPickerActivity extends SherlockActivity {
 	}
 
 	private void putExtras(Intent returnIntent) {
-		returnIntent.putExtra(Constants.RED, rgb[RED]);
-		returnIntent.putExtra(Constants.GREEN, rgb[GREEN]);
-		returnIntent.putExtra(Constants.BLUE, rgb[BLUE]);
+		returnIntent.putExtra(Constants.RED_STR, rgb[Constants.RED]);
+		returnIntent.putExtra(Constants.GREEN_STR, rgb[Constants.GREEN]);
+		returnIntent.putExtra(Constants.BLUE_STR, rgb[Constants.BLUE]);
 	}
 }
