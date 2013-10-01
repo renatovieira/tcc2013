@@ -18,6 +18,9 @@ public class ImageColorPickerActivity extends ColorPickerActivity {
 		setTheme(R.style.Theme_Sherlock);
 		Utils.loadStripedActionBar(this);
 		setContentView(R.layout.image_color_picker);
+		
+		rgb = (int[]) getLastNonConfigurationInstance();
+			
 		super.onCreate(savedInstanceState);
 	}
 	
@@ -44,5 +47,11 @@ public class ImageColorPickerActivity extends ColorPickerActivity {
 		
 		BitmapLoader bitmapLoader = new BitmapLoader(imagePath);
 		cu.fillIn(imageColorPicker, bitmapLoader.getBitmap());
+	}
+	
+	@Override
+	@Deprecated
+	public Object onRetainNonConfigurationInstance() {
+		return rgb;
 	}
 }

@@ -21,7 +21,8 @@ public abstract class ColorPickerActivity extends SherlockActivity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		loadInitialValues();
+		if (rgb == null)
+			loadInitialValues();
 
 		loadComponents();
 		cu.updateWithColor(colorSample, rgb[Constants.RED], rgb[Constants.GREEN], rgb[Constants.BLUE]);
