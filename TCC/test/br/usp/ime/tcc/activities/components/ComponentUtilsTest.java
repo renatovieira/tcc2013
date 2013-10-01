@@ -21,6 +21,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -33,6 +34,7 @@ public class ComponentUtilsTest {
 	private Activity activity;
 	private ComponentUtils componentUtils;
 	private boolean activated;
+	private static int defaultLinearLayout = R.id.filter_type_spinner_ll;
 	private static int defaultButtonId = R.id.visocor_button;
 	private static int defaultImageviewId = R.id.filtered_image;
 	private static int defaultSeekbarId = R.id.intensity_bar;
@@ -104,6 +106,12 @@ public class ComponentUtilsTest {
 				listener);
 		return ib;
 	}
+	
+	private LinearLayout getDefaultLinearLayout() {
+		LinearLayout ll = componentUtils.loadLinearLayout(defaultLinearLayout);
+		
+		return ll;
+	}
 
 	private ImageButton createImageButtonWithDefaultListener() {
 		OnClickListener listener = createDefaultOnClickListener();
@@ -119,7 +127,6 @@ public class ComponentUtilsTest {
 
 	private void loadDefaultSpinner(Activity activity) {
 		Spinner defaultSpinner = new Spinner(activity);
-		defaultSpinner.setVisibility(View.GONE);
 		when(activity.findViewById(defaultSpinnerId))
 				.thenReturn(defaultSpinner);
 	}
@@ -157,6 +164,12 @@ public class ComponentUtilsTest {
 		ImageButton ib = new ImageButton(activity);
 		when(activity.findViewById(defaultImageButtonId)).thenReturn(ib);
 	}
+	
+	private void loadDefaultLinearLayout(Activity activity) {
+		LinearLayout ll = new LinearLayout(activity);
+		ll.setVisibility(View.GONE);
+		when(activity.findViewById(defaultLinearLayout)).thenReturn(ll);
+	}
 
 	private Activity buildActivityWithMockObjects() {
 		Activity activity = spy(new Activity());
@@ -168,6 +181,7 @@ public class ComponentUtilsTest {
 		loadDefaultSpinner(activity);
 		loadDefaultEditText(activity);
 		loadDefaultImageButton(activity);
+		loadDefaultLinearLayout(activity);
 
 		return activity;
 	}
@@ -302,22 +316,30 @@ public class ComponentUtilsTest {
 	}
 
 	@Test
-	public void defaultSpinnerShouldBeHidden() {
+	public void defaultSpinnerShouldBeVisible() {
 		Spinner sp = getDefaultSpinner();
 
 		assertNotNull(sp);
-		assertEquals(View.GONE, sp.getVisibility());
+		assertEquals(View.VISIBLE, sp.getVisibility());
+	}
+	
+	@Test
+	public void defaultLinearLayoutShouldBeVisible() {
+		LinearLayout ll = getDefaultLinearLayout();
+
+		assertNotNull(ll);
+		assertEquals(View.GONE, ll.getVisibility());
 	}
 
 	@Test
-	public void spinnerShouldBeMadeVisible() {
-		Spinner sp = getDefaultSpinner();
+	public void linearLayoutShouldBeMadeVisible() {
+		LinearLayout ll = getDefaultLinearLayout();
 
-		assertNotNull(sp);
-		assertEquals(View.GONE, sp.getVisibility());
+		assertNotNull(ll);
+		assertEquals(View.GONE, ll.getVisibility());
 
-		componentUtils.showSpinner(defaultSpinnerId);
-		assertEquals(View.VISIBLE, sp.getVisibility());
+		componentUtils.showLinearLayout(defaultLinearLayout );
+		assertEquals(View.VISIBLE, ll.getVisibility());
 
 	}
 

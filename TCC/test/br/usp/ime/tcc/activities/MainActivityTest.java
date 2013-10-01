@@ -42,17 +42,17 @@ public class MainActivityTest {
 
 	@Test
 	public void visocorButtonShouldBeLoadedAndWorking() {
-		assertTrue(bat.getButtonAndClickOnIt(R.id.visocor_button));
+		assertTrue(bat.getImageButtonAndClickOnIt(R.id.visocor_button));
 	}
 
 	@Test
 	public void simulationButtonShouldBeLoadedAndWorking() {
-		assertTrue(bat.getButtonAndClickOnIt(R.id.simulation_button));
+		assertTrue(bat.getImageButtonAndClickOnIt(R.id.simulation_button));
 	}
 
 	@Test
 	public void highlightButtonShouldBeLoadedAndWorking() {
-		assertTrue(bat.getButtonAndClickOnIt(R.id.highlight_button));
+		assertTrue(bat.getImageButtonAndClickOnIt(R.id.highlight_button));
 	}
 	
 	@Test
@@ -72,7 +72,7 @@ public class MainActivityTest {
 	@Test
 	public void pressingVisocorButtonShouldStartVisocorFilterActivity() {
 		Intent startedIntent = bat
-				.getStartedIntentAfterClickOnButton(R.id.visocor_button);
+				.getStartedIntentAfterClickOnImageButton(R.id.visocor_button);
 
 		assertNotNull(startedIntent);
 		ShadowIntent shadowIntent = shadowOf(startedIntent);
@@ -83,7 +83,7 @@ public class MainActivityTest {
 	@Test
 	public void pressingSimulationButtonShouldSimulationStartFilterActivity() {
 		Intent startedIntent = bat
-				.getStartedIntentAfterClickOnButton(R.id.simulation_button);
+				.getStartedIntentAfterClickOnImageButton(R.id.simulation_button);
 
 		assertNotNull(startedIntent);
 		ShadowIntent shadowIntent = shadowOf(startedIntent);
@@ -94,7 +94,7 @@ public class MainActivityTest {
 	@Test
 	public void pressingHighlightButtonShouldStartColorHighlightFilterActivity() {
 		Intent startedIntent = bat
-				.getStartedIntentAfterClickOnButton(R.id.highlight_button);
+				.getStartedIntentAfterClickOnImageButton(R.id.highlight_button);
 
 		assertNotNull(startedIntent);
 		ShadowIntent shadowIntent = shadowOf(startedIntent);

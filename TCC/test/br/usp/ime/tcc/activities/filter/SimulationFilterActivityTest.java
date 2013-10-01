@@ -10,18 +10,12 @@ import org.robolectric.RobolectricTestRunner;
 import org.robolectric.shadows.ShadowIntent;
 
 import android.view.View;
-import android.widget.Button;
 import br.usp.ime.tcc.activities.R;
 import br.usp.ime.tcc.activities.components.ButtonActionsTestHelper;
 import br.usp.ime.tcc.activities.filter.bitmap.SimulationBitmapFilterActivity;
 
 @RunWith(RobolectricTestRunner.class)
 public class SimulationFilterActivityTest extends FilterActivityTest {
-	private int getVisibilyFromButton(int buttonId) {
-		Button button = (Button) filterActivity.findViewById(buttonId);
-		return button.getVisibility();
-	}
-	
 	// Tests
 
 	@Before
@@ -34,19 +28,19 @@ public class SimulationFilterActivityTest extends FilterActivityTest {
 	}
 	
 	@Test
-	public void liveModeButtonShouldBeGone() {
-		assertEquals(View.GONE, getVisibilyFromButton(R.id.liveModeButton));
+	public void liveModeLLShouldBeGone() {
+		assertEquals(View.GONE, getVisibilityFromLinearLayout(R.id.liveModeLL));
 	}
 
 	@Test
-	public void spinnerShouldBeVisible() {
-		assertEquals(View.VISIBLE, getVisibiltyFromSpinner());
+	public void spinnerLLShouldBeVisible() {
+		assertEquals(View.VISIBLE, getVisibilityFromLinearLayout(R.id.filter_type_spinner_ll));
 	}
 	
 	@Test
 	public void shouldCallBitmapFilterActivityAfterGalleryResult() {
 		ShadowIntent shadowIntent = bat
-				.getIntentAfterResultOfButtonClick(R.id.galleryModeButton);
+				.getIntentAfterResultOfImageButtonClick(R.id.galleryModeButton);
 		assertEquals(shadowIntent.getComponent().getClassName(),
 				SimulationBitmapFilterActivity.class.getName());
 	}
@@ -54,7 +48,7 @@ public class SimulationFilterActivityTest extends FilterActivityTest {
 	@Test
 	public void shouldCallBitmapFilterActivityAfterCameraResult() {
 		ShadowIntent shadowIntent = bat
-				.getIntentAfterResultOfButtonClick(R.id.cameraModeButton);
+				.getIntentAfterResultOfImageButtonClick(R.id.cameraModeButton);
 		assertEquals(shadowIntent.getComponent().getClassName(),
 				SimulationBitmapFilterActivity.class.getName());
 	}

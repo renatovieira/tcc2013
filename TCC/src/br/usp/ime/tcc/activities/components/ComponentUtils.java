@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.Spinner;
@@ -100,14 +101,19 @@ public class ComponentUtils {
 		return sp.getSelectedItemPosition();
 	}
 
-	public void showSpinner(int spinnerId) {
-		Spinner sp = loadSpinner(spinnerId);
-		sp.setVisibility(View.VISIBLE);
-	}
-
 	public void setSpinnerPosition(int spinnerId, int position) {
 		Spinner sp = loadSpinner(spinnerId);
 		sp.setSelection(position);
+	}
+	
+	public void showLinearLayout(int linearLayoutId) {
+		LinearLayout ll = loadLinearLayout(linearLayoutId);
+		ll.setVisibility(View.VISIBLE);
+	}
+
+	public LinearLayout loadLinearLayout(int linearLayoutId) {
+		LinearLayout ll = (LinearLayout) activity.findViewById(linearLayoutId);
+		return ll;
 	}
 
 	public EditText loadEditText(int editTextId) {

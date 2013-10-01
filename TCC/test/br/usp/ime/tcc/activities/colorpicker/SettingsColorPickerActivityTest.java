@@ -35,15 +35,15 @@ public class SettingsColorPickerActivityTest extends ColorPickerActivityTest {
 	}
 
 	private void setSeekBarsToDesiredValues(int rgb[]) {
-		setColor(R.id.red_seekbar, rgb[SettingsColorPickerActivity.RED]);
-		setColor(R.id.green_seekbar, rgb[SettingsColorPickerActivity.GREEN]);
-		setColor(R.id.blue_seekbar, rgb[SettingsColorPickerActivity.BLUE]);
+		setColor(R.id.red_seekbar, rgb[Constants.RED]);
+		setColor(R.id.green_seekbar, rgb[Constants.GREEN]);
+		setColor(R.id.blue_seekbar, rgb[Constants.BLUE]);
 	}
 
 	private boolean sameRgb(int[] oneColor, int[] otherColor) {
-		return oneColor[SettingsColorPickerActivity.RED] == otherColor[SettingsColorPickerActivity.RED] &&
-			   oneColor[SettingsColorPickerActivity.GREEN] == otherColor[SettingsColorPickerActivity.GREEN] &&
-			   oneColor[SettingsColorPickerActivity.BLUE] == otherColor[SettingsColorPickerActivity.BLUE];
+		return oneColor[Constants.RED] == otherColor[Constants.RED] &&
+			   oneColor[Constants.GREEN] == otherColor[Constants.GREEN] &&
+			   oneColor[Constants.BLUE] == otherColor[Constants.BLUE];
 	}
 
 	private ColorPickerActivity startWithExtras() {
@@ -52,9 +52,9 @@ public class SettingsColorPickerActivityTest extends ColorPickerActivityTest {
 		
 		int [] randomColor = generateRandomColor();
 		
-		intent.putExtra(Constants.RED_STR, randomColor[SettingsColorPickerActivity.RED]);
-		intent.putExtra(Constants.GREEN_STR, randomColor[SettingsColorPickerActivity.GREEN]);
-		intent.putExtra(Constants.BLUE_STR, randomColor[SettingsColorPickerActivity.BLUE]);
+		intent.putExtra(Constants.RED_STR, randomColor[Constants.RED]);
+		intent.putExtra(Constants.GREEN_STR, randomColor[Constants.GREEN]);
+		intent.putExtra(Constants.BLUE_STR, randomColor[Constants.BLUE]);
 
 		activity.setIntent(intent);
 		activity.onCreate(null);

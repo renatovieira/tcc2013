@@ -20,7 +20,7 @@ public class VisocorFilterActivity extends FilterActivity {
 	protected void loadSpecificComponents() {
 		ComponentUtils componentUtils = new ComponentUtils(this);
 
-		componentUtils.loadButton(R.id.liveModeButton, new OnClickListener() {
+		componentUtils.loadImageButton(R.id.liveModeButton, new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
@@ -31,6 +31,7 @@ public class VisocorFilterActivity extends FilterActivity {
 			}
 		});
 
+		componentUtils.showLinearLayout(R.id.liveModeLL);
 	}
 	
 	@Override

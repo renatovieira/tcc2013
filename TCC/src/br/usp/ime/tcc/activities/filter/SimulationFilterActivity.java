@@ -20,11 +20,11 @@ public class SimulationFilterActivity extends FilterActivity {
 		SettingsManager settingsManager = new SettingsManager(this);
 
 		ComponentUtils componentUtils = new ComponentUtils(this);
-		componentUtils.hideButton(R.id.liveModeButton);
-		componentUtils.showSpinner(R.id.filter_type_spinner);
 
 		componentUtils.setSpinnerPosition(R.id.filter_type_spinner,
 				settingsManager.loadDefaultColorSimulationId());
+		
+		componentUtils.showLinearLayout(R.id.filter_type_spinner_ll);
 	}
 
 	protected void putFilterTypeExtra(Intent intent) {

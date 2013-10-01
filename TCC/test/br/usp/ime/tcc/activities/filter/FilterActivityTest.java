@@ -11,6 +11,7 @@ import org.robolectric.RobolectricTestRunner;
 
 import android.content.Intent;
 import android.provider.MediaStore;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import br.usp.ime.tcc.activities.R;
 import br.usp.ime.tcc.activities.components.ButtonActionsTestHelper;
@@ -21,8 +22,13 @@ public class FilterActivityTest {
 	protected FilterActivity filterActivity;
 	protected ButtonActionsTestHelper bat;
 	protected String title;
+	
+	protected int getVisibilityFromLinearLayout(int llId) {
+		LinearLayout ll = (LinearLayout) filterActivity.findViewById(llId);
+		return ll.getVisibility();
+	}
 
-	protected int getVisibiltyFromSpinner() {
+	protected int getVisibilityFromSpinner() {
 		Spinner sp = (Spinner) filterActivity.findViewById(R.id.filter_type_spinner);
 		return sp.getVisibility();
 	}
@@ -41,18 +47,18 @@ public class FilterActivityTest {
 
 	@Test
 	public void cameraModeButtonShouldBeLoadedAndWorking() {
-		assertTrue(bat.getButtonAndClickOnIt(R.id.cameraModeButton));
+		assertTrue(bat.getImageButtonAndClickOnIt(R.id.cameraModeButton));
 	}
 
 	@Test
 	public void galleryModeButtonShouldBeLoadedAndWorking() {
-		assertTrue(bat.getButtonAndClickOnIt(R.id.galleryModeButton));
+		assertTrue(bat.getImageButtonAndClickOnIt(R.id.galleryModeButton));
 	}
 
 	@Test
 	public void pressingCameraModeButtonShouldStartCameraActivity() {
 		Intent startedIntent = bat
-				.getStartedIntentAfterClickOnButton(R.id.cameraModeButton);
+				.getStartedIntentAfterClickOnImageButton(R.id.cameraModeButton);
 
 		assertNotNull(startedIntent);
 		assertEquals(MediaStore.ACTION_IMAGE_CAPTURE, startedIntent.getAction());
@@ -61,7 +67,7 @@ public class FilterActivityTest {
 	@Test
 	public void pressingGalleryModeButtonShouldStartGalleryActivity() {
 		Intent startedIntent = bat
-				.getStartedIntentAfterClickOnButton(R.id.galleryModeButton);
+				.getStartedIntentAfterClickOnImageButton(R.id.galleryModeButton);
 
 		assertNotNull(startedIntent);
 		assertEquals(Intent.ACTION_PICK, startedIntent.getAction());

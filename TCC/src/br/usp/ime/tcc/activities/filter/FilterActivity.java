@@ -3,6 +3,7 @@ package br.usp.ime.tcc.activities.filter;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.Display;
 import android.view.View;
 import android.view.View.OnClickListener;
 import br.usp.ime.tcc.activities.R;
@@ -16,21 +17,27 @@ public abstract class FilterActivity extends SherlockActivity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		setTheme(R.style.Theme_Sherlock);
-		
+
 		Utils.loadStripedActionBar(this);
-		
+
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.filter_activity);
+
+		Display display = getWindowManager().getDefaultDisplay();
+
+		if (display.getWidth() > display.getHeight())
+			setContentView(R.layout.filter_activity);
+		else
+			setContentView(R.layout.filter_activity);
 		loadComponents();
 	}
-	
+
 	private void loadComponents() {
 		ComponentUtils componentUtils = new ComponentUtils(this);
-	
+
 		if (getSupportActionBar() != null)
 			getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-		
-		componentUtils.loadButton(R.id.galleryModeButton,
+
+		componentUtils.loadImageButton(R.id.galleryModeButton,
 				new OnClickListener() {
 
 					@Override
@@ -49,7 +56,7 @@ public abstract class FilterActivity extends SherlockActivity {
 					}
 				});
 
-		componentUtils.loadButton(R.id.cameraModeButton, new OnClickListener() {
+		componentUtils.loadImageButton(R.id.cameraModeButton, new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				Intent takePictureIntent = new Intent(
@@ -59,15 +66,16 @@ public abstract class FilterActivity extends SherlockActivity {
 						Constants.TAKE_PICTURE);
 			}
 		});
-		
+
 		loadSpecificComponents();
 	}
-	
+
 	protected abstract void loadSpecificComponents();
-	
+
 	public void putContentOnNextActivityExtras(Intent data,
 			Intent showImageIntent) {
-		String imagePath = Utils.getSelectedPicturePath(data.getData(), this.getContentResolver());
+		String imagePath = Utils.getSelectedPicturePath(data.getData(),
+				this.getContentResolver());
 		showImageIntent.putExtra(Constants.IMAGE_PATH, imagePath);
 	}
 }

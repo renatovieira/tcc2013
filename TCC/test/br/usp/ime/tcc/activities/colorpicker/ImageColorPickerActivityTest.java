@@ -26,9 +26,9 @@ public class ImageColorPickerActivityTest extends ColorPickerActivityTest{
 		
 		int [] randomColor = generateRandomColor();
 		
-		intent.putExtra(Constants.RED_STR, randomColor[SettingsColorPickerActivity.RED]);
-		intent.putExtra(Constants.GREEN_STR, randomColor[SettingsColorPickerActivity.GREEN]);
-		intent.putExtra(Constants.BLUE_STR, randomColor[SettingsColorPickerActivity.BLUE]);
+		intent.putExtra(Constants.RED_STR, randomColor[Constants.RED]);
+		intent.putExtra(Constants.GREEN_STR, randomColor[Constants.GREEN]);
+		intent.putExtra(Constants.BLUE_STR, randomColor[Constants.BLUE]);
 		intent.putExtra(Constants.IMAGE_PATH, "dummy");
 
 		activity.setIntent(intent);

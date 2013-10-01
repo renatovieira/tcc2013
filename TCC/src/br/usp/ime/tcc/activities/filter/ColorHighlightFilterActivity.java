@@ -3,8 +3,6 @@ package br.usp.ime.tcc.activities.filter;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import br.usp.ime.tcc.activities.R;
-import br.usp.ime.tcc.activities.components.ComponentUtils;
 import br.usp.ime.tcc.activities.filter.bitmap.ColorHighlightBitmapFilterActivity;
 
 public class ColorHighlightFilterActivity extends FilterActivity {
@@ -15,9 +13,6 @@ public class ColorHighlightFilterActivity extends FilterActivity {
 	
 	@Override
 	protected void loadSpecificComponents() {
-		ComponentUtils componentUtils = new ComponentUtils(this);
-
-		componentUtils.hideButton(R.id.liveModeButton);
 	}
 	
 	@Override

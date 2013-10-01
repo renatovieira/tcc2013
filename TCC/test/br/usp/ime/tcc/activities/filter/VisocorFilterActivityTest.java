@@ -39,18 +39,18 @@ public class VisocorFilterActivityTest extends FilterActivityTest {
 	
 	@Test
 	public void liveModeButtonShouldBeLoadedAndWorking() {
-		assertTrue(bat.getButtonAndClickOnIt(R.id.liveModeButton));
+		assertTrue(bat.getImageButtonAndClickOnIt(R.id.liveModeButton));
 	}
 
 	@Test
-	public void spinnerShouldBeHidden() {
-		assertEquals(View.GONE, getVisibiltyFromSpinner());
+	public void spinnerLLShouldBeHidden() {
+		assertEquals(View.GONE, getVisibilityFromLinearLayout(R.id.filter_type_spinner_ll));
 	}
 	
 	@Test
 	public void pressingLiveModeButtonShouldStartGalleryActivity() {
 		Intent startedIntent = bat
-				.getStartedIntentAfterClickOnButton(R.id.liveModeButton);
+				.getStartedIntentAfterClickOnImageButton(R.id.liveModeButton);
 
 		assertNotNull(startedIntent);
 		ShadowIntent shadowIntent = shadowOf(startedIntent);
@@ -61,7 +61,7 @@ public class VisocorFilterActivityTest extends FilterActivityTest {
 	@Test
 	public void shouldCallBitmapFilterActivityAfterGalleryResult() {
 		ShadowIntent shadowIntent = bat
-				.getIntentAfterResultOfButtonClick(R.id.galleryModeButton);
+				.getIntentAfterResultOfImageButtonClick(R.id.galleryModeButton);
 		assertEquals(shadowIntent.getComponent().getClassName(),
 				VisocorBitmapFilterActivity.class.getName());
 	}
@@ -69,7 +69,7 @@ public class VisocorFilterActivityTest extends FilterActivityTest {
 	@Test
 	public void shouldCallBitmapFilterActivityAfterCameraResult() {
 		ShadowIntent shadowIntent = bat
-				.getIntentAfterResultOfButtonClick(R.id.cameraModeButton);
+				.getIntentAfterResultOfImageButtonClick(R.id.cameraModeButton);
 		assertEquals(shadowIntent.getComponent().getClassName(),
 				VisocorBitmapFilterActivity.class.getName());
 	}
