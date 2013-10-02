@@ -24,7 +24,7 @@
     <string name="try_again">Could not create image file. Try again.</string>
     <string name="file_saved">Image file saved.</string>
     <string name="pick_color">Pick a color</string>
-    <string name="filter_type">Filter Type</string>
+    <string name="filter_type">Simulation Type</string>
 
     <!-- Main Activity -->
     <string name="accessibility">Acessibility</string>

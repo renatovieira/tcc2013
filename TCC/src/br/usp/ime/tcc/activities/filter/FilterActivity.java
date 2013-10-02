@@ -25,9 +25,9 @@ public abstract class FilterActivity extends SherlockActivity {
 		Display display = getWindowManager().getDefaultDisplay();
 
 		if (display.getWidth() > display.getHeight())
-			setContentView(R.layout.filter_activity);
+			setContentView(R.layout.filter_activity_landscape);
 		else
-			setContentView(R.layout.filter_activity);
+			setContentView(R.layout.filter_activity_portrait);
 		loadComponents();
 	}
 

@@ -9,7 +9,6 @@
         android:layout_width="0dip"
         android:layout_height="fill_parent"
         android:layout_weight="1"
-        android:gravity="center"
         android:orientation="vertical" >
     </LinearLayout>
 
@@ -76,7 +75,6 @@
         android:layout_width="0dip"
         android:layout_height="fill_parent"
         android:layout_weight="1"
-        android:gravity="center"
         android:orientation="vertical" >
     </LinearLayout>
 
