@@ -20,7 +20,7 @@ public class SimulationFilterValuesCalculator {
 			c = -0.02234;
 		} else if (simulationType == Constants.DEUTERANOPIA_SIMULATION_FILTER) {
 			alpha = 0.957237;
-			beta = 0.003974;
+			beta = 0.0213814;
 			a = 0.11238;
 			b = 0.88761;
 			c = 0.004;
