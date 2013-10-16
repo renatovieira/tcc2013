@@ -1,7 +1,8 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent"
+    android:background="@color/abs__background_holo_dark" >
 
     <it.sephiroth.android.library.imagezoom.ImageViewTouch
         android:id="@+id/filtered_image"
@@ -19,6 +20,7 @@
             android:id="@+id/intensity_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             android:visibility="gone" />
@@ -28,6 +30,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="10dp"
             android:text="@string/pick_color"
             android:visibility="gone" />
     </LinearLayout>

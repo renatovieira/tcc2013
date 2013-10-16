@@ -2,13 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:layout_marginBottom="5dp"
-    android:layout_marginTop="5dp"
+    android:background="@color/abs__background_holo_dark"
     android:gravity="center_horizontal"
     android:orientation="vertical" >
 
     <ImageView
         android:id="@+id/image_selected_color"
+        android:layout_marginTop="10dp"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:contentDescription="@string/selected_color_sample" />
@@ -17,7 +17,7 @@
         android:id="@+id/image_for_selection"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:contentDescription="@string/image" />
 
 </LinearLayout>
