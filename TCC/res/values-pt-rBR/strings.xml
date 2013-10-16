@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">TCC</string>
+    <string name="action_settings">Configurações</string>
+
+    <!-- Filter Activity -->
+    <string name="live_mode">Modo Contínuo</string>
+    <string name="from_gallery">Galeria</string>
+    <string name="from_camera">Câmera</string>
+    <string name="simulation_filter">Filtro de Simulação</string>
+    <string name="visocor_filter">Filtro de Acessibilidade</string>
+    <string name="color_highlight_filter">Destaque de Cores</string>
+
+    <string-array name="filter_options">
+        <item>Deuteranopia</item>
+        <item>Protanopia</item>
+    </string-array>
+
+    <!-- Bitmap Filter Activity -->
+    <string name="save">Salvar</string>
+    <string name="discard">Descartar</string>
+    <string name="filtered_image">Imagem com filtro aplicado</string>
+    <string name="try_again">Não foi possível criar o arquivo de imagem. Tente de novo.</string>
+    <string name="file_saved">Imagem salva.</string>
+    <string name="pick_color">Escolha a cor</string>
+    <string name="filter_type">Tipo de simulação</string>
+
+    <!-- Main Activity -->
+    <string name="accessibility">Acessibilidade</string>
+    <string name="simulation">Simulação</string>
+    <string name="color_highlight">Destaque de Cores</string>
+    <string name="settings">Configurações</string>
+    <string name="color_blindness_accessibility_toolkit">CAT</string>
+
+    <!-- Color Picker Activity -->
+    <string name="red">Vermelho</string>
+    <string name="green">Verde</string>
+    <string name="blue">Azul</string>
+    <string name="invalid_value">Um ou mais valores são inválidos. Os valores devem ser entre 0 e 255.</string>
+    <string name="selected_color_sample">Amostra da cor selecionada</string>
+    <string name="color_picker">Seletor de Cor</string>
+    <string name="image">Imagem</string>
+
+    <!-- Settings -->
+    <string name="default_visocor_intensity">Intensidade padrão de acessibilidade</string>
+    <string name="default_simulation_filter">Tipo de simulação padrão</string>
+    <string name="default_tolerance_values">Valores padrões de tolerância (de 0 a 255)</string>
+    <string name="default_color">Cor padrão: </string>
+    <string name="saved">Configurações foram salvas.</string>
+
+</resources>

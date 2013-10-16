@@ -37,14 +37,14 @@
     <string name="red">Red</string>
     <string name="green">Green</string>
     <string name="blue">Blue</string>
-    <string name="invalid_value">One or more of the values is invalid. Values should be between 0 and 255, included.</string>
+    <string name="invalid_value">One or more of the values is invalid. Values should be between 0 and 255.</string>
     <string name="selected_color_sample">Selected Color Sample</string>
     <string name="color_picker">Color Picker</string>
     <string name="image">Image</string>
 
     <!-- Settings -->
-    <string name="default_visocor_intensity">Default Visocor intensity</string>
-    <string name="default_simulation_filter">Default simulation filter</string>
+    <string name="default_visocor_intensity">Default acessibility intensity</string>
+    <string name="default_simulation_filter">Default simulation type</string>
     <string name="default_tolerance_values">Default tolerance values (0 to 255)</string>
     <string name="default_color">Default color: </string>
     <string name="saved">Settings saved.</string>
