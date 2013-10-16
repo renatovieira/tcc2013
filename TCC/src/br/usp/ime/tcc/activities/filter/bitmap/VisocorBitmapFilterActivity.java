@@ -1,7 +1,12 @@
 package br.usp.ime.tcc.activities.filter.bitmap;
 
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
+
 import it.sephiroth.android.library.imagezoom.ImageViewTouch;
 import it.sephiroth.android.library.imagezoom.ImageViewTouchBase;
+import android.app.AlertDialog.Builder;
+import android.content.DialogInterface;
 import android.graphics.Matrix;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
@@ -56,5 +61,43 @@ public class VisocorBitmapFilterActivity extends BitmapFilterActivity {
 		filteredImage.setImageBitmap(filteredBitmap, imageMatrix.isIdentity() ? null
 				: imageMatrix, ImageViewTouchBase.ZOOM_INVALID,
 				ImageViewTouchBase.ZOOM_INVALID);
+	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		menu.add(Menu.NONE, Constants.HELP, Menu.NONE, getString(R.string.help))
+				.setIcon(R.drawable.ic_action_about)
+				.setShowAsAction(
+						MenuItem.SHOW_AS_ACTION_IF_ROOM
+								| MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+
+		return super.onCreateOptionsMenu(menu);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		if (item.getItemId() == Constants.HELP) {
+			Builder alertDialogBuilder = new Builder(this);
+
+			alertDialogBuilder.setTitle(R.string.help);
+
+			alertDialogBuilder
+					.setMessage(R.string.visocor_help)
+					.setCancelable(false)
+					.setPositiveButton(getString(R.string.OK),
+							new DialogInterface.OnClickListener() {
+
+								@Override
+								public void onClick(DialogInterface dialog,
+										int id) {
+									dialog.cancel();
+								}
+							});
+			alertDialogBuilder.create().show();
+
+			return true;
+		}
+
+		return super.onOptionsItemSelected(item);
 	}
 }

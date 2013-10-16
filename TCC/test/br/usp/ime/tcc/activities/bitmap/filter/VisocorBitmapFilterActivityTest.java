@@ -1,8 +1,10 @@
 package br.usp.ime.tcc.activities.bitmap.filter;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+import static org.robolectric.Robolectric.shadowOf;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -10,11 +12,13 @@ import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.shadows.ShadowActivity;
+import org.robolectric.shadows.ShadowAlertDialog;
 import org.robolectric.shadows.ShadowHandler;
 import org.robolectric.shadows.ShadowToast;
 import org.robolectric.tester.android.view.TestMenu;
 import org.robolectric.tester.android.view.TestMenuItem;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.view.MenuItem;
 import android.view.View;
@@ -109,5 +113,20 @@ public class VisocorBitmapFilterActivityTest extends BitmapFilterActivityTest {
 	@Test
 	public void colorPickerButtonShouldBeGoneOnVisocor() {
 		assertEquals(View.GONE, getVisibilyFromButton(R.id.color_picker_button));
+	}
+	
+	@Test
+	public void helpOptionShouldDisplayHelpDialog() {
+		MenuItem item = new TestMenuItem(Constants.HELP);
+
+		bitmapFilterActivity.onOptionsItemSelected(item);
+
+		ShadowHandler.idleMainLooper();
+		AlertDialog alertDialog = ShadowAlertDialog.getLatestAlertDialog();
+		ShadowAlertDialog sAlert = shadowOf(alertDialog);
+
+		assertEquals(bitmapFilterActivity.getString(R.string.visocor_help), sAlert.getMessage().toString());
+		assertTrue(alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick());
+		assertFalse(alertDialog.isShowing());
 	}
 }

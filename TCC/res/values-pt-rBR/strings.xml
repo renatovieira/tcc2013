@@ -25,6 +25,7 @@
     <string name="file_saved">Imagem salva.</string>
     <string name="pick_color">Escolha a cor</string>
     <string name="filter_type">Tipo de simulação</string>
+    <string name="visocor_help">Mova o slider para mudar a intensidade do filtro de acessibilidade. As extremidades representam uma maior intensidade aplicada enquanto o meio mantém as cores originais.</string>
 
     <!-- Main Activity -->
     <string name="accessibility">Acessibilidade</string>
