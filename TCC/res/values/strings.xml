@@ -25,10 +25,10 @@
     <string name="file_saved">Image file saved.</string>
     <string name="pick_color">Pick a color</string>
     <string name="filter_type">Simulation Type</string>
-    <string name="visocor_help">Move the slider to change the acessibility filter\'s intensity. The ends represent a greater intensity while the middle maintains the original image color.</string>
+    <string name="visocor_help">Move the slider to change the accessibility filter\'s intensity. The ends represent a greater intensity while the middle maintains the original image color.</string>
 
     <!-- Main Activity -->
-    <string name="accessibility">Acessibility</string>
+    <string name="accessibility">Accessibility</string>
     <string name="simulation">Simulation</string>
     <string name="color_highlight">Color Highlight</string>
     <string name="settings">Settings</string>
@@ -46,7 +46,7 @@
     <string name="image_color_picker_help">To select a color, touch a image point and hold until the color shows up in the sample color box.</string>
 
     <!-- Settings -->
-    <string name="default_visocor_intensity">Default acessibility intensity</string>
+    <string name="default_visocor_intensity">Default accessibility intensity</string>
     <string name="default_simulation_filter">Default simulation type</string>
     <string name="default_tolerance_values">Default tolerance values (0 to 255)</string>
     <string name="default_color">Default color: </string>
