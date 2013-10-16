@@ -48,5 +48,7 @@
     <string name="default_tolerance_values">Valores padrões de tolerância (de 0 a 255)</string>
     <string name="default_color">Cor padrão: </string>
     <string name="saved">Configurações foram salvas.</string>
+    <string name="OK">OK</string>
+    <string name="error">Erro</string>
 
 </resources>

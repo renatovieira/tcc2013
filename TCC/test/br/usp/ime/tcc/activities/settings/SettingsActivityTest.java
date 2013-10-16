@@ -12,6 +12,7 @@ import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.shadows.ShadowActivity;
+import org.robolectric.shadows.ShadowAlertDialog;
 import org.robolectric.shadows.ShadowHandler;
 import org.robolectric.shadows.ShadowIntent;
 import org.robolectric.shadows.ShadowToast;
@@ -47,7 +48,7 @@ public class SettingsActivityTest {
 				.get();
 
 		bat = new ButtonActionsTestHelper(activity);
-		
+
 		activity.onCreateOptionsMenu(new TestMenu());
 	}
 
@@ -115,7 +116,8 @@ public class SettingsActivityTest {
 
 	@Test
 	public void shouldCallOnActivityResultAfterColorPickerResult() {
-		Intent startedIntent = bat.getStartedIntentAfterClickOnImageButton(R.id.default_color_picker_button);
+		Intent startedIntent = bat
+				.getStartedIntentAfterClickOnImageButton(R.id.default_color_picker_button);
 		ShadowActivity shadowActivity = shadowOf(activity);
 		shadowActivity.receiveResult(startedIntent, Activity.RESULT_OK,
 				new Intent().setData(null));
@@ -126,17 +128,17 @@ public class SettingsActivityTest {
 	@Test
 	public void saveOptionWithValidValuesShouldFinishActivity() {
 		MenuItem item = new TestMenuItem(Constants.SAVE);
-		
+
 		activity.onOptionsItemSelected(item);
 
 		ShadowActivity sa = Robolectric.shadowOf(activity);
 		assertTrue(sa.isFinishing());
 	}
-	
+
 	@Test
 	public void discardOptionShouldFinishActivity() {
 		MenuItem item = new TestMenuItem(Constants.DISCARD);
-		
+
 		activity.onOptionsItemSelected(item);
 
 		ShadowActivity sa = Robolectric.shadowOf(activity);
@@ -146,9 +148,9 @@ public class SettingsActivityTest {
 	@Test
 	public void saveOptionWithValidValuesShouldDisplayOkToast() {
 		MenuItem item = new TestMenuItem(Constants.SAVE);
-		
+
 		activity.onOptionsItemSelected(item);
-		
+
 		ShadowHandler.idleMainLooper();
 		assertEquals(activity.getString(R.string.saved),
 				ShadowToast.getTextOfLatestToast());
@@ -161,12 +163,13 @@ public class SettingsActivityTest {
 		blueTolerance.setText("");
 
 		MenuItem item = new TestMenuItem(Constants.SAVE);
-		
+
 		activity.onOptionsItemSelected(item);
 
 		ShadowHandler.idleMainLooper();
-		assertEquals(activity.getString(R.string.invalid_value),
-				ShadowToast.getTextOfLatestToast());
+		ShadowAlertDialog sAlert = shadowOf(ShadowAlertDialog.getLatestAlertDialog());
+
+		assertEquals(activity.getString(R.string.invalid_value), sAlert.getMessage().toString());
 	}
 
 	@Test
@@ -176,32 +179,33 @@ public class SettingsActivityTest {
 		blueTolerance.setText("49831");
 
 		MenuItem item = new TestMenuItem(Constants.SAVE);
-		
+
 		activity.onOptionsItemSelected(item);
 
 		ShadowHandler.idleMainLooper();
-		assertEquals(activity.getString(R.string.invalid_value),
-				ShadowToast.getTextOfLatestToast());
+		ShadowAlertDialog sAlert = shadowOf(ShadowAlertDialog.getLatestAlertDialog());
+
+		assertEquals(activity.getString(R.string.invalid_value), sAlert.getMessage().toString());
 	}
-	
+
 	@Test
 	public void invalidOptionShouldReturnFalse() {
 		MenuItem item = new TestMenuItem(42);
-		
+
 		assertFalse(activity.onOptionsItemSelected(item));
 	}
-	
+
 	@Test
 	public void saveOptionShouldBeLoadedAndWorking() {
 		MenuItem item = new TestMenuItem(Constants.SAVE);
-		
+
 		assertTrue(activity.onOptionsItemSelected(item));
 	}
-	
+
 	@Test
 	public void discardOptionShouldBeLoadedAndWorking() {
 		MenuItem item = new TestMenuItem(Constants.DISCARD);
-		
+
 		assertTrue(activity.onOptionsItemSelected(item));
 	}
 }

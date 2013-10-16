@@ -1,5 +1,7 @@
 package br.usp.ime.tcc.activities.settings;
 
+import android.app.AlertDialog.Builder;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -26,9 +28,9 @@ public class SettingsActivity extends SherlockActivity {
 	private int defaultGreenTolerance;
 	private int defaultBlueTolerance;
 	private int[] defaultColor;
-	
+
 	private SettingsManager settingsManager;
-	
+
 	private EditText redToleranceET;
 	private EditText greenToleranceET;
 	private EditText blueToleranceET;
@@ -40,10 +42,10 @@ public class SettingsActivity extends SherlockActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-	
+
 		setTheme(R.style.Theme_Sherlock);
 		Utils.loadStripedActionBar(this);
-		
+
 		setContentView(R.layout.settings);
 		settingsManager = new SettingsManager(this);
 
@@ -51,19 +53,24 @@ public class SettingsActivity extends SherlockActivity {
 
 		loadComponents();
 	}
-	
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        menu.add(Menu.NONE, Constants.SAVE, Menu.NONE, getString(R.string.save))
-        	.setIcon(R.drawable.ic_action_save)
-            .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
 
-        menu.add(Menu.NONE, Constants.DISCARD, Menu.NONE, getString(R.string.discard))
-        	.setIcon(R.drawable.ic_action_discard)
-            .setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM | MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		menu.add(Menu.NONE, Constants.SAVE, Menu.NONE, getString(R.string.save))
+				.setIcon(R.drawable.ic_action_save)
+				.setShowAsAction(
+						MenuItem.SHOW_AS_ACTION_IF_ROOM
+								| MenuItem.SHOW_AS_ACTION_WITH_TEXT);
 
-        return super.onCreateOptionsMenu(menu);
-    }
+		menu.add(Menu.NONE, Constants.DISCARD, Menu.NONE,
+				getString(R.string.discard))
+				.setIcon(R.drawable.ic_action_discard)
+				.setShowAsAction(
+						MenuItem.SHOW_AS_ACTION_IF_ROOM
+								| MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+
+		return super.onCreateOptionsMenu(menu);
+	}
 
 	private void loadDefaultValues() {
 		defaultIntensity = settingsManager.loadDefaultIntensity();
@@ -71,35 +78,43 @@ public class SettingsActivity extends SherlockActivity {
 		defaultRedTolerance = settingsManager.loadDefaultRedTolerance();
 		defaultGreenTolerance = settingsManager.loadDefaultGreenTolerance();
 		defaultBlueTolerance = settingsManager.loadDefaultBlueTolerance();
-		
+
 		defaultColor = (int[]) getLastNonConfigurationInstance();
-		
+
 		if (defaultColor == null)
-			defaultColor = new int[] {settingsManager.loadDefaultRed(), settingsManager.loadDefaultGreen(), settingsManager.loadDefaultBlue()};
+			defaultColor = new int[] { settingsManager.loadDefaultRed(),
+					settingsManager.loadDefaultGreen(),
+					settingsManager.loadDefaultBlue() };
 	}
 
 	private void loadComponents() {
 		cu = new ComponentUtils(this);
-		
-		colorSampleButton = cu.loadImageButton(R.id.default_color_picker_button, new OnClickListener() {
-			@Override
-			public void onClick(View arg0) {
-				Intent colorPickerIntent = new Intent(getBaseContext(),
-						SettingsColorPickerActivity.class);
-				colorPickerIntent.putExtra(Constants.RED_STR, defaultColor[Constants.RED]);
-				colorPickerIntent.putExtra(Constants.GREEN_STR, defaultColor[Constants.GREEN]);
-				colorPickerIntent.putExtra(Constants.BLUE_STR, defaultColor[Constants.BLUE]);
-				startActivityForResult(colorPickerIntent,
-						Constants.COLOR_PICKER_REQUEST_CODE);
-			}
-		});
-		
-		cu.updateWithColor(colorSampleButton, defaultColor[Constants.RED], defaultColor[Constants.GREEN], defaultColor[Constants.BLUE]);
 
-		intensityBar = cu.loadSeekBar(R.id.default_intensity, Constants.MAX_INTENSITY,
-				defaultIntensity);
-		
-		simulationTypeSpinner = cu.loadSpinner(R.id.default_simulation_filter_spinner);
+		colorSampleButton = cu.loadImageButton(
+				R.id.default_color_picker_button, new OnClickListener() {
+					@Override
+					public void onClick(View arg0) {
+						Intent colorPickerIntent = new Intent(getBaseContext(),
+								SettingsColorPickerActivity.class);
+						colorPickerIntent.putExtra(Constants.RED_STR,
+								defaultColor[Constants.RED]);
+						colorPickerIntent.putExtra(Constants.GREEN_STR,
+								defaultColor[Constants.GREEN]);
+						colorPickerIntent.putExtra(Constants.BLUE_STR,
+								defaultColor[Constants.BLUE]);
+						startActivityForResult(colorPickerIntent,
+								Constants.COLOR_PICKER_REQUEST_CODE);
+					}
+				});
+
+		cu.updateWithColor(colorSampleButton, defaultColor[Constants.RED],
+				defaultColor[Constants.GREEN], defaultColor[Constants.BLUE]);
+
+		intensityBar = cu.loadSeekBar(R.id.default_intensity,
+				Constants.MAX_INTENSITY, defaultIntensity);
+
+		simulationTypeSpinner = cu
+				.loadSpinner(R.id.default_simulation_filter_spinner);
 
 		cu.setSpinnerPosition(R.id.default_simulation_filter_spinner,
 				defaultColorSimulation);
@@ -115,10 +130,16 @@ public class SettingsActivity extends SherlockActivity {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (resultCode == RESULT_OK) {
 			if (requestCode == Constants.COLOR_PICKER_REQUEST_CODE) {
-				defaultColor[Constants.RED]= data.getIntExtra(Constants.RED_STR, defaultColor[Constants.RED]);
-				defaultColor[Constants.GREEN] = data.getIntExtra(Constants.GREEN_STR, defaultColor[Constants.GREEN]);
-				defaultColor[Constants.BLUE] = data.getIntExtra(Constants.BLUE_STR, defaultColor[Constants.BLUE]);
-				cu.updateWithColor(colorSampleButton, defaultColor[Constants.RED], defaultColor[Constants.GREEN], defaultColor[Constants.BLUE]);
+				defaultColor[Constants.RED] = data.getIntExtra(
+						Constants.RED_STR, defaultColor[Constants.RED]);
+				defaultColor[Constants.GREEN] = data.getIntExtra(
+						Constants.GREEN_STR, defaultColor[Constants.GREEN]);
+				defaultColor[Constants.BLUE] = data.getIntExtra(
+						Constants.BLUE_STR, defaultColor[Constants.BLUE]);
+				cu.updateWithColor(colorSampleButton,
+						defaultColor[Constants.RED],
+						defaultColor[Constants.GREEN],
+						defaultColor[Constants.BLUE]);
 			}
 		}
 	}
@@ -126,31 +147,49 @@ public class SettingsActivity extends SherlockActivity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		int option = item.getItemId();
-		
+
 		if (option == Constants.SAVE) {
 			tryToSaveValues();
 			return true;
-		}
-		else if (option == Constants.DISCARD) {
+		} else if (option == Constants.DISCARD) {
 			finish();
 			return true;
 		}
-		
+
 		return super.onOptionsItemSelected(item);
 	}
 
 	private void tryToSaveValues() {
 		if (validTolerances()) {
 			defaultIntensity = intensityBar.getProgress();
-			defaultColorSimulation = simulationTypeSpinner.getSelectedItemPosition();
+			defaultColorSimulation = simulationTypeSpinner
+					.getSelectedItemPosition();
 			saveValues();
 			Toast.makeText(this, this.getString(R.string.saved),
 					Toast.LENGTH_SHORT).show();
 			finish();
 		} else {
-			Toast.makeText(this, this.getString(R.string.invalid_value),
-					Toast.LENGTH_LONG).show();
+			displayErrorDialog();
 		}
+	}
+
+	private void displayErrorDialog() {
+		Builder alertDialogBuilder = new Builder(this);
+
+		alertDialogBuilder.setTitle(R.string.error);
+
+		alertDialogBuilder
+				.setMessage(R.string.invalid_value)
+				.setCancelable(false)
+				.setPositiveButton(getString(R.string.OK),
+						new DialogInterface.OnClickListener() {
+
+							@Override
+							public void onClick(DialogInterface dialog, int id) {
+								dialog.cancel();
+							}
+						});
+		alertDialogBuilder.create().show();
 	}
 
 	private int getTolerance(EditText et) {
@@ -186,7 +225,7 @@ public class SettingsActivity extends SherlockActivity {
 		settingsManager.saveDefaultGreen(defaultColor[Constants.GREEN]);
 		settingsManager.saveDefaultBlue(defaultColor[Constants.BLUE]);
 	}
-	
+
 	@Override
 	@Deprecated
 	public Object onRetainNonConfigurationInstance() {
