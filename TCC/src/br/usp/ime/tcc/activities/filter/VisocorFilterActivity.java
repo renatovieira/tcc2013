@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import br.usp.ime.tcc.activities.ContinousFilterActivity;
 import br.usp.ime.tcc.activities.R;
-import br.usp.ime.tcc.activities.components.ComponentUtils;
 import br.usp.ime.tcc.activities.filter.bitmap.VisocorBitmapFilterActivity;
 
 public class VisocorFilterActivity extends FilterActivity {
@@ -18,8 +17,6 @@ public class VisocorFilterActivity extends FilterActivity {
 	
 	@Override
 	protected void loadSpecificComponents() {
-		ComponentUtils componentUtils = new ComponentUtils(this);
-
 		componentUtils.loadImageButton(R.id.liveModeButton, new OnClickListener() {
 
 			@Override

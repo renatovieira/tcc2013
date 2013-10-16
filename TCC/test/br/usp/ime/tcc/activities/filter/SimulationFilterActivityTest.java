@@ -20,13 +20,14 @@ public class SimulationFilterActivityTest extends FilterActivityTest {
 
 	@Before
 	public void setUp() throws Exception {
-		filterActivity = Robolectric.buildActivity(SimulationFilterActivity.class).create().get();
+		filterActivity = Robolectric
+				.buildActivity(SimulationFilterActivity.class).create().get();
 
 		bat = new ButtonActionsTestHelper(filterActivity);
-		
+
 		title = filterActivity.getString(R.string.simulation_filter);
 	}
-	
+
 	@Test
 	public void liveModeLLShouldBeGone() {
 		assertEquals(View.GONE, getVisibilityFromLinearLayout(R.id.liveModeLL));
@@ -34,9 +35,10 @@ public class SimulationFilterActivityTest extends FilterActivityTest {
 
 	@Test
 	public void spinnerLLShouldBeVisible() {
-		assertEquals(View.VISIBLE, getVisibilityFromLinearLayout(R.id.filter_type_spinner_ll));
+		assertEquals(View.VISIBLE,
+				getVisibilityFromLinearLayout(R.id.filter_type_spinner_ll));
 	}
-	
+
 	@Test
 	public void shouldCallBitmapFilterActivityAfterGalleryResult() {
 		ShadowIntent shadowIntent = bat

@@ -72,6 +72,6 @@ public class SimulationBitmapFilterTest {
 	public void deutFilterShouldFilterPixelCorrectly() {
 		Bitmap bmp = createYellowMockBitmap();
 		filter.applyTo(bmp);
-		verify(bmp, times(1)).setPixel(0, 0, -329196);
+		verify(bmp, times(1)).setPixel(0, 0, -197588);
 	}
 }

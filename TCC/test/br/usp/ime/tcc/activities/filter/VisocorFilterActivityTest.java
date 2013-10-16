@@ -25,26 +25,28 @@ public class VisocorFilterActivityTest extends FilterActivityTest {
 
 	@Before
 	public void setUp() throws Exception {
-		filterActivity = Robolectric.buildActivity(VisocorFilterActivity.class).create().get();
+		filterActivity = Robolectric.buildActivity(VisocorFilterActivity.class)
+				.create().get();
 
 		bat = new ButtonActionsTestHelper(filterActivity);
-		
+
 		title = filterActivity.getString(R.string.visocor_filter);
 	}
-	
+
 	@Test
 	public void liveModeButtonShouldNotBeNull() {
 		assertNotNull(filterActivity.findViewById(R.id.liveModeButton));
 	}
-	
+
 	@Test
 	public void liveModeButtonShouldBeLoadedAndWorking() {
 		assertTrue(bat.getImageButtonAndClickOnIt(R.id.liveModeButton));
 	}
 
 	@Test
-	public void spinnerLLShouldBeHidden() {
-		assertEquals(View.GONE, getVisibilityFromLinearLayout(R.id.filter_type_spinner_ll));
+	public void spinnerLLShouldBeGone() {
+		assertEquals(View.GONE,
+				getVisibilityFromLinearLayout(R.id.filter_type_spinner_ll));
 	}
 	
 	@Test
@@ -57,7 +59,7 @@ public class VisocorFilterActivityTest extends FilterActivityTest {
 		assertEquals(shadowIntent.getComponent().getClassName(),
 				ContinousFilterActivity.class.getName());
 	}
-	
+
 	@Test
 	public void shouldCallBitmapFilterActivityAfterGalleryResult() {
 		ShadowIntent shadowIntent = bat

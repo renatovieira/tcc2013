@@ -19,12 +19,15 @@ public class SimulationFilterActivity extends FilterActivity {
 	protected void loadSpecificComponents() {
 		SettingsManager settingsManager = new SettingsManager(this);
 
-		ComponentUtils componentUtils = new ComponentUtils(this);
-
 		componentUtils.setSpinnerPosition(R.id.filter_type_spinner,
 				settingsManager.loadDefaultColorSimulationId());
-		
+
 		componentUtils.showLinearLayout(R.id.filter_type_spinner_ll);
+
+		if (landscapeMode) {
+			componentUtils.showLinearLayout(R.id.leftDummyLL);
+			componentUtils.showLinearLayout(R.id.rightDummyLL);
+		}
 	}
 
 	protected void putFilterTypeExtra(Intent intent) {
@@ -33,7 +36,7 @@ public class SimulationFilterActivity extends FilterActivity {
 		filterType = cu.getSpinnerPosition(R.id.filter_type_spinner);
 		intent.putExtra(Constants.FILTER_TYPE, filterType);
 	}
-	
+
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (resultCode == Activity.RESULT_OK) {

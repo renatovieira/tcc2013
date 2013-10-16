@@ -29,8 +29,8 @@ public class SimulationFilterValuesCalculatorTest {
 		calculator = new SimulationFilterValuesCalculator(
 				Constants.DEUTERANOPIA_SIMULATION_FILTER);
 
-		assertEquals(-15461356, calculator.getValueForPixel(Color.BLACK));
-		assertEquals(-10592740, calculator.getValueForPixel(Color.RED));
-		assertEquals(-329196, calculator.getValueForPixel(Color.YELLOW));
+		assertEquals(-13882324, calculator.getValueForPixel(Color.BLACK));
+		assertEquals(-10197969, calculator.getValueForPixel(Color.RED));
+		assertEquals(-197588, calculator.getValueForPixel(Color.YELLOW));
 	}
 }

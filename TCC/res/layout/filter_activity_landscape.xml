@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:layout_marginBottom="10dp"
     android:layout_marginTop="10dp"
+    android:baselineAligned="false"
     android:gravity="center_horizontal"
     android:orientation="vertical" >
 
@@ -28,57 +29,73 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
         android:baselineAligned="false"
         android:orientation="horizontal" >
 
         <LinearLayout
+            android:id="@+id/leftDummyLL"
             android:layout_width="0dip"
             android:layout_height="fill_parent"
+            android:layout_weight="0.5"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone" >
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_marginRight="20dp"
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical" >
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/from_camera" />
-
             <ImageButton
                 android:id="@+id/cameraModeButton"
                 android:layout_width="fill_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
                 android:background="@null"
                 android:contentDescription="@string/from_camera"
                 android:scaleType="centerInside"
                 android:src="@drawable/button" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/from_camera"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/liveModeLL"
             android:layout_width="0dip"
             android:layout_height="fill_parent"
+            android:layout_marginRight="20dp"
             android:layout_weight="1"
             android:gravity="center"
             android:orientation="vertical"
             android:visibility="gone" >
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/live_mode" />
-
             <ImageButton
                 android:id="@+id/liveModeButton"
                 android:layout_width="fill_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
                 android:background="@null"
                 android:contentDescription="@string/live_mode"
                 android:scaleType="centerInside"
                 android:src="@drawable/button" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/live_mode"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
         </LinearLayout>
 
         <LinearLayout
@@ -88,20 +105,31 @@
             android:gravity="center"
             android:orientation="vertical" >
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/from_gallery" />
-
             <ImageButton
                 android:id="@+id/galleryModeButton"
                 android:layout_width="fill_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
                 android:background="@null"
                 android:contentDescription="@string/from_gallery"
                 android:scaleType="centerInside"
                 android:src="@drawable/button" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/from_gallery"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/rightDummyLL"
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="0.5"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone" >
         </LinearLayout>
     </LinearLayout>
 

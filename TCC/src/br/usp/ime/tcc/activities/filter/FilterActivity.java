@@ -14,6 +14,9 @@ import br.usp.ime.tcc.utils.Utils;
 import com.actionbarsherlock.app.SherlockActivity;
 
 public abstract class FilterActivity extends SherlockActivity {
+	protected ComponentUtils componentUtils;
+	protected boolean landscapeMode;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		setTheme(R.style.Theme_Sherlock);
@@ -23,8 +26,10 @@ public abstract class FilterActivity extends SherlockActivity {
 		super.onCreate(savedInstanceState);
 
 		Display display = getWindowManager().getDefaultDisplay();
+		
+		landscapeMode = display.getWidth() >= display.getHeight();
 
-		if (display.getWidth() > display.getHeight())
+		if (landscapeMode)
 			setContentView(R.layout.filter_activity_landscape);
 		else
 			setContentView(R.layout.filter_activity_portrait);
@@ -32,7 +37,7 @@ public abstract class FilterActivity extends SherlockActivity {
 	}
 
 	private void loadComponents() {
-		ComponentUtils componentUtils = new ComponentUtils(this);
+		componentUtils = new ComponentUtils(this);
 
 		if (getSupportActionBar() != null)
 			getSupportActionBar().setDisplayHomeAsUpEnabled(true);

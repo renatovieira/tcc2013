@@ -10,7 +10,6 @@ import org.robolectric.RobolectricTestRunner;
 import org.robolectric.shadows.ShadowIntent;
 
 import android.view.View;
-import android.widget.ImageButton;
 import br.usp.ime.tcc.activities.R;
 import br.usp.ime.tcc.activities.components.ButtonActionsTestHelper;
 import br.usp.ime.tcc.activities.filter.bitmap.ColorHighlightBitmapFilterActivity;
@@ -21,23 +20,26 @@ public class ColorHighlightFilterActivityTest extends FilterActivityTest {
 
 	@Before
 	public void setUp() throws Exception {
-		filterActivity = Robolectric.buildActivity(ColorHighlightFilterActivity.class).create().get();
+		filterActivity = Robolectric
+				.buildActivity(ColorHighlightFilterActivity.class).create()
+				.get();
 
 		bat = new ButtonActionsTestHelper(filterActivity);
-		
+
 		title = filterActivity.getString(R.string.color_highlight_filter);
 	}
-	
+
 	@Test
 	public void spinnerLLShouldBeGone() {
-		assertEquals(View.GONE, getVisibilityFromLinearLayout(R.id.filter_type_spinner_ll));
+		assertEquals(View.GONE,
+				getVisibilityFromLinearLayout(R.id.filter_type_spinner_ll));
 	}
-	
+
 	@Test
 	public void liveModeLLShouldBeGone() {
 		assertEquals(View.GONE, getVisibilityFromLinearLayout(R.id.liveModeLL));
 	}
-	
+
 	@Test
 	public void shouldCallBitmapFilterActivityAfterGalleryResult() {
 		ShadowIntent shadowIntent = bat

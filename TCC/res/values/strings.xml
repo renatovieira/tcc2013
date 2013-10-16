@@ -5,7 +5,7 @@
     <string name="action_settings">Settings</string>
 
     <!-- Filter Activity -->
-    <string name="live_mode">Continuous Mode</string>
+    <string name="live_mode">Live Mode</string>
     <string name="from_gallery">From Gallery</string>
     <string name="from_camera">From Picture</string>
     <string name="simulation_filter">Simulation Filter</string>
