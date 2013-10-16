@@ -41,6 +41,8 @@
     <string name="selected_color_sample">Selected Color Sample</string>
     <string name="color_picker">Color Picker</string>
     <string name="image">Image</string>
+    <string name="help">Help</string>
+   	<string name="image_color_picker_help">To select a color, touch a image point and hold until the color shows up in the sample color box.</string>
 
     <!-- Settings -->
     <string name="default_visocor_intensity">Default acessibility intensity</string>

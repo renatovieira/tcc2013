@@ -41,6 +41,8 @@
     <string name="selected_color_sample">Amostra da cor selecionada</string>
     <string name="color_picker">Seletor de Cor</string>
     <string name="image">Imagem</string>
+    <string name="help">Ajuda</string>
+    <string name="image_color_picker_help">Para selecionar uma cor, basta tocar um ponto da imagem e segurar até que a cor apareça na caixa de amostra.</string>
 
     <!-- Settings -->
     <string name="default_visocor_intensity">Intensidade padrão de acessibilidade</string>
