@@ -20,6 +20,7 @@ import org.robolectric.tester.android.view.TestMenu;
 import org.robolectric.tester.android.view.TestMenuItem;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.view.MenuItem;
 import android.widget.EditText;
@@ -157,7 +158,7 @@ public class SettingsActivityTest {
 	}
 
 	@Test
-	public void saveOptionWithEmptyValuesShouldDisplayErrorToast() {
+	public void saveOptionWithEmptyValuesShouldDisplayErrorDialog() {
 		EditText blueTolerance = (EditText) activity
 				.findViewById(R.id.blue_tolerance);
 		blueTolerance.setText("");
@@ -167,13 +168,15 @@ public class SettingsActivityTest {
 		activity.onOptionsItemSelected(item);
 
 		ShadowHandler.idleMainLooper();
-		ShadowAlertDialog sAlert = shadowOf(ShadowAlertDialog.getLatestAlertDialog());
+		AlertDialog alertDialog = ShadowAlertDialog.getLatestAlertDialog();
+		ShadowAlertDialog sAlert = shadowOf(alertDialog);
 
 		assertEquals(activity.getString(R.string.invalid_value), sAlert.getMessage().toString());
-	}
+		assertTrue(alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick());
+		assertFalse(alertDialog.isShowing());	}
 
 	@Test
-	public void saveOptionWithInvalidValuesShouldDisplayErrorToast() {
+	public void saveOptionWithInvalidValuesShouldDisplayErrorDialog() {
 		EditText blueTolerance = (EditText) activity
 				.findViewById(R.id.blue_tolerance);
 		blueTolerance.setText("49831");
@@ -183,11 +186,14 @@ public class SettingsActivityTest {
 		activity.onOptionsItemSelected(item);
 
 		ShadowHandler.idleMainLooper();
-		ShadowAlertDialog sAlert = shadowOf(ShadowAlertDialog.getLatestAlertDialog());
+		AlertDialog alertDialog = ShadowAlertDialog.getLatestAlertDialog();
+		ShadowAlertDialog sAlert = shadowOf(alertDialog);
 
 		assertEquals(activity.getString(R.string.invalid_value), sAlert.getMessage().toString());
+		assertTrue(alertDialog.getButton(AlertDialog.BUTTON_POSITIVE).performClick());
+		assertFalse(alertDialog.isShowing());
 	}
-
+	
 	@Test
 	public void invalidOptionShouldReturnFalse() {
 		MenuItem item = new TestMenuItem(42);
