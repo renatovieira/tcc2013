@@ -53,5 +53,6 @@
     <string name="saved">Configurações foram salvas.</string>
     <string name="OK">OK</string>
     <string name="error">Erro</string>
+    <string name="simple_simulation_faster">Simulação simples (mais rápida)</string>
 
 </resources>

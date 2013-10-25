@@ -23,6 +23,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.view.MenuItem;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.Spinner;
@@ -113,6 +114,16 @@ public class SettingsActivityTest {
 
 		int defaultBlueTolerance = Constants.DEFAULT_TOLERANCE;
 		assertEquals(defaultBlueTolerance + "", blueTolerance);
+	}
+	
+	@Test
+	public void simpleModeCheckBoxShouldBeLoadedCorrectly() {
+		CheckBox simpleModeCheckBox = (CheckBox) activity.findViewById(R.id.simple_simulation);
+		assertNotNull(simpleModeCheckBox);
+		
+		boolean checked = simpleModeCheckBox.isChecked();
+
+		assertEquals(Constants.SIMPLE_MODE, checked);
 	}
 
 	@Test

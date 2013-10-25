@@ -53,5 +53,6 @@
     <string name="saved">Settings saved.</string>
     <string name="OK">OK</string>
     <string name="error">Error</string>
+    <string name="simple_simulation_faster">Simple Simulation (Faster)</string>
 
 </resources>

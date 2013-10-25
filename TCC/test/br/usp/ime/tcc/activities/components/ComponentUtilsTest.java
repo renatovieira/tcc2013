@@ -18,6 +18,7 @@ import android.graphics.BitmapFactory;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -34,6 +35,8 @@ public class ComponentUtilsTest {
 	private Activity activity;
 	private ComponentUtils componentUtils;
 	private boolean activated;
+	private boolean checked;
+	private static int defaultCheckBoxId = R.id.simple_simulation;
 	private static int defaultLinearLayout = R.id.filter_type_spinner_ll;
 	private static int defaultButtonId = R.id.visocor_button;
 	private static int defaultImageviewId = R.id.filtered_image;
@@ -112,6 +115,11 @@ public class ComponentUtilsTest {
 		
 		return ll;
 	}
+	
+	private CheckBox getDefaultCheckBox() {
+		CheckBox checkBox = componentUtils.loadCheckBox(defaultCheckBoxId, true);
+		return checkBox;
+	}
 
 	private ImageButton createImageButtonWithDefaultListener() {
 		OnClickListener listener = createDefaultOnClickListener();
@@ -125,63 +133,70 @@ public class ComponentUtilsTest {
 
 	}
 
-	private void loadDefaultSpinner(Activity activity) {
+	private void loadDefaultSpinner() {
 		Spinner defaultSpinner = new Spinner(activity);
 		when(activity.findViewById(defaultSpinnerId))
 				.thenReturn(defaultSpinner);
 	}
 
-	private void loadDefaultTextView(Activity activity) {
+	private void loadDefaultTextView() {
 		TextView defaultTextView = new TextView(activity);
 		when(activity.findViewById(defaultTextViewId)).thenReturn(
 				defaultTextView);
 	}
 
-	private void loadDefaultSeekBar(Activity activity) {
+	private void loadDefaultSeekBar() {
 		SeekBar defaultSeekBar = new SeekBar(activity);
 		when(activity.findViewById(defaultSeekbarId))
 				.thenReturn(defaultSeekBar);
 	}
 
-	private void loadDefaultImageView(Activity activity) {
+	private void loadDefaultImageView() {
 		ImageView defaultImageView = new ImageView(activity);
 		defaultImageView.setImageBitmap(null);
 		when(activity.findViewById(defaultImageviewId)).thenReturn(
 				defaultImageView);
 	}
 
-	private void loadDefaultButton(Activity activity) {
+	private void loadDefaultButton() {
 		Button defaultButton = new Button(activity);
 		when(activity.findViewById(defaultButtonId)).thenReturn(defaultButton);
 	}
 
-	private void loadDefaultEditText(Activity activity) {
+	private void loadDefaultEditText() {
 		EditText et = new EditText(activity);
 		when(activity.findViewById(defaultEditTextId)).thenReturn(et);
 	}
 
-	private void loadDefaultImageButton(Activity activity) {
+	private void loadDefaultImageButton() {
 		ImageButton ib = new ImageButton(activity);
 		when(activity.findViewById(defaultImageButtonId)).thenReturn(ib);
 	}
 	
-	private void loadDefaultLinearLayout(Activity activity) {
+	private void loadDefaultLinearLayout() {
 		LinearLayout ll = new LinearLayout(activity);
 		ll.setVisibility(View.GONE);
 		when(activity.findViewById(defaultLinearLayout)).thenReturn(ll);
 	}
+	
+	private void loadDefaultCheckBox() {
+		CheckBox checkBox = new CheckBox(activity);
+		checkBox.setChecked(checked);
+		when(activity.findViewById(defaultCheckBoxId )).thenReturn(checkBox);
+	}
 
 	private Activity buildActivityWithMockObjects() {
-		Activity activity = spy(new Activity());
+		activity = spy(new Activity());
 
-		loadDefaultButton(activity);
-		loadDefaultImageView(activity);
-		loadDefaultSeekBar(activity);
-		loadDefaultTextView(activity);
-		loadDefaultSpinner(activity);
-		loadDefaultEditText(activity);
-		loadDefaultImageButton(activity);
-		loadDefaultLinearLayout(activity);
+		loadDefaultButton();
+		loadDefaultImageView();
+		loadDefaultSeekBar();
+		loadDefaultTextView();
+		loadDefaultSpinner();
+		loadDefaultEditText();
+		loadDefaultImageButton();
+		loadDefaultLinearLayout();
+		loadDefaultCheckBox();
 
 		return activity;
 	}
@@ -189,6 +204,8 @@ public class ComponentUtilsTest {
 	// Tests
 	@Before
 	public void setUp() throws Exception {
+		checked = true;
+		
 		activity = buildActivityWithMockObjects();
 
 		componentUtils = new ComponentUtils(activity);
@@ -217,12 +234,14 @@ public class ComponentUtilsTest {
 		assertTrue(activated);
 	}
 
+	@Test
 	public void buttonShouldNotBeResponsiveWithoutListener() {
 		Button b = getDefaultButton(null);
 
 		assertEquals(false, buttonIsResponsive(b));
 	}
 
+	@Test
 	public void imageViewShouldBeNullIfInvalidId() {
 		ImageView imageView = componentUtils.loadImageView(INVALID_ID);
 		assertNull(imageView);
@@ -411,5 +430,18 @@ public class ComponentUtilsTest {
 		Bitmap returnedBitmap = componentUtils.getBitmap(ib);
 
 		assertEquals(bitmapTest, returnedBitmap);
+	}
+	
+	@Test(expected = NullPointerException.class)
+	public void checkBoxShouldThrowExceptionIfInvalidId() {
+		CheckBox checkBox = componentUtils.loadCheckBox(INVALID_ID, true);
+		assertNull(checkBox);
+	}
+
+	@Test
+	public void checkBoxShouldBeLoadedCorrectly() {
+		CheckBox checkBox = getDefaultCheckBox();
+		assertNotNull(checkBox);
+		assertEquals(checked, checkBox.isChecked());
 	}
 }

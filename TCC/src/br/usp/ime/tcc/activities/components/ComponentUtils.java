@@ -7,6 +7,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -137,8 +138,16 @@ public class ComponentUtils {
 	public ImageButton loadImageButtonWithBitmap(int imageButtonId, Bitmap bmp,
 			OnClickListener listener) {
 		ImageButton imageButton = loadImageButton(imageButtonId, listener);
+		
 		fillIn(imageButton, bmp);
 
 		return imageButton;
+	}
+
+	public CheckBox loadCheckBox(int checkBoxId, boolean checked) {
+		CheckBox checkBox = (CheckBox) activity.findViewById(checkBoxId);
+		
+		checkBox.setChecked(checked);
+		return checkBox;
 	}
 }

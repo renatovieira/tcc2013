@@ -39,7 +39,7 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="2dp"
             android:text="@string/default_simulation_filter"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -57,11 +57,26 @@
         android:gravity="center"
         android:orientation="vertical" >
 
+        <CheckBox
+            android:id="@+id/simple_simulation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/simple_simulation_faster" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical" >
+
         <TextView
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="2dp"
             android:text="@string/default_tolerance_values"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 

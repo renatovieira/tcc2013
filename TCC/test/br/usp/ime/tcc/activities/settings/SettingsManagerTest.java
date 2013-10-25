@@ -106,4 +106,14 @@ public class SettingsManagerTest {
 
 		assertEquals(DEFAULT_VALUE, settingsManager.loadDefaultBlue());
 	}
+	
+	@Test
+	public void shouldLoadAndSaveSimpleModeCorrectly() {
+		assertEquals(Constants.SIMPLE_MODE,
+				settingsManager.loadSimpleMode());
+		
+		assertTrue(settingsManager.saveSimpleMode(!Constants.SIMPLE_MODE));
+
+		assertEquals(!Constants.SIMPLE_MODE, settingsManager.loadSimpleMode());
+	}
 }
