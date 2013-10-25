@@ -7,7 +7,7 @@
     <!-- Filter Activity -->
     <string name="live_mode">Live Mode</string>
     <string name="from_gallery">From Gallery</string>
-    <string name="from_camera">From Picture</string>
+    <string name="from_camera">From Camera</string>
     <string name="simulation_filter">Simulation Filter</string>
     <string name="visocor_filter">Accessibility Filter</string>
     <string name="color_highlight_filter">Color Highlight Filter</string>
