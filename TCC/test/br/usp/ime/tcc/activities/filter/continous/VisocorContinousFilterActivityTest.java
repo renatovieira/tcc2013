@@ -1,4 +1,4 @@
-package br.usp.ime.tcc.activities;
+package br.usp.ime.tcc.activities.filter.continous;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -13,16 +13,18 @@ import org.robolectric.shadows.ShadowActivity;
 
 import android.view.View;
 import android.widget.SeekBar;
+import br.usp.ime.tcc.activities.R;
+import br.usp.ime.tcc.activities.filter.continous.VisocorContinousFilterActivity;
 import br.usp.ime.tcc.utils.Constants;
 
 @RunWith(RobolectricTestRunner.class)
-public class ContinousFilterActivityTest {
-	private ContinousFilterActivity activity;
+public class VisocorContinousFilterActivityTest {
+	private VisocorContinousFilterActivity activity;
 
 	// Tests
 	@Before
 	public void setUp() throws Exception {
-		activity = Robolectric.buildActivity(ContinousFilterActivity.class).create().get();
+		activity = Robolectric.buildActivity(VisocorContinousFilterActivity.class).create().get();
 	}
 
 	@Test
@@ -43,7 +45,7 @@ public class ContinousFilterActivityTest {
 	}
 
 	@Test
-	public void pauseAndResumeShouldKeepActivityRunning() {
+	public void interruptionsShouldntCrashActivity() {
 		activity.onPause();
 		activity.onResume();
 		activity.onDestroy();

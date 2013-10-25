@@ -14,10 +14,10 @@ import org.robolectric.shadows.ShadowIntent;
 
 import android.content.Intent;
 import android.view.View;
-import br.usp.ime.tcc.activities.ContinousFilterActivity;
 import br.usp.ime.tcc.activities.R;
 import br.usp.ime.tcc.activities.components.ButtonActionsTestHelper;
 import br.usp.ime.tcc.activities.filter.bitmap.VisocorBitmapFilterActivity;
+import br.usp.ime.tcc.activities.filter.continous.VisocorContinousFilterActivity;
 
 @RunWith(RobolectricTestRunner.class)
 public class VisocorFilterActivityTest extends FilterActivityTest {
@@ -57,7 +57,7 @@ public class VisocorFilterActivityTest extends FilterActivityTest {
 		assertNotNull(startedIntent);
 		ShadowIntent shadowIntent = shadowOf(startedIntent);
 		assertEquals(shadowIntent.getComponent().getClassName(),
-				ContinousFilterActivity.class.getName());
+				VisocorContinousFilterActivity.class.getName());
 	}
 
 	@Test

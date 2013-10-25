@@ -1,4 +1,4 @@
-package br.usp.ime.tcc.activities.bitmap.filter;
+package br.usp.ime.tcc.activities.filter.bitmap;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;

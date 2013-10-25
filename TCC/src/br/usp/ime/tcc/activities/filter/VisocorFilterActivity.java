@@ -5,9 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import br.usp.ime.tcc.activities.ContinousFilterActivity;
 import br.usp.ime.tcc.activities.R;
 import br.usp.ime.tcc.activities.filter.bitmap.VisocorBitmapFilterActivity;
+import br.usp.ime.tcc.activities.filter.continous.VisocorContinousFilterActivity;
 
 public class VisocorFilterActivity extends FilterActivity {
 	@Override
@@ -23,7 +23,7 @@ public class VisocorFilterActivity extends FilterActivity {
 			public void onClick(View v) {
 				Intent continousModeIntent = new Intent(
 						VisocorFilterActivity.this,
-						ContinousFilterActivity.class);
+						VisocorContinousFilterActivity.class);
 				startActivity(continousModeIntent);
 			}
 		});

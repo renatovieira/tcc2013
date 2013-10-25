@@ -13,10 +13,10 @@ import org.robolectric.shadows.ShadowIntent;
 
 import android.content.Intent;
 import android.view.View;
-import br.usp.ime.tcc.activities.ContinousFilterActivity;
 import br.usp.ime.tcc.activities.R;
 import br.usp.ime.tcc.activities.components.ButtonActionsTestHelper;
 import br.usp.ime.tcc.activities.filter.bitmap.SimulationBitmapFilterActivity;
+import br.usp.ime.tcc.activities.filter.continous.SimulationContinousFilterActivity;
 
 @RunWith(RobolectricTestRunner.class)
 public class SimulationFilterActivityTest extends FilterActivityTest {
@@ -60,13 +60,13 @@ public class SimulationFilterActivityTest extends FilterActivityTest {
 	}
 	
 	@Test
-	public void pressingLiveModeButtonShouldStartContinousFilterActivity() {
+	public void pressingLiveModeButtonShouldStartSimulationContinousFilterActivity() {
 		Intent startedIntent = bat
 				.getStartedIntentAfterClickOnImageButton(R.id.liveModeButton);
 
 		assertNotNull(startedIntent);
 		ShadowIntent shadowIntent = shadowOf(startedIntent);
 		assertEquals(shadowIntent.getComponent().getClassName(),
-				ContinousFilterActivity.class.getName());
+				SimulationContinousFilterActivity.class.getName());
 	}
 }

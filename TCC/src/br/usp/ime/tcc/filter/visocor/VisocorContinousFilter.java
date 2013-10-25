@@ -1,22 +1,18 @@
 package br.usp.ime.tcc.filter.visocor;
 
-import org.opencv.android.CameraBridgeViewBase.CvCameraViewFrame;
-import org.opencv.core.Core;
-import org.opencv.core.CvType;
-import org.opencv.core.Mat;
+import br.usp.ime.tcc.filter.ContinousFilter;
 
-public class VisocorContinousFilter  {
+public class VisocorContinousFilter extends ContinousFilter {
 	private VisocorParametersCalculator calc;
-	private Mat mFilterKernel;
 
 	public VisocorContinousFilter(float intensity) {
-		initializeMatrixToIdentity();
+		super();
 		calc = new VisocorParametersCalculator(intensity);
 		updateFilterMatrix();
 	}
 
 	public VisocorContinousFilter(int progress) {
-		initializeMatrixToIdentity();
+		super();
 		update(progress);
 	}
 
@@ -25,21 +21,9 @@ public class VisocorContinousFilter  {
 				calc.getGama(), 0f);
 	}
 
+	@Override
 	public void update(int progress) {
 		calc = new VisocorParametersCalculator(progress);
 		updateFilterMatrix();
-	}
-
-	private void initializeMatrixToIdentity() {
-		mFilterKernel = Mat.eye(4, 4, CvType.CV_32F);
-	}
-
-	public Mat applyFilterTo(CvCameraViewFrame inputFrame) {
-		Mat mRgba = null;
-		if (inputFrame != null) {
-			mRgba = inputFrame.rgba();
-			Core.transform(mRgba, mRgba, mFilterKernel);
-		}
-		return mRgba;
 	}
 }

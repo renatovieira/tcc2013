@@ -1,4 +1,4 @@
-package br.usp.ime.tcc.activities;
+package br.usp.ime.tcc.activities.filter.continous;
 
 import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.CameraBridgeViewBase;
@@ -10,20 +10,15 @@ import org.opencv.core.Mat;
 
 import android.os.Bundle;
 import android.view.WindowManager;
-import android.widget.SeekBar;
-import br.usp.ime.tcc.activities.components.ComponentUtils;
-import br.usp.ime.tcc.activities.settings.SettingsManager;
-import br.usp.ime.tcc.filter.visocor.VisocorContinousFilter;
-import br.usp.ime.tcc.utils.Constants;
+import br.usp.ime.tcc.activities.R;
+import br.usp.ime.tcc.filter.ContinousFilter;
 
 import com.actionbarsherlock.app.SherlockActivity;
 
-public class ContinousFilterActivity extends SherlockActivity implements
+public abstract class ContinousFilterActivity extends SherlockActivity implements
 		CvCameraViewListener2 {
 	private CameraBridgeViewBase mOpenCvCameraView;
-	private SeekBar seekBar;
-	private int lastIntensity;
-	private VisocorContinousFilter filter;
+	protected ContinousFilter filter;
 
 	public ContinousFilterActivity() {
 	}
@@ -39,18 +34,6 @@ public class ContinousFilterActivity extends SherlockActivity implements
 
 		mOpenCvCameraView = (CameraBridgeViewBase) findViewById(R.id.continous_filter_camera);
 		mOpenCvCameraView.setCvCameraViewListener(this);
-
-		loadComponents();
-	}
-
-	private void loadComponents() {
-		SettingsManager settingsManager = new SettingsManager(this);
-		
-		ComponentUtils cu = new ComponentUtils(this);
-
-		seekBar = cu.loadSeekBar(R.id.continous_filter_intensity_bar,
-				Constants.MAX_INTENSITY, settingsManager.loadDefaultIntensity());
-		lastIntensity = settingsManager.loadDefaultIntensity();
 	}
 
 	@Override
@@ -89,19 +72,12 @@ public class ContinousFilterActivity extends SherlockActivity implements
 		}
 	};
 
-	public void onCameraViewStarted(int width, int height) {
-		filter = new VisocorContinousFilter(lastIntensity);
-	}
+	public abstract void onCameraViewStarted(int width, int height);
 
 	public void onCameraViewStopped() {
 	}
 
 	public Mat onCameraFrame(CvCameraViewFrame inputFrame) {
-		if (lastIntensity != seekBar.getProgress()) {
-			int currentIntensity = seekBar.getProgress();
-			filter.update(seekBar.getProgress());
-			lastIntensity = currentIntensity;
-		}
 		return filter.applyFilterTo(inputFrame);
 	}
 

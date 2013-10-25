@@ -5,10 +5,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import br.usp.ime.tcc.activities.ContinousFilterActivity;
 import br.usp.ime.tcc.activities.R;
 import br.usp.ime.tcc.activities.components.ComponentUtils;
 import br.usp.ime.tcc.activities.filter.bitmap.SimulationBitmapFilterActivity;
+import br.usp.ime.tcc.activities.filter.continous.SimulationContinousFilterActivity;
 import br.usp.ime.tcc.activities.settings.SettingsManager;
 import br.usp.ime.tcc.utils.Constants;
 
@@ -33,7 +33,7 @@ public class SimulationFilterActivity extends FilterActivity {
 			public void onClick(View v) {
 				Intent continousModeIntent = new Intent(
 						SimulationFilterActivity.this,
-						ContinousFilterActivity.class);
+						SimulationContinousFilterActivity.class);
 				startActivity(continousModeIntent);
 			}
 		});
