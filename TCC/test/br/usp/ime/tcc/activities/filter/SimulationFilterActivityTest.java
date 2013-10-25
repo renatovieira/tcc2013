@@ -1,6 +1,8 @@
 package br.usp.ime.tcc.activities.filter;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.robolectric.Robolectric.shadowOf;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -9,7 +11,9 @@ import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
 import org.robolectric.shadows.ShadowIntent;
 
+import android.content.Intent;
 import android.view.View;
+import br.usp.ime.tcc.activities.ContinousFilterActivity;
 import br.usp.ime.tcc.activities.R;
 import br.usp.ime.tcc.activities.components.ButtonActionsTestHelper;
 import br.usp.ime.tcc.activities.filter.bitmap.SimulationBitmapFilterActivity;
@@ -29,8 +33,8 @@ public class SimulationFilterActivityTest extends FilterActivityTest {
 	}
 
 	@Test
-	public void liveModeLLShouldBeGone() {
-		assertEquals(View.GONE, getVisibilityFromLinearLayout(R.id.liveModeLL));
+	public void liveModeLLShouldBeVisible() {
+		assertEquals(View.VISIBLE, getVisibilityFromLinearLayout(R.id.liveModeLL));
 	}
 
 	@Test
@@ -53,5 +57,16 @@ public class SimulationFilterActivityTest extends FilterActivityTest {
 				.getIntentAfterResultOfImageButtonClick(R.id.cameraModeButton);
 		assertEquals(shadowIntent.getComponent().getClassName(),
 				SimulationBitmapFilterActivity.class.getName());
+	}
+	
+	@Test
+	public void pressingLiveModeButtonShouldStartContinousFilterActivity() {
+		Intent startedIntent = bat
+				.getStartedIntentAfterClickOnImageButton(R.id.liveModeButton);
+
+		assertNotNull(startedIntent);
+		ShadowIntent shadowIntent = shadowOf(startedIntent);
+		assertEquals(shadowIntent.getComponent().getClassName(),
+				ContinousFilterActivity.class.getName());
 	}
 }

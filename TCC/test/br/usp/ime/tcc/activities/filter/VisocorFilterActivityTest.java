@@ -50,7 +50,7 @@ public class VisocorFilterActivityTest extends FilterActivityTest {
 	}
 	
 	@Test
-	public void pressingLiveModeButtonShouldStartGalleryActivity() {
+	public void pressingLiveModeButtonShouldStartContinousFilterActivity() {
 		Intent startedIntent = bat
 				.getStartedIntentAfterClickOnImageButton(R.id.liveModeButton);
 

@@ -3,6 +3,9 @@ package br.usp.ime.tcc.activities.filter;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import br.usp.ime.tcc.activities.ContinousFilterActivity;
 import br.usp.ime.tcc.activities.R;
 import br.usp.ime.tcc.activities.components.ComponentUtils;
 import br.usp.ime.tcc.activities.filter.bitmap.SimulationBitmapFilterActivity;
@@ -24,10 +27,18 @@ public class SimulationFilterActivity extends FilterActivity {
 
 		componentUtils.showLinearLayout(R.id.filter_type_spinner_ll);
 
-		if (landscapeMode) {
-			componentUtils.showLinearLayout(R.id.leftDummyLL);
-			componentUtils.showLinearLayout(R.id.rightDummyLL);
-		}
+		componentUtils.loadImageButton(R.id.liveModeButton, new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				Intent continousModeIntent = new Intent(
+						SimulationFilterActivity.this,
+						ContinousFilterActivity.class);
+				startActivity(continousModeIntent);
+			}
+		});
+
+		componentUtils.showLinearLayout(R.id.liveModeLL);
 	}
 
 	protected void putFilterTypeExtra(Intent intent) {
