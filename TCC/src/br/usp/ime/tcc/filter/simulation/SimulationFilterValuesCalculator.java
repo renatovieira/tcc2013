@@ -12,15 +12,15 @@ public class SimulationFilterValuesCalculator {
 	}
 
 	private void setParametersValues(int simulationType) {
-		if (simulationType == Constants.PROTANOPIA_SIMULATION_FILTER) {
-			alpha = 0.992052;
-			beta = 0.003974;
+		if (simulationType == Constants.DEUTERANOPIA_SIMULATION_FILTER) {
+			alpha = 0.957237;
+			beta = 0.0213814;
 			a = 0.29275;
 			b = 0.70725;
 			c = -0.02234;
-		} else if (simulationType == Constants.DEUTERANOPIA_SIMULATION_FILTER) {
-			alpha = 0.957237;
-			beta = 0.0213814;
+		} else if (simulationType == Constants.PROTANOPIA_SIMULATION_FILTER) {
+			alpha = 0.992052;
+			beta = 0.003974;
 			a = 0.11238;
 			b = 0.88761;
 			c = 0.004;

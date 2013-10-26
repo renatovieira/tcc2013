@@ -34,6 +34,7 @@ public class SimulationFilterActivity extends FilterActivity {
 				Intent continousModeIntent = new Intent(
 						SimulationFilterActivity.this,
 						SimulationContinousFilterActivity.class);
+				putFilterTypeExtra(continousModeIntent);
 				startActivity(continousModeIntent);
 			}
 		});

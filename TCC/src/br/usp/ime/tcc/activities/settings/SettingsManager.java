@@ -40,7 +40,7 @@ public class SettingsManager {
 	}
 
 	public int loadDefaultColorSimulationId() {
-		return preferences.getInt(DEFAULT_COLOR_SIMULATION_ID, 0);
+		return preferences.getInt(DEFAULT_COLOR_SIMULATION_ID, Constants.DEUTERANOPIA_SIMULATION_FILTER);
 	}
 
 	public int loadDefaultRedTolerance() {
