@@ -9,8 +9,8 @@
     <LinearLayout
         android:id="@+id/filter_type_spinner_ll"
         android:layout_width="fill_parent"
-        android:layout_marginTop="10dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         android:gravity="center_horizontal"
         android:orientation="vertical"
         android:visibility="gone" >
@@ -31,105 +31,91 @@
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:baselineAligned="false"
-        android:orientation="horizontal" >
+        android:gravity="center"
+        android:layout_marginBottom="5dp"
+        android:orientation="vertical" >
 
         <LinearLayout
-            android:layout_width="0dip"
-            android:layout_height="match_parent"
+            android:layout_width="fill_parent"
+            android:layout_height="0dip"
             android:layout_weight="1"
-            android:orientation="horizontal" >
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dip"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:baselineAligned="false"
             android:gravity="center"
             android:orientation="vertical" >
 
-            <LinearLayout
-                android:layout_width="fill_parent"
+            <ImageButton
+                android:id="@+id/cameraModeButton"
+                android:layout_width="wrap_content"
+                android:layout_height="0dip"
+                android:layout_weight="0.9"
+                android:adjustViewBounds="true"
+                android:background="@null"
+                android:contentDescription="@string/from_camera"
+                android:scaleType="centerInside"
+                android:src="@drawable/button" />
+
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
+                android:layout_weight="0.1"
                 android:gravity="center"
-                android:orientation="vertical" >
-
-                <ImageButton
-                    android:id="@+id/cameraModeButton"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:adjustViewBounds="true"
-                    android:background="@null"
-                    android:contentDescription="@string/from_camera"
-                    android:scaleType="centerInside"
-                    android:src="@drawable/button" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/from_camera"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="vertical" >
-
-                <ImageButton
-                    android:id="@+id/galleryModeButton"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:adjustViewBounds="true"
-                    android:background="@null"
-                    android:contentDescription="@string/from_gallery"
-                    android:scaleType="centerInside"
-                    android:src="@drawable/button" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/from_gallery"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/liveModeLL"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:visibility="gone" >
-
-                <ImageButton
-                    android:id="@+id/liveModeButton"
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:adjustViewBounds="true"
-                    android:background="@null"
-                    android:contentDescription="@string/live_mode"
-                    android:scaleType="centerInside"
-                    android:src="@drawable/button" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/live_mode"
-                    android:textAppearance="?android:attr/textAppearanceMedium" />
-            </LinearLayout>
+                android:text="@string/from_camera"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="0dip"
-            android:layout_height="match_parent"
+            android:layout_width="fill_parent"
+            android:layout_height="0dip"
             android:layout_weight="1"
-            android:orientation="horizontal" >
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <ImageButton
+                android:id="@+id/galleryModeButton"
+                android:layout_width="fill_parent"
+                android:layout_height="0dip"
+                android:layout_weight="0.9"
+                android:adjustViewBounds="true"
+                android:background="@null"
+                android:contentDescription="@string/from_gallery"
+                android:scaleType="centerInside"
+                android:src="@drawable/button" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.1"
+                android:gravity="center"
+                android:text="@string/from_gallery"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/liveModeLL"
+            android:layout_width="fill_parent"
+            android:layout_height="0dip"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone" >
+
+            <ImageButton
+                android:id="@+id/liveModeButton"
+                android:layout_width="fill_parent"
+                android:layout_height="0dip"
+                android:layout_weight="0.9"
+                android:adjustViewBounds="true"
+                android:background="@null"
+                android:contentDescription="@string/live_mode"
+                android:scaleType="centerInside"
+                android:src="@drawable/button" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.1"
+                android:gravity="center"
+                android:text="@string/live_mode"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
         </LinearLayout>
     </LinearLayout>
 
