@@ -20,7 +20,7 @@ public class SimulationFilterValuesCalculatorTest {
 				Constants.PROTANOPIA_SIMULATION_FILTER);
 
 		assertEquals(-15461356, calculator.getValueForPixel(Color.BLACK));
-		assertEquals(-7171584, calculator.getValueForPixel(Color.RED));
+		assertEquals(-10526948, calculator.getValueForPixel(Color.RED));
 		assertEquals(-66028, calculator.getValueForPixel(Color.YELLOW));
 	}
 
@@ -30,7 +30,7 @@ public class SimulationFilterValuesCalculatorTest {
 				Constants.DEUTERANOPIA_SIMULATION_FILTER);
 
 		assertEquals(-13882324, calculator.getValueForPixel(Color.BLACK));
-		assertEquals(-10197969, calculator.getValueForPixel(Color.RED));
+		assertEquals(-7105792, calculator.getValueForPixel(Color.RED));
 		assertEquals(-197588, calculator.getValueForPixel(Color.YELLOW));
 	}
 }

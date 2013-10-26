@@ -18,13 +18,15 @@ public class BitmapLoader {
 	private int getImageOrientation() {
 		int orientation = 0;
 
-		try {
-			ExifInterface exif = new ExifInterface(imagePath);
-			orientation = exif
-					.getAttributeInt(ExifInterface.TAG_ORIENTATION, 1);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if (imagePath != null) {
+			try {
+				ExifInterface exif = new ExifInterface(imagePath);
+				orientation = exif.getAttributeInt(
+						ExifInterface.TAG_ORIENTATION, 1);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return orientation;
 	}
@@ -50,9 +52,8 @@ public class BitmapLoader {
 
 	}
 
-	private boolean photoIsBiggerThanRequired(int reqWidth, int reqHeight,
-			final int height, final int width) {
-		return height > reqHeight || width > reqWidth;
+	private boolean photoIsBiggerThanRequired(final int height, final int width) {
+		return height > Constants.REQUIRED_DIMENSION || width > Constants.REQUIRED_DIMENSION;
 	}
 
 	private int calculateInSampleSize(Options options) {
@@ -60,8 +61,7 @@ public class BitmapLoader {
 		final int width = options.outWidth;
 		int inSampleSize = 1;
 
-		if (photoIsBiggerThanRequired(Constants.REQUIRED_DIMENSION,
-				Constants.REQUIRED_DIMENSION, height, width)) {
+		if (photoIsBiggerThanRequired(height, width)) {
 			final int heightRatio = Math.round((float) height
 					/ (float) Constants.REQUIRED_DIMENSION);
 			final int widthRatio = Math.round((float) width
@@ -78,13 +78,28 @@ public class BitmapLoader {
 		options.inJustDecodeBounds = true;
 		BitmapFactory.decodeFile(imagePath, options);
 
-		options.inSampleSize = calculateInSampleSize(options);
+		int inSampleSize = calculateInSampleSize(options);
+		options.inSampleSize = inSampleSize;
 		options.inJustDecodeBounds = false;
 
 		Bitmap bmp = BitmapFactory.decodeFile(imagePath, options);
-		Matrix rotationMatrix = getRotationMatrix();
-
+		
+		double width = bmp.getWidth();
+		double height = bmp.getHeight();
+		
+		if (photoIsBiggerThanRequired((int) height, (int) width)) {
+			if (width > height) {
+				height = (height / width) * Constants.REQUIRED_DIMENSION;
+				width = Constants.REQUIRED_DIMENSION;
+			} else {
+				width = (width / height) * Constants.REQUIRED_DIMENSION;
+				height = Constants.REQUIRED_DIMENSION;
+			}
+			
+			bmp = Bitmap.createScaledBitmap(bmp, (int) width, (int) height, true);
+		}
+		
 		return Bitmap.createBitmap(bmp, 0, 0, bmp.getWidth(), bmp.getHeight(),
-				rotationMatrix, true);
+				getRotationMatrix(), true);
 	}
 }
