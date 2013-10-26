@@ -117,16 +117,6 @@ public class SettingsActivityTest {
 	}
 	
 	@Test
-	public void simpleModeCheckBoxShouldBeLoadedCorrectly() {
-		CheckBox simpleModeCheckBox = (CheckBox) activity.findViewById(R.id.simple_simulation);
-		assertNotNull(simpleModeCheckBox);
-		
-		boolean checked = simpleModeCheckBox.isChecked();
-
-		assertEquals(Constants.SIMPLE_MODE, checked);
-	}
-
-	@Test
 	public void shouldCallOnActivityResultAfterColorPickerResult() {
 		Intent startedIntent = bat
 				.getStartedIntentAfterClickOnImageButton(R.id.default_color_picker_button);

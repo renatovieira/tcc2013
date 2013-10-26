@@ -14,7 +14,6 @@ public class SettingsManager {
 	private static final String DEFAULT_RED_TOLERANCE = "defaultRedTolerance";
 	private static final String DEFAULT_COLOR_SIMULATION_ID = "defaultColorSimulationId";
 	private static final String DEFAULT_INTENSITY = "defaultIntensity";
-	private static final String SIMPLE_MODE = "simpleMode";
 	private static final String SETTINGS = "settings";
 	private SharedPreferences preferences;
 
@@ -25,10 +24,6 @@ public class SettingsManager {
 
 	private boolean save(String key, int value) {
 		return preferences.edit().putInt(key, value).commit();
-	}
-	
-	private boolean save(String key, boolean value) {
-		return preferences.edit().putBoolean(key, value).commit();
 	}
 	
 	public boolean settingsClear() {
@@ -70,10 +65,6 @@ public class SettingsManager {
 		return preferences.getInt(DEFAULT_BLUE, Constants.MAX_COLOR_VALUE);
 	}
 	
-	public boolean loadSimpleMode() {
-		return preferences.getBoolean(SIMPLE_MODE, Constants.SIMPLE_MODE);
-	}
-
 	public boolean saveDefaultIntensity(int value) {
 		return save(DEFAULT_INTENSITY, value);
 	}
@@ -104,9 +95,5 @@ public class SettingsManager {
 
 	public boolean saveDefaultBlue(int value) {
 		return save(DEFAULT_BLUE, value);
-	}
-	
-	public boolean saveSimpleMode(boolean value) {
-		return save(SIMPLE_MODE, value);
 	}
 }

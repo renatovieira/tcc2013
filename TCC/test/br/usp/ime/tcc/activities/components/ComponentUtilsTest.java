@@ -36,7 +36,7 @@ public class ComponentUtilsTest {
 	private ComponentUtils componentUtils;
 	private boolean activated;
 	private boolean checked;
-	private static int defaultCheckBoxId = R.id.simple_simulation;
+	private static int defaultCheckBoxId = 47;
 	private static int defaultLinearLayout = R.id.filter_type_spinner_ll;
 	private static int defaultButtonId = R.id.visocor_button;
 	private static int defaultImageviewId = R.id.filtered_image;

@@ -39,8 +39,6 @@ public class SettingsActivity extends SherlockActivity {
 	private Spinner simulationTypeSpinner;
 	private ComponentUtils cu;
 	private ImageButton colorSampleButton;
-	private CheckBox simpleModeCheckBox;
-	private boolean simpleMode;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -84,8 +82,6 @@ public class SettingsActivity extends SherlockActivity {
 
 		defaultColor = (int[]) getLastNonConfigurationInstance();
 		
-		simpleMode = settingsManager.loadSimpleMode();
-
 		if (defaultColor == null)
 			defaultColor = new int[] { settingsManager.loadDefaultRed(),
 					settingsManager.loadDefaultGreen(),
@@ -130,8 +126,6 @@ public class SettingsActivity extends SherlockActivity {
 				defaultGreenTolerance + "");
 		blueToleranceET = cu.loadEditText(R.id.blue_tolerance,
 				defaultBlueTolerance + "");
-		
-		simpleModeCheckBox = cu.loadCheckBox(R.id.simple_simulation, simpleMode);
 	}
 
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -171,7 +165,6 @@ public class SettingsActivity extends SherlockActivity {
 			defaultIntensity = intensityBar.getProgress();
 			defaultColorSimulation = simulationTypeSpinner
 					.getSelectedItemPosition();
-			simpleMode = simpleModeCheckBox.isChecked();
 			saveValues();
 			Toast.makeText(this, this.getString(R.string.saved),
 					Toast.LENGTH_SHORT).show();
@@ -232,7 +225,6 @@ public class SettingsActivity extends SherlockActivity {
 		settingsManager.saveDefaultRed(defaultColor[Constants.RED]);
 		settingsManager.saveDefaultGreen(defaultColor[Constants.GREEN]);
 		settingsManager.saveDefaultBlue(defaultColor[Constants.BLUE]);
-		settingsManager.saveSimpleMode(simpleMode);
 	}
 
 	@Override
