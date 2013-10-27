@@ -1,8 +1,12 @@
 package br.usp.ime.tcc.utils;
 
+import java.io.IOException;
+
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.BitmapFactory.Options;
+import android.graphics.Matrix;
+import android.media.ExifInterface;
 
 public class BitmapLoader {
 	private String imagePath;
@@ -11,8 +15,46 @@ public class BitmapLoader {
 		this.imagePath = imagePath;
 	}
 
+	private int getImageOrientation() {
+		int orientation = 0;
+
+		if (imagePath != null) {
+			try {
+				ExifInterface exif = new ExifInterface(imagePath);
+				orientation = exif.getAttributeInt(
+						ExifInterface.TAG_ORIENTATION, 1);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return orientation;
+	}
+
+	private Matrix getRotationMatrix() {
+		int orientation = getImageOrientation();
+
+		Matrix rotationMatrix = new Matrix();
+
+		switch (orientation) {
+		case 3:
+			rotationMatrix.postRotate(180);
+			break;
+		case 6:
+			rotationMatrix.postRotate(90);
+			break;
+		case 8:
+			rotationMatrix.preRotate(90);
+			break;
+		}
+
+		return rotationMatrix;
+
+	}
+
 	private boolean photoIsBiggerThanRequired(final int height, final int width) {
-		return height > Constants.REQUIRED_DIMENSION || width > Constants.REQUIRED_DIMENSION;
+		return height > Constants.REQUIRED_DIMENSION
+				|| width > Constants.REQUIRED_DIMENSION;
 	}
 
 	private int calculateInSampleSize(Options options) {
@@ -42,10 +84,10 @@ public class BitmapLoader {
 		options.inJustDecodeBounds = false;
 
 		Bitmap bmp = BitmapFactory.decodeFile(imagePath, options);
-		
+
 		double width = bmp.getWidth();
 		double height = bmp.getHeight();
-		
+
 		if (photoIsBiggerThanRequired((int) height, (int) width)) {
 			if (width > height) {
 				height = (height / width) * Constants.REQUIRED_DIMENSION;
@@ -54,10 +96,12 @@ public class BitmapLoader {
 				width = (width / height) * Constants.REQUIRED_DIMENSION;
 				height = Constants.REQUIRED_DIMENSION;
 			}
-			
-			bmp = Bitmap.createScaledBitmap(bmp, (int) width, (int) height, true);
+
+			bmp = Bitmap.createScaledBitmap(bmp, (int) width, (int) height,
+					true);
 		}
-		
-		return bmp;
+
+		return Bitmap.createBitmap(bmp, 0, 0, bmp.getWidth(), bmp.getHeight(),
+				getRotationMatrix(), true);
 	}
 }
