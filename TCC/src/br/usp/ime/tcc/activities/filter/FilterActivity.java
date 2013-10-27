@@ -1,6 +1,9 @@
 package br.usp.ime.tcc.activities.filter;
 
+import java.io.File;
+
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.Display;
@@ -16,6 +19,7 @@ import com.actionbarsherlock.app.SherlockActivity;
 public abstract class FilterActivity extends SherlockActivity {
 	protected ComponentUtils componentUtils;
 	protected boolean landscapeMode;
+	private File newPicture;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -26,7 +30,7 @@ public abstract class FilterActivity extends SherlockActivity {
 		super.onCreate(savedInstanceState);
 
 		Display display = getWindowManager().getDefaultDisplay();
-		
+
 		landscapeMode = display.getWidth() >= display.getHeight();
 
 		if (landscapeMode)
@@ -51,6 +55,7 @@ public abstract class FilterActivity extends SherlockActivity {
 					}
 
 					private void startGalleryChooser() {
+						newPicture = null;
 						Intent photoPickerIntent = new Intent(
 								Intent.ACTION_PICK,
 								android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -61,16 +66,24 @@ public abstract class FilterActivity extends SherlockActivity {
 					}
 				});
 
-		componentUtils.loadImageButton(R.id.cameraModeButton, new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				Intent takePictureIntent = new Intent(
-						MediaStore.ACTION_IMAGE_CAPTURE);
+		componentUtils.loadImageButton(R.id.cameraModeButton,
+				new OnClickListener() {
 
-				startActivityForResult(takePictureIntent,
-						Constants.TAKE_PICTURE);
-			}
-		});
+					@Override
+					public void onClick(View v) {
+						Intent takePictureIntent = new Intent(
+								MediaStore.ACTION_IMAGE_CAPTURE);
+
+						newPicture = Utils.getFileToBeSaved();
+						Uri outUri = Uri.fromFile(newPicture);
+
+						takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
+								outUri);
+
+						startActivityForResult(takePictureIntent,
+								Constants.TAKE_PICTURE);
+					}
+				});
 
 		loadSpecificComponents();
 	}
@@ -79,8 +92,17 @@ public abstract class FilterActivity extends SherlockActivity {
 
 	public void putContentOnNextActivityExtras(Intent data,
 			Intent showImageIntent) {
-		String imagePath = Utils.getSelectedPicturePath(data.getData(),
-				this.getContentResolver());
+
+		String imagePath;
+		
+		if (newPicture != null) {
+			imagePath = newPicture.getAbsolutePath();
+			Utils.addToGallery(this, newPicture);
+		}
+		else {
+			imagePath = Utils.getSelectedPicturePath(data.getData(),
+					this.getContentResolver());
+		}
 		showImageIntent.putExtra(Constants.IMAGE_PATH, imagePath);
 	}
 }

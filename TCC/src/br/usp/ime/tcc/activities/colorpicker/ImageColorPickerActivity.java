@@ -1,8 +1,5 @@
 package br.usp.ime.tcc.activities.colorpicker;
 
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuItem;
-
 import it.sephiroth.android.library.imagezoom.ImageColorPicker;
 import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
@@ -14,6 +11,9 @@ import br.usp.ime.tcc.activities.components.ComponentUtils;
 import br.usp.ime.tcc.utils.BitmapLoader;
 import br.usp.ime.tcc.utils.Constants;
 import br.usp.ime.tcc.utils.Utils;
+
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
 
 public class ImageColorPickerActivity extends ColorPickerActivity {
 	private ImageColorPicker imageColorPicker;
@@ -66,9 +66,7 @@ public class ImageColorPickerActivity extends ColorPickerActivity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		menu.add(Menu.NONE, Constants.HELP, Menu.NONE, getString(R.string.help))
 				.setIcon(R.drawable.ic_action_about)
-				.setShowAsAction(
-						MenuItem.SHOW_AS_ACTION_IF_ROOM
-								| MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+				.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 
 		return super.onCreateOptionsMenu(menu);
 	}

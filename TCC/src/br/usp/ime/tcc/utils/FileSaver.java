@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 import android.graphics.Bitmap;
-import android.os.Environment;
 
 public class FileSaver {
 	public FileSaver() {
@@ -34,19 +33,10 @@ public class FileSaver {
 		return fOut;
 	}
 	
-	private File getFileToBeSaved() {
-		String timeStamp = Utils.getTimeStamp();
-
-		File root = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
-		File file = new File(root.getAbsolutePath(), timeStamp + ".jpg");
-		
-		return file;
-	}
-	
 	public File saveToFile(Bitmap bitmap) throws IOException {
 		File file = null;
 		if (bitmap != null) {
-			file = getFileToBeSaved();
+			file = Utils.getFileToBeSaved();
 
 			compressAndSaveToFile(bitmap, file);
 		}

@@ -55,21 +55,20 @@ public class VisocorBitmapFilterActivity extends BitmapFilterActivity {
 
 	protected void reapplyFilter() {
 		Matrix imageMatrix = filteredImage.getDisplayMatrix();
-		
+
 		filteredBitmap = filter.applyTo(originalBitmap);
-		
-		filteredImage.setImageBitmap(filteredBitmap, imageMatrix.isIdentity() ? null
-				: imageMatrix, ImageViewTouchBase.ZOOM_INVALID,
+
+		filteredImage.setImageBitmap(filteredBitmap,
+				imageMatrix.isIdentity() ? null : imageMatrix,
+				ImageViewTouchBase.ZOOM_INVALID,
 				ImageViewTouchBase.ZOOM_INVALID);
 	}
-	
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		menu.add(Menu.NONE, Constants.HELP, Menu.NONE, getString(R.string.help))
 				.setIcon(R.drawable.ic_action_about)
-				.setShowAsAction(
-						MenuItem.SHOW_AS_ACTION_IF_ROOM
-								| MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+				.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 
 		return super.onCreateOptionsMenu(menu);
 	}

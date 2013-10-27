@@ -36,7 +36,7 @@ public abstract class BitmapFilterActivity extends SherlockActivity {
 
 		setTheme(R.style.Theme_Sherlock);
 		Utils.loadStripedActionBar(this);
-		
+
 		setContentView(R.layout.bitmap_filter);
 
 		getExtras();
@@ -76,20 +76,12 @@ public abstract class BitmapFilterActivity extends SherlockActivity {
 		componentUtils.fillIn(filteredImage, filteredBitmap);
 	}
 
-	private void addToGallery(File file) {
-		Intent mediaScanIntent = new Intent(
-				Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-		Uri contentUri = Uri.fromFile(file);
-		mediaScanIntent.setData(contentUri);
-		this.sendBroadcast(mediaScanIntent);
-	}
-
 	private void saveFilteredImage() {
 		FileSaver fileSaver = new FileSaver();
 
 		try {
 			File file = fileSaver.saveToFile(filteredBitmap);
-			addToGallery(file);
+			Utils.addToGallery(this, file);
 			Toast.makeText(BitmapFilterActivity.this,
 					getString(R.string.file_saved), Toast.LENGTH_SHORT).show();
 			finish();
@@ -103,16 +95,12 @@ public abstract class BitmapFilterActivity extends SherlockActivity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		menu.add(Menu.NONE, Constants.SAVE, Menu.NONE, getString(R.string.save))
 				.setIcon(R.drawable.ic_action_save)
-				.setShowAsAction(
-						MenuItem.SHOW_AS_ACTION_IF_ROOM
-								| MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+				.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 
 		menu.add(Menu.NONE, Constants.DISCARD, Menu.NONE,
 				getString(R.string.discard))
 				.setIcon(R.drawable.ic_action_discard)
-				.setShowAsAction(
-						MenuItem.SHOW_AS_ACTION_IF_ROOM
-								| MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+				.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 
 		return super.onCreateOptionsMenu(menu);
 	}

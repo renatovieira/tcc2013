@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
@@ -59,16 +58,12 @@ public class SettingsActivity extends SherlockActivity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		menu.add(Menu.NONE, Constants.SAVE, Menu.NONE, getString(R.string.save))
 				.setIcon(R.drawable.ic_action_save)
-				.setShowAsAction(
-						MenuItem.SHOW_AS_ACTION_IF_ROOM
-								| MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+				.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
 
 		menu.add(Menu.NONE, Constants.DISCARD, Menu.NONE,
 				getString(R.string.discard))
 				.setIcon(R.drawable.ic_action_discard)
-				.setShowAsAction(
-						MenuItem.SHOW_AS_ACTION_IF_ROOM
-								| MenuItem.SHOW_AS_ACTION_WITH_TEXT);
+				.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
 
 		return super.onCreateOptionsMenu(menu);
 	}
@@ -81,7 +76,7 @@ public class SettingsActivity extends SherlockActivity {
 		defaultBlueTolerance = settingsManager.loadDefaultBlueTolerance();
 
 		defaultColor = (int[]) getLastNonConfigurationInstance();
-		
+
 		if (defaultColor == null)
 			defaultColor = new int[] { settingsManager.loadDefaultRed(),
 					settingsManager.loadDefaultGreen(),
