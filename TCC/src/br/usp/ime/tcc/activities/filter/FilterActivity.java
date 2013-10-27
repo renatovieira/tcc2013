@@ -38,6 +38,8 @@ public abstract class FilterActivity extends SherlockActivity {
 		else
 			setContentView(R.layout.filter_activity_portrait);
 		loadComponents();
+		
+		newPicture = (File) getLastNonConfigurationInstance();
 	}
 
 	private void loadComponents() {
@@ -94,15 +96,19 @@ public abstract class FilterActivity extends SherlockActivity {
 			Intent showImageIntent) {
 
 		String imagePath;
-		
+
 		if (newPicture != null) {
 			imagePath = newPicture.getAbsolutePath();
 			Utils.addToGallery(this, newPicture);
-		}
-		else {
+		} else {
 			imagePath = Utils.getSelectedPicturePath(data.getData(),
 					this.getContentResolver());
 		}
 		showImageIntent.putExtra(Constants.IMAGE_PATH, imagePath);
+	}
+	
+	@Override
+	public Object onRetainNonConfigurationInstance() {
+		return newPicture;
 	}
 }

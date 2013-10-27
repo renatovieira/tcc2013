@@ -12,7 +12,7 @@ public final class Constants {
 	public static final String FILTER_TYPE = "filterType";
 	public static final String IMAGE_PATH = "imagePath";
 
-	public static final int REQUIRED_DIMENSION = 640;
+	public static final int REQUIRED_DIMENSION = 512;
 
 	public static final int DEUTERANOPIA_SIMULATION_FILTER = 0;
 	public static final int PROTANOPIA_SIMULATION_FILTER = 1;
